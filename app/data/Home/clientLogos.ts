@@ -31,4 +31,3 @@ export const clientLogos: Logo[] = [
     url: "/path/to/logo-cv.png",
   },
 ];
-
