@@ -55,15 +55,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({
               <h3 className="text-2xl font-semibold mb-2  ">{card.title}</h3>
               <p className="text-sm mb-6 font-secondary ">{card.description}</p>
             </div>
-            {/* <a
-              href={card.buttonLink}
-              className="w-auto inline-block px-4 py-2 border border-white text-white rounded-[20px] hover:bg-white hover:text-gray-900 transition-colors duration-200"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {card.buttonText}
-            </a> */}
-
+         
             <Button
               size="medium"
               rounded="full"

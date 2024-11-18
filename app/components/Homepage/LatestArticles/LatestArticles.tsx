@@ -73,34 +73,7 @@ export default function ArticlesSection({
             View All
           </Button>
         </div>
-        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5 mt-0 lg:mt-10">
-          {articles.map((article) => (
-            <Link
-              key={article.id}
-              href={article.link}
-              className="group block overflow-hidden rounded-lg border border-gray-200 transition-all hover:shadow-lg"
-            >
-              <div className="aspect-[6/3] overflow-hidden">
-                <Image
-                  src={article.image}
-                  alt={article.title}
-                  width={600}
-                  height={400}
-                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="font-primary text-2xl font-semibold text-main mb-2 line-clamp-2">
-                  {article.title}
-                </h3>
-                <p className="text-secondary text-base line-clamp-3">
-                  {article.description}
-                </p>
-              </div>
-            </Link>
-          ))}
-        </div> */}
-
+        
         <div className="relative">
           <div
             className="flex overflow-hidden md:mt-10"

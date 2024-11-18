@@ -69,7 +69,6 @@ const TalentMatchingCTA: React.FC = () => {
           </p>
         </div>
         <div className="w-full">
-          {/* <CTAImage src={} alt="Talent Matching Professional" /> */}
           <Image src={ViewImage} alt='image' width={300} height={300} />
         </div>
       </div>
