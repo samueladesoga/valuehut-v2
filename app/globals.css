@@ -1,10 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
+  --background: hsla(0, 0%, 96%, 1);
   --foreground: #171717;
+  --Color-Text-Main: hsla(0, 0%, 6%, 1);
+  --Color-Text-Secondary: #555555;
+  --Color-Text-Body: hsla(198, 29%, 26%, 1);
+  --Color-Text-accentMain: hsla(0, 0%, 100%, 1);
+  --Color-Text-accentSecondary: hsla(0, 0%, 95%, 1);
+  --Color-Fill-Brand-primary: hsla(197, 93%, 29%, 1);
+  --Color-Fill-Brand-secondary: hsla(29, 94%, 69%, 1);
+  --Color-Fill-Neutral-strong: hsla(198, 89%, 10%, 1);
+  --gradient-custom: linear-gradient(247.41deg, rgba(26, 27, 19, 0) 13.04%, #1A1B13 84.46%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -13,9 +25,14 @@
     --foreground: #ededed;
   }
 }
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", sans-serif;
+  background-color: var(--background);
+  color: var(--Color-Text-Main);
 }
