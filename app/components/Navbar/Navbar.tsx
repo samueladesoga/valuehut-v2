@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import { StaticImageData } from "next/image";
-import Button from "../Button/Button";
 
 interface NavbarProps {
   logo: StaticImageData;

@@ -33,7 +33,7 @@ export default function RootLayout({
         { label: "Case Studies", href: "/case-studies" },
       ],
     },
-    { label: "Contact", href: "/contact" },
+    { label: "Contact", href: "/contact-us" },
   ];
   return (
     <html lang="en">
