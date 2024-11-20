@@ -1,11 +1,9 @@
-
-
-
 "use client";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
+import Star from "../../../../public/start.svg";
 
 interface TestimonialProps {
   name: string;
@@ -55,17 +53,37 @@ const Testimonials: React.FC = () => {
 
   return (
     <div className="container mx-auto p-6 text-center">
-      <h2 className="text-4xl font-bold mb-8">What our clients say</h2>
+      <h2 className="font-primary text-9xl font-medium mb-8">
+        What our clients say
+      </h2>
       <div className="relative w-full max-w-xl mx-auto">
         <div className="relative">
-          <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-full hidden sm:block max-w-lg z-10 h-10 rounded-xl bg-gray-200 opacity-70"></div>
-          <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-[84%] h-6 rounded-xl hidden sm:block bg-gray-200 opacity-45 "></div>
-          <div className="bg-gray-200 p-6 rounded-xl shadow-sm border border-gray-200 z-10 relative">
-            <h3 className="text-2xl font-semibold mb-2">
-              {testimonials[currentIndex].name}
-            </h3>
-            <p className="mb-4">{testimonials[currentIndex].review}</p>
-            <footer className="text-gray-500">{testimonials[currentIndex].date}</footer>
+          <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-full hidden sm:block max-w-lg z-10 h-10 rounded-xl bg-[#E2E2E2] opacity-70"></div>
+          <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-[84%] h-6 rounded-xl hidden sm:block bg-[#E2E2E2] opacity-45 "></div>
+          <div className="bg-[#E2E2E2] p-6 rounded-xl shadow-sm border border-gray-200 z-10 relative flex flex-col gap-8">
+            <div className="mx-auto">
+              <div className="flex gap-1 justify-center items-center mb-2">
+                {Array(5)
+                  .fill(null)
+                  .map((_, index) => (
+                    <Image
+                      key={index}
+                      className="w-4 h-4 bg-[#00B67A]"
+                      src={Star}
+                      alt="star"
+                    />
+                  ))}
+              </div>
+              <h3 className="text-[#141834] font-primary text-2xl font-semibold">
+                {testimonials[currentIndex].name}
+              </h3>
+            </div>
+            <p className="text-xl font-normal font-secondary">
+              {testimonials[currentIndex].review}
+            </p>
+            <footer className="text-gray-500">
+              {testimonials[currentIndex].date}
+            </footer>
           </div>
         </div>
         <div className="hidden sm:flex justify-between absolute top-1/2 left-[-60px] right-[-60px] transform -translate-y-1/2">
@@ -99,11 +117,21 @@ const Testimonials: React.FC = () => {
         </div>
       </div>
 
-      {/* Footer text below the card */}
-      <div className=" mt-10 sm:mt-16 text-sm text-gray-500">
-        Rated <strong>4.9 / 5</strong> based on <a href="#" className="underline">25,133 reviews</a>. Showing our favorite reviews.
+      <div className="mt-10 sm:mt-16 text-sm text-center text-gray-500">
+        Rated <strong className="text-secondary  font-bold">4.9 / 5</strong>{" "}
+        based on{" "}
+        <a href="#" className="underline text-secondary  font-bold">
+          25,133 reviews
+        </a>
+        . Showing our favorite reviews.
         <div className="mt-2">
-          <Image src="/images/sliderratings.png" alt="Trustpilot" width={100} height={10} className="mx-auto" />
+          <Image
+            src="/images/sliderratings.png"
+            alt="Trustpilot"
+            width={100}
+            height={10}
+            className="mx-auto"
+          />
         </div>
       </div>
     </div>

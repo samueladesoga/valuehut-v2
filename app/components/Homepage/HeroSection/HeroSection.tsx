@@ -21,12 +21,12 @@ const HeroSection = ({ title,
       className=" bg-gradient-custom h-screen flex flex-end bg-center bg-no-repeat"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      <div className="container w-full flex h-full font-primary items-end px-6 sm:px-0 pb-[60px]">
+      <div className="container w-full flex h-full font-primary items-end px-6 pb-[60px]">
         <div className="flex flex-col gap-4 space-y-3 bottom-10 w-full text-accentmain">
-          <h1 className="text-[47px] sm:text-[87px] max-w-[55%] leading-[51px] sm:leading-[95.7px] font-semibold">
+          <h1 className="text-[47px] sm:text-[87px] w-full sm:w-[60%] leading-[51px] sm:leading-[95.7px] font-semibold font-primary">
             {title}
           </h1>
-          <p className="text-[18px] font-secondary sm:text-[21px] leading-[27px] sm:leading-[31px] max-w-[70%] font-semibold">
+          <p className="text-[18px] font-secondary sm:text-[21px] leading-[27px] sm:leading-[31px] w-full sm:w-[60%] font-medium  ">
             {subtitle}
           </p>
           <a href={buttonLink}>

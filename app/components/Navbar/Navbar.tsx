@@ -5,9 +5,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import { StaticImageData } from "next/image";
+import Button from "../Button/Button";
 
 interface NavbarProps {
   logo: StaticImageData;
+  menu: StaticImageData;
   navLinks?: Array<{
     label: string;
     href: string;
@@ -15,7 +17,7 @@ interface NavbarProps {
   }>;
 }
 
-const Navbar = ({ logo, navLinks = [] }: NavbarProps) => {
+const Navbar = ({ logo, menu, navLinks = [] }: NavbarProps) => {
   return (
     <div className="fixed w-full  md:mt-3 z-50 ">
       <nav className=" container bg-[#707070]/10 backdrop-blur-3xl md:rounded-xl  overflow-hidden text-white py-4 shadow-md">
@@ -30,7 +32,7 @@ const Navbar = ({ logo, navLinks = [] }: NavbarProps) => {
             />
           </Link>
 
-          <div className="text-xs text-accentmain hidden md:flex items-center space-x-8">
+          <div className="text-xs text-accentmain hidden lg:flex items-center space-x-8">
             {navLinks.map((link, index) =>
               link.subLinks ? (
                 <div key={index} className="relative group">
@@ -63,26 +65,20 @@ const Navbar = ({ logo, navLinks = [] }: NavbarProps) => {
           </div>
 
           <Link href="/contact">
-            <button className="bg-fill-brand-secondary py-2 px-5 rounded-lg text-main hidden md:inline-flex">
+            <button className="bg-fill-brand-secondary rounded-lg py-2 px-5 text-xs font-medium text-main hidden lg:flex">
               Book a free call
             </button>
           </Link>
 
-          <button className="md:hidden">
-            <svg
-              className="h-6 w-6 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
+          <Link href="/" className="lg:hidden flex justify-center items-center ">
+            <Image
+              src={menu}
+              alt="menu"
+              width={200}
+              height={200}
+              className="h-auto w-auto"
+            />
+          </Link>
         </div>
       </nav>
     </div>

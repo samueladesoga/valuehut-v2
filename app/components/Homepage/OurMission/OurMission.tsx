@@ -5,23 +5,20 @@ interface OurMissionProps {
   button?: React.ReactNode;
 }
 
-
 function OurMission({ description, button }: OurMissionProps) {
   return (
-    <div className="w-full px-20 ">
-      <div className="max-w-[636px] flex flex-col gap-2 sm:gap-5 mx-auto px-7 pt-8 sm:px-14 sm:pt-24">
-        <h1 className="text-[30px] md:text-[47px]  leading-[65.8px] font-medium sm:text-[67px] sm:leading-[80px]">
-          <span className="text-black">We help organizations</span>
-          <span className="text-gray-300">
-            find better ways to work and lead, delivering great products and
-            services.
-          </span>
-        </h1>
-        <p className="text-[23px] leading-[34px] text-[#101010] font-normal">
-          {description}
-        </p>
-        <div>{button}</div>
-      </div>
+    <div className="max-w-[636px] px-6 sm:px-12 flex flex-col gap-2 sm:gap-5 mx-auto">
+      <h1 className="text-[47px] leading-[65.8px] font-primary font-medium md:text-[67px] md:leading-[93px]">
+        <span className="text-main">We help organizations </span>
+        <span className="text-gray-300">
+          find better ways to work and lead, delivering great products and
+          services.
+        </span>
+      </h1>
+      <p className="text-[23px] leading-[34px] text-main font-normal font-secondary">
+        {description}
+      </p>
+      <div>{button}</div>
     </div>
   );
 }

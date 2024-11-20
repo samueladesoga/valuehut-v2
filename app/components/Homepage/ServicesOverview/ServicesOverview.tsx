@@ -8,15 +8,15 @@ import Questions from "./../../../../public/question.svg";
 
 const ServicesOverview = () => {
   return (
-    <div className="container services-overview py-12 flex flex-col mx-auto gap-4 max-w-[924px]">
-      <div className="mx-auto flex flex-col justify-center items-center gap-2">
+    <section className="max-w-[924px] px-6 xl:px-0 py-12 flex flex-col mx-auto gap-4">
+      <div className="max-w-[582px] mx-auto flex flex-col justify-center items-center gap-2">
         <SectionTitle title="Take your business to the next level" />
         <SectionPara para="Helping Organisations transform into a network of interdependent product teams across different business units into a network of interdependent." />
         <Button bgColor="fill-brand-secondary" rounded="full" size="medium">
           Explore our services
         </Button>
       </div>
-      <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-0 sm:mt-10">
+      <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-0 mt-5 sm:mt-10">
         <div className="bg-[#E5DFD9] rounded-lg shadow-lg sm:transform sm:-rotate-[10deg]   sm:z-10 sm:translate-x-14">
           <Card
             title="Delivery Management"
@@ -32,7 +32,7 @@ const ServicesOverview = () => {
           />
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

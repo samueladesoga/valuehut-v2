@@ -16,15 +16,25 @@ export default function Home() {
   return (
     <div className="flex   flex-col gap-8 bg-[#f5f5f5]">
       <main className="w-full mx-auto min-h-screen">
-         <HeroSection title={heroData.title} subtitle={heroData.subtitle} buttonText={heroData.buttonText} 
-         buttonLink={heroData.buttonLink} backgroundImage={heroData.backgroundImage} ratingText={heroData.ratingText} ratingDetails={ heroData.ratingDetails}  showRating={true} />
+        <HeroSection
+          title={heroData.title}
+          subtitle={heroData.subtitle}
+          buttonText={heroData.buttonText}
+          buttonLink={heroData.buttonLink}
+          backgroundImage={heroData.backgroundImage}
+          ratingText={heroData.ratingText}
+          ratingDetails={heroData.ratingDetails}
+          showRating={true}
+        />
       </main>
-      <ClientLogosSection  />
+      <ClientLogosSection />
       <ServicesSection />
       <OurMission
         description="Helping organisations transform into a network of interdependent product teams across different business units."
         button={
-          <Button size="medium" border rounded="full" >Button example</Button>
+          <Button size="medium" border rounded="full" textColor="main">
+            Button example
+          </Button>
         }
       />
       <HeroBanner
@@ -40,7 +50,7 @@ export default function Home() {
         description="Helping Organisations transform into a network of interdependent product"
       />
 
-      <div className=" mb-0 md:mb-20 mt-10 md:mt-0">
+      <div className="mb-0 md:mb-20 mt-10 md:mt-0">
         <BookACallCTA
           title="Ready to book a free call?"
           description="ValueHut Consultancy is an Agile Management Consultant, helping organization explore better ways of working and leading."
