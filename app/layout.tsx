@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar/Navbar";
 import logo from "../public/images/Vector.png";
 import Footer from "./components/Footer/Footer";
+import Menu from "../public/images/menu.png";
 
 export const metadata: Metadata = {
   title: "Discover ValueHut",
@@ -37,9 +38,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar logo={logo} navLinks={navLinks} />
-          {children}
-        <Footer  />
+        <Navbar logo={logo} menu={Menu} navLinks={navLinks} />
+        {children}
+        <Footer />
       </body>
     </html>
   );
