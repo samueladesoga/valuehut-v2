@@ -1,11 +1,10 @@
-
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-fill-neutral-strong">
-      <div className="container pb-8 pt-16 sm:pt-24 px-6 xl:px-0 lg:pt-32">
+    <footer className="w-full bg-fill-neutral-strong">
+      <div className="container pb-8 pt-16 px-6 xl:px-0 sm:pt-24 lg:pt-32">
         <div className="xl:grid xl:grid-cols-2 xl:gap-8">
           <div className="space-y-8">
             <Image
@@ -14,7 +13,7 @@ const Footer: React.FC = () => {
               width={70}
               height={70}
             />
-            <p className="text-balance text-accentmain text-lg">
+            <p className="text-balance text-accentmain text-lg font-normal font-secondary">
               ValueHut Consultancy is an Agile Management Consultant, help
               organisation explore better ways of working and leading to deliver
               great products and servicea to their clients.
@@ -120,12 +119,12 @@ const Footer: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="mt-10 pt-8 sm:mt-20 lg:mt-24  w-full flex justify-center ">
-          <div className="flex flex-col-reverse sm:flex-row w-full justify-between text-sm font-secondary text-accentmain font-medium">
-            <p className="text-sm font-secondary text-accentmain mt-4  sm:mt-0 w-full justify-center  flex font-medium">
+        <div className="mt-10 pt-8 sm:mt-20 lg:mt-24  w-full flex justify-center md:justify-between ">
+          <div className="flex flex-col-reverse sm:flex-row w-full justify-between text-sm  font-secondary text-accentmain font-medium">
+            <p className="text-sm font-secondary text-accentmain mt-4  sm:mt-0 w-full  text-center md:text-start justify-center  font-medium">
               2024 ValueHut - All rights reserved.
             </p>
-            <nav className="inline-flex gap-3 w-full justify-center">
+            <nav className=" w-full flex  gap-10 justify-between md:justify-end">
               <Link href="/privacy-policy">Privacy Policy</Link>
               <Link href="/terms-and-conditions">Terms & Conditions</Link>
             </nav>

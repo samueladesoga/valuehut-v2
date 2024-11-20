@@ -54,7 +54,7 @@ export default function ArticlesSection({
   return (
     <section className="container py-10  px-10 lg:px-0">
       <div className="flex flex-row justify-start items-center  mb-2">
-        <div className=" max-w-xl lg:max-w-3xl ">
+        <div className="">
           <SectionTitle
             title={title}
             className="fontSize-9xl flex items-start justify-start"
