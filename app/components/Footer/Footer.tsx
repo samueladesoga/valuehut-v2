@@ -9,10 +9,10 @@ const Footer: React.FC = () => {
         <div className="xl:grid xl:grid-cols-2 xl:gap-8">
           <div className="space-y-8">
             <Image
-              src="/images/Vector.png"
+              src="/images/footerImg.png"
               alt="Company name"
-              width={120}
-              height={120}
+              width={70}
+              height={70}
             />
             <p className="text-balance text-accentmain text-lg">
               ValueHut Consultancy is an Agile Management Consultant, help

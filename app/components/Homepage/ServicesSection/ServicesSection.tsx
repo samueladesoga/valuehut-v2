@@ -14,25 +14,21 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({
 }) => {
   const { title, subtitle, statistics, cards } = data;
   return (
-    <section className="py-16 px-8 mx-auto w-auto">
-      <div className="grid grid-cols-1 font-primary font-medium  md:grid-cols-2 gap-10 items-start mb-16">
+    <section className="container py-16 px-6  md:px-0  ">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start mb-16">
         <div>
-          <h2 className="text-9xl md:text-7xl text-main ">
-            {title.split(" ").map((word, index) => (
-              <React.Fragment key={index}>
-                {word} {index === 2 || index === 5 ? <br /> : " "}
-              </React.Fragment>
-            ))}
+          <h2 className="text-7xl font-primary text-main text-center font-medium sm:text-left leading-[61.1px] sm:text-9xl">
+            {title}
           </h2>
         </div>
         <div>
-          <p className=" text-main mb-6 font-secondary text-2xl font-medium">
+          <p className="mb-6 font-secondary text-2xl font-normal">
             {subtitle}
           </p>
-          <div className="flex space-x-12">
+          <div className="flex justify-between gap-14 sm:gap-20">
             {statistics.map((stat, index) => (
-              <div key={index} className="text-left">
-                <p className="  text-gray-900 font-primary text-8xl ">
+              <div key={index} className="text-center sm:text-left ">
+                <p className="text-main  font-primary text-8xl ">
                   {stat.value}
                 </p>
                 <p className="text-accentMain font-secondary text-sm">
@@ -44,15 +40,15 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3  gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
         {cards.map((card, index) => (
           <div
             key={index}
-            className={`${card.bgColor} p-6 rounded-lg font-primary text-white shadow-md flex flex-col justify-between items-start`}
-            style={{ minHeight: "300px" }}
+            className={`${card.bgColor} p-5 sm:p-8 rounded-[20px] font-primary text-white shadow-md flex flex-col justify-between items-start`}
+            style={{ minHeight: "400px" }}
           >
             <div>
-              <h3 className="text-2xl font-semibold mb-2  ">{card.title}</h3>
+              <h3 className="text-3xl sm:text-6xl font-semibold mb-2  ">{card.title}</h3>
               <p className="text-sm mb-6 font-secondary ">{card.description}</p>
             </div>
          

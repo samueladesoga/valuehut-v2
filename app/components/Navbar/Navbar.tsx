@@ -17,8 +17,8 @@ interface NavbarProps {
 
 const Navbar = ({ logo, navLinks = [] }: NavbarProps) => {
   return (
-    <div className="fixed w-full sm:mt-3 z-50 ">
-      <nav className=" sm:mx-20 bg-[#707070]/10 backdrop-blur-3xl sm:rounded-xl  text-white py-4 shadow-md">
+    <div className="fixed w-full  md:mt-3 z-50 ">
+      <nav className=" container bg-[#707070]/10 backdrop-blur-3xl md:rounded-xl  overflow-hidden text-white py-4 shadow-md">
         <div className="relative z-10 flex items-center justify-between  w-full  px-6 mx-auto">
           <Link href="/" className="flex items-center space-x-2">
             <Image

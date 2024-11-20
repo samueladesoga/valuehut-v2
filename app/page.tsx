@@ -10,20 +10,14 @@ import LatestArticles from "./components/Homepage/LatestArticles/LatestArticles"
 import BookACallCTA from "./components/Homepage/BookACallCTA/BookACallCTA";
 import { Articles } from "./data/Home/Testimonials";
 import Button from "./components/Button/Button";
+import { heroData } from "./data/Home/HeroSection";
 
 export default function Home() {
   return (
-    <div className="flex  flex-col gap-8 bg-[#f5f5f5]">
-      <main className="w-full relative min-h-screen">
-        <HeroSection
-          title="Redefine the way you work."
-          subtitle="Helping organizations transform into a network of interdependent product teams across different sectors."
-          buttonText="Get Started Now"
-          buttonLink="/get-started"
-          showRating={true}
-          ratingText="Excellent"
-          ratingDetails="4.78 out of 5 based on 34 reviews"
-        />
+    <div className="flex   flex-col gap-8 bg-[#f5f5f5]">
+      <main className="w-full mx-auto min-h-screen">
+         <HeroSection title={heroData.title} subtitle={heroData.subtitle} buttonText={heroData.buttonText} 
+         buttonLink={heroData.buttonLink} backgroundImage={heroData.backgroundImage} ratingText={heroData.ratingText} ratingDetails={ heroData.ratingDetails}  showRating={true} />
       </main>
       <ClientLogosSection  />
       <ServicesSection />
@@ -46,7 +40,7 @@ export default function Home() {
         description="Helping Organisations transform into a network of interdependent product"
       />
 
-      <div className="mb-20">
+      <div className=" mb-0 md:mb-20 mt-10 md:mt-0">
         <BookACallCTA
           title="Ready to book a free call?"
           description="ValueHut Consultancy is an Agile Management Consultant, helping organization explore better ways of working and leading."

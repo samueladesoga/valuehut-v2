@@ -4,8 +4,9 @@ import "./globals.css";
 import Navbar from "./components/Navbar/Navbar";
 import logo from "../public/images/Vector.png";
 import Footer from "./components/Footer/Footer";
+
 export const metadata: Metadata = {
-  title: "description",
+  title: "Discover ValueHut",
   description:
     "Discover ValueHut Consulting, an agile coaching and training supporting the adoption of agile ways of working using Training and Coaching. Improve your organisational effectivess and efficiency with our help.",
 };
@@ -37,12 +38,8 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Navbar logo={logo} navLinks={navLinks} />
-        {children}
-
-        
-        <Footer />
-
-    
+          {children}
+        <Footer  />
       </body>
     </html>
   );

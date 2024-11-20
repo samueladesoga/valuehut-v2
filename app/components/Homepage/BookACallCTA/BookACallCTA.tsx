@@ -52,7 +52,7 @@ const BookACallCTA: React.FC<BookACallCTAProps> = ({
   imageUrl,
 }) => {
   return (
-    <div className="container book-a-call-cta bg-orange-200 flex flex-col md:flex-row px-[60px] justify-between items-center sm:rounded-[30px] ">
+    <div className="container book-a-call-cta bg-fill-brand-secondary flex flex-col md:flex-row px-[60px] justify-between items-center md:rounded-[30px] ">
       <div className="text-container mt-10 md:mt-0 ">
         <h2 className="text-[47px] sm:[text-[60px] font-semibold leading-[61px] sm:leading-[78px]">
           {title}

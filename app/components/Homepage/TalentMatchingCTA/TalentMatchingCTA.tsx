@@ -3,7 +3,7 @@ import Button from "../../Button/Button";
 import Image from "next/image";
 import { StaticImageData } from "next/image";
 import ViewImage from "./../../../../public/talentmatching.png";
-import { ArrowDownNarrowWide, ArrowLeft } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 interface CTAHeadingProps {
   text: string;
@@ -52,7 +52,7 @@ const TalentMatchingCTA: React.FC = () => {
         <Button
           bgColor="fill-brand-secondary"
           size="medium"
-          icon={<ArrowDownNarrowWide/>}
+          icon={<ChevronRight />}
           rounded="full"
           className="mt-5"
         >
