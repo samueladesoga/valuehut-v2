@@ -1,32 +1,46 @@
-import type { Metadata } from 'next'
-import localFont from 'next/font/local'
-import './globals.css'
+import type { Metadata } from "next";
+import "./globals.css";
 
-const geistSans = localFont({
-    src: './fonts/GeistVF.woff',
-    variable: '--font-geist-sans',
-    weight: '100 900',
-})
-const geistMono = localFont({
-    src: './fonts/GeistMonoVF.woff',
-    variable: '--font-geist-mono',
-    weight: '100 900',
-})
+import Navbar from "./components/Navbar/Navbar";
+import logo from "../public/images/Vector.png";
+import Footer from "./components/Footer/Footer";
 
 export const metadata: Metadata = {
-    title: 'description',
-    description:
-        'Discover ValueHut Consulting, an agile coaching and training supporting the adoption of agile ways of working using Training and Coaching. Improve your organisational effectivess and efficiency with our help.',
-}
+  title: "Discover ValueHut",
+  description:
+    "Discover ValueHut Consulting, an agile coaching and training supporting the adoption of agile ways of working using Training and Coaching. Improve your organisational effectivess and efficiency with our help.",
+};
 
 export default function RootLayout({
-    children,
+  children,
 }: Readonly<{
-    children: React.ReactNode
+  children: React.ReactNode;
 }>) {
-    return (
-        <html lang="en">
-            <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
-        </html>
-    )
+  const navLinks = [
+    { label: "Academy", href: "/academy" },
+    { label: "Consulting", href: "/consulting" },
+    {
+      label: "Talent Matching",
+      href: "/talent-matching",
+      badge: "NEW",
+    },
+    {
+      label: "Resources",
+      href: "/resources",
+      subLinks: [
+        { label: "Blog", href: "/blog" },
+        { label: "Case Studies", href: "/case-studies" },
+      ],
+    },
+    { label: "Contact", href: "/contact" },
+  ];
+  return (
+    <html lang="en">
+      <body>
+        <Navbar logo={logo} navLinks={navLinks} />
+          {children}
+        <Footer  />
+      </body>
+    </html>
+  );
 }
