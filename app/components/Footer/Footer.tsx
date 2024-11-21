@@ -105,7 +105,7 @@ const Footer: React.FC = () => {
         <div className="pt-8 sm:mt-10">
           <div className="flex  flex-wrap justify-between item-center ">
             <div className=" flex flex-col  w-full sm:w-auto justify-center">
-              <h2 className="text-[70px] sm:text-[150px]  w-full flex justify-center  leading-[91px] sm:leading-[195px] font-primary text-[#EFF1CB] font-medium">
+              <h2 className="text-[70px] sm:text-[150px]  w-full flex justify-center  leading-[91px] sm:leading-[195px] font-primary text-[#EFF1CB] tracking-[2px] font-medium">
                 ValueHut
               </h2>
               <p className="font-secondary font-bold text-lg mt-[-15px] sm:mt-[-30px] w-full sm:w-auto flex justify-center sm:justify-end tracking-widest uppercase text-[#EFF1CB]">
