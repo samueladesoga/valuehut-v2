@@ -1,12 +1,11 @@
 import React from "react";
 
 interface OurMissionProps {
-  title?: string;
   description?: string;
   button?: React.ReactNode;
 }
 
-function OurMission({ title, description, button }: OurMissionProps) {
+function OurMission({ description, button }: OurMissionProps) {
   return (
     <div className="w-full ">
       <div className="max-w-[636px] flex flex-col gap-2 sm:gap-5 mx-auto px-7 pt-8 sm:px-14 sm:pt-24">

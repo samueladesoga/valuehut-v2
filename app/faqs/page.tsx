@@ -2,6 +2,7 @@ import FAQ from "../components/Faq/Faq";
 
 // Define the structure of each FAQ item
 interface FAQItem {
+  category: string;
   question: string;
   answer: string;
 }
@@ -10,29 +11,77 @@ const FaqPage: React.FC = () => {
   // List of FAQs
   const faqs: FAQItem[] = [
     {
+      category: "General",
       question: "What's the best thing about Switzerland?",
       answer:
         "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
     },
     {
-      question: "Why do we tell actors to 'break a leg'?",
+      category: "General",
+      question: "What's the capital of Switzerland?",
       answer:
-        "Because every play has a cast. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+        "The capital of Switzerland is Bern. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
     },
     {
-      question: "How do you drown a hipster?",
+      category: "General",
+      question: "What's the population of Switzerland?",
       answer:
-        "Throw them in the mainstream. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+        "The population of Switzerland is approximately 8.5 million. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
     },
     {
-      question: "What do you call a belt made out of watches?",
+      category: "General",
+      question: "What's the official language of Switzerland?",
       answer:
-        "A waist of time. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+        "The official languages of Switzerland are German, French, Italian, and Romansh. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
     },
     {
-      question: "Why can't you hear a pterodactyl go to the bathroom?",
+      category: "General",
+      question: "What's the currency of Switzerland?",
       answer:
-        "Because the 'P' is silent. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+        "The currency of Switzerland is the Swiss Franc. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+    },
+    {
+      category: "Academy",
+      question: "What programs does the Academy offer?",
+      answer:
+        "The Academy offers a wide range of programs in various fields. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+    },
+    {
+      category: "Academy",
+      question: "What are the admission requirements for the Academy?",
+      answer:
+        "The admission requirements for the Academy vary depending on the program. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+    },
+    {
+      category: "Academy",
+      question: "What is the duration of the Academy programs?",
+      answer:
+        "The duration of the Academy programs varies from program to program. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+    },
+    {
+      category: "Consulting",
+      question: "What services does the Consulting department provide?",
+      answer:
+        "The Consulting department provides a wide range of services to clients. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+    },
+    {
+      category: "Academy",
+      question:
+        "What are the career prospects after completing an Academy program?",
+      answer:
+        "Completing an Academy program opens up various career prospects. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+    },
+    {
+      category: "Talent Matching",
+      question: "How does the Talent Matching process work?",
+      answer:
+        "The Talent Matching process involves matching candidates with suitable job opportunities. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+    },
+    {
+      category: "Talent Matching",
+      question: "What industries does the Talent Matching team specialize in?",
+      answer:
+        "The Talent Matching team specializes in various industries. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
     },
   ];
   return (

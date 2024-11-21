@@ -114,7 +114,7 @@ const Footer: React.FC = () => {
             </div>
             <div className="flex justify-center  items-center w-full mt-8 md:mt-0 sm:w-auto  ">
               <button className="bg-[#FF9F5A] font-secondary h-auto px-6 py-3 rounded-full text-main text-sm font-medium hover:bg-[#FF9F5A]/90">
-                Let's get in touch
+                Let&apos;s get in touch
               </button>
             </div>
           </div>

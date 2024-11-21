@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import Button from "../../Button/Button";
 import SectionTitle from "../../SectionTitle/SectionTitle";
 import SectionPara from "../../SectionPara/SectionPara";
@@ -33,13 +32,13 @@ export default function ArticlesSection({
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? articles.length - 1 : prevIndex - 1
+      prevIndex === 0 ? articles.length - 1 : prevIndex - 1,
     );
   };
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === articles.length - 1 ? 0 : prevIndex + 1
+      prevIndex === articles.length - 1 ? 0 : prevIndex + 1,
     );
   };
 
