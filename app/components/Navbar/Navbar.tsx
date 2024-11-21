@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import { StaticImageData } from "next/image";
-import Button from "../Button/Button";
 
 interface NavbarProps {
   logo: StaticImageData;
@@ -70,8 +69,13 @@ const Navbar = ({ logo, menu, navLinks = [] }: NavbarProps) => {
             </button>
           </Link>
 
-          <Link href="/" className="lg:hidden flex justify-center gap-[6px] items-center ">
-          <h4 className="text-[12px] leading-[22px] font-bold font-secondary uppercase">menu</h4>
+          <Link
+            href="/"
+            className="lg:hidden flex justify-center gap-[6px] items-center "
+          >
+            <h4 className="text-[12px] leading-[22px] font-bold font-secondary uppercase">
+              menu
+            </h4>
             <Image
               src={menu}
               alt="menu"

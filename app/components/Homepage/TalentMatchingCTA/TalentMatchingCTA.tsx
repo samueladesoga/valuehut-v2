@@ -1,7 +1,6 @@
 import React from "react";
 import Button from "../../Button/Button";
 import Image from "next/image";
-import { StaticImageData } from "next/image";
 import GirlImage from "./../../../../public/images/BookACallCTA-image.png";
 import { ChevronRight } from "lucide-react";
 
@@ -14,17 +13,6 @@ interface CTAHeadingProps {
 interface CTASubheadingProps {
   headline: string;
   description: string;
-}
-
-interface CTAButtonProps {
-  label: string;
-}
-
-interface CTAImageProps {
-  src: StaticImageData;
-  alt: string;
-  width?: number;
-  height?: number;
 }
 
 const TalentMatchingCTA: React.FC = () => {
@@ -68,7 +56,7 @@ const TalentMatchingCTA: React.FC = () => {
             adoption
           </p>
         </div>
-          <Image src={GirlImage} alt="image" width={300} height={300} />
+        <Image src={GirlImage} alt="image" width={300} height={300} />
       </div>
     </section>
   );
@@ -85,7 +73,7 @@ const CTAHeading: React.FC<CTAHeadingProps> = ({ text }) => (
         <span key={index} className="text-accentsecondary">
           {word}{" "}
         </span>
-      )
+      ),
     )}
   </h2>
 );
@@ -102,24 +90,6 @@ const CTASubheading: React.FC<CTASubheadingProps> = ({
       {description}
     </p>
   </div>
-);
-
-const CTAButton: React.FC<CTAButtonProps> = ({ label }) => (
-  <button
-    className="py-3 px-6 rounded-full text-sm flex items-center justify-center w-fit font-medium hover:opacity-90"
-    style={{
-      backgroundColor: "var(--Color-Fill-Brand-secondary)",
-      color: "var(--Color-Text-accentMain)",
-      fontFamily: "'Inter', sans-serif",
-    }}
-  >
-    {label}
-    <span className="ml-2">→</span>
-  </button>
-);
-
-const CTAImage: React.FC<CTAImageProps> = ({ src, alt }) => (
-  <Image src={src} alt={alt} width={1000} height={700} />
 );
 
 export default TalentMatchingCTA;
