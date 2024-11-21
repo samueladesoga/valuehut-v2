@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const ClientLogosSection = () => {
   return (
-    <div className="client-logos-container text-center   p-6 py-12 font-secondary font-medium">
+    <div className="client-logos-container text-center p-6 py-16 font-secondary font-medium">
       <div className="flex justify-center">
 
       <p className="text-[16px]  leading-[24px] flex justify-center w-60 font-semibold mb-6">

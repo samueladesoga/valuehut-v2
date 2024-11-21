@@ -10,6 +10,8 @@ export default {
     extend: {
       backgroundImage: {
         "gradient-custom": "var(--gradient-custom)",
+        "hero-image1": "url('/images/hero.png')",
+        "hero-image2": "url('/images/hero-sm.png')"
       },
       container: {
         center: true,

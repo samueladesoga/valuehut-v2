@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../../Button/Button";
 import Image from "next/image";
 import { StaticImageData } from "next/image";
-import ViewImage from "./../../../../public/talentmatching.png";
+import GirlImage from "./../../../../public/images/BookACallCTA-image.png";
 import { ChevronRight } from "lucide-react";
 
 interface CTAHeadingProps {
@@ -29,7 +29,7 @@ interface CTAImageProps {
 
 const TalentMatchingCTA: React.FC = () => {
   return (
-    <section className="bg-fill-neutral-strong container flex flex-col lg:flex-row xl:rounded-[30px] items-center px-6 pt-20 pb-10 justify-between relative space-y-8 lg:space-y-0 lg:space-x-8">
+    <section className="bg-fill-neutral-strong container flex flex-col md:flex-row xl:rounded-[30px] items-center px-6 pt-20 pb-10 justify-between relative space-y-8 lg:space-y-0 lg:space-x-8">
       <div className="flex flex-col gap-6 items-start">
         <div className="text-2xs text-[#ffff] font-semibold uppercase tracking-wider px-3 py-1 rounded-full border border-[#fff]/50">
           Talent Matching
@@ -60,17 +60,15 @@ const TalentMatchingCTA: React.FC = () => {
         </Button>
       </div>
 
-      <div className="w-[360px] md:w-[454px] bg-[#E7EDE4] rounded-[20px] p-6 flex  justify-center shadow-lg flex-col">
-        <div className="flex items-center">
+      <div className="max-w-[454px] bg-[#E7EDE4] rounded-[20px] pt-6 px-6 flex justify-center items-center shadow-lg flex-col gap-2">
+        <div className="flex gap-2 items-center">
           <hr className="w-14 rotate-90 border-2 border-[#FBAC65]" />
           <p className="text-sm italic  w-full text-main font-normal">
             Established product delivery teams often face challenges related to
             adoption
           </p>
         </div>
-        <div className="w-full">
-          <Image src={ViewImage} alt="image" width={300} height={300} />
-        </div>
+          <Image src={GirlImage} alt="image" width={300} height={300} />
       </div>
     </section>
   );

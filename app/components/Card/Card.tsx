@@ -11,7 +11,7 @@ interface CardProps {
 function Card({ title, description, icon }: CardProps) {
   return (
     <div
-      className={`max-w-[400px] h-[350px] sm:h-[500px] flex flex-col gap-28 sm:gap-44 md:gap-56 p-8`}
+      className={`max-w-[400px] h-[350px] sm:h-[500px] flex flex-col justify-between items-start p-8`}
     >
       {icon && <Image src={icon} height={50} width={50} alt="image" />}
       <div className="">

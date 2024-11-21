@@ -70,7 +70,8 @@ const Navbar = ({ logo, menu, navLinks = [] }: NavbarProps) => {
             </button>
           </Link>
 
-          <Link href="/" className="lg:hidden flex justify-center items-center ">
+          <Link href="/" className="lg:hidden flex justify-center gap-[6px] items-center ">
+          <h4 className="text-[12px] leading-[22px] font-bold font-secondary uppercase">menu</h4>
             <Image
               src={menu}
               alt="menu"
