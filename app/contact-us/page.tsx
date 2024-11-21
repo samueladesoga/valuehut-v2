@@ -1,55 +1,57 @@
-import React from 'react';
+"use client";
+import React from "react";
+import { OfficeMap } from "./OfficeMap";
+import HeroSection from "../components/HeroComponent/HeroComponent";
+import ContactForm from "../components/ContactUsPage/contactForm/ContactForm";
+import AddressCard from "../components/ContactUsPage/AddressCard/AddressCard";
+import { heroData } from "../data/contact-us/heroSection";
+import { addressData } from "../data/contact-us/address";
 
 const ContactUsPage: React.FC = () => {
-    return (
-        <div>
-            <h1>Contact Us</h1>
-            
-            <form className="mt-4">
-                <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-                        Name
-                    </label>
-                    <input
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="name"
-                        type="text"
-                        placeholder="Enter your name"
-                    />
-                </div>
-                <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-                        Email
-                    </label>
-                    <input
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="email"
-                        type="email"
-                        placeholder="Enter your email"
-                    />
-                </div>
-                <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="message">
-                        Message
-                    </label>
-                    <textarea
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="message"
-                        placeholder="Enter your message"
-                        rows={4}
-                    ></textarea>
-                </div>
-                <div className="flex justify-end">
-                    <button
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        type="submit"
-                    >
-                        Submit
-                    </button>
-                </div>
-            </form>
+  return (
+    <div className="bg-[#f5f5f5] ">
+      <HeroSection
+        title={heroData.title}
+        subtitle={heroData.subtitle}
+        backgroundImage={heroData.backgroundImage}
+      />
+      <div className="container px-1 py-8 md:py-16">
+        <div className="grid md:grid-cols-2 gap-44 ">
+          <div>
+            <ContactForm
+              onSubmit={function (): void {
+                throw new Error("Function not implemented.");
+              }}
+            />
+          </div>
+          <div>
+            <h2 className="text-3xl font-primary font-bold mb-6">
+              Our offices
+            </h2>
+            <p className="text-sm font-secondary mb-4">
+              Please fill out the form below and one of us will contact you
+              within 24hrs. Or, contact us by email or phone number listed
+              below.
+            </p>
+            <div className="space-y-4">
+              {addressData.map((address) => (
+                <AddressCard
+                  key={address.phone}
+                  address={address.address}
+                  phone={address.phone}
+                  state={address.state}
+                  email={address.email}
+                />
+              ))}
+            </div>
+          </div>
         </div>
-    );
+      </div>
+      <div className="py-10">
+        <OfficeMap />
+      </div>
+    </div>
+  );
 };
 
 export default ContactUsPage;
