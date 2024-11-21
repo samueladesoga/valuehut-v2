@@ -1,11 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import Button from "../../Button/Button";
 import SectionTitle from "../../SectionTitle/SectionTitle";
 import SectionPara from "../../SectionPara/SectionPara";
 import { useEffect, useRef, useState } from "react";
+import less from "./../../../../public/less.svg";
+import greater from "./../../../../public/greater.svg";
 
 interface Article {
   id: number;
@@ -31,13 +32,13 @@ export default function ArticlesSection({
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? articles.length - 1 : prevIndex - 1
+      prevIndex === 0 ? articles.length - 1 : prevIndex - 1,
     );
   };
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === articles.length - 1 ? 0 : prevIndex + 1
+      prevIndex === articles.length - 1 ? 0 : prevIndex + 1,
     );
   };
 
@@ -52,7 +53,7 @@ export default function ArticlesSection({
     }
   }, [currentIndex]);
   return (
-    <section className="container py-10  px-10 lg:px-0">
+    <section className="container py-10  px-6 lg:px-0">
       <div className="flex flex-row justify-start items-center  mb-2">
         <div className="">
           <SectionTitle
@@ -73,7 +74,7 @@ export default function ArticlesSection({
             View All
           </Button>
         </div>
-        
+
         <div className="relative">
           <div
             className="flex overflow-hidden md:mt-10"
@@ -86,26 +87,23 @@ export default function ArticlesSection({
                 className="flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-2"
                 style={{ scrollSnapAlign: "start" }}
               >
-                <div className="border border-gray-300 rounded-lg shadow-md p-4 bg-white">
+                <div className="border border-gray-300 rounded-lg shadow-md bg-white">
                   <Image
                     src={article.image}
                     alt={article.title}
-                    width={400}
+                    width={440}
                     height={200}
                     objectFit="cover"
                     className="bg-no-repeat rounded-md mb-4"
                   />
-
-                  <h3 className="text-xl truncate max-w-96 font-semibold mb-2">
-                    {article.title}
-                  </h3>
-                  <p className="text-gray-500 mb-4">{article.description}</p>
-                  <a
-                    href={article.link}
-                    className="text-blue-600 hover:underline"
-                  >
-                    Read more
-                  </a>
+                  <div className="p-6">
+                    <h3 className="text-lg font-primary truncate max-w-96 font-semibold mb-2">
+                      {article.title}
+                    </h3>
+                    <p className="text-sm text-body mb-4">
+                      {article.description}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -117,7 +115,7 @@ export default function ArticlesSection({
               onClick={handlePrev}
               className=" w-8 h-8 bg-white  flex items-center justify-center rounded-full shadow hover:bg-gray-100"
             >
-              &lt;
+              <Image src={less} alt="less" />
             </button>
           </div>
           <div className="absolute  left-14  bottom-[-70px] block md:hidden transform -translate-y-1/2">
@@ -125,7 +123,7 @@ export default function ArticlesSection({
               onClick={handleNext}
               className=" w-8 h-8 bg-white  flex items-center justify-center rounded-full shadow hover:bg-gray-100"
             >
-              &gt;
+              <Image src={greater} alt="greater" />
             </button>
           </div>
         </div>

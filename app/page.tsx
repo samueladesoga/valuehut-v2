@@ -15,18 +15,16 @@ import { heroData } from "./data/Home/HeroSection";
 export default function Home() {
   return (
     <div className="flex   flex-col gap-8 bg-[#f5f5f5]">
-      <main className="w-full mx-auto min-h-screen">
-        <HeroSection
-          title={heroData.title}
-          subtitle={heroData.subtitle}
-          buttonText={heroData.buttonText}
-          buttonLink={heroData.buttonLink}
-          backgroundImage={heroData.backgroundImage}
-          ratingText={heroData.ratingText}
-          ratingDetails={heroData.ratingDetails}
-          showRating={true}
-        />
-      </main>
+      <HeroSection
+        title={heroData.title}
+        subtitle={heroData.subtitle}
+        buttonText={heroData.buttonText}
+        buttonLink={heroData.buttonLink}
+        backgroundImage={heroData.backgroundImage}
+        ratingText={heroData.ratingText}
+        ratingDetails={heroData.ratingDetails}
+        showRating={true}
+      />
       <ClientLogosSection />
       <ServicesSection />
       <OurMission
@@ -42,7 +40,9 @@ export default function Home() {
         subtitle="Helping organizations transform into a network of interdependent product teams across different sectors."
       />
       <ServicesOverview />
-      <TalentMatchingCTA />
+      <div className="py-6 sm:py-16">
+        <TalentMatchingCTA />
+      </div>
       <Testimonials />
       <LatestArticles
         title="Latest articles"

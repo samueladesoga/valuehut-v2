@@ -14,7 +14,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({
 }) => {
   const { title, subtitle, statistics, cards } = data;
   return (
-    <section className="container py-16 px-6 xl:px-0">
+    <section className="container py-6 sm:py-16 px-6 xl:px-0">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start mb-16">
         <div>
           <h2 className="text-7xl font-primary text-main text-center font-medium md:text-left leading-[61.1px] sm:text-9xl">

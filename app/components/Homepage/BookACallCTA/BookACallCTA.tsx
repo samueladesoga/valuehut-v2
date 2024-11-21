@@ -15,8 +15,8 @@ const BookACallCTA: React.FC<BookACallCTAProps> = ({
   imageUrl,
 }) => {
   return (
-    <div className="container bg-fill-brand-secondary flex flex-col lg:flex-row px-8 justify-between items-center xl:rounded-[30px] py-10">
-      <div className="mt-10 md:mt-0 ">
+    <div className="container bg-fill-brand-secondary flex flex-col lg:flex-row px-8 justify-between items-center xl:rounded-[30px]">
+      <div className="mt-10 py-10 md:mt-0 ">
         <h2 className="text-[47px] sm:text-9xl font-normal text-main font-primary leading-[61px] ">
           {title}
         </h2>
@@ -33,10 +33,10 @@ const BookACallCTA: React.FC<BookACallCTAProps> = ({
         <Image
           src={imageUrl}
           alt="Consultant ready to help"
-          width={400}
+          width={500}
           height={0}
           objectFit="cover"
-          className="bg-no-repeat rounded-md mt-20 lg:mt-[-40px]"
+          className="bg-no-repeat rounded-md sm:block hidden"
         />
       </div>
     </div>

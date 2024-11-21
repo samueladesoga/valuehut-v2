@@ -10,7 +10,7 @@ interface HeroBannerProps {
 
 export default function HeroBanner({ title, subtitle }: HeroBannerProps) {
   return (
-    <section className="container px-6 xl:px-0">
+    <section className="container px-6 py-6 sm:py-16 xl:px-0">
       <div
         className="bg-gradient-custom h-[700px] flex flex-end bg-cover rounded-[30px] object-cover bg-center bg-no-repeat relative"
         style={{ backgroundImage: "url('/images/image@2x.jpeg')" }}

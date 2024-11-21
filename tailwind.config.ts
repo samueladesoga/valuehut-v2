@@ -10,6 +10,8 @@ export default {
     extend: {
       backgroundImage: {
         "gradient-custom": "var(--gradient-custom)",
+        "hero-image1": "url('/images/hero.png')",
+        "hero-image2": "url('/images/hero-sm.png')",
       },
       container: {
         center: true,
@@ -55,12 +57,12 @@ export default {
         accentsecondary: "var(--Color-Text-accentSecondary)",
       },
       animation: {
-        scroll: 'scroll 40s linear infinite',
+        scroll: "scroll 40s linear infinite",
       },
       keyframes: {
         scroll: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(calc(-250px * 14))' },
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(calc(-250px * 14))" },
         },
       },
     },
