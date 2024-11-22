@@ -31,7 +31,7 @@ const FAQ: React.FC<FAQProps> = ({ faqs }) => {
   return (
     <div className="bg-white container rounded-3xl">
       <div className="px-6 py-16 lg:px-8">
-        <div className="flex justify-evenly">
+        <div className="flex justify-evenly flex-col sm:flex-row">
           <div className="w-2/4">
             <h2 className="text-9xl font-semibold tracking-tight text-[#141834] font-primary">
               Frequently asked questions
