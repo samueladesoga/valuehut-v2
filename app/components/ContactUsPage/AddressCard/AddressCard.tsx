@@ -15,11 +15,11 @@ const AddressCard: React.FC<AddressCardProps> = ({
 }) => {
   return (
     <>
-      <div className="bg-[hsla(201,38%,88%,1)] p-4 rounded-md">
-        <h3 className="text-xl font-primary font-semibold mb-2">{state}</h3>
-        <p className="text-sm font-secondary mb-1">{address}</p>
-        <p className="text-sm font-secondary mb-1">{phone}</p>
-        <p className="text-sm font-secondary">{email}</p>
+      <div className="bg-[#D5E4EC] p-4 rounded-md">
+        <h3 className="text-xl font-secondary font-semibold mb-2">{state}</h3>
+        <p className="text-sm font-secondary text-main mb-1">{address}</p>
+        <p className="text-sm font-secondary text-main mb-1">{phone}</p>
+        <p className="text-sm font-secondary text-main mb-1">{email}</p>
       </div>
     </>
   );

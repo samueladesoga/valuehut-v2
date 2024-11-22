@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, ChangeEvent, FormEvent } from "react";
+import Button from "../../Button/Button";
 
 interface ContactFormProps {
   onSubmit: (formData: FormData) => void;
@@ -45,7 +46,7 @@ const ContactForm: React.FC<ContactFormProps> = () => {
           <div>
             <label
               htmlFor="fullName"
-              className="block text-sm font-secondary mb-1"
+              className="block font-medium font-primary text-lg !leading-[22.8px] mb-1"
             >
               Full name
             </label>
@@ -55,13 +56,16 @@ const ContactForm: React.FC<ContactFormProps> = () => {
               name="fullName"
               value={formData.fullName}
               onChange={handleChange}
-              className="w-full p-4 border text-2xs border-gray-300 font-normal rounded-md font-primary"
+              className="w-full p-4 border text-sm border-[#bfbfbf] font-normal rounded-md text-secondary"
               placeholder="Full name"
               required
             />
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-primary mb-1">
+            <label
+              htmlFor="email"
+              className="block font-primary font-medium text-lg !leading-[22.8px] mb-1"
+            >
               Email
             </label>
             <input
@@ -70,7 +74,7 @@ const ContactForm: React.FC<ContactFormProps> = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full p-4 border text-2xs border-gray-300 font-normal rounded-md font-secondary"
+              className="w-full p-4 border text-sm border-[#bfbfbf] font-normal rounded-md text-secondary"
               placeholder="Enter your email"
               required
             />
@@ -78,7 +82,7 @@ const ContactForm: React.FC<ContactFormProps> = () => {
           <div>
             <label
               htmlFor="interest"
-              className="block text-sm font-primary mb-1"
+              className="block font-primary font-medium text-lg !leading-[22.8px] mb-1"
             >
               What are you interested in
             </label>
@@ -87,7 +91,7 @@ const ContactForm: React.FC<ContactFormProps> = () => {
               name="interest"
               value={formData.interest}
               onChange={handleChange}
-              className="w-full p-4 border text-2xs border-gray-300 font-normal rounded-md font-secondary "
+              className="w-full p-4 border text-sm border-[#bfbfbf] font-normal rounded-md text-secondary"
               required
             >
               <option value="">Choose options</option>
@@ -99,7 +103,7 @@ const ContactForm: React.FC<ContactFormProps> = () => {
           <div>
             <label
               htmlFor="message"
-              className="block text-sm font-primary mb-1"
+              className="block font-primary font-medium text-lg !leading-[22.8px] mb-1"
             >
               Message
             </label>
@@ -108,18 +112,20 @@ const ContactForm: React.FC<ContactFormProps> = () => {
               name="message"
               value={formData.message}
               onChange={handleChange}
-              className="w-full p-4 border text-2xs border-gray-300 font-normal rounded-md font-primary"
+              className="w-full p-4 border text-sm border-[#bfbfbf] font-normal rounded-md text-secondary"
               placeholder="Write anything"
               rows={4}
               required
             ></textarea>
           </div>
-          <button
-            type="submit"
-            className="w-full py-4 px-4  bg- text-white font-primary text-sm rounded-md bg-fill-brand-secondary transition-colors"
+          <Button
+            bgColor="fill-brand-secondary"
+            size="medium"
+            rounded="lg"
+            className="w-full !text-sm"
           >
             Send Message
-          </button>
+          </Button>
         </form>
       </div>
     </form>

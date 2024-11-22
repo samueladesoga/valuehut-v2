@@ -43,7 +43,7 @@ const Button: React.FC<ButtonProps> = ({
     <>
       <button
         onClick={onClick}
-        className={`flex items-center gap-2 justify-between bg-${bgColor} text-${textColor} ${borderClass} ${sizeClasses[size]} ${roundedClasses[rounded]} ${className} font-medium transition duration-300 ease-in-out hover:opacity-80 focus:outline-none`}
+        className={`flex items-center gap-2 justify-center bg-${bgColor} text-${textColor} ${borderClass} ${sizeClasses[size]} ${roundedClasses[rounded]} ${className} font-medium transition duration-300 ease-in-out hover:opacity-80 focus:outline-none`}
       >
         {children}
         {icon && <span>{icon}</span>}
