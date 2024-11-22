@@ -1,5 +1,5 @@
 import React from "react";
-import { clientLogos, Logo } from "./../../../data/Home/clientLogos";
+import { clientLogos, Logo } from "@/data/Home/clientLogos";
 import Image from "next/image";
 
 const ClientLogosSection = () => {

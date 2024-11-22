@@ -20,10 +20,11 @@ export default function Home() {
         subtitle={heroData.subtitle}
         buttonText={heroData.buttonText}
         buttonLink={heroData.buttonLink}
-        backgroundImage={heroData.backgroundImage}
         ratingText={heroData.ratingText}
         ratingDetails={heroData.ratingDetails}
         showRating={true}
+        smallScreenImage={heroData.smallScreenImage}
+        largeScreenImage={heroData.largeScreenImage}
       />
       <ClientLogosSection />
       <ServicesSection />

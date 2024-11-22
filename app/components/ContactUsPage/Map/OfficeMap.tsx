@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { addressData } from "./../../../data/contact-us/address";
+import { addressData } from "@/data/contact-us/address";
 
 export const OfficeMap: React.FC = () => {
   const [activeOffice, setActiveOffice] = useState("UK Office");

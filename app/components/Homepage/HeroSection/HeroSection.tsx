@@ -2,7 +2,7 @@
 'use client'
 
 import React, { useEffect, useState } from "react";
-import type { HeroSectionProps } from "./../../../data/Home/HeroSection";
+import type { HeroSectionProps } from "@/data/Home/HeroSection";
 import Image from "next/image";
 
 const HeroSection = ({
@@ -37,7 +37,7 @@ const HeroSection = ({
   return (
     <section className="w-full">
       <div
-        className={`h-screen flex flex-end bg-center bg-cover bg-no-repeat ${backgroundImage}`}
+        className={`h-screen flex flex-end bg-center bg-cover bg-no-repeat  ${backgroundImage}`}
       >
         <div className="container w-full flex h-full font-primary items-end px-6 2xl:px-0 pb-[60px]">
           <div className="flex flex-col gap-4 space-y-3 bottom-10 w-full text-accentmain">

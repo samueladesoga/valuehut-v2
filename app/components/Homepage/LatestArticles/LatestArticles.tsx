@@ -1,12 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import Button from "../../Button/Button";
-import SectionTitle from "../../SectionTitle/SectionTitle";
-import SectionPara from "../../SectionPara/SectionPara";
+import Button from "@/components/Button/Button";
+import SectionTitle from "@/components/SectionTitle/SectionTitle";
+import SectionPara from "@/components/SectionPara/SectionPara";
 import { useEffect, useRef, useState } from "react";
-import less from "./../../../../public/less.svg";
-import greater from "./../../../../public/greater.svg";
+import less from "@/less.svg";
+import greater from "@/greater.svg";
 
 interface Article {
   id: number;

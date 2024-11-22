@@ -1,7 +1,7 @@
 import React from "react";
-import Button from "../../Button/Button";
+import Button from "@/components/Button/Button";
 import Image from "next/image";
-import GirlImage from "./../../../../public/images/BookACallCTA-image.png";
+import GirlImage from "@/images/BookACallCTA-image.png";
 import { ChevronRight } from "lucide-react";
 
 interface CTAHeadingProps {

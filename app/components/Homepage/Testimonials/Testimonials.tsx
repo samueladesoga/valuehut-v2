@@ -3,7 +3,7 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
-import Star from "../../../../public/start.svg";
+import Star from "@/start.svg";
 
 interface TestimonialProps {
   name: string;

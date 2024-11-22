@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import Button from "../../Button/Button";
+import Button from "@/components/Button/Button";
 
 interface ContactFormProps {
   onSubmit: (formData: FormData) => void;

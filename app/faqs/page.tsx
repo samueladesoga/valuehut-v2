@@ -1,7 +1,7 @@
 import React from "react";
-import FAQ from "../components/FaqPage/Faq/Faq";
-import { faqs } from "./../data/Faqs/faqpage";
-import OurPartners from "../components/FaqPage/OurPartners/OurPartners";
+import FAQ from "@/components/FaqPage/Faq/Faq";
+import { faqs } from "@/data/Faqs/faqpage";
+import OurPartners from "@/components/FaqPage/OurPartners/OurPartners";
 
 const FaqPage: React.FC = () => {
   return (

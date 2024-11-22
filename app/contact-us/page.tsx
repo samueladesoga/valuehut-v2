@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
-import { OfficeMap } from "./../components/ContactUsPage/Map/OfficeMap";
-import HeroComponent from "../components/HeroComponent/HeroComponent";
-import ContactForm from "../components/ContactUsPage/contactForm/ContactForm";
-import AddressCard from "../components/ContactUsPage/AddressCard/AddressCard";
-import { heroData } from "../data/contact-us/heroSection";
-import { addressData } from "../data/contact-us/address";
+import { OfficeMap } from "@/components/ContactUsPage/Map/OfficeMap";
+import HeroComponent from "@/components/HeroComponent/HeroComponent";
+import ContactForm from "@/components/ContactUsPage/contactForm/ContactForm";
+import AddressCard from "@/components/ContactUsPage/AddressCard/AddressCard";
+import { heroData } from "@/data/contact-us/heroSection";
+import { addressData } from "@/data/contact-us/address";
 
 const ContactUsPage: React.FC = () => {
   return (

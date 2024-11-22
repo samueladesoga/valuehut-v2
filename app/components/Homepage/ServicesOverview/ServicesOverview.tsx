@@ -1,10 +1,10 @@
 import React from "react";
-import Button from "../../Button/Button";
-import SectionTitle from "./../../SectionTitle/SectionTitle";
-import SectionPara from "./../../SectionPara/SectionPara";
-import Card from "./../../Card/Card";
-import Blend from "./../../../../public/blend.svg";
-import Questions from "./../../../../public/question.svg";
+import Button from "@/components/Button/Button";
+import SectionTitle from "@/components/SectionTitle/SectionTitle";
+import SectionPara from "@/components/SectionPara/SectionPara";
+import Card from "@/components/Card/Card";
+import Blend from "@/blend.svg";
+import Questions from "@/question.svg";
 
 const ServicesOverview = () => {
   return (

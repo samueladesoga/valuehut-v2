@@ -1,10 +1,10 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import PlusIcon from "./../../../../public/icons/plus.svg";
-import CircleMinusIcon from "./../../../../public/icons/remove-circle.svg";
-import Mail from "./../../../../public/icons//mail.svg";
-import Mentor from "./../../../../public/icons/mentor.svg";
+import PlusIcon from "@/icons/plus.svg"
+import CircleMinusIcon from "@/icons/remove-circle.svg";
+import Mail from "@/icons//mail.svg";
+import Mentor from "@/icons/mentor.svg";
 
 interface FAQItem {
   category: string;

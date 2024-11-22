@@ -2,8 +2,8 @@ import React from "react";
 import {
   coCreatingData,
   IServicesSection,
-} from "./../../../data/Home/Services";
-import Button from "../../Button/Button";
+} from "@/data/Home/Services";
+import Button from "@/components/Button/Button";
 
 interface ServicesSectionProps {
   data?: IServicesSection;

@@ -1,8 +1,8 @@
 import React from "react";
-import Frame from "./../../../../public/images/Frame.png";
-import Layer from "./../../../../public/images/Layer.png";
-import pacemkv from "./../../../../public/images/pacemkv.png";
-import Logo from "./../../../../public/images/logo-01.png";
+import Frame from "@/images/Frame.png";
+import Layer from "@/images/Layer.png";
+import pacemkv from "@/images/pacemkv.png";
+import Logo from "@/images/logo-01.png";
 import Image from "next/image";
 import { StaticImageData } from "next/image";
 
