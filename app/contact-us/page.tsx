@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { OfficeMap } from "./OfficeMap";
-import HeroSection from "../components/HeroComponent/HeroComponent";
+import HeroComponent from "../components/HeroComponent/HeroComponent";
 import ContactForm from "../components/ContactUsPage/contactForm/ContactForm";
 import AddressCard from "../components/ContactUsPage/AddressCard/AddressCard";
 import { heroData } from "../data/contact-us/heroSection";
@@ -10,7 +10,7 @@ import { addressData } from "../data/contact-us/address";
 const ContactUsPage: React.FC = () => {
   return (
     <div className="bg-[#f5f5f5] ">
-      <HeroSection
+      <HeroComponent
         title={heroData.title}
         subtitle={heroData.subtitle}
         backgroundImage={heroData.backgroundImage}

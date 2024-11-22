@@ -8,7 +8,7 @@ interface HeroSectionProps {
   backgroundImage?: string;
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({
+const HeroComponent: React.FC<HeroSectionProps> = ({
   title,
   subtitle,
   buttonText,
@@ -41,4 +41,4 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   );
 };
 
-export default HeroSection;
+export default HeroComponent;

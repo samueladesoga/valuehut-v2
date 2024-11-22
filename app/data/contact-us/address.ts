@@ -7,13 +7,13 @@ export interface IAddressData {
 export const addressData: IAddressData[] = [
   {
     phone: "+44 123456789",
-    state: "London",
+    state: "UK Office",
     address: "123 Main Street, London, UK",
     email: "ukoffice@example.com",
   },
   {
     phone: "+234 987654321",
-    state: "Lagos",
+    state: "Nigeria office",
     address: "456 Broad Street, Lagos, Nigeria",
     email: "nigeriaoffice@example.com",
   },
