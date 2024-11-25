@@ -20,8 +20,8 @@ const HeroComponent: React.FC<HeroSectionProps> = ({
       className="bg-gradient-custom h-screen flex flex-end bg-center bg-no-repeat relative"
       style={{ backgroundImage: `url('${backgroundImage}')` }}
     >
-      <div className="container w-full flex relative px-8 md:px-0 mb-10">
-        <div className="absolute flex flex-col gap-4 space-y-3 bottom-10 w-full md:w-1/2 ">
+      <div className="container w-full flex relative sm:px-4 md:px-0 mb-10 overflow-x-hidden">
+        <div className="absolute flex flex-col gap-4 space-y-3 bottom-10 w-full md:w-1/2">
           <h1 className="text-7xl sm:text-[67px] md:max-w-2xl font-primary sm:leading-[80px] font-normal text-accentmain">
             {title}
           </h1>
@@ -31,9 +31,11 @@ const HeroComponent: React.FC<HeroSectionProps> = ({
             </p>
           )}
           {buttonText && (
-            <button className="bg-[#FF9F5A] font-secondary px-6 py-3 rounded-full text-main text-sm font-medium hover:bg-[#FF9F5A]/90">
-              <a href={buttonLink}>{buttonText}</a>
-            </button>
+            <a href={buttonLink}>
+              <button className="bg-[#FF9F5A] font-secondary px-6 py-3 rounded-full text-main text-sm font-medium hover:bg-[#FF9F5A]/90">
+                {buttonText}
+              </button>
+            </a>
           )}
         </div>
       </div>
