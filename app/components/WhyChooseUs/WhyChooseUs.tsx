@@ -1,11 +1,8 @@
-
-
 import React from "react";
 
 interface StatItem {
   title: string;
   number: string;
-  description: string;
 }
 
 interface WhyChooseUsProps {
@@ -14,36 +11,32 @@ interface WhyChooseUsProps {
   stats: StatItem[];
 }
 
-const StatsSection = ({ title, number, description }: StatItem) => (
-  <div className="text-center lg:text-left">
-    <div className="text-5xl font-semibold text-[#FF9F5A]">{number}</div>
-    <div className="text-xl text-[#161A1D] font-semibold">{title}</div>
-    <p className="text-sm text-[#161A1D]">{description}</p>
-  </div>
-);
-
-const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ title, subtitle, stats }) => {
+const WhyChooseUs: React.FC<WhyChooseUsProps> = ({
+  title,
+  subtitle,
+  stats,
+}) => {
   return (
-    <div className="w-full bg-[#2D3748] py-16 px-4 sm:px-16">
-      {/* Header */}
-      <div className="mb-12 text-center lg:text-left">
-        <h2 className="text-4xl sm:text-6xl lg:text-7xl font-primary text-white">
+    <div className="w-full container sm:rounded-3xl bg-fill-neutral-strong py-16 px-4 sm:px-16">
+      <div className="flex items-center justify-center flex-col">
+        <h2 className="text-4xl sm:text-6xl lg:text-9xl font-primary text-accentmain font-medium">
           {title}
         </h2>
-        <p className="text-sm sm:text-base text-white mt-4">
+        <p className="text-sm sm:text-2xl text-accentmain font-normal font-secondary mt-4">
           {subtitle}
         </p>
       </div>
 
-      {/* Stats Sections */}
-      <div className="flex flex-col lg:flex-row justify-between space-y-6 lg:space-y-0 lg:space-x-12">
-        {stats.map((stat, index) => (
-          <StatsSection
-            key={index}
-            title={stat.title}
-            number={stat.number}
-            description={stat.description}
-          />
+      <div className="flex flex-col sm:flex-row items-center justify-evenly py-6">
+        {stats.map((c, index) => (
+          <div key={index} className="text-center">
+            <div className="text-[80px] leading-[104px] font-normal first:text-[#FBAC65] last:text-[#E6E4F3]">
+              {c.number}
+            </div>
+            <div className="text-xl text-[#161A1D] font-normal text-accentsecondary">
+              {c.title}
+            </div>
+          </div>
         ))}
       </div>
     </div>

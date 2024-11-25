@@ -12,6 +12,7 @@ import rightImage from "@/consulting/valuehut-image.jpeg";
 import Image from "next/image";
 import Button from "@/components/Button/Button";
 import { ChevronRight } from "lucide-react";
+import WhyChooseUs from "@/components/WhyChooseUs/WhyChooseUs";
 
 const getBackgroundColor = (index: number) => {
   const colors = [
@@ -58,6 +59,31 @@ function ConsultingPage() {
           </div>
         </div>
       </div>
+      <div>
+        <OurPartners />
+      </div>
+      <div>
+        <WhyChooseUs
+          title={"Why Choose Us?"}
+          subtitle={
+            "Established product delivery teams often face challenges related to adoption"
+          }
+          stats={[
+            {
+              title: "Years of Experience",
+              number: "10+",
+            },
+            {
+              title: "Projects Completed",
+              number: "10+",
+            },
+            {
+              title: "Happy Clients",
+              number: "100+",
+            },
+          ]}
+        />
+      </div>
       <div className="py-12">
         <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-0 mt-5 sm:my-16">
           <div className="bg-[#E5DFD9] rounded-[21.5px] shadow-lg sm:transform sm:-rotate-[10deg] sm:z-10 sm:translate-x-14">
@@ -79,6 +105,7 @@ function ConsultingPage() {
             />
           </div>
         </div>
+
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-primary text-[#161A1D] mb-8">
             Meet our experts
@@ -101,9 +128,7 @@ function ConsultingPage() {
           </Button>
         </div>
       </div>
-      <div>
-        <OurPartners />
-      </div>
+
       <div className="pb-0 md:pb-20 mt-10 md:mt-0">
         <BookACallCTA
           title="Ready to book a free call?"
