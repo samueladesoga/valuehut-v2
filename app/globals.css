@@ -16,7 +16,12 @@
   --Color-Fill-Brand-primary: hsla(197, 93%, 29%, 1);
   --Color-Fill-Brand-secondary: hsla(29, 94%, 69%, 1);
   --Color-Fill-Neutral-strong: hsla(198, 89%, 10%, 1);
-  --gradient-custom: linear-gradient(247.41deg, rgba(26, 27, 19, 0) 13.04%, #1A1B13 84.46%);
+  --Color-Fill-Brand-quaternary: hsla(63, 58%, 87%, 1);
+  --gradient-custom: linear-gradient(
+    247.41deg,
+    rgba(26, 27, 19, 0) 13.04%,
+    #1a1b13 84.46%
+  );
 }
 
 @media (prefers-color-scheme: dark) {

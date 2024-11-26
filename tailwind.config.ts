@@ -10,8 +10,8 @@ export default {
     extend: {
       backgroundImage: {
         "gradient-custom": "var(--gradient-custom)",
-        "hero-image1": "url('/images/hero.png')",
-        "hero-image2": "url('/images/hero-sm.png')",
+        "hero-image1": "url('/images/hero-sm.png')",
+        "hero-image2": "url('/images/hero.png')",
       },
       container: {
         center: true,
@@ -27,6 +27,7 @@ export default {
           "brand-primary": "var(--Color-Fill-Brand-primary)",
           "brand-secondary": "var(--Color-Fill-Brand-secondary)",
           "neutral-strong": "var(--Color-Fill-Neutral-strong)",
+          "Brand-quaternary": "var(--Color-Fill-Brand-quaternary)",
         },
       },
       fontFamily: {
