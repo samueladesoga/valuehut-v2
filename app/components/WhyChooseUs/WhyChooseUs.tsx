@@ -11,7 +11,7 @@ interface WhyChooseUsProps {
   stats: StatItem[];
 }
 
-const WhyChooseUs: React.FC<WhyChooseUsProps> = ({
+  const WhyChooseUs: React.FC<WhyChooseUsProps> = ({
   title,
   subtitle,
   stats,
