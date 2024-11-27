@@ -7,6 +7,7 @@ export interface IAllTrainings {
   dates: string;
   rating: number;
   reviews: number;
+  slug?: string;
   logo: string;
 }
 export interface ICourseCard {
@@ -17,6 +18,7 @@ export interface ICourseCard {
   duration: string;
   dates: string;
   rating: number;
+  slug: string;
   reviews: number;
   logo: string;
 }
@@ -31,20 +33,26 @@ export interface IAcadmeyHero {
   showRating?: boolean;
   ratingText?: string;
   ratingDetails?: string;
+  ratingImage?: string;
 }
 
 export const AcademyHero: IAcadmeyHero = {
   title: "Maximize your career growth with us",
   subtitle:
     "Helping Organisations transform into a network of interdependent product teams across different business units.",
-  backgroundImage: "/images/image@2x.jpeg",
+  backgroundImage: "/images/trainings.png",
   pill: "ACADEMY",
+  showRating: true,
+  ratingText: "Excellent",
+  ratingDetails: "4.78 out of 5 based on 34 reviews",
+  ratingImage: "/images/logo-01.png",
 };
 
 export const AllCourses: IAllTrainings[] = [
   {
     id: 1,
     title: "Professional Scrum Master",
+    slug: "professional-scrum-master",
     description:
       "Helping Organisations transform into a network of interdependent product teams...",
     level: "Intermediate",
@@ -57,6 +65,7 @@ export const AllCourses: IAllTrainings[] = [
   {
     id: 2,
     title: "Professional Scrum Product Owner",
+    slug: "professional-scrum-product-owner",
     description:
       "Helping Organisations transform into a network of interdependent product teams...",
     level: "Intermediate",
@@ -69,6 +78,7 @@ export const AllCourses: IAllTrainings[] = [
   {
     id: 3,
     title: "Professional Scrum Master - Advanced",
+    slug: "professional-scrum-master-advanced",
     description:
       "Helping Organisations transform into a network of interdependent product teams across different business units into a network of...",
     level: "Intermediate",
@@ -81,6 +91,7 @@ export const AllCourses: IAllTrainings[] = [
   {
     id: 4,
     title: "Professional Scrum Facilitation Skills",
+    slug: "professional-scrum-facilitation-skills",
     description:
       "Helping Organisations transform into a network of interdependent product teams across different business units into a network of...",
     level: "Intermediate",
