@@ -20,7 +20,9 @@ function page() {
         backgroundImage={heroData.backgroundImage}
       />
 
-      <HireProfessionals />
+      <div className="px-6 py-6 sm:py-16 xl:px-0">
+        <HireProfessionals />
+      </div>
 
       <HeroBanner
         title="Start Hiring Now"
@@ -28,20 +30,26 @@ function page() {
         image={"/images/TalentSection.png"}
       />
 
-      <TalentSection />
+      <div className="px-6 py-6 sm:py-16 xl:px-0">
+        <TalentSection />
+      </div>
 
-      <HiringProcess />
+      <div className="px-6 py-6 sm:py-16 xl:px-0">
+        <HiringProcess />
+      </div>
 
-      <CriteriaSection
-        title="skip criteria that limit finding great talent"
-        description="We have reviewed hundreds of Job Adverts for Scrum Master, Delivery Leads, Delivery Managers and we have observed that these adverts have not been written to attract Professional Scrum Masters."
-        highlights={[
-          "Candidate must hold a CSM or PSM 1 certification",
-          "Candidates must be able to hold Scrum Ceremonies",
-          "Candidates must be familiar with Jira and any similar tools out there",
-        ]}
-        buttonLabel="Learn more"
-      />
+      <div className="px-6 py-6 sm:py-16 xl:px-0">
+        <CriteriaSection
+          title="skip criteria that limit finding great talent"
+          description="We have reviewed hundreds of Job Adverts for Scrum Master, Delivery Leads, Delivery Managers and we have observed that these adverts have not been written to attract Professional Scrum Masters."
+          highlights={[
+            "Candidate must hold a CSM or PSM 1 certification",
+            "Candidates must be able to hold Scrum Ceremonies",
+            "Candidates must be familiar with Jira and any similar tools out there",
+          ]}
+          buttonLabel="Learn more"
+        />
+      </div>
 
       <div className="container py-8">
         <WhyChooseUs
@@ -66,7 +74,7 @@ function page() {
         />
       </div>
 
-      <div className="container sm:py-8">
+      <div className="container px-6 py-6 sm:py-16 xl:px-0">
         <ClientReviews />
       </div>
 

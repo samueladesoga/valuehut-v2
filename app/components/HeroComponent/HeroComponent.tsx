@@ -31,7 +31,7 @@ const HeroComponent: React.FC<HeroSectionProps> = ({
       className="bg-gradient-custom h-screen flex justify-center bg-cover items-end  bg-center bg-no-repeat"
       style={{ backgroundImage: `url('${backgroundImage}')` }}
     >
-      <div className="container w-full flex justify-between items-end sm:px-4 md:px-0 mb-20 overflow-x-hidden">
+      <div className="container w-full flex justify-between items-end sm:px-4 md:px-0 mb-20 px-6 xl:px-0 overflow-x-hidden">
         <div className="flex items-start flex-col gap-4 space-y-3 bottom-10 w-full md:w-1/2">
           {pill && (
             <div className="bg-fill-Brand-quaternary text-main text-xs font-secondary px-3 py-1 font-semibold rounded-full">

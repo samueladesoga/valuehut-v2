@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React from "react";
 import Image from "next/image";
 
 interface Talent {
@@ -15,214 +15,186 @@ const talents: Talent[] = [
     id: 1,
     name: "Monika Norton",
     role: "Delivery Manager",
-    image: "/placeholder.svg?height=48&width=48",
+    image: "/talentmatching/talent1.png",
   },
   {
     id: 2,
     name: "John Doe",
     role: "Team Lead",
-    image: "/placeholder.svg?height=48&width=48",
+    image: "/talentmatching/talent6.png",
   },
   {
     id: 3,
     name: "Jane Smith",
     role: "Developer",
-    image: "/placeholder.svg?height=48&width=48",
+    image: "/talentmatching/talent3.png",
   },
   {
     id: 4,
     name: "Chris Brown",
     role: "Designer",
-    image: "/placeholder.svg?height=48&width=48",
+    image: "/talentmatching/talent4.png",
   },
   {
     id: 5,
     name: "Alex Johnson",
     role: "QA Engineer",
-    image: "/placeholder.svg?height=48&width=48",
+    image: "/talentmatching/talent5.png",
   },
   {
     id: 6,
     name: "Emma Wilson",
     role: "Scrum Master",
-    image: "/placeholder.svg?height=48&width=48",
+    image: "/talentmatching/talent6.png",
   },
   {
     id: 7,
     name: "Liam Jones",
     role: "Product Manager",
-    image: "/placeholder.svg?height=48&width=48",
+    image: "/talentmatching/talent2.png",
   },
   {
     id: 8,
     name: "Olivia Garcia",
     role: "DevOps Engineer",
-    image: "/placeholder.svg?height=48&width=48",
+    image: "/talentmatching/talent3.png",
   },
   {
     id: 9,
     name: "Sophia Martinez",
     role: "UX Researcher",
-    image: "/placeholder.svg?height=48&width=48",
+    image: "/talentmatching/talent9.png",
   },
   {
     id: 10,
     name: "Ava Robinson",
     role: "Backend Developer",
-    image: "/placeholder.svg?height=48&width=48",
+    image: "/talentmatching/talent3.png",
   },
   {
     id: 11,
     name: "Isabella Lee",
     role: "Frontend Developer",
-    image: "/placeholder.svg?height=48&width=48",
+    image: "/talentmatching/talent11.png",
   },
   {
     id: 12,
     name: "Mia Perez",
     role: "Tech Lead",
-    image: "/placeholder.svg?height=48&width=48",
+    image: "/talentmatching/talent3.png",
   },
   {
     id: 13,
     name: "Elijah Clark",
     role: "Software Engineer",
-    image: "/placeholder.svg?height=48&width=48",
+    image: "/talentmatching/talent3.png",
   },
   {
     id: 14,
     name: "Lucas Rodriguez",
     role: "Business Analyst",
-    image: "/placeholder.svg?height=48&width=48",
+    image: "/talentmatching/talent3.png",
   },
   {
     id: 15,
     name: "James Anderson",
     role: "Data Scientist",
-    image: "/placeholder.svg?height=48&width=48",
+    image: "/talentmatching/talent3.png",
   },
   {
     id: 16,
     name: "Henry Thomas",
     role: "AI Specialist",
-    image: "/placeholder.svg?height=48&width=48",
+    image: "/talentmatching/talent3.png",
   },
   {
     id: 17,
     name: "Emily Davis",
     role: "Marketing Lead",
-    image: "/placeholder.svg?height=48&width=48",
+    image: "/talentmatching/talent3.png",
   },
   {
     id: 18,
     name: "Charlotte White",
     role: "HR Manager",
-    image: "/placeholder.svg?height=48&width=48",
+    image: "/talentmatching/talent3.png",
   },
 ];
 
 export default function TalentSection() {
-  const [selectedTalent, setSelectedTalent] = useState<Talent | null>(null);
-  const [modalPosition, setModalPosition] = useState<{
-    top: number;
-    left: number;
-  } | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const handleAvatarClick = (talent: Talent, event: React.MouseEvent) => {
-    const avatar = event.currentTarget as HTMLDivElement;
-    const rect = avatar.getBoundingClientRect();
-    const containerRect = containerRef.current?.getBoundingClientRect();
-
-    setModalPosition({
-      top: rect.top - (containerRect?.top || 0) - 120,
-      left: rect.left - (containerRect?.left || 0),
-    });
-    setSelectedTalent(talent);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedTalent(null);
-    setModalPosition(null);
-  };
-
   return (
-    <div className="bg-[#F5F5F5] py-16 relative">
-      <div className="container mx-auto px-4" ref={containerRef}>
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
-          <div className="lg:w-1/2 relative mb-12 lg:mb-0">
+    <div className=" py-16 relative">
+      <div className="container mx-auto max-sm:px-4">
+        <div className="flex flex-col-reverse  lg:flex-row lg:items-center lg:justify-between">
+          {/* <div className="max-w-[50%] flex  items-center">
+          
+
             <h2 className="text-2xl font-secondary font-semibold text-[#161A1D] mb-6 lg:hidden">
               Available talents
             </h2>
 
-            <div className="grid grid-cols-6 gap-4 relative">
+            <div className="relative grid grid-cols-6 gap-8 w-full ">
               {talents.slice(0, 18).map((talent) => (
-                <div
-                  key={talent.id}
-                  className="cursor-pointer"
-                  onClick={(event) => handleAvatarClick(talent, event)}
-                >
+                <div key={talent.id} className="cursor-pointer">
                   <Image
                     src={talent.image}
                     alt={talent.name || "Avatar"}
                     width={80}
                     height={80}
-                    className="rounded-full"
+                    className="rounded-full bg-cover w-[58px] h-[58px]"
                   />
                 </div>
               ))}
             </div>
+            <div className=" absolute bottom-[-25px]   z-40 text-center mb-6">
+              <Image
+                src="/talentmatching/avaible.png"
+                alt="Top Talent Display"
+                width={600}
+                height={600}
+                className="mx-auto w-[304px] h-[399px]"
+              />
+            </div>
+          </div> */}
+          <div className="relative max-sm:mt-20">
+            <div className="absolute top-[-90px] w-[306px] h-[399px] left-1/2 transform -translate-x-1/2 z-40 text-center">
+              <Image
+                src="/talentmatching/avaible.png"
+                alt="Top Talent Display"
+                width={600}
+                height={600}
+                className="mx-auto w-full h-full"
+              />
+            </div>
 
-            {/* Modal */}
-            {selectedTalent && modalPosition && (
-              <div
-                className="absolute bg-white rounded-lg p-4 shadow-lg z-50"
-                style={{
-                  top: modalPosition.top,
-                  left: modalPosition.left,
-                  width: "200px",
-                  transform: "translate(-50%, -10px)",
-                }}
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div className="text-center">
+            <div className="relative grid grid-cols-6 gap-5 w-auto">
+              {talents.slice(0, 18).map((talent) => (
+                <div key={talent.id} className="cursor-pointer w-[53px] h-[53px]">
                   <Image
-                    src={selectedTalent.image}
-                    alt={selectedTalent.name}
+                    src={talent.image}
+                    alt={talent.name || "Avatar"}
                     width={80}
                     height={80}
-                    className="rounded-full mx-auto"
+                    className="rounded-full bg-cover w-[53px] h-[53px]"
                   />
-                  <h3 className="font-semibold text-lg text-[#161A1D] mt-2">
-                    {selectedTalent.name}
-                  </h3>
-                  <p className="text-gray-600">{selectedTalent.role}</p>
                 </div>
-              </div>
-            )}
+              ))}
+            </div>
           </div>
 
-          <div className="lg:w-1/2 lg:pl-12">
-            <h2 className="  text-[47px]  leading-[61px] lg:text-5xl xl:text-9xl font-medium font-primary  mb-6">
+          {/* Right Section */}
+          <div className="w-full md:max-w-[50%]">
+            <h2 className="text-[47px] leading-[61px] lg:text-5xl xl:text-9xl font-medium font-primary mb-4">
               We help you hire top-notch talent
             </h2>
-            <p className="text-lg lg:text-xl text-main  font-normal font-secondary mb-8">
-              Our talent matching service would provide you with no-frills
-              Professional Scrum Masters; individuals that have successfully
-              built self-managing teams that are able to deliver value to their
-              customers.
+            <p className="text-lg lg:text-xl text-main font-normal font-secondary mb-8">
+              Our talent matching service provides no-frills Professional Scrum
+              Masters; individuals who successfully build self-managing teams
+              that deliver value to their customers.
             </p>
           </div>
         </div>
       </div>
-
-      {/* Overlay for closing modal */}
-      {selectedTalent && (
-        <div
-          className="fixed inset-0 bg-transparent z-40"
-          onClick={handleCloseModal}
-        ></div>
-      )}
     </div>
   );
 }

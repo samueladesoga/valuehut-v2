@@ -40,6 +40,7 @@ export default function CourseDetailsPage() {
               <tbody className="bg-white">
                 {UpcomingClassesData.map((row) => (
                   <Table
+                    key={row.id}
                     id={row.id}
                     dates={row.dates}
                     time={row.time}
@@ -52,8 +53,9 @@ export default function CourseDetailsPage() {
           </div>
         </div>
         <div className="flex flex-col gap-3 items-start md:hidden">
-          {UpcomingClassesData.map((row, index) => (
+          {UpcomingClassesData.map((row) => (
             <Group
+              key={row.id}
               id={row.id}
               dates={row.dates}
               time={row.time}

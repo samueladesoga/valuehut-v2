@@ -49,7 +49,7 @@ const ContactUsPage: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className=" sm:py-10">
+      <div className="px-4 py-6 sm:py-16 xl:px-0">
         <OfficeMap />
       </div>
     </div>
