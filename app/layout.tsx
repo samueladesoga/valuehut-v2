@@ -29,8 +29,9 @@ export default function RootLayout({
       label: "Resources",
       href: "/resources",
       subLinks: [
+        { label: "About Us", href: "/about-us" },
+        { label: "Faqs", href: "/faqs" },
         { label: "Blog", href: "/blog" },
-        { label: "Case Studies", href: "/case-studies" },
       ],
     },
     { label: "Contact", href: "/contact-us" },
@@ -38,8 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar logo={logo} menu={Menu} navLinks={navLinks} />
-        {children}
+        <Navbar logo={logo} menu={Menu} navLinks={navLinks} />{children}
         <Footer />
       </body>
     </html>

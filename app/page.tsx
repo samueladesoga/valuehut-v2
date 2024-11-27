@@ -14,7 +14,7 @@ import { heroData } from "./data/Home/HeroSection";
 
 export default function Home() {
   return (
-    <div className="flex   flex-col gap-8 bg-[#f5f5f5]">
+    <div className="flex flex-col gap-8 bg-[#f5f5f5]">
       <HeroSection
         title={heroData.title}
         subtitle={heroData.subtitle}

@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 import Button from "@/components/Button/Button";
 import { ICourseCard } from "@/data/Academy/AllTrainings";
@@ -12,7 +15,14 @@ const CourseCard = ({
   dates,
   rating,
   reviews,
+  slug,
 }: ICourseCard) => {
+  const router = useRouter();
+
+  const handleViewClasses = () => {
+    router.push(`academy/${slug}`);
+  };
+
   return (
     <section className="bg-white py-8 first:rounded-t-[20px] last:rounded-b-[20px] px-4 lg:px-6">
       <div className="flex flex-col lg:flex-row justify-between gap-3">
@@ -32,7 +42,8 @@ const CourseCard = ({
                 bgColor="fill-brand-secondary"
                 size="medium"
                 rounded="full"
-                className="mt-5 text-start "
+                className="mt-5 text-start"
+                onClick={handleViewClasses}
               >
                 View Classes
               </Button>
@@ -40,7 +51,7 @@ const CourseCard = ({
                 size="medium"
                 rounded="full"
                 border={true}
-                className="mt-5 text-start "
+                className="mt-5 text-start"
               >
                 Book Now
               </Button>

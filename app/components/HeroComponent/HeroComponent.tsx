@@ -11,6 +11,7 @@ interface HeroSectionProps {
   showRating?: boolean;
   ratingText?: string;
   ratingDetails?: string;
+  ratingImage?: string;
 }
 
 const HeroComponent: React.FC<HeroSectionProps> = ({
@@ -23,14 +24,15 @@ const HeroComponent: React.FC<HeroSectionProps> = ({
   showRating,
   ratingText,
   ratingDetails,
+  ratingImage,
 }) => {
   return (
     <section
-      className="bg-gradient-custom h-screen flex flex-end bg-center bg-no-repeat relative"
+      className="bg-gradient-custom h-screen flex justify-center bg-cover items-end  bg-center bg-no-repeat"
       style={{ backgroundImage: `url('${backgroundImage}')` }}
     >
-      <div className="container w-full flex relative sm:px-4 md:px-0 mb-10 overflow-x-hidden">
-        <div className="absolute flex items-start flex-col gap-4 space-y-3 bottom-10 w-full md:w-1/2">
+      <div className="container w-full flex justify-between items-end sm:px-4 md:px-0 mb-20 overflow-x-hidden">
+        <div className="flex items-start flex-col gap-4 space-y-3 bottom-10 w-full md:w-1/2">
           {pill && (
             <div className="bg-fill-Brand-quaternary text-main text-xs font-secondary px-3 py-1 font-semibold rounded-full">
               {pill}
@@ -54,24 +56,30 @@ const HeroComponent: React.FC<HeroSectionProps> = ({
         </div>
 
         {showRating && (
-          <div className="hidden md:block">
-            <p className="text-accentmain text-base font-medium gap-3 inline-flex">
-              {ratingText}
-              <span className="flex flex-row gap-1">
-                {[1, 2, 3, 4].map((i) => (
-                  <Image
-                    key={i}
-                    src={"/Assets/rating.svg"}
-                    alt="rating"
-                    width={20}
-                    height={19}
-                  />
-                ))}
-              </span>
-            </p>
-            <p className="text-accentmain font-normal text-sm">
-              {ratingDetails}
-            </p>
+          <div className="hidden md:flex justify-between items-center gap-3">
+            {ratingImage && (
+              <Image src={ratingImage} width={86} height={86} alt="image" />
+            )}
+
+            <div>
+              <p className="text-accentmain text-base font-medium gap-3 inline-flex">
+                {ratingText}
+                <span className="flex flex-row gap-1">
+                  {[1, 2, 3, 4].map((i) => (
+                    <Image
+                      key={i}
+                      src={"/Assets/rating.svg"}
+                      alt="rating"
+                      width={20}
+                      height={19}
+                    />
+                  ))}
+                </span>
+              </p>
+              <p className="text-accentmain font-normal text-sm">
+                {ratingDetails}
+              </p>
+            </div>
           </div>
         )}
       </div>

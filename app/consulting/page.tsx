@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-// import MeetExperts from "@/components/Consulting/meet-experts";
 import OurPartners from "@/components/FaqPage/OurPartners/OurPartners";
 import HeroComponent from "@/components/HeroComponent/HeroComponent";
 import BookACallCTA from "@/components/Homepage/BookACallCTA/BookACallCTA";
@@ -14,7 +13,7 @@ import Button from "@/components/Button/Button";
 import { ChevronRight } from "lucide-react";
 import WhyChooseUs from "@/components/WhyChooseUs/WhyChooseUs";
 
-const getBackgroundColor = (index: number) => {
+ const getBackgroundColor = (index: number) => {
   const colors = [
     "bg-[#E5EEF7]",
     "bg-[#D5D5D5]",

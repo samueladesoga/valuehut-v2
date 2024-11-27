@@ -32,6 +32,10 @@ export default function Home() {
           subtitle={AcademyHero.subtitle}
           backgroundImage={AcademyHero.backgroundImage}
           pill={AcademyHero.pill}
+          showRating={true}
+          ratingText={AcademyHero.ratingText}
+          ratingDetails={AcademyHero.ratingDetails}
+          ratingImage={AcademyHero.ratingImage}
         />
         <div className="container flex pt-14 justify-between flex-col-reverse lg:flex-row gap-20 lg:gap-2">
           <div className="px-4 xl:px-0 bg-white lg:bg-inherit">
@@ -64,6 +68,7 @@ export default function Home() {
                 reviews={course.reviews}
                 logo={course.logo}
                 id={course.id}
+                slug={course.slug || ""}
               />
             ))}
             {AllCourses.length === 0 && (
