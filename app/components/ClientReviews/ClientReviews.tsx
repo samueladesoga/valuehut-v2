@@ -60,20 +60,20 @@ const ClientReviews = () => {
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? reviews.length - 1 : prevIndex - 1
+      prevIndex === 0 ? reviews.length - 1 : prevIndex - 1,
     );
   };
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === reviews.length - 1 ? 0 : prevIndex + 1
+      prevIndex === reviews.length - 1 ? 0 : prevIndex + 1,
     );
   };
 
   useEffect(() => {
     const container = containerRef.current;
     const card = cardRef.current;
-  
+
     if (container && card) {
       const cardWidth = card.offsetWidth + 24;
       container.scrollTo({

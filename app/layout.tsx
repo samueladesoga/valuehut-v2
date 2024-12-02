@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-
 import Navbar from "./components/Navbar/Navbar";
-import logo from "../public/images/Vector.png";
+import logoY from "../public/logos/v2-dark.png";
+import logoX from "../public/images/Vector.png";
 import Footer from "./components/Footer/Footer";
 import Menu from "../public/images/menu.png";
 
@@ -36,10 +36,12 @@ export default function RootLayout({
     },
     { label: "Contact", href: "/contact-us" },
   ];
+
   return (
     <html lang="en">
       <body>
-        <Navbar logo={logo} menu={Menu} navLinks={navLinks} />{children}
+        <Navbar logoX={logoX} logoY={logoY} menu={Menu} navLinks={navLinks} />
+        {children}
         <Footer />
       </body>
     </html>

@@ -1,8 +1,17 @@
+"use client";
+
+import React from "react";
+import { usePathname, useRouter } from "next/navigation";
 import Button from "@/components/Button/Button";
 import { IUpcomingClassesData } from "@/data/Academy/UpcomingClasses";
-import React from "react";
 
 function Group({ id, dates, time, type, fullBook }: IUpcomingClassesData) {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleClassesDetails = () => {
+    router.push(`${pathname}/details`);
+  };
   return (
     <div className="flex flex-col items-start gap-6  bg-white w-full p-6 rounded-xl">
       <div>
@@ -41,7 +50,12 @@ function Group({ id, dates, time, type, fullBook }: IUpcomingClassesData) {
       <div className="w-full flex gap-5 items-center">
         {!fullBook ? (
           <>
-            <Button size="small" rounded="full" bgColor="fill-brand-secondary">
+            <Button
+              size="small"
+              rounded="full"
+              bgColor="fill-brand-secondary"
+              onClick={handleClassesDetails}
+            >
               View Details
             </Button>
             <Button size="small" rounded="full" border>

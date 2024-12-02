@@ -22,7 +22,7 @@ function MeetTheTeam() {
               </h3>
             </div>
             <span className="flex gap-2">
-              <div  className="bg-cover w-8 h-8  bg-[#F5F5F5] rounded-full p-2 hover:bg-[#f5f5f5ea] flex justify-center items-center">
+              <div className="bg-cover w-8 h-8  bg-[#F5F5F5] rounded-full p-2 hover:bg-[#f5f5f5ea] flex justify-center items-center">
                 <Image
                   src={"/icons/twitter.svg"}
                   width={14}
@@ -47,7 +47,7 @@ function MeetTheTeam() {
                   className="bg-cover"
                 />
               </div>
-            </span> 
+            </span>
           </div>
         </div>
         <p className="text-sm font-normal font-secondary text-main">
@@ -78,7 +78,7 @@ function MeetTheTeam() {
               </h3>
             </div>
             <span className="flex gap-2">
-              <div  className="bg-cover w-8 h-8  bg-[#F5F5F5] rounded-full p-2 hover:bg-[#f5f5f5ea] flex justify-center items-center">
+              <div className="bg-cover w-8 h-8  bg-[#F5F5F5] rounded-full p-2 hover:bg-[#f5f5f5ea] flex justify-center items-center">
                 <Image
                   src={"/icons/twitter.svg"}
                   width={14}

@@ -61,16 +61,16 @@ const CriteriaSection: React.FC<CriteriaSectionProps> = ({
           </Button>
         </div>
 
-        <div >
+        <div>
           <div className="  shadow-md">
             <Image
               src={CriteriImage}
               alt="Team collaborating"
               className="object-cover"
-              layout="intrinsic" 
-              width={543} 
-              height={400} 
-              sizes="(max-width: 640px) 361px, 543px" 
+              layout="intrinsic"
+              width={543}
+              height={400}
+              sizes="(max-width: 640px) 361px, 543px"
             />
           </div>
         </div>

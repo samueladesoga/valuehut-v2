@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from "react";
@@ -22,9 +21,10 @@ const ConsultancyServiceItem: React.FC<ConsultancyServiceItemProps> = ({
   onToggle,
 }) => {
   return (
-    <div className={`transition-all rounded-[20px] duration-300 ${backgroundColor}`}>
+    <div
+      className={`transition-all rounded-[20px] duration-300 ${backgroundColor}`}
+    >
       <button
-      
         onClick={onToggle}
         className="w-full text-left p-4 sm:p-6 flex justify-between items-center"
       >

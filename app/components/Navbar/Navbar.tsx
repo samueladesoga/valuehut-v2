@@ -1,26 +1,36 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import Button from "@/components/Button/Button";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronDown, X } from "lucide-react";
 import { StaticImageData } from "next/image";
+import { usePathname } from "next/navigation";
 
 interface NavbarProps {
-  logo: StaticImageData;
+  logoX: StaticImageData;
+  logoY: StaticImageData;
   menu: StaticImageData;
   navLinks?: Array<{
     label: string;
     href: string;
     subLinks?: Array<{ label: string; href: string }>;
   }>;
+  isVariation2?: boolean;
 }
 
-const Navbar = ({ logo, menu, navLinks = [] }: NavbarProps) => {
+const Navbar = ({
+  logoX,
+  logoY,
+  menu,
+  navLinks = [],
+}: NavbarProps) => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(
     null
   );
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const toggleDropdown = (index: number) => {
     setOpenDropdownIndex(openDropdownIndex === index ? null : index);
@@ -32,36 +42,43 @@ const Navbar = ({ logo, menu, navLinks = [] }: NavbarProps) => {
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        closeDropdown();
+    const handleScroll = () => {
+      if (window.scrollY > 600) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    window.addEventListener("scroll", handleScroll);
+
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  const pathname = usePathname();
+
+  const logo =
+    ["/about-us", "/faqs", "/blog"].includes(pathname) || scrolled
+      ? logoY
+      : logoX;
+
+  const navbarStyle =
+    ["/about-us", "/faqs", "/blog"].includes(pathname) || scrolled
+      ? "bg-white text-black shadow-md"
+      : "bg-[#707070]/10 backdrop-blur-3xl text-white";
 
   return (
-    <div className="fixed w-full md:mt-3 z-50">
-      <nav className="container bg-[#707070]/10 backdrop-blur-3xl md:rounded-xl overflow-visible text-white py-4 shadow-md">
+    <div className={`fixed w-full md:pt-3 z-50`}>
+      <nav
+        className={`container py-4 ${navbarStyle} md:rounded-xl overflow-visible`}
+      >
         <div className="relative z-10 flex items-center justify-between w-full px-6 mx-auto">
           <Link href="/" className="flex items-center space-x-2">
-            <Image
-              src={logo}
-              alt="Logo"
-              width={118}
-              height={31}
-              className="h-auto w-auto"
-            />
+            <Image src={logo} alt="Logo" width={118} height={31} className="" />
           </Link>
 
-          <div className="hidden lg:flex items-center space-x-8 text-xs text-accentmain">
+          <div className="hidden lg:flex items-center space-x-8 text-xs">
             {navLinks.map((link, index) =>
               link.subLinks ? (
                 <div
@@ -77,12 +94,7 @@ const Navbar = ({ logo, menu, navLinks = [] }: NavbarProps) => {
                     <ChevronDown className="h-4 w-4 ml-1" />
                   </button>
                   {openDropdownIndex === index && (
-                    <div
-                      className="absolute left-0 mt-2 w-40 bg-white text-gray-800 rounded-md shadow-lg"
-                      style={{
-                        zIndex: 9999,
-                      }}
-                    >
+                    <div className="absolute left-0 mt-2 w-40 bg-white text-gray-800 rounded-md shadow-lg">
                       {link.subLinks.map((subLink, subIndex) => (
                         <Link
                           key={subIndex}
@@ -109,9 +121,13 @@ const Navbar = ({ logo, menu, navLinks = [] }: NavbarProps) => {
           </div>
 
           <Link href="/contact-us">
-            <button className="bg-fill-brand-secondary rounded-lg py-2 px-5 text-xs font-medium text-main hidden lg:flex">
+            <Button
+              rounded="full"
+              bgColor="fill-brand-secondary"
+              className="py-2 px-5 text-xs font-medium text-main hidden lg:flex"
+            >
               Book a free call
-            </button>
+            </Button>
           </Link>
 
           <button
@@ -192,9 +208,13 @@ const Navbar = ({ logo, menu, navLinks = [] }: NavbarProps) => {
               )}
               <li>
                 <Link href="/contact-us">
-                  <button className="w-full bg-fill-brand-secondary rounded-lg py-2 text-xs font-medium text-main">
+                  <Button
+                    rounded="md"
+                    bgColor="fill-brand-secondary"
+                    className="w-full rounded-lg py-2 text-xs font-medium text-main"
+                  >
                     Book a free call
-                  </button>
+                  </Button>
                 </Link>
               </li>
             </ul>

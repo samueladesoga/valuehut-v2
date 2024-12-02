@@ -1,8 +1,17 @@
+"use client";
+
+import React from "react";
+import { usePathname, useRouter } from "next/navigation";
 import Button from "@/components/Button/Button";
 import { IUpcomingClassesData } from "@/data/Academy/UpcomingClasses";
-import React from "react";
 
-function Table({id, dates, time, type, fullBook }: IUpcomingClassesData) {
+function Table({ id, dates, time, type, fullBook }: IUpcomingClassesData) {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleClassesDetails = () => {
+    router.push(`${pathname}/details`);
+  };
   return (
     <tr key={id}>
       <td
@@ -35,6 +44,7 @@ function Table({id, dates, time, type, fullBook }: IUpcomingClassesData) {
                 size="small"
                 rounded="full"
                 bgColor="fill-brand-secondary"
+                onClick={handleClassesDetails}
               >
                 View Details
               </Button>

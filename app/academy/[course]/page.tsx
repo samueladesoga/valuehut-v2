@@ -20,7 +20,9 @@ export default function CourseDetailsPage() {
       />
 
       <div className="md:bg-white">
-        <Aboutcourse />
+        <div className="container px-4 xl:px-0 pt-16 md:pt-36">
+          <Aboutcourse />
+        </div>
       </div>
 
       <div className="md:bg-white pt-10">
@@ -87,12 +89,12 @@ export default function CourseDetailsPage() {
         <AssessmentCertification />
       </div>
 
-      <div className="container sm:pt-5">
+      <div className="container px-4 sm:px-0 py-36">
         <OurPartners />
       </div>
       <FAQ faqs={faqs} />
 
-      <div className="container sm:py-8">
+      <div className="hidden md:flex container px-4 xl:px-0 py-36">
         <ClientReviews />
       </div>
     </div>

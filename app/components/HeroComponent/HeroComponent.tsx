@@ -28,7 +28,7 @@ const HeroComponent: React.FC<HeroSectionProps> = ({
 }) => {
   return (
     <section
-      className="bg-gradient-custom h-screen flex justify-center bg-cover items-end  bg-center bg-no-repeat"
+      className="bg-gradient-custom h-[600px] flex justify-center bg-cover items-end  bg-center bg-no-repeat"
       style={{ backgroundImage: `url('${backgroundImage}')` }}
     >
       <div className="container w-full flex justify-between items-end sm:px-4 md:px-0 mb-20 px-6 xl:px-0 overflow-x-hidden">

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 
 type Option = {
@@ -30,7 +30,8 @@ const FilterDropdown = ({ options, onChange }: FilterDropdownProps) => {
         className="flex items-center px-4 py-2 border rounded-full shadow-sm text-gray-700 border-gray-300 bg-white focus:outline-none hover:bg-gray-100"
       >
         <span className="mr-1 font-medium">
-          Filter by: <span className="text-gray-900">{selectedOption.label}</span>
+          Filter by:{" "}
+          <span className="text-gray-900">{selectedOption.label}</span>
         </span>
         <svg
           className={`w-4 h-4 transform transition-transform duration-200 ${
@@ -71,5 +72,4 @@ const FilterDropdown = ({ options, onChange }: FilterDropdownProps) => {
   );
 };
 
-
-export default FilterDropdown
+export default FilterDropdown;

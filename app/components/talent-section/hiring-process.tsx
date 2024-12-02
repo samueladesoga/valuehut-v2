@@ -27,9 +27,6 @@ export default function HiringProcess() {
           <h2 className=" leading-[61px] text-[47px] lg:text-5xl xl:text-9xl font-primary font-medium text-main mb-6">
             How does our hiring process work?
           </h2>
-          {/* <button className="bg-[#FF9F5A] text-white font-secondary px-6 py-3 rounded-full text-sm font-medium hover:bg-[#FF9F5A]/90 w-fit">
-              Get more information
-            </button> */}
 
           <Button
             bgColor="fill-brand-secondary"

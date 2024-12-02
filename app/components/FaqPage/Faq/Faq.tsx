@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import PlusIcon from "@/icons/plus.svg"
+import PlusIcon from "@/icons/plus.svg";
 import CircleMinusIcon from "@/icons/remove-circle.svg";
 import Mail from "@/icons//mail.svg";
 import Mentor from "@/icons/mentor.svg";

@@ -169,7 +169,10 @@ export default function TalentSection() {
 
             <div className="relative grid grid-cols-6 gap-5 w-auto">
               {talents.slice(0, 18).map((talent) => (
-                <div key={talent.id} className="cursor-pointer w-[53px] h-[53px]">
+                <div
+                  key={talent.id}
+                  className="cursor-pointer w-[53px] h-[53px]"
+                >
                   <Image
                     src={talent.image}
                     alt={talent.name || "Avatar"}

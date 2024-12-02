@@ -7,7 +7,7 @@ export const OfficeMap: React.FC = () => {
   const [activeOffice, setActiveOffice] = useState("UK Office");
 
   const activeMap = addressData.find(
-    (office) => office.state === activeOffice
+    (office) => office.state === activeOffice,
   )?.mapUrl;
 
   return (
