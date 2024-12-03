@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 import Button from "@/components/Button/Button";
 import { ChevronRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface HeroBannerProps {
   title?: string;
@@ -14,6 +17,7 @@ export default function HeroBanner({
   subtitle,
   image = "/images/image@2x.jpeg",
 }: HeroBannerProps) {
+  const router = useRouter();
   return (
     <section className="container px-6 py-6 sm:py-16 xl:px-0">
       <div
@@ -33,6 +37,7 @@ export default function HeroBanner({
                 icon={<ChevronRight />}
                 rounded="full"
                 className="mt-5 text-start"
+                onClick={() => router.push("/academy")}
               >
                 Explore Courses
               </Button>

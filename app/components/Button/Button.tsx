@@ -15,7 +15,7 @@ interface ButtonProps {
 
 const Button: React.FC<ButtonProps> = ({
   children,
-  className,
+  className = "",
   bgColor = "",
   textColor = "Primary",
   border = false,
@@ -40,15 +40,13 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   return (
-    <>
-      <button
-        onClick={onClick}
-        className={`flex items-center gap-2 justify-center bg-${bgColor} text-${textColor} ${borderClass} ${sizeClasses[size]} ${roundedClasses[rounded]} ${className} font-medium transition duration-300 ease-in-out hover:opacity-80 focus:outline-none`}
-      >
-        {children}
-        {icon && <span>{icon}</span>}
-      </button>
-    </>
+    <button
+      onClick={onClick}
+      className={`flex items-center gap-2 justify-center bg-${bgColor} text-${textColor} ${borderClass} ${sizeClasses[size]} ${roundedClasses[rounded]} ${className} font-medium hover:opacity-80 focus:outline-none`}
+    >
+      {children}
+      {icon && <span>{icon}</span>}
+    </button>
   );
 };
 

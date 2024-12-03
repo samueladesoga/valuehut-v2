@@ -48,61 +48,66 @@ const PaymentForm = () => {
   };
 
   return (
-    <div className="container bg-[#f5f5f5] pb-24 sm:pb-36">
-      <div className="flex flex-col gap-6 pt-36 bg-white sm:bg-[#f5f5f5] p-4">
-        <div className="flex justify-start items-start">
-          <button className="py-1 px-[10px] bg-[#E4EEF3] rounded-full  flex gap-2 items-center">
-            <Image
-              src={"/less.svg"}
-              width={20}
-              height={20}
-              alt="image"
-              className="object-contain w-4 h-4"
-            />
-            <span className="text-main text-[15px] leading-[22px] font-secondary font-medium">
-              Go back
-            </span>
-          </button>
+    <div className="bg-[#f5f5f5]">
+      <div className="container pb-24 sm:pb-36">
+        <div className="flex flex-col gap-6 pt-36 bg-white sm:bg-[#f5f5f5] p-4">
+          <div className="flex justify-start items-start">
+            <button className="py-1 px-[10px] bg-[#E4EEF3] rounded-full  flex gap-2 items-center">
+              <Image
+                src={"/less.svg"}
+                width={20}
+                height={20}
+                alt="image"
+                className="object-contain w-4 h-4"
+              />
+              <span className="text-main text-[15px] leading-[22px] font-secondary font-medium">
+                Go back
+              </span>
+            </button>
+          </div>
+
+          <h1 className="text-[40px] leading-[52px] font-medium text-[#141834]">
+            Checkout
+          </h1>
         </div>
 
-        <h1 className="text-[40px] leading-[52px] font-medium text-[#141834]">
-          Checkout
-        </h1>
-      </div>
-
-      <div className="flex flex-col lg:flex-row  justify-between gap-3 ">
-        <div className="w-full lg:w-[742px] flex flex-col gap-16 bg-white p-4 md:p-8 lg:rounded-3xl">
-          <ContactInformation formData={formData} handleChange={handleChange} />
-          <Paymentmethod
-            methods={paymentMethods}
-            onSelect={handlePaymentSelect}
-          />
-        </div>
-
-        <div className="flex flex-col sm:flex-row lg:flex-col gap-3">
-          <CheckoutCourseDetails
-            image={CheckoutCourseDetailsData.image}
-            title={CheckoutCourseDetailsData.title}
-            date={CheckoutCourseDetailsData.date}
-            time={CheckoutCourseDetailsData.time}
-            classType={CheckoutCourseDetailsData.classType}
-            country={CheckoutCourseDetailsData.country}
-          />
-          <div className="flex flex-col gap-3">
-            <Ordersummary
-              perPerson={orderSummary.perPerson}
-              subtotal={orderSummary.subtotal}
-              total={orderSummary.total}
-              discountText={orderSummary.discountText}
+        <div className="flex flex-col lg:flex-row  justify-between gap-3 ">
+          <div className="w-full lg:w-[742px] flex flex-col gap-16 bg-white p-4 md:p-8 lg:rounded-3xl">
+            <ContactInformation
+              formData={formData}
+              handleChange={handleChange}
             />
+            <Paymentmethod
+              methods={paymentMethods}
+              onSelect={handlePaymentSelect}
+            />
+          </div>
 
-            <Button
-              size="large"
-              bgColor="fill-brand-secondary"
-              className="rounded-xl text-main"
-            >
-              Buy Now
-            </Button>
+          <div className="flex flex-col sm:flex-row lg:flex-col gap-3">
+            <CheckoutCourseDetails
+              image={CheckoutCourseDetailsData.image}
+              title={CheckoutCourseDetailsData.title}
+              date={CheckoutCourseDetailsData.date}
+              time={CheckoutCourseDetailsData.time}
+              classType={CheckoutCourseDetailsData.classType}
+              country={CheckoutCourseDetailsData.country}
+            />
+            <div className="flex flex-col gap-3">
+              <Ordersummary
+                perPerson={orderSummary.perPerson}
+                subtotal={orderSummary.subtotal}
+                total={orderSummary.total}
+                discountText={orderSummary.discountText}
+              />
+
+              <Button
+                size="large"
+                bgColor="fill-brand-secondary"
+                className="rounded-xl text-main"
+              >
+                Buy Now
+              </Button>
+            </div>
           </div>
         </div>
       </div>

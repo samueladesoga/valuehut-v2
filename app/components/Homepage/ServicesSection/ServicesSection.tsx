@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 import { coCreatingData, IServicesSection } from "@/data/Home/Services";
 import Button from "@/components/Button/Button";
+import { useRouter } from "next/navigation";
 
 interface ServicesSectionProps {
   data?: IServicesSection;
@@ -9,6 +12,7 @@ interface ServicesSectionProps {
 const ServicesSection: React.FC<ServicesSectionProps> = ({
   data = coCreatingData,
 }) => {
+  const router = useRouter();
   const { title, subtitle, statistics, cards } = data;
   return (
     <section className="container py-6 sm:py-16 px-6 xl:px-0">
@@ -25,7 +29,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({
           <div className="flex justify-between gap-14 sm:gap-20">
             {statistics.map((stat, index) => (
               <div key={index} className="text-center md:text-left ">
-                <h1 className="text-main font-primary text-8xl ">
+                <h1 className="text-main font-primary text-8xl fade-up-animation">
                   {stat.value}
                 </h1>
                 <p className="text-accentMain font-secondary text-sm">
@@ -55,6 +59,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({
               size="medium"
               rounded="full"
               className="bg-transparent border border-white"
+              onClick={() => router.push(card.href)}
             >
               {card.buttonText}
             </Button>

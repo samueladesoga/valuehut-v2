@@ -9,6 +9,7 @@ export interface Card {
   buttonText: string;
   buttonLink: string;
   bgColor: string;
+  href: string;
 }
 
 export interface IServicesSection {
@@ -34,6 +35,7 @@ export const coCreatingData: IServicesSection = {
       buttonText: "Explore Courses",
       buttonLink: "#",
       bgColor: "bg-[#05668D]",
+      href : "/academy"
     },
     {
       title: "Consulting",
@@ -42,6 +44,7 @@ export const coCreatingData: IServicesSection = {
       buttonText: "Read More",
       buttonLink: "#",
       bgColor: "bg-[#02374B]",
+      href : "/consulting"
     },
     {
       title: "Talent Matching",
@@ -50,6 +53,7 @@ export const coCreatingData: IServicesSection = {
       buttonText: "Read More",
       buttonLink: "#",
       bgColor: "bg-[#A97240]",
+      href : "/talent-matching"
     },
   ],
 };

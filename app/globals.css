@@ -22,6 +22,8 @@
     rgba(26, 27, 19, 0) 13.04%,
     #1a1b13 84.46%
   );
+  --duration: 5s;
+  --duration-double: 10s;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -40,4 +42,47 @@ body {
   font-family: "Inter", sans-serif;
   background-color: var(--background);
   color: var(--Color-Text-Main);
+}
+
+/* Wrapper for the logos */
+.logos-wrapper-container {
+  overflow: hidden; /* Hide logos that are out of view */
+  position: relative;
+}
+
+/* This will be the actual scrolling container */
+.logos-wrapper {
+  display: flex;
+  gap: 8px; /* Adjust gap between logos as needed */
+  animation: infinite-scroll 20s linear infinite; /* Infinite scroll animation */
+  width: max-content; /* Ensure the container is only as wide as the logos */
+}
+
+/* Keyframes for infinite scroll */
+@keyframes infinite-scroll {
+  0% {
+    transform: translateX(0); /* Start from the first set of logos */
+  }
+  100% {
+    transform: translateX(
+      -100%
+    ); /* Move the entire container by the width of all logos */
+  }
+}
+
+/* Duplicate logos with the same animation for seamless scrolling */
+.logos-wrapper::after {
+  content: "";
+  display: flex;
+  gap: 8px; /* Match the gap between logos */
+}
+
+.logos-wrapper .logo-item {
+  /* Optional: Add opacity/hover effects if needed */
+  transition: opacity 0.3s;
+  opacity: 0.75;
+}
+
+.logos-wrapper .logo-item:hover {
+  opacity: 1;
 }

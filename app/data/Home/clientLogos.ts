@@ -30,4 +30,5 @@ export const clientLogos: Logo[] = [
     name: "CV",
     url: "/Assets/zack.png",
   },
+ 
 ];

@@ -7,6 +7,7 @@ import SectionPara from "@/components/SectionPara/SectionPara";
 import { useEffect, useRef, useState } from "react";
 import less from "@/less.svg";
 import greater from "@/greater.svg";
+import { useRouter } from "next/navigation";
 
 interface Article {
   id: number;
@@ -14,6 +15,7 @@ interface Article {
   description: string;
   image: string;
   link: string;
+  slug: string;
 }
 
 interface ArticlesSectionProps {
@@ -27,6 +29,7 @@ export default function ArticlesSection({
   description,
   articles,
 }: ArticlesSectionProps) {
+  const router = useRouter()
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -69,7 +72,7 @@ export default function ArticlesSection({
             bgColor="fill-brand-secondary"
             rounded="full"
             size="medium"
-            className=""
+            onClick={()=> router.push('/blog')}
           >
             View All
           </Button>
@@ -97,7 +100,8 @@ export default function ArticlesSection({
                     className="bg-no-repeat rounded-md mb-4"
                   />
                   <div className="p-6">
-                    <h3 className="text-lg font-primary truncate max-w-96 font-semibold mb-2">
+                    <h3 className="cursor-pointer text-lg font-primary truncate max-w-96 font-semibold mb-2" onClick={()=> router.push(`/blog/${article.slug}`)}>
+                      
                       {article.title}
                     </h3>
                     <p className="text-sm text-body mb-4">
@@ -109,7 +113,6 @@ export default function ArticlesSection({
             ))}
           </div>
 
-          {/* Navigation buttons */}
           <div className="absolute  bottom-[-70px] left-3 block md:hidden transform -translate-y-1/2">
             <button
               onClick={handlePrev}
