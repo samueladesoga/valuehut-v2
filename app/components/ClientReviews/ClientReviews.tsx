@@ -4,69 +4,26 @@ import React, { useEffect, useRef, useState } from "react";
 import Star from "@/start.svg";
 import less from "@/less.svg";
 import greater from "@/greater.svg";
+import { Reviews } from "@/data/ClientReviews/Reviews";
 
-const reviews = [
-  {
-    id: 1,
-    title: "Product Owner Training Feedback",
-    date: "4 days ago",
-    description:
-      "Good training. Good delivery. Very Knowledgeable trainer and continuously engaged the trainees throughout the session.",
-    name: "Student Name",
-    rating: 3,
-  },
-  {
-    id: 2,
-    title: "Great clarity, explanation and real life examples",
-    date: "4 days ago",
-    description:
-      "Good training. Good delivery. Very Knowledgeable trainer and continuously engaged the trainees throughout the session.",
-    name: "Student Name",
-    rating: 5,
-  },
-  {
-    id: 3,
-    title: "Detailed and practical sessions",
-    date: "4 days ago",
-    description:
-      "Good training. Good delivery. Very Knowledgeable trainer and continuously engaged the trainees throughout the session.",
-    name: "Student Name",
-    rating: 5,
-  },
-  {
-    id: 4,
-    title: "Session was interactive and engaging",
-    date: "4 days ago",
-    description:
-      "Good training. Good delivery. Very Knowledgeable trainer and continuously engaged the trainees throughout the session.",
-    name: "Student Name",
-    rating: 5,
-  },
-  {
-    id: 5,
-    title: "Exceptional training and support",
-    date: "3 days ago",
-    description:
-      "Great training delivery. Trainer was highly skilled and addressed all the doubts with practical examples.",
-    name: "Student Name",
-    rating: 5,
-  },
-];
+interface ClientReviewsProps {
+  title?: string;
+}
 
-const ClientReviews = () => {
+const ClientReviews = ({ title = "What our clients say" }: ClientReviewsProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? reviews.length - 1 : prevIndex - 1,
+      prevIndex === 0 ? Reviews.length - 1 : prevIndex - 1
     );
   };
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === reviews.length - 1 ? 0 : prevIndex + 1,
+      prevIndex === Reviews.length - 1 ? 0 : prevIndex + 1
     );
   };
 
@@ -86,9 +43,7 @@ const ClientReviews = () => {
   return (
     <div className="w-full mx-auto py-10">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-9xl font-medium font-primary text-main">
-          What our clients say
-        </h1>
+        <h1 className="text-9xl font-medium font-primary text-main">{title}</h1>
         <div className="hidden md:flex gap-4">
           <button
             onClick={handlePrev}
@@ -110,7 +65,7 @@ const ClientReviews = () => {
           ref={containerRef}
           className="flex gap-6 transition-transform duration-500 ease-in-out"
         >
-          {reviews.map((review) => (
+          {Reviews.map((review) => (
             <div
               key={review.id}
               className="min-w-[80%] sm:min-w-[45%] lg:min-w-[30%] bg-[#E4E4E4] p-6 rounded-xl"

@@ -48,9 +48,6 @@ const CriteriaSection: React.FC<CriteriaSectionProps> = ({
               </li>
             ))}
           </ul>
-          {/* <button className="mt-8 px-6 py-3 text-lg font-medium text-white bg-[#F8901D] rounded-full hover:bg-[#E57D15] transition">
-            {buttonLabel}
-          </button> */}
           <Button
             bgColor="fill-brand-secondary"
             size="medium"

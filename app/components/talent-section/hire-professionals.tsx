@@ -1,37 +1,8 @@
 "use client";
 
+import { Features, IFeatures } from "@/data/FeatureCard/FeatureCard";
 import Image from "next/image";
 
-interface FeatureCard {
-  title: string;
-  description: string;
-  icon: string;
-  bgColor: string;
-}
-
-const features: FeatureCard[] = [
-  {
-    title: "Hire Quickly",
-    description:
-      "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form.",
-    icon: "/icons/rocket.svg",
-    bgColor: "bg-[#C5D8E0]",
-  },
-  {
-    title: "Top candidates",
-    description:
-      "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form.",
-    icon: "/icons/talent-star.svg",
-    bgColor: "bg-[#C4EBE3]",
-  },
-  {
-    title: "Leading the Future",
-    description:
-      "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form.",
-    icon: "/icons/Vector.svg",
-    bgColor: "bg-[#F5E5D7]",
-  },
-];
 
 export default function HireProfessionals() {
   return (
@@ -44,7 +15,7 @@ export default function HireProfessionals() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {features.map((feature) => (
+          {Features.map((feature:IFeatures) => (
             <div
               key={feature.title}
               className={`${feature.bgColor} rounded-xl p-6 lg:p-8`}

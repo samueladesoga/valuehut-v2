@@ -25,7 +25,6 @@ const experts: Expert[] = [
 export default function MeetExperts() {
   return (
     <div className="w-full bg-white">
-      {/* Desktop Version */}
       <div className="hidden sm:block container mx-auto px-4 py-16">
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
           <div className="relative w-full max-w-lg mb-12">
@@ -61,7 +60,6 @@ export default function MeetExperts() {
         </div>
       </div>
 
-      {/* Mobile Version */}
       <div className="sm:hidden px-4 py-8">
         <div className="flex flex-col items-start">
           <h2 className="text-4xl font-primary text-[#161A1D] mb-4">

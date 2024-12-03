@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import Button from "@/components/Button/Button";
 import Image from "next/image";
@@ -45,7 +46,7 @@ const TalentMatchingCTA: React.FC = () => {
           size="medium"
           icon={<ChevronRight />}
           rounded="full"
-          className="mt-5 fade-up-animation"
+          className="mt-5"
           onClick={() => router.push("/talent-matching")}
         >
           Get started now

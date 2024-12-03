@@ -16,8 +16,7 @@ function ContactInformation({
   formData,
   handleChange,
 }: ContactInformationProps) {
-  // Rest of the code remains the same
-  const { firstName, lastName, email } = formData; // Destructure the formData object
+  const { firstName, lastName, email } = formData;
 
   return (
     <>
@@ -30,7 +29,7 @@ function ContactInformation({
             <Input
               label="First Name"
               placeholder="Full name"
-              value={firstName} // Use the destructured firstName variable
+              value={firstName}
               onChange={handleChange("firstName")}
             />
           </div>
@@ -38,7 +37,7 @@ function ContactInformation({
             <Input
               label="Last Name"
               placeholder="Full name"
-              value={lastName} // Use the destructured lastName variable
+              value={lastName}
               onChange={handleChange("lastName")}
             />
           </div>
@@ -47,7 +46,7 @@ function ContactInformation({
           label="Email Address"
           type="email"
           placeholder="hello@example.com"
-          value={email} // Use the destructured email variable
+          value={email}
           onChange={handleChange("email")}
           className="mt-1"
         />

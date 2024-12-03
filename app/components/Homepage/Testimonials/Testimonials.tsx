@@ -4,50 +4,24 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
 import Star from "@/start.svg";
+import { TestimonialsData } from "@/data/Testimonials/Testimonials";
 
-interface TestimonialProps {
-  name: string;
-  date: string;
-  review: string;
-  rating: number;
-}
+
 
 const Testimonials: React.FC = () => {
-  const testimonials: TestimonialProps[] = [
-    {
-      name: "Demi Adeniji",
-      date: "May 20, 2024",
-      review:
-        "The sessions were engaging and enlightening! I particularly enjoyed how our trainer was able to draw examples from real life scenarios making it easier to understand the concepts taught.",
-      rating: 4.9,
-    },
-    {
-      name: "Alex Johnson",
-      date: "June 15, 2024",
-      review:
-        "The sessions were engaging and enlightening! I particularly enjoyed how our trainer was able to draw examples from real life scenarios making it easier to understand the concepts taught.",
-      rating: 4.8,
-    },
-    {
-      name: "Maria Garcia",
-      date: "July 10, 2024",
-      review:
-        "The sessions were engaging and enlightening! I particularly enjoyed how our trainer was able to draw examples from real life scenarios making it easier to understand the concepts taught.",
-      rating: 5.0,
-    },
-  ];
+ 
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1,
+      prevIndex === 0 ? TestimonialsData.length - 1 : prevIndex - 1,
     );
   };
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1,
+      prevIndex === TestimonialsData.length - 1 ? 0 : prevIndex + 1,
     );
   };
 
@@ -75,14 +49,14 @@ const Testimonials: React.FC = () => {
                   ))}
               </div>
               <h3 className="text-[#141834] font-primary text-2xl font-semibold">
-                {testimonials[currentIndex].name}
+                {TestimonialsData[currentIndex].name}
               </h3>
             </div>
             <p className="text-xl font-normal font-secondary">
-              {testimonials[currentIndex].review}
+              {TestimonialsData[currentIndex].review}
             </p>
             <footer className="text-gray-500">
-              {testimonials[currentIndex].date}
+              {TestimonialsData[currentIndex].date}
             </footer>
           </div>
         </div>
