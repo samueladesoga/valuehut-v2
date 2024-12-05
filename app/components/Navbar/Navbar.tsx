@@ -54,12 +54,12 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
   const pathname = usePathname();
 
   const logo =
-    ["/about-us", "/faqs", "/blog"].includes(pathname) || scrolled
+    ["/about-us", "/faqs", "/blog", "/checkout"].includes(pathname) || scrolled
       ? logoY
       : logoX;
 
   const navbarStyle =
-    ["/about-us", "/faqs", "/blog"].includes(pathname) || scrolled
+    ["/about-us", "/faqs", "/blog", "/checkout"].includes(pathname) || scrolled
       ? "bg-white text-black shadow-md"
       : "bg-[#707070]/10 backdrop-blur-3xl text-white";
 
