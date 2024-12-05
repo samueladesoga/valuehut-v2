@@ -18,9 +18,7 @@ function AboutPage() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           whileOutOfView={{ opacity: 0, y: 20 }}
-          transition={{
-            duration: 0.1,
-          }}
+          transition={{ duration: 0.5, delay: 0.1 }}
           viewport={{ once: false, amount: 0.2 }}
         >
           <SectionTitle title="Co-creating better ways of working and leading." />
@@ -29,9 +27,7 @@ function AboutPage() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           whileOutOfView={{ opacity: 0, y: 20 }}
-          transition={{
-            duration: 0.1,
-          }}
+          transition={{ duration: 0.5, delay: 0.1 }}
           viewport={{ once: false, amount: 0.2 }}
         >
           <SectionPara
@@ -45,9 +41,7 @@ function AboutPage() {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         whileOutOfView={{ opacity: 0, y: 20 }}
-        transition={{
-          duration: 0.3,
-        }}
+        transition={{ duration: 0.5, delay: 0.1 }}
         viewport={{ once: false, amount: 0.2 }}
       >
         <Image

@@ -1,4 +1,7 @@
+"use client";
+
 import React from "react";
+import { motion } from "framer-motion";
 import { clientLogos, Logo } from "@/data/Home/clientLogos";
 import Image from "next/image";
 
@@ -11,18 +14,52 @@ const ClientLogosSection = () => {
         </p>
       </div>
       <div className="logos-wrapper-container w-2/4 overflow-hidden">
-        <div className="logos-wrapper flex gap-8 sm:gap-20">
-          {clientLogos.map((logo: Logo) => (
-            <div key={logo.id} className="logo-item h-20 w-20">
-              <Image
-                src={logo.url}
-                alt={`Logo of ${logo.name}`}
-                width={200}
-                height={200}
-                className="h-20 w-20 opacity-75 hover:opacity-100 transition-opacity duration-300"
-              />
-            </div>
-          ))}
+        <div className="flex gap-8 sm:gap-20 overflow-hidden">
+          <motion.div
+            initial={{ x: 0 }}
+            animate={{ x: "-100%" }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            className="flex flex-shrink-0 gap-8 sm:gap-20"
+          >
+            {clientLogos.map((logo: Logo) => (
+              <div key={logo.id} className="h-20 w-20">
+                <Image
+                  src={logo.url}
+                  alt={`Logo of ${logo.name}`}
+                  width={200}
+                  height={200}
+                  className="h-20 w-20 opacity-75 hover:opacity-100 transition-opacity duration-300"
+                />
+              </div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial={{ x: 0 }}
+            animate={{ x: "-100%" }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            className="flex flex-shrink-0 gap-8 sm:gap-20"
+          >
+            {clientLogos.map((logo: Logo) => (
+              <div key={logo.id} className="h-20 w-20">
+                <Image
+                  src={logo.url}
+                  alt={`Logo of ${logo.name}`}
+                  width={200}
+                  height={200}
+                  className="h-20 w-20 opacity-75 hover:opacity-100 transition-opacity duration-300"
+                />
+              </div>
+            ))}
+          </motion.div>
         </div>
       </div>
     </div>

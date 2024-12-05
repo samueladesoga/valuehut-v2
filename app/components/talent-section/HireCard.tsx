@@ -7,7 +7,6 @@ interface HireCardProps {
   className?: string;
   imageSrc: string;
   bgColor: string;
-  divRef: React.RefObject<HTMLDivElement>;
 }
 
 const HireCard: React.FC<HireCardProps> = ({
@@ -16,13 +15,9 @@ const HireCard: React.FC<HireCardProps> = ({
   className,
   bgColor,
   imageSrc,
-  divRef,
 }) => {
   return (
-    <div
-      ref={divRef}
-      className={`${bgColor} ${className} rounded-xl p-6 lg:p-8`}
-    >
+    <div className={`${bgColor} ${className} rounded-xl p-6 lg:p-8`}>
       <Image
         src={imageSrc}
         alt={title}

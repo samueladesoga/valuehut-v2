@@ -2,13 +2,9 @@
 import Button from "../Button/Button";
 import React from "react";
 import { HiringCard } from "@/components/HiringCard/HiringCard";
-import useScroll from "@/hooks/useScroll";
+import { motion } from "framer-motion";
 
 export default function HiringProcess() {
-  const [divRef, isDivVisible] = useScroll<HTMLDivElement>({
-    threshold: 0,
-  });
-  const fadeUpClass = isDivVisible ? "fade-up-50ms" : "";
   return (
     <div className="container mx-auto p-4 lg:p-0 py-16">
       <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-12">
@@ -28,27 +24,56 @@ export default function HiringProcess() {
         </div>
 
         <div className="space-y-4">
-          <HiringCard
-            divRef={divRef}
-            bgColor="bg-[#C5D8E0]"
-            text="01"
-            description="Meet with the Hiring Manager to understand the business and team needs."
-            className={`${fadeUpClass}`}
-          />
-          <HiringCard
-            divRef={divRef}
-            bgColor="bg-[#C4EBE3]"
-            text="02"
-            className={`${fadeUpClass}`}
-            description="Draft a Job description and get client approval."
-          />
-          <HiringCard
-            bgColor="bg-[#F5E5D7]"
-            text="03"
-            description="Present relevant profiles with 7 working days."
-            divRef={divRef}
-            className={`${fadeUpClass}`}
-          />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            whileOutOfView={{ opacity: 0, y: 20 }}
+            transition={{
+              duration: 0.5,
+              delay: 0,
+            }}
+            viewport={{ once: false, amount: 0.2 }}
+          >
+            <HiringCard
+              bgColor="bg-[#C5D8E0]"
+              text="01"
+              description="Meet with the Hiring Manager to understand the business and team needs."
+            />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            whileOutOfView={{ opacity: 0, y: 20 }}
+            transition={{
+              duration: 0.5,
+              delay: 0.05,
+            }}
+            viewport={{ once: false, amount: 0.2 }}
+          >
+            <HiringCard
+              bgColor="bg-[#C4EBE3]"
+              text="02"
+              description="Draft a Job description and get client approval."
+            />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            whileOutOfView={{ opacity: 0, y: 20 }}
+            transition={{
+              duration: 0.5,
+              delay: 0.1,
+            }}
+            viewport={{ once: false, amount: 0.2 }}
+          >
+            <HiringCard
+              bgColor="bg-[#F5E5D7]"
+              text="03"
+              description="Present relevant profiles with 7 working days."
+            />
+          </motion.div>
           {/* {Steps.map((step: ISteps, index: number) => (
             <HiringCard
               divRef={divRef}

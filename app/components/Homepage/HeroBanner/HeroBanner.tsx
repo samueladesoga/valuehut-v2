@@ -30,30 +30,30 @@ export default function HeroBanner({
           <div className="absolute flex flex-col gap-4 bottom-10 sm:w-1/2 text-accentmain">
             <motion.h1
               className="text-[41px] leading-[45.1px] sm:text-[54px] sm:leading-[59.4px] font-primary font-normal"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              whileOutOfView={{ opacity: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileOutOfView={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: 0 }}
               viewport={{ once: false, amount: 0.2 }}
             >
               {title}
             </motion.h1>
             <motion.p
               className="text-xl font-secondary text-accentmain font-medium"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              whileOutOfView={{ opacity: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileOutOfView={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: 0.05 }}
               viewport={{ once: false, amount: 0.2 }}
             >
               {subtitle}
             </motion.p>
             <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              whileOutOfView={{ opacity: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileOutOfView={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              viewport={{ once: false, amount: 0.2 }}
+              viewport={{ once: false, amount: 0.1 }}
               className="flex text-start text-main"
             >
               <Button
