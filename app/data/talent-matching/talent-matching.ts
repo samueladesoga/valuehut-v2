@@ -15,6 +15,6 @@ export const heroData: IHeroSection = {
     "Our talent matching services help you find professional Scrum Masters, Delivery Leads and Delivery Managers..",
   showRating: true,
   ratingText: "Excellent",
-  backgroundImage: "/images/image@2x.jpeg",
+  backgroundImage: "/talentmatching/talent-hero.png",
   buttonText: "Book a consultation",
 };
