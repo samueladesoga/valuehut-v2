@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Frame from "@/images/Frame.png";
 import Layer from "@/images/Layer.png";
@@ -5,6 +6,7 @@ import pacemkv from "@/images/pacemkv.png";
 import Logo from "@/images/logo-01.png";
 import Image from "next/image";
 import { StaticImageData } from "next/image";
+import { motion } from "framer-motion";
 
 interface imageDataProps {
   id: number;
@@ -30,13 +32,24 @@ function OurPartners() {
       </h3>
 
       <div className="flex justify-center flex-wrap gap-2 md:gap-16">
-        {imageData.map((image) => (
-          <Image
+        {imageData.map((image, index) => (
+          <motion.div
             key={image.id}
-            src={image.src}
-            alt={image.alt}
-            className="object-contain px-2 sm:px-0"
-          />
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            whileOutOfView={{ opacity: 0, y: 20 }}
+            transition={{
+              duration: 0.5,
+              delay: index * 0.05,
+            }}
+            viewport={{ once: false, amount: 0.2 }}
+          >
+            <Image
+              src={image.src}
+              alt={image.alt}
+              className="object-contain px-2 sm:px-0"
+            />
+          </motion.div>
         ))}
       </div>
     </div>

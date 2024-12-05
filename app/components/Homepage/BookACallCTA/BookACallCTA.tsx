@@ -2,7 +2,7 @@
 import Image from "next/image";
 import React from "react";
 import Button from "@/components/Button/Button";
-import useScroll from "@/hooks/useScroll";
+import { motion } from "framer-motion";
 
 interface BookACallCTAProps {
   title: string;
@@ -17,11 +17,6 @@ const BookACallCTA: React.FC<BookACallCTAProps> = ({
   buttonText,
   imageUrl,
 }) => {
-  const [buttonRef, isButtonVisible] = useScroll<HTMLButtonElement>({
-    threshold: 0.1,
-  });
-
-  const fadeUpClassButton = isButtonVisible ? "fade-up-100ms" : "";
   return (
     <div className="container bg-fill-brand-secondary h-[404px] flex flex-col lg:flex-row px-8 justify-between items-center xl:rounded-[30px]">
       <div className="mt-10 py-10 md:mt-0 ">
@@ -31,17 +26,23 @@ const BookACallCTA: React.FC<BookACallCTAProps> = ({
         <p className="text-lg text-main font-secondary mt-2 w-full sm:max-w-[70%] font-normal">
           {description}
         </p>
-        <div className="mt-10">
+        <motion.div
+          className="mt-10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          whileOutOfView={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          viewport={{ once: false, amount: 0.2 }}
+        >
           <Button
-            buttonRef={buttonRef}
             bgColor="[#032432]"
             textColor="white"
             rounded="full"
-            className={`font-secondary h-auto px-6 py-3 text-main text-sm font-medium ${fadeUpClassButton}`}
+            className="font-secondary h-auto px-6 py-3 text-main text-sm font-medium "
           >
             {buttonText}
           </Button>
-        </div>
+        </motion.div>
       </div>
       <div className="">
         <Image

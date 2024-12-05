@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import Button from "@/components/Button/Button";
 import Image from "next/image";
 import GirlImage from "@/images/BookACallCTA-image.png";
 import { ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
-import useScroll from "@/hooks/useScroll";
 
 interface CTAHeadingProps {
   text: string;
@@ -21,10 +21,7 @@ interface CTASubheadingProps {
 
 const TalentMatchingCTA: React.FC = () => {
   const router = useRouter();
-  const [buttonRef, isButtonVisible] = useScroll<HTMLButtonElement>({
-    threshold: 0,
-  });
-  const fadeUpClassButton = isButtonVisible ? "fade-up-100ms" : "";
+
   return (
     <section className="bg-fill-neutral-strong container flex flex-col md:flex-row xl:rounded-[30px] items-center px-6 pt-20 pb-10 justify-between relative space-y-8 lg:space-y-0 lg:space-x-8">
       <div className="flex flex-col gap-6 items-start">
@@ -45,18 +42,27 @@ const TalentMatchingCTA: React.FC = () => {
             />
           </div>
         </div>
-
-        <Button
-          buttonRef={buttonRef}
-          bgColor="fill-brand-secondary"
-          size="medium"
-          icon={<ChevronRight />}
-          rounded="full"
-          className={`mt-5 ${fadeUpClassButton}`}
-          onClick={() => router.push("/talent-matching")}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          whileOutOfView={{ opacity: 0, y: 20 }}
+          transition={{
+            duration: 0.5,
+            delay: 0.1,
+          }}
+          viewport={{ once: false, amount: 0.2 }}
         >
-          Get started now
-        </Button>
+          <Button
+            bgColor="fill-brand-secondary"
+            size="medium"
+            icon={<ChevronRight />}
+            rounded="full"
+            className="mt-5 "
+            onClick={() => router.push("/talent-matching")}
+          >
+            Get started now
+          </Button>
+        </motion.div>
       </div>
 
       <div className="max-w-[454px] bg-[#E7EDE4] rounded-[20px] pt-6 px-6 flex justify-center items-center shadow-lg flex-col gap-2">

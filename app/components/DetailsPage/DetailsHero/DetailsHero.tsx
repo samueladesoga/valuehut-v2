@@ -5,7 +5,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import { RegisterModalData } from "@/data/Academy/RegisterModal";
-import useScroll from "@/hooks/useScroll";
+import { motion } from "framer-motion";
 
 function DetailsHero({
   title,
@@ -21,12 +21,6 @@ function DetailsHero({
   const handleModalToggle = () => {
     setIsModalOpen((prev) => !prev);
   };
-
-  const [divRef, isDivVisible] = useScroll<HTMLDivElement>({
-    threshold: 0,
-  });
-  const fadeUpClassP = isDivVisible ? "fade-up-50ms" : "";
-  const fadeUpClassdiv2 = isDivVisible ? "fade-up-150ms" : "";
   return (
     <div className="container px-4 xl:px-0 pt-36">
       <div className="flex gap-5 justify-between">
@@ -38,19 +32,33 @@ function DetailsHero({
             {description}
           </p>
           <div className="flex flex-col sm:flex-row text-sm font-medium font-secondary text-main gap-2 sm:gap-8 pt-6">
-            <div className={`flex gap-[6px] ${fadeUpClassP}`}>
+            <motion.div
+              className="flex gap-[6px]"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileOutOfView={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: 0.05 }}
+              viewport={{ once: false, amount: 0.2 }}
+            >
               <Image
                 src={partner.logo}
                 width={24}
                 height={24}
                 alt="image"
-                className="object-contain "
+                className="object-contain"
               />
-              <p>Partnered width {partner.name}</p>
-            </div>
-            <div className={`${fadeUpClassdiv2}`} ref={divRef}>
+              <p>Partnered with {partner.name}</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileOutOfView={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              viewport={{ once: false, amount: 0.2 }}
+            >
               {reviews.rating} ({reviews.count} reviews)
-            </div>
+            </motion.div>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-6 gap-4 justify-between bg-white py-4 px-8 rounded-xl mt-10">
             <div className="flex flex-col gap-2  lg:col-span-2">

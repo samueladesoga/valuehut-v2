@@ -6,31 +6,31 @@ interface FAQItem {
 
 export const faqs: FAQItem[] = [
   {
-    category: "ValueHut",
+    category: "ValutHut",
     question: "What's the best thing about Switzerland?",
     answer:
       "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
   },
   {
-    category: "ValueHut",
+    category: "ValutHut",
     question: "What's the capital of Switzerland?",
     answer:
       "The capital of Switzerland is Bern. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
   },
   {
-    category: "ValueHut",
+    category: "ValutHut",
     question: "What's the population of Switzerland?",
     answer:
       "The population of Switzerland is approximately 8.5 million. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
   },
   {
-    category: "ValueHut",
+    category: "ValutHut",
     question: "What's the official language of Switzerland?",
     answer:
       "The official languages of Switzerland are German, French, Italian, and Romansh. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
   },
   {
-    category: "ValueHut",
+    category: "ValutHut",
     question: "What's the currency of Switzerland?",
     answer:
       "The currency of Switzerland is the Swiss Franc. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",

@@ -18,7 +18,7 @@ interface FAQProps {
 
 const FAQ: React.FC<FAQProps> = ({ faqs }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [activeCategory, setActiveCategory] = useState<string>("ValueHut");
+  const [activeCategory, setActiveCategory] = useState<string>("ValutHut");
 
   const categories = Array.from(new Set(faqs.map((faq) => faq.category)));
 
@@ -92,7 +92,7 @@ const FAQ: React.FC<FAQProps> = ({ faqs }) => {
               .map((faq, index) => (
                 <div
                   key={faq.question}
-                  className={`max-w-[436px] p-6 rounded-xl transition-all duration-300 ease-in-out ${
+                  className={`max-w-[436px] p-6 rounded-xl transition-all duration-500 ease-in-out ${
                     openIndex === index
                       ? "bg-white border-[#3167B0] border"
                       : "bg-[#F5F5F5] border border-transparent"
@@ -125,13 +125,18 @@ const FAQ: React.FC<FAQProps> = ({ faqs }) => {
                       </span>
                     </button>
                   </dt>
-                  {openIndex === index && (
-                    <dd className="mt-2 pr-14">
-                      <p className="text-sm p-0 text-main font-normal font-secondary">
-                        {faq.answer}
-                      </p>
-                    </dd>
-                  )}
+
+                  <dd
+                    className={`mt-2 pr-14 transition-all duration-500 ease-in-out overflow-hidden ${
+                      openIndex === index
+                        ? "max-h-[1000px] opacity-100"
+                        : "max-h-0 opacity-0"
+                    }`}
+                  >
+                    <p className="text-sm p-0 text-main font-normal font-secondary">
+                      {faq.answer}
+                    </p>
+                  </dd>
                 </div>
               ))}
           </dl>

@@ -22,7 +22,7 @@ interface NavbarProps {
 
 const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(
-    null,
+    null
   );
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -53,13 +53,20 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
   }, []);
   const pathname = usePathname();
 
+  const isAcademyPage =
+    pathname.startsWith("/academy/") && pathname.includes("/details");
+
   const logo =
-    ["/about-us", "/faqs", "/blog"].includes(pathname) || scrolled
+    ["/about-us", "/faqs", "/blog", "/checkout"].includes(pathname) ||
+    isAcademyPage ||
+    scrolled
       ? logoY
       : logoX;
 
   const navbarStyle =
-    ["/about-us", "/faqs", "/blog"].includes(pathname) || scrolled
+    ["/about-us", "/faqs", "/blog", "/checkout"].includes(pathname) ||
+    isAcademyPage ||
+    scrolled
       ? "bg-white text-black shadow-md"
       : "bg-[#707070]/10 backdrop-blur-3xl text-white";
 
@@ -111,7 +118,7 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
                 >
                   {link.label}
                 </Link>
-              ),
+              )
             )}
           </div>
 
@@ -199,7 +206,7 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
                       {link.label}
                     </Link>
                   </li>
-                ),
+                )
               )}
               <li>
                 <Link href="/contact-us">

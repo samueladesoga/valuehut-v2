@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
 import Button from "@/components/Button/Button";
 import { IUpcomingClassesData } from "@/data/Academy/UpcomingClasses";
-import useScroll from "@/hooks/useScroll";
 
 function Table({ id, dates, time, type, fullBook }: IUpcomingClassesData) {
   const router = useRouter();
@@ -13,12 +13,6 @@ function Table({ id, dates, time, type, fullBook }: IUpcomingClassesData) {
   const handleClassesDetails = () => {
     router.push(`${pathname}/details`);
   };
-
-  const [buttonRef, isButtonVisible] = useScroll<HTMLButtonElement>({
-    threshold: 0.1,
-  });
-  const fadeUpClassButton2 = isButtonVisible ? "fade-up-0ms" : "";
-  const fadeUpClassButton1 = isButtonVisible ? "fade-up-100ms" : "";
   return (
     <tr key={id}>
       <td
@@ -47,25 +41,34 @@ function Table({ id, dates, time, type, fullBook }: IUpcomingClassesData) {
         <div className="w-full flex  xl:gap-4 justify-end ">
           {!fullBook ? (
             <>
-              <Button
-                buttonRef={buttonRef}
-                size="small"
-                rounded="full"
-                bgColor="fill-brand-secondary"
-                onClick={handleClassesDetails}
-                className={`${fadeUpClassButton1}`}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileOutOfView={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.5, delay: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
               >
-                View Details
-              </Button>
-              <Button
-                size="small"
-                rounded="full"
-                border
-                buttonRef={buttonRef}
-                className={`${fadeUpClassButton2}`}
+                <Button
+                  size="small"
+                  rounded="full"
+                  bgColor="fill-brand-secondary"
+                  onClick={handleClassesDetails}
+                >
+                  View Details
+                </Button>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileOutOfView={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: false, amount: 0.2 }}
               >
-                Book Now
-              </Button>
+                <Button size="small" rounded="full" border>
+                  Book Now
+                </Button>
+              </motion.div>
             </>
           ) : (
             <div className="font-secondary font-normal text-xs text-body pr-1">

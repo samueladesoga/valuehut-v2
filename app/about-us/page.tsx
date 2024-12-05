@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import OurPartners from "@/components/FaqPage/OurPartners/OurPartners";
 import MeetTheTeam from "@/components/MeetTheTeam/MeetTheTeam";
@@ -8,29 +9,47 @@ import SectionTitle from "@/components/SectionTitle/SectionTitle";
 import WhoAreWe from "@/components/WhoAreWe/WhoAreWe";
 import ClientReviews from "@/components/ClientReviews/ClientReviews";
 import WhyChooseUs from "@/components/WhyChooseUs/WhyChooseUs";
-import useScroll from "@/hooks/useScroll";
 
 function AboutPage() {
-  const [divRef, isTitleVisible] = useScroll<HTMLDivElement>({
-    threshold: 0,
-  });
-
-  const fadeUpClass = isTitleVisible ? "fade-up-100ms" : "";
   return (
     <section className="flex flex-col justify-between items-center gap-24 bg-[#f5f5f5] pt-10 h-auto">
       <div className="max-w-[693px] mx-auto flex flex-col items-center justify-center pt-24">
-        <SectionTitle
-          titleRef={divRef}
-          className={`${fadeUpClass}`}
-          title="Co-creating better ways of working and leading."
-        />
-        <SectionPara
-          ref={divRef}
-          className={`font-normal ${fadeUpClass}`}
-          para="We are an agile Management consultancy that is helping Organisations transform into a network of interdependent product teams across different business units."
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          whileOutOfView={{ opacity: 0, y: 20 }}
+          transition={{
+            duration: 0.1,
+          }}
+          viewport={{ once: false, amount: 0.2 }}
+        >
+          <SectionTitle title="Co-creating better ways of working and leading." />
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          whileOutOfView={{ opacity: 0, y: 20 }}
+          transition={{
+            duration: 0.1,
+          }}
+          viewport={{ once: false, amount: 0.2 }}
+        >
+          <SectionPara
+            className="font-normal"
+            para="We are an agile Management consultancy that is helping Organisations transform into a network of interdependent product teams across different business units."
+          />
+        </motion.div>
       </div>
-      <div className={`container ${fadeUpClass}`}>
+      <motion.div
+        className="container"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        whileOutOfView={{ opacity: 0, y: 20 }}
+        transition={{
+          duration: 0.3,
+        }}
+        viewport={{ once: false, amount: 0.2 }}
+      >
         <Image
           src="/images/about-us.png"
           width={1320}
@@ -38,7 +57,7 @@ function AboutPage() {
           alt="About Us"
           className="w-[1320px] h-[660px] rounded-[20px] bg-cover bg-no-repeat"
         />
-      </div>
+      </motion.div>
       <div className="container sm:pt-5">
         <OurPartners />
       </div>

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import ClientReviews from "@/components/ClientReviews/ClientReviews";
 import FAQ from "@/components/FaqPage/Faq/Faq";
 import OurPartners from "@/components/FaqPage/OurPartners/OurPartners";
@@ -17,15 +17,9 @@ import {
   IAdditionalBenefits,
 } from "@/data/Academy/AdditionalBenefits";
 import Image from "next/image";
-import useScroll from "@/hooks/useScroll";
+import { motion } from "framer-motion";
 
 export default function CourseDetailsPage() {
-  const [divRef, isDivVisible] = useScroll<HTMLDivElement>({
-    threshold: 0,
-  });
-  const fadeUpClass = isDivVisible ? "fade-up-0ms" : "";
-  const fadeUpClass1 = isDivVisible ? "fade-up-50ms" : "";
-  const fadeUpClass2 = isDivVisible ? "fade-up-100ms" : "";
   return (
     <div className="bg-[#f5f5f5]">
       <HeroComponent
@@ -106,33 +100,50 @@ export default function CourseDetailsPage() {
               Who should attend?
             </h3>
             <div className="flex flex-col md:flex-row gap-4">
-              <div className="w-full md:w-1/3">
+              <motion.div
+                className="w-full md:w-1/3"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileOutOfView={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.5, delay: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
+              >
                 <HiringCard
-                  divRef={divRef}
                   bgColor="bg-[#C5D8E0]"
                   text="01"
-                  className={fadeUpClass}
                   description="Practitioners that are interested in starting a career as a Scrum Master"
                 />
-              </div>
-              <div className="w-full md:w-1/3">
+              </motion.div>
+
+              <motion.div
+                className="w-full md:w-1/3"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileOutOfView={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.5, delay: 0.05 }}
+                viewport={{ once: false, amount: 0.2 }}
+              >
                 <HiringCard
-                  divRef={divRef}
-                  className={fadeUpClass1}
                   bgColor="bg-[#C4EBE3]"
                   text="02"
                   description="Scrum Masters, Agile/Scrum Coaches and consultant looking to improve their use of Scrum"
                 />
-              </div>
-              <div className="w-full md:w-1/3">
+              </motion.div>
+
+              <motion.div
+                className="w-full md:w-1/3"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileOutOfView={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: false, amount: 0.2 }}
+              >
                 <HiringCard
-                  divRef={divRef}
-                  className={fadeUpClass2}
                   bgColor="bg-[#F5E5D7]"
                   text="03"
                   description="Anyone involved in product delivery using Scrum"
                 />
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>

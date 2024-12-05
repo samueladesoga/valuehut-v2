@@ -1,4 +1,6 @@
+"use client";
 import React from "react";
+import { motion } from "framer-motion";
 import DetailsHero from "@/components/DetailsPage/DetailsHero/DetailsHero";
 import { courseDetails } from "@/data/Academy/CourseDetails";
 import OurPartners from "@/components/FaqPage/OurPartners/OurPartners";
@@ -48,14 +50,28 @@ function page() {
               Who should attend?
             </h3>
             <div className="flex flex-col md:flex-row gap-4">
-              {AttendInfo.map((info) => (
-                <div key={info.number} className="w-full md:w-1/3">
+              {AttendInfo.map((info, index) => (
+                <motion.div
+                  key={info.number}
+                  className="w-full md:w-1/3"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  whileOutOfView={{ opacity: 0, y: 30 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: index * 0.05,
+                  }}
+                  viewport={{ once: false, amount: 0.2 }}
+                >
                   <HiringCard
                     bgColor={info.bgColor}
                     text={info.number}
                     description={info.description}
                   />
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
