@@ -1,10 +1,17 @@
 "use client";
 
-import { Features, IFeatures } from "@/data/FeatureCard/FeatureCard";
-import Image from "next/image";
-
+import HireCard from "./HireCard";
+import useScroll from "@/hooks/useScroll";
 
 export default function HireProfessionals() {
+  const [divRef, isDivVisible] = useScroll<HTMLDivElement>({
+    threshold: 0,
+  });
+
+  const fadeUpClass = isDivVisible ? "fade-up-0ms" : "";
+  const fadeUpClass1 = isDivVisible ? "fade-up-50ms" : "";
+  const fadeUpClass2 = isDivVisible ? "fade-up-100ms" : "";
+
   return (
     <div className="bg-[#F5F5F5] px-6 py-6 sm:py-16 xl:px-0">
       <div className="container mx-auto px-4 sm:px-0">
@@ -15,26 +22,36 @@ export default function HireProfessionals() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {Features.map((feature:IFeatures) => (
-            <div
-              key={feature.title}
-              className={`${feature.bgColor} rounded-xl p-6 lg:p-8`}
-            >
-              <Image
-                src={feature.icon}
-                alt={feature.title}
-                className="w-[60px] h-[60px] mb-20"
-                width={60}
-                height={60}
-              />
-              <h3 className="text-4xl font-primary font-medium text-main mb-3">
-                {feature.title}
-              </h3>
-              <p className="text-sm text-[#161A1D] font-secondary">
-                {feature.description}
-              </p>
-            </div>
-          ))}
+          <HireCard
+            title={"Hire Quickly"}
+            description={
+              "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form."
+            }
+            imageSrc={"/icons/rocket.svg"}
+            bgColor={"bg-[#C5D8E0]"}
+            divRef={divRef}
+            className={`${fadeUpClass}`}
+          />
+          <HireCard
+            title={"Top candidates"}
+            description={
+              "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form."
+            }
+            imageSrc={"/icons/talent-star.svg"}
+            bgColor={"bg-[#C4EBE3]"}
+            divRef={divRef}
+            className={`${fadeUpClass1}`}
+          />
+          <HireCard
+            title={"Leading the Future"}
+            description={
+              "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form."
+            }
+            imageSrc={"/icons/Vector.svg"}
+            bgColor={"bg-[#F5E5D7]"}
+            divRef={divRef}
+            className={`${fadeUpClass2}`}
+          />
         </div>
       </div>
     </div>

@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import OurPartners from "@/components/FaqPage/OurPartners/OurPartners";
@@ -7,18 +8,29 @@ import SectionTitle from "@/components/SectionTitle/SectionTitle";
 import WhoAreWe from "@/components/WhoAreWe/WhoAreWe";
 import ClientReviews from "@/components/ClientReviews/ClientReviews";
 import WhyChooseUs from "@/components/WhyChooseUs/WhyChooseUs";
+import useScroll from "@/hooks/useScroll";
 
 function AboutPage() {
+  const [divRef, isTitleVisible] = useScroll<HTMLDivElement>({
+    threshold: 0,
+  });
+
+  const fadeUpClass = isTitleVisible ? "fade-up-100ms" : "";
   return (
     <section className="flex flex-col justify-between items-center gap-24 bg-[#f5f5f5] pt-10 h-auto">
       <div className="max-w-[693px] mx-auto flex flex-col items-center justify-center pt-24">
-        <SectionTitle title="Co-creating better ways of working and leading." />
+        <SectionTitle
+          titleRef={divRef}
+          className={`${fadeUpClass}`}
+          title="Co-creating better ways of working and leading."
+        />
         <SectionPara
-          className="font-normal"
+          ref={divRef}
+          className={`font-normal ${fadeUpClass}`}
           para="We are an agile Management consultancy that is helping Organisations transform into a network of interdependent product teams across different business units."
         />
       </div>
-      <div className="container">
+      <div className={`container ${fadeUpClass}`}>
         <Image
           src="/images/about-us.png"
           width={1320}

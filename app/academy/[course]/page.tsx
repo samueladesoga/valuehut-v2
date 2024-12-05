@@ -1,3 +1,4 @@
+"use client"
 import ClientReviews from "@/components/ClientReviews/ClientReviews";
 import FAQ from "@/components/FaqPage/Faq/Faq";
 import OurPartners from "@/components/FaqPage/OurPartners/OurPartners";
@@ -10,8 +11,21 @@ import { UpcomingClassesData } from "@/data/Academy/UpcomingClasses";
 import Table from "@/components/AcademyPage/Table/Table";
 import Group from "@/components/AcademyPage/Group/Group";
 import { Objectives } from "@/data/Academy/Objectives";
+import { HiringCard } from "@/components/HiringCard/HiringCard";
+import {
+  AdditionalBenefits,
+  IAdditionalBenefits,
+} from "@/data/Academy/AdditionalBenefits";
+import Image from "next/image";
+import useScroll from "@/hooks/useScroll";
 
 export default function CourseDetailsPage() {
+  const [divRef, isDivVisible] = useScroll<HTMLDivElement>({
+    threshold: 0,
+  });
+  const fadeUpClass = isDivVisible ? "fade-up-0ms" : "";
+  const fadeUpClass1 = isDivVisible ? "fade-up-50ms" : "";
+  const fadeUpClass2 = isDivVisible ? "fade-up-100ms" : "";
   return (
     <div className="bg-[#f5f5f5]">
       <HeroComponent
@@ -85,8 +99,77 @@ export default function CourseDetailsPage() {
         </div>
       </div>
 
+      <div className="bg-[#f5f5f5]">
+        <div className="container px-4 xl:px-0 py-16">
+          <div className="flex flex-col gap-5">
+            <h3 className="text-6xl font-medium text-main font-primary">
+              Who should attend?
+            </h3>
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="w-full md:w-1/3">
+                <HiringCard
+                  divRef={divRef}
+                  bgColor="bg-[#C5D8E0]"
+                  text="01"
+                  className={fadeUpClass}
+                  description="Practitioners that are interested in starting a career as a Scrum Master"
+                />
+              </div>
+              <div className="w-full md:w-1/3">
+                <HiringCard
+                  divRef={divRef}
+                  className={fadeUpClass1}
+                  bgColor="bg-[#C4EBE3]"
+                  text="02"
+                  description="Scrum Masters, Agile/Scrum Coaches and consultant looking to improve their use of Scrum"
+                />
+              </div>
+              <div className="w-full md:w-1/3">
+                <HiringCard
+                  divRef={divRef}
+                  className={fadeUpClass2}
+                  bgColor="bg-[#F5E5D7]"
+                  text="03"
+                  description="Anyone involved in product delivery using Scrum"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div>
         <AssessmentCertification />
+      </div>
+
+      <div className="bg-[#f5f5f5]">
+        <div className="container px-4 xl:px-0 pt-20">
+          <div className="flex flex-col gap-5">
+            <h3 className="text-6xl font-medium text-main font-primary">
+              Additional Benefits
+            </h3>
+            <div className="flex flex-col sm:flex-row justify-between gap-8">
+              {AdditionalBenefits.map(
+                (info: IAdditionalBenefits, index: number) => (
+                  <div
+                    key={index}
+                    className="w-full sm:w-1/2 h-[328px] sm:h-[328px] bg-white rounded-[20px] p-4 sm:p-8 flex flex-col justify-between"
+                  >
+                    <Image
+                      src={info.icons}
+                      alt="images"
+                      width={50}
+                      height={50}
+                      className="bg-contain"
+                    />
+                    <p className="text-lg font-secondary font-medium text-main">
+                      {info.descriptions}
+                    </p>
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="container px-4 sm:px-0 py-36">

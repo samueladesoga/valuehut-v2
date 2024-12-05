@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -8,7 +8,7 @@ interface BlogCardProps {
   description: string;
   date: string;
   category: string;
-  slug : string;
+  slug: string;
 }
 
 const BlogCard: React.FC<BlogCardProps> = ({
@@ -19,7 +19,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
   category,
   slug,
 }) => {
-  const router = useRouter()
+  const router = useRouter();
   return (
     <div className="rounded-[20px] shadow-lg  w-full">
       <div className=" w-full  h-[200px] md:h-[375px]">
@@ -33,7 +33,10 @@ const BlogCard: React.FC<BlogCardProps> = ({
         />
       </div>
       <div className="flex flex-col  p-4 gap-4">
-        <h3 className="sm:text-xl leading-[29px] font-secondary text-main font-semibold cursor-pointer " onClick={()=>router.push(`/blog/${slug}`) }>
+        <h3
+          className="sm:text-xl leading-[29px] font-secondary text-main font-semibold cursor-pointer "
+          onClick={() => router.push(`/blog/${slug}`)}
+        >
           {title}
         </h3>
         <p className="line-clamp-2 sm:line-clamp-2 sm:text-sm font-secondary text-secondary text-[14px] leading-[21px] font-normal">

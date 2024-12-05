@@ -8,6 +8,8 @@ import { Objectives } from "@/data/Academy/Objectives";
 import CourseObjectives from "@/components/AcademyPage/CourseObjectives/CourseObjectives";
 import ClientReviews from "@/components/ClientReviews/ClientReviews";
 import MoreInformation from "@/components/DetailsPage/Moreinformation/Moreinformation";
+import { HiringCard } from "@/components/HiringCard/HiringCard";
+import { AttendInfo } from "@/data/Academy/AttendInfo";
 
 function page() {
   return (
@@ -39,6 +41,26 @@ function page() {
           </div>
         </div>
       </div>
+      <div className="bg-[#f5f5f5]">
+        <div className="container px-4 xl:px-0 py-16">
+          <div className="flex flex-col gap-5">
+            <h3 className="text-6xl font-medium text-main font-primary">
+              Who should attend?
+            </h3>
+            <div className="flex flex-col md:flex-row gap-4">
+              {AttendInfo.map((info) => (
+                <div key={info.number} className="w-full md:w-1/3">
+                  <HiringCard
+                    bgColor={info.bgColor}
+                    text={info.number}
+                    description={info.description}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div className="py-20 md:py-36 ">
         <OurPartners />
@@ -51,7 +73,7 @@ function page() {
       </div>
 
       <div className="container sm:py-8">
-        <ClientReviews />
+        <ClientReviews title="What our students say" />
       </div>
     </div>
   );

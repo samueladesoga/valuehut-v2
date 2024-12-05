@@ -6,11 +6,7 @@ import React, { useState } from "react";
 import Star from "@/start.svg";
 import { TestimonialsData } from "@/data/Testimonials/Testimonials";
 
-
-
 const Testimonials: React.FC = () => {
- 
-
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePrev = () => {

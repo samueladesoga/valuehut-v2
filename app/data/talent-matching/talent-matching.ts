@@ -16,4 +16,5 @@ export const heroData: IHeroSection = {
   showRating: true,
   ratingText: "Excellent",
   backgroundImage: "/images/image@2x.jpeg",
+  buttonText: "Book a consultation",
 };

@@ -1,5 +1,8 @@
+"use client";
 import Image from "next/image";
 import React from "react";
+import Button from "@/components/Button/Button";
+import useScroll from "@/hooks/useScroll";
 
 interface BookACallCTAProps {
   title: string;
@@ -14,6 +17,11 @@ const BookACallCTA: React.FC<BookACallCTAProps> = ({
   buttonText,
   imageUrl,
 }) => {
+  const [buttonRef, isButtonVisible] = useScroll<HTMLButtonElement>({
+    threshold: 0.1,
+  });
+
+  const fadeUpClassButton = isButtonVisible ? "fade-up-100ms" : "";
   return (
     <div className="container bg-fill-brand-secondary h-[404px] flex flex-col lg:flex-row px-8 justify-between items-center xl:rounded-[30px]">
       <div className="mt-10 py-10 md:mt-0 ">
@@ -24,9 +32,15 @@ const BookACallCTA: React.FC<BookACallCTAProps> = ({
           {description}
         </p>
         <div className="mt-10">
-          <button className="bg-[#032432] font-secondary h-auto px-6 py-3 rounded-full text-white text-main text-sm font-medium ">
+          <Button
+            buttonRef={buttonRef}
+            bgColor="[#032432]"
+            textColor="white"
+            rounded="full"
+            className={`font-secondary h-auto px-6 py-3 text-main text-sm font-medium ${fadeUpClassButton}`}
+          >
             {buttonText}
-          </button>
+          </Button>
         </div>
       </div>
       <div className="">

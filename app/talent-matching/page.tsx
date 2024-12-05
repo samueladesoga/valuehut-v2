@@ -18,6 +18,7 @@ function page() {
         title={heroData.title}
         subtitle={heroData.subtitle}
         backgroundImage={heroData.backgroundImage}
+        buttonText={heroData.buttonText}
       />
 
       <div className="px-6 py-6 sm:py-16 xl:px-0">

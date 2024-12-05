@@ -2,14 +2,14 @@ import React from "react";
 
 interface InputProps {
   label?: string;
-  type?: "text" | "email" | "password" | "number"; 
-  placeholder?: string; 
-  value?: string; 
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void; 
-  required?: boolean; 
+  type?: "text" | "email" | "password" | "number";
+  placeholder?: string;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  required?: boolean;
   error?: string;
-  icon?: React.ReactNode; 
-  className?: string; 
+  icon?: React.ReactNode;
+  className?: string;
 }
 
 const Input: React.FC<InputProps> = ({

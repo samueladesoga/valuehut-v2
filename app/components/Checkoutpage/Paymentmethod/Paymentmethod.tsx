@@ -132,7 +132,7 @@ const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
                         >
                           Security Code
                         </label>
-                        
+
                         <div className="relative">
                           <input
                             type="text"
@@ -141,12 +141,12 @@ const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
                             className="w-full py-5 px-4 border-none rounded-lg font-normal font-secondary text-xl !leading-[25px] text-secondary focus:outline-none focus:ring-0"
                           />
                           <Image
-                          src={"/images/securitycode.png"}
-                          width={43}
-                          height={27}
-                          alt="images"
-                          className="absolute right-4 top-5"
-                        />
+                            src={"/images/securitycode.png"}
+                            width={43}
+                            height={27}
+                            alt="images"
+                            className="absolute right-4 top-5"
+                          />
                         </div>
                       </div>
                     </div>

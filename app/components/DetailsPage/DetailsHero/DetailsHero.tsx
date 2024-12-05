@@ -5,6 +5,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import { RegisterModalData } from "@/data/Academy/RegisterModal";
+import useScroll from "@/hooks/useScroll";
 
 function DetailsHero({
   title,
@@ -21,6 +22,11 @@ function DetailsHero({
     setIsModalOpen((prev) => !prev);
   };
 
+  const [divRef, isDivVisible] = useScroll<HTMLDivElement>({
+    threshold: 0,
+  });
+  const fadeUpClassP = isDivVisible ? "fade-up-50ms" : "";
+  const fadeUpClassdiv2 = isDivVisible ? "fade-up-150ms" : "";
   return (
     <div className="container px-4 xl:px-0 pt-36">
       <div className="flex gap-5 justify-between">
@@ -32,7 +38,7 @@ function DetailsHero({
             {description}
           </p>
           <div className="flex flex-col sm:flex-row text-sm font-medium font-secondary text-main gap-2 sm:gap-8 pt-6">
-            <div className="flex gap-[6px]">
+            <div className={`flex gap-[6px] ${fadeUpClassP}`}>
               <Image
                 src={partner.logo}
                 width={24}
@@ -40,9 +46,9 @@ function DetailsHero({
                 alt="image"
                 className="object-contain "
               />
-              <p className="">Partnered width {partner.name}</p>
+              <p>Partnered width {partner.name}</p>
             </div>
-            <div>
+            <div className={`${fadeUpClassdiv2}`} ref={divRef}>
               {reviews.rating} ({reviews.count} reviews)
             </div>
           </div>

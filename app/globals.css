@@ -86,3 +86,30 @@ body {
 .logos-wrapper .logo-item:hover {
   opacity: 1;
 }
+
+@keyframes fadeUp {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up-0ms {
+  animation: fadeUp 500ms ease-out 0ms forwards; /* No delay */
+}
+
+.fade-up-50ms {
+  animation: fadeUp 500ms ease-out 50ms forwards; /* 50ms delay */
+}
+
+.fade-up-100ms {
+  animation: fadeUp 500ms ease-out 100ms forwards; /* 100ms delay */
+}
+
+.fade-up-150ms {
+  animation: fadeUp 500ms ease-out 150ms forwards; /* 150ms delay */
+}

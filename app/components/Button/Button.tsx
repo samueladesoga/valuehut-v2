@@ -6,6 +6,7 @@ interface ButtonProps {
   bgColor?: string;
   textColor?: string;
   border?: boolean;
+  buttonRef?: React.RefObject<HTMLButtonElement>;
   size?: "small" | "medium" | "large";
   icon?: React.ReactNode;
   btnText?: string | React.ReactNode;
@@ -15,6 +16,7 @@ interface ButtonProps {
 
 const Button: React.FC<ButtonProps> = ({
   children,
+  buttonRef,
   className = "",
   bgColor = "",
   textColor = "Primary",
@@ -41,6 +43,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
+      ref={buttonRef}
       onClick={onClick}
       className={`flex items-center gap-2 justify-center bg-${bgColor} text-${textColor} ${borderClass} ${sizeClasses[size]} ${roundedClasses[rounded]} ${className} font-medium hover:opacity-80 focus:outline-none`}
     >

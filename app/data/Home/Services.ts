@@ -35,7 +35,7 @@ export const coCreatingData: IServicesSection = {
       buttonText: "Explore Courses",
       buttonLink: "#",
       bgColor: "bg-[#05668D]",
-      href : "/academy"
+      href: "/academy",
     },
     {
       title: "Consulting",
@@ -44,7 +44,7 @@ export const coCreatingData: IServicesSection = {
       buttonText: "Read More",
       buttonLink: "#",
       bgColor: "bg-[#02374B]",
-      href : "/consulting"
+      href: "/consulting",
     },
     {
       title: "Talent Matching",
@@ -53,7 +53,7 @@ export const coCreatingData: IServicesSection = {
       buttonText: "Read More",
       buttonLink: "#",
       bgColor: "bg-[#A97240]",
-      href : "/talent-matching"
+      href: "/talent-matching",
     },
   ],
 };

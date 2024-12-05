@@ -10,20 +10,22 @@ interface ClientReviewsProps {
   title?: string;
 }
 
-const ClientReviews = ({ title = "What our clients say" }: ClientReviewsProps) => {
+const ClientReviews = ({
+  title = "What our clients say",
+}: ClientReviewsProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? Reviews.length - 1 : prevIndex - 1
+      prevIndex === 0 ? Reviews.length - 1 : prevIndex - 1,
     );
   };
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === Reviews.length - 1 ? 0 : prevIndex + 1
+      prevIndex === Reviews.length - 1 ? 0 : prevIndex + 1,
     );
   };
 

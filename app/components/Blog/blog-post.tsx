@@ -1,18 +1,18 @@
-import Image from 'next/image'
-import { Share2 } from 'lucide-react'
+import Image from "next/image";
+import { Share2 } from "lucide-react";
 
 interface Section {
-  title: string
-  content: string
+  title: string;
+  content: string;
 }
 
 interface BlogPostProps {
-  title: string
-  date: string
-  imageUrl: string
-  imageAlt: string
-  introduction: string
-  sections: Section[]
+  title: string;
+  date: string;
+  imageUrl: string;
+  imageAlt: string;
+  introduction: string;
+  sections: Section[];
 }
 
 export default function BlogPost({
@@ -21,7 +21,7 @@ export default function BlogPost({
   imageUrl,
   imageAlt,
   introduction,
-  sections
+  sections,
 }: BlogPostProps) {
   return (
     <article className="container  max-w-[800px] px-4  ">
@@ -42,7 +42,9 @@ export default function BlogPost({
       <div className="flex justify-between items-center mb-8">
         <time className="text-sm text-secondary font-secondary">{date}</time>
         <div className="flex items-center gap-2">
-          <span className="text-sm text-secondary font-secondary">Share to</span>
+          <span className="text-sm text-secondary font-secondary">
+            Share to
+          </span>
           <button className="p-2 hover:bg-fill-neutral-strong rounded-full transition-colors">
             <Share2 className="w-5 h-5 text-secondary" />
           </button>
@@ -50,22 +52,15 @@ export default function BlogPost({
       </div>
 
       <div className="space-y-6 font-secondary">
-        <p className="text-base text-body">
-          {introduction}
-        </p>
+        <p className="text-base text-body">{introduction}</p>
 
         {sections.map((section, index) => (
           <section key={index} className="space-y-4">
-            <h2 className="font-primary text-2xl text-main">
-              {section.title}
-            </h2>
-            <p className="text-base text-body">
-              {section.content}
-            </p>
+            <h2 className="font-primary text-2xl text-main">{section.title}</h2>
+            <p className="text-base text-body">{section.content}</p>
           </section>
         ))}
       </div>
     </article>
-  )
+  );
 }
-

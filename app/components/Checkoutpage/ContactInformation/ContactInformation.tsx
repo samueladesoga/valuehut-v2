@@ -8,7 +8,7 @@ interface ContactInformationProps {
     email: string;
   };
   handleChange: (
-    fieldName: string
+    fieldName: string,
   ) => (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 

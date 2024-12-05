@@ -32,21 +32,17 @@ const CheckoutCourseDetails: React.FC<CheckoutCourseDetailsProps> = ({
           <h3 className="text-sm font-medium text-main opacity-[70%] font-secondary">
             Date:
           </h3>
-          <p className="text-sm font-medium text-main font-secondary">
-            {date}
-          </p>
+          <p className="text-sm font-medium text-main font-secondary">{date}</p>
         </div>
 
         <div className="flex justify-between">
           <h3 className="text-sm font-medium text-main opacity-[70%] font-secondary">
             Time:
           </h3>
-          <p className="text-sm font-medium text-main font-secondary">
-            {time}
-          </p>
+          <p className="text-sm font-medium text-main font-secondary">{time}</p>
         </div>
 
-        <div className="flex justify-between" >
+        <div className="flex justify-between">
           <h3 className="text-sm font-medium text-main opacity-[70%] font-secondary">
             Class type:
           </h3>

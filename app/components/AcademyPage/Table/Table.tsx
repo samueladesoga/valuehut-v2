@@ -4,6 +4,7 @@ import React from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Button from "@/components/Button/Button";
 import { IUpcomingClassesData } from "@/data/Academy/UpcomingClasses";
+import useScroll from "@/hooks/useScroll";
 
 function Table({ id, dates, time, type, fullBook }: IUpcomingClassesData) {
   const router = useRouter();
@@ -12,6 +13,12 @@ function Table({ id, dates, time, type, fullBook }: IUpcomingClassesData) {
   const handleClassesDetails = () => {
     router.push(`${pathname}/details`);
   };
+
+  const [buttonRef, isButtonVisible] = useScroll<HTMLButtonElement>({
+    threshold: 0.1,
+  });
+  const fadeUpClassButton2 = isButtonVisible ? "fade-up-0ms" : "";
+  const fadeUpClassButton1 = isButtonVisible ? "fade-up-100ms" : "";
   return (
     <tr key={id}>
       <td
@@ -41,14 +48,22 @@ function Table({ id, dates, time, type, fullBook }: IUpcomingClassesData) {
           {!fullBook ? (
             <>
               <Button
+                buttonRef={buttonRef}
                 size="small"
                 rounded="full"
                 bgColor="fill-brand-secondary"
                 onClick={handleClassesDetails}
+                className={`${fadeUpClassButton1}`}
               >
                 View Details
               </Button>
-              <Button size="small" rounded="full" border>
+              <Button
+                size="small"
+                rounded="full"
+                border
+                buttonRef={buttonRef}
+                className={`${fadeUpClassButton2}`}
+              >
                 Book Now
               </Button>
             </>

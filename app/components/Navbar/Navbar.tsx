@@ -20,14 +20,9 @@ interface NavbarProps {
   isVariation2?: boolean;
 }
 
-const Navbar = ({
-  logoX,
-  logoY,
-  menu,
-  navLinks = [],
-}: NavbarProps) => {
+const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(
-    null
+    null,
   );
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -116,7 +111,7 @@ const Navbar = ({
                 >
                   {link.label}
                 </Link>
-              )
+              ),
             )}
           </div>
 
@@ -204,7 +199,7 @@ const Navbar = ({
                       {link.label}
                     </Link>
                   </li>
-                )
+                ),
               )}
               <li>
                 <Link href="/contact-us">

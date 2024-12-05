@@ -29,7 +29,7 @@ export default function ArticlesSection({
   description,
   articles,
 }: ArticlesSectionProps) {
-  const router = useRouter()
+  const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -72,7 +72,7 @@ export default function ArticlesSection({
             bgColor="fill-brand-secondary"
             rounded="full"
             size="medium"
-            onClick={()=> router.push('/blog')}
+            onClick={() => router.push("/blog")}
           >
             View All
           </Button>
@@ -100,8 +100,10 @@ export default function ArticlesSection({
                     className="bg-no-repeat rounded-md mb-4"
                   />
                   <div className="p-6">
-                    <h3 className="cursor-pointer text-lg font-primary truncate max-w-96 font-semibold mb-2" onClick={()=> router.push(`/blog/${article.slug}`)}>
-                      
+                    <h3
+                      className="cursor-pointer text-lg font-primary truncate max-w-96 font-semibold mb-2"
+                      onClick={() => router.push(`/blog/${article.slug}`)}
+                    >
                       {article.title}
                     </h3>
                     <p className="text-sm text-body mb-4">

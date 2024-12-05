@@ -6,6 +6,7 @@ import Image from "next/image";
 import GirlImage from "@/images/BookACallCTA-image.png";
 import { ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
+import useScroll from "@/hooks/useScroll";
 
 interface CTAHeadingProps {
   text: string;
@@ -20,6 +21,10 @@ interface CTASubheadingProps {
 
 const TalentMatchingCTA: React.FC = () => {
   const router = useRouter();
+  const [buttonRef, isButtonVisible] = useScroll<HTMLButtonElement>({
+    threshold: 0,
+  });
+  const fadeUpClassButton = isButtonVisible ? "fade-up-100ms" : "";
   return (
     <section className="bg-fill-neutral-strong container flex flex-col md:flex-row xl:rounded-[30px] items-center px-6 pt-20 pb-10 justify-between relative space-y-8 lg:space-y-0 lg:space-x-8">
       <div className="flex flex-col gap-6 items-start">
@@ -42,11 +47,12 @@ const TalentMatchingCTA: React.FC = () => {
         </div>
 
         <Button
+          buttonRef={buttonRef}
           bgColor="fill-brand-secondary"
           size="medium"
           icon={<ChevronRight />}
           rounded="full"
-          className="mt-5"
+          className={`mt-5 ${fadeUpClassButton}`}
           onClick={() => router.push("/talent-matching")}
         >
           Get started now
