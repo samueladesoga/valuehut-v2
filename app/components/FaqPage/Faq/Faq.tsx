@@ -18,7 +18,7 @@ interface FAQProps {
 
 const FAQ: React.FC<FAQProps> = ({ faqs }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [activeCategory, setActiveCategory] = useState<string>("ValutHut");
+  const [activeCategory, setActiveCategory] = useState<string>("ValueHut");
 
   const categories = Array.from(new Set(faqs.map((faq) => faq.category)));
 
