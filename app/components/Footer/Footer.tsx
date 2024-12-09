@@ -23,12 +23,12 @@ const Footer: React.FC = () => {
             <div className="md:grid md:grid-cols-3 md:gap-8">
               <div>
                 <h3 className="font-primary text-accentmain font-medium text-2xl">
-                  Solutions
+                  Services
                 </h3>
                 <ul role="list" className="mt-6 space-y-4">
                   <li>
                     <a
-                      href="#"
+                      href="/academy"
                       className="text-accentsecondary text-sm font-normal font-secondary"
                     >
                       Academy
@@ -36,7 +36,7 @@ const Footer: React.FC = () => {
                   </li>
                   <li>
                     <a
-                      href="#"
+                      href="/consulting"
                       className="text-accentsecondary text-sm font-normal font-secondary"
                     >
                       Consultation
@@ -44,10 +44,10 @@ const Footer: React.FC = () => {
                   </li>
                   <li>
                     <a
-                      href="#"
+                      href="/talent-matching"
                       className="text-accentsecondary text-sm font-normal font-secondary"
                     >
-                      Talent match
+                      Talent matching
                     </a>
                   </li>
                 </ul>
