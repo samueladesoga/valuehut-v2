@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation"; 
 import Button from "@/components/Button/Button";
 import SectionTitle from "@/components/SectionTitle/SectionTitle";
 import SectionPara from "@/components/SectionPara/SectionPara";
@@ -9,12 +10,23 @@ import Blend from "@/blend.svg";
 import Questions from "@/question.svg";
 
 const ServicesOverview = () => {
+  const router = useRouter(); 
+
+  const navigateToConsulting = () => {
+    router.push("/consulting"); 
+  };
+
   return (
     <section className="max-w-[924px] px-6 xl:px-0 py-12 flex flex-col mx-auto gap-4">
       <div className="max-w-[582px] mx-auto flex flex-col justify-center items-center gap-8 sm:gap-8">
         <SectionTitle title="Take your business to the next level" />
         <SectionPara para="Helping Organisations transform into a network of interdependent product teams across different business units into a network of interdependent." />
-        <Button bgColor="fill-brand-secondary" rounded="full" size="medium">
+        <Button
+          bgColor="fill-brand-secondary"
+          rounded="full"
+          size="medium"
+          onClick={navigateToConsulting} 
+        >
           Explore our services
         </Button>
       </div>
@@ -41,9 +53,9 @@ const ServicesOverview = () => {
 
         <motion.div
           className="hidden md:block bg-[#E5DFD9] rounded-lg shadow-lg"
-          initial={{ rotate: 0, x: 0 }}
-          whileInView={{ rotate: -10, x: 65 }}
-          whileOutOfView={{ rotate: 0, x: 0 }}
+          initial={{ rotate: -10, x: 65 }}
+          whileInView={{ rotate: 0, x: 0 }}
+          whileOutOfView={{ rotate: -10, x: 65 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: false, amount: 0.2 }}
         >
@@ -56,9 +68,9 @@ const ServicesOverview = () => {
 
         <motion.div
           className="hidden md:block bg-[#A5E0E7] rounded-lg shadow-lg"
-          initial={{ rotate: 0, x: 0 }}
-          whileInView={{ rotate: 10, x: -65 }}
-          whileOutOfView={{ rotate: 0, x: 0 }}
+          initial={{ rotate: 10, x: -65 }}
+          whileInView={{ rotate: 0, x: 0 }}
+          whileOutOfView={{ rotate: 10, x: -65 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: false, amount: 0.2 }}
         >

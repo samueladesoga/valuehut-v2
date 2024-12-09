@@ -23,12 +23,12 @@ const Footer: React.FC = () => {
             <div className="md:grid md:grid-cols-3 md:gap-8">
               <div>
                 <h3 className="font-primary text-accentmain font-medium text-2xl">
-                  Services
+                  Solutions
                 </h3>
                 <ul role="list" className="mt-6 space-y-4">
                   <li>
                     <a
-                      href="/academy"
+                      href="#"
                       className="text-accentsecondary text-sm font-normal font-secondary"
                     >
                       Academy
@@ -36,7 +36,7 @@ const Footer: React.FC = () => {
                   </li>
                   <li>
                     <a
-                      href="/consulting"
+                      href="#"
                       className="text-accentsecondary text-sm font-normal font-secondary"
                     >
                       Consultation
@@ -44,10 +44,10 @@ const Footer: React.FC = () => {
                   </li>
                   <li>
                     <a
-                      href="/talent-matching"
+                      href="#"
                       className="text-accentsecondary text-sm font-normal font-secondary"
                     >
-                      Talent matching
+                      Talent match
                     </a>
                   </li>
                 </ul>
@@ -67,7 +67,7 @@ const Footer: React.FC = () => {
                   </li>
                   <li>
                     <a
-                      target="_blank" href="https://linkedin.com/company/valuehut-limited"
+                      href="#"
                       className="text-accentsecondary text-sm font-normal font-secondary"
                     >
                       LinkedIn
@@ -85,7 +85,7 @@ const Footer: React.FC = () => {
                 >
                   <li>
                     <p className="text-accentsecondary text-sm font-normal font-secondary">
-                      UK office:
+                      UK Office:
                     </p>
                     <p>Email: info@valuehut.co</p>
                     <p> Call: +44(0)7946713054</p>

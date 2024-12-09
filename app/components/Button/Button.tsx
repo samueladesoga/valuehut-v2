@@ -12,6 +12,7 @@ interface ButtonProps {
   btnText?: string | React.ReactNode;
   rounded?: "sm" | "md" | "lg" | "full";
   onClick?: () => void;
+  disabled?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -25,6 +26,7 @@ const Button: React.FC<ButtonProps> = ({
   icon,
   rounded = "md",
   onClick,
+  disabled = false,
 }) => {
   const sizeClasses = {
     small: "py-2 px-5 text-sm ",
@@ -41,11 +43,16 @@ const Button: React.FC<ButtonProps> = ({
     full: "rounded-full",
   };
 
+  const disabledClasses = disabled
+    ? "opacity-50 cursor-not-allowed"
+    : "";
+
   return (
     <button
       ref={buttonRef}
-      onClick={onClick}
-      className={`flex items-center gap-2 justify-center bg-${bgColor} text-${textColor} ${borderClass} ${sizeClasses[size]} ${roundedClasses[rounded]} ${className} font-medium hover:opacity-80 focus:outline-none`}
+      onClick={disabled ? undefined : onClick}
+      className={`flex items-center gap-2 justify-center bg-${bgColor} text-${textColor} ${borderClass} ${sizeClasses[size]} ${roundedClasses[rounded]} ${className} font-medium hover:opacity-80 focus:outline-none ${disabledClasses}`}
+      disabled={disabled}
     >
       {children}
       {icon && <span>{icon}</span>}

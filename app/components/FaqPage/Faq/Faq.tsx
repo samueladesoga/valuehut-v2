@@ -92,10 +92,10 @@ const FAQ: React.FC<FAQProps> = ({ faqs }) => {
               .map((faq, index) => (
                 <div
                   key={faq.question}
-                  className={`max-w-[436px] p-6 rounded-xl transition-all duration-500 ease-in-out ${
+                  className={`max-w-[576px] p-6 rounded-xl transition-all duration-500 ease-in-out  ${
                     openIndex === index
                       ? "bg-white border-[#3167B0] border"
-                      : "bg-[#F5F5F5] border border-transparent"
+                      : "sm:bg-[#F5F5F5] border border-transparent"
                   }`}
                 >
                   <dt>

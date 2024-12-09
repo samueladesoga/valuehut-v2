@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import OurPartners from "@/components/FaqPage/OurPartners/OurPartners";
 import HeroComponent from "@/components/HeroComponent/HeroComponent";
 import BookACallCTA from "@/components/Homepage/BookACallCTA/BookACallCTA";
@@ -43,7 +44,7 @@ function ConsultingPage() {
             </h2>
           </div>
 
-          <div className="space-y-0">
+          <div className="relative space-y-[-20px] ">
             {services.map((service, index) => (
               <ConsultancyServiceItem
                 key={service.title}
@@ -84,8 +85,11 @@ function ConsultingPage() {
         />
       </div>
       <div className="py-12 flex flex-col-reverse sm:flex-col">
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-0 mt-5 sm:my-16">
-          <div className="z-10 shadow-lg sm:transform sm:-rotate-[10deg] rounded-[21.5px]  sm:z-10 sm:translate-x-14 relative">
+
+
+
+        <div className="flex flex-col md:flex-row justify-center items-center gap-2 sm:gap-8 mt-5 sm:my-16">
+          <div className="md:hidden rounded-[21.5px] relative">
             <div className=" absolute inset-0 rounded-[21px]  bg-gradient-to-t from-[#1A1B13] sm:hidden">
               <div className="absolute bottom-0  p-4 sm:hidden">
                 <h1 className=" font-secondary  font-semibold text-2xl text-[#FFFFFF]">
@@ -105,7 +109,7 @@ function ConsultingPage() {
             />
           </div>
 
-          <div className="shadow-lg sm:transform sm:rotate-[10deg]  rounded-[21px]  sm:-translate-x-14  relative ">
+          <div className="md:hidden rounded-[21px] relative ">
             <div className="absolute z-10  rounded-[21px]  inset-0 bg-gradient-to-t from-[#1A1B13] sm:hidden">
               <div className="absolute bottom-0  p-4 sm:hidden">
                 <h1 className=" font-secondary  font-semibold text-2xl text-[#FFFFFF]">
@@ -124,6 +128,41 @@ function ConsultingPage() {
               className="object-cover h-[382px] sm:w-[261px]  w-[361px] rounded-[21.5px] transform  sm:scale-x-[-1]"
             />
           </div>
+          <motion.div
+          className="hidden md:block"
+          initial={{ rotate: -10, x: 65 }}
+          whileInView={{ rotate: 0, x: 0 }}
+          whileOutOfView={{ rotate: -10, x: 65 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: false, amount: 0.2 }}
+        >
+          <Image
+              src={leftImage}
+              alt="question"
+              width={265}
+              height={382}
+              className="object-cover h-[382px] sm:w-[261px] w-[361px] rounded-[21px]"
+            />
+        </motion.div>
+
+        <motion.div
+          className="hidden md:block"
+          initial={{ rotate: 10, x: -65 }}
+          whileInView={{ rotate: 0, x: 0 }}
+          whileOutOfView={{ rotate: 10, x: -65 }}
+          transition={{ duration: 0.5 }} rounded-lg shadow-lg
+          viewport={{ once: false, amount: 0.2 }}
+        >
+           <Image
+              src={rightImage}
+              alt="blend"
+              width={265}
+              height={382}
+              className="object-cover h-[382px] sm:w-[261px]  w-[361px] rounded-[21.5px] transform  sm:scale-x-[-1]"
+            />
+        </motion.div>
+
+
         </div>
 
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
@@ -149,7 +188,7 @@ function ConsultingPage() {
         </div>
       </div>
 
-      <div className="pb-0 md:pb-20 mt-10 md:mt-0">
+      <div className="pb-0 md:pb-20 mt-10 md:mt-0 ">
         <BookACallCTA
           title="Ready to book a free call?"
           description="ValueHut Consultancy is an Agile Management Consultant, helping organizations explore better ways of working and leading."

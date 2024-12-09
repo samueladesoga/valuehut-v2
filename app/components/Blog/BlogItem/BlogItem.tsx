@@ -6,8 +6,8 @@ import React from "react";
 interface BlogItemProps {
   image: string;
   title: string;
-  date: string;
-  tag: string;
+  date?: string;
+  tag?: string;
   slug: string;
 }
 
