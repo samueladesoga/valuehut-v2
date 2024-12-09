@@ -14,7 +14,7 @@ export const Articles: IArticles[] = [
       "Impact of User Acceptance Testing (UAT) phase on Organisation Agility",
     date: "22 Sept 2024",
     category: "Sports",
-    image: "/images/blog/blog-v2-front.jpeg",
+    image: "/images/blog/blog-v2-1.png",
     slug: "impact-of-uat-on-organizational-agility",
   },
   {
@@ -23,7 +23,7 @@ export const Articles: IArticles[] = [
       "Unlocking Organisational Agility: Key product metrics every business leader should measure",
     date: "22 Sept 2024",
     category: "AI news",
-    image: "/images/blog/blog-v2-front.jpeg",
+    image: "/images/blog/blog-v2-2.png",
     slug: "unlocking-organizational-agility-key-product-metrics-every-business-leader-should-measure",
   },
   {
@@ -31,7 +31,7 @@ export const Articles: IArticles[] = [
     title: "Case Study: How we rescued a start-up project within 3 months",
     date: "22 Sept 2024",
     category: "Technology",
-    image: "/images/blog/blog-v2-front.jpeg",
+    image: "/images/blog/blog-v2-3.png",
     slug: "case-study-how-we-rescued-a-start-up-project-within-3-months",
   },
   {
@@ -39,7 +39,7 @@ export const Articles: IArticles[] = [
     title: "Understanding Technical Debt: A Guide for Executives",
     date: "22 Sept 2024",
     category: "Robotics",
-    image: "/images/blog/blog-v2-front.jpeg",
+    image: "/images/blog/blog-v2-4.png",
     slug: "technical-debt-a-guide-for-executives",
   },
   {
@@ -47,7 +47,7 @@ export const Articles: IArticles[] = [
     title: "Agility for Improved Business Outcomes",
     date: "22 Sept 2024",
     category: "Technology",
-    image: "/images/blog/blog-v2-front.jpeg",
+    image: "/images/blog/blog-v2-5.png",
     slug: "agility-for-improved-business-outcomes",
   },
   {
@@ -55,7 +55,7 @@ export const Articles: IArticles[] = [
     title: "A case for Agile and Scrum Training with ValueHut",
     date: "22 Sept 2024",
     category: "AI news",
-    image: "/images/blog/blog-v2-front.jpeg",
+    image: "/images/blog/blog-v2-2.png",
     slug: "a-case-for-agile-and-scrum-training-with-valuehut",
   },
 ];

@@ -76,9 +76,9 @@ export default function CourseDetailsPage() {
         </div>
       </div>
 
-      <div className="bg-white mt-16">
+      <div className="mt-16">
         <div className="container px-4 xl:px-0 ">
-          <div className="py-8 px-4 md:px-12 flex flex-col gap-5">
+          <div className="bg-white rounded-[20px] py-8 px-4 md:px-12 flex flex-col gap-5">
             <h1 className="text-6xl font-medium text-main font-primary">
               Course Learning Objectives
             </h1>

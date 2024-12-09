@@ -34,7 +34,7 @@ function ConsultingPage() {
         buttonText={consultingheroData.buttonText}
       />
       <div className="my-16">
-        <div className="container px-4 sm:p-8">
+        <div className="container  sm:px-0 px-4 sm:p-8">
           <div className="">
             <h2 className="text-4xl sm:text-6xl lg:text-7xl font-primary leading-tight  mb-8 sm:mb-12">
               Consultancy Services
@@ -83,24 +83,45 @@ function ConsultingPage() {
           ]}
         />
       </div>
-      <div className="py-12">
+      <div className="py-12 flex flex-col-reverse sm:flex-col">
         <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-0 mt-5 sm:my-16">
-          <div className="bg-[#E5DFD9] rounded-[21.5px] shadow-lg sm:transform sm:-rotate-[10deg] sm:z-10 sm:translate-x-14">
+          <div className="z-10 shadow-lg sm:transform sm:-rotate-[10deg] rounded-[21.5px]  sm:z-10 sm:translate-x-14 relative">
+            <div className=" absolute inset-0 rounded-[21px]  bg-gradient-to-t from-[#1A1B13] sm:hidden">
+              <div className="absolute bottom-0  p-4 sm:hidden">
+                <h1 className=" font-secondary  font-semibold text-2xl text-[#FFFFFF]">
+                  Samuel Adesoga
+                </h1>
+                <h3 className="font-secondary font-semibold text-sm text-[#FFFFFF]">
+                  Principal Coach
+                </h3>
+              </div>
+            </div>
             <Image
               src={leftImage}
               alt="question"
               width={265}
               height={382}
-              className="object-fit h-[382px] w-[265px] rounded-[21.5px]"
+              className="object-cover h-[382px] sm:w-[261px] w-[361px] rounded-[21px]"
             />
           </div>
-          <div className="bg-[#A5E0E7] rounded-[21.5px] shadow-lg sm:transform sm:rotate-[10deg] z-20 sm:-translate-x-14">
+
+          <div className="shadow-lg sm:transform sm:rotate-[10deg]  rounded-[21px]  sm:-translate-x-14  relative ">
+            <div className="absolute z-10  rounded-[21px]  inset-0 bg-gradient-to-t from-[#1A1B13] sm:hidden">
+              <div className="absolute bottom-0  p-4 sm:hidden">
+                <h1 className=" font-secondary  font-semibold text-2xl text-[#FFFFFF]">
+                  Temitope Awere
+                </h1>
+                <h3 className="font-secondary font-semibold text-sm text-[#FFFFFF]">
+                  Partner Coach
+                </h3>
+              </div>
+            </div>
             <Image
               src={rightImage}
               alt="blend"
               width={265}
               height={382}
-              className="object-fit h-[382px] w-[265px] rounded-[21.5px]"
+              className="object-cover h-[382px] sm:w-[261px]  w-[361px] rounded-[21.5px] transform  sm:scale-x-[-1]"
             />
           </div>
         </div>

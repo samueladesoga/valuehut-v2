@@ -19,13 +19,13 @@ const ClientReviews = ({
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? Reviews.length - 1 : prevIndex - 1,
+      prevIndex === 0 ? Reviews.length - 1 : prevIndex - 1
     );
   };
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === Reviews.length - 1 ? 0 : prevIndex + 1,
+      prevIndex === Reviews.length - 1 ? 0 : prevIndex + 1
     );
   };
 

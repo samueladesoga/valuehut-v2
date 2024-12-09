@@ -1,7 +1,6 @@
 "use client";
 import React, { useRef } from "react";
-import { motion } from "framer-motion";
-import { useScroll } from "motion/react";
+import { motion, useScroll } from "framer-motion";
 import { useTransform, MotionValue } from "framer-motion";
 
 interface ParagraphProps {
