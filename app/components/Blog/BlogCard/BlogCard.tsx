@@ -5,9 +5,9 @@ import { useRouter } from "next/navigation";
 interface BlogCardProps {
   image: string;
   title: string;
-  description: string;
-  date: string;
-  category: string;
+  description?: string;
+  date?: string;
+  category?: string;
   slug: string;
 }
 

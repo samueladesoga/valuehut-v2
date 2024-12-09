@@ -22,7 +22,7 @@ const ConsultancyServiceItem: React.FC<ConsultancyServiceItemProps> = ({
 }) => {
   return (
     <div
-      className={`transition-all rounded-[20px] duration-300 ${backgroundColor}`}
+      className={`transition-all rounded-t-[20px]  p-4  last:rounded-b-[20px]  ${backgroundColor}`}
     >
       <button
         onClick={onToggle}
@@ -33,29 +33,35 @@ const ConsultancyServiceItem: React.FC<ConsultancyServiceItemProps> = ({
         </h3>
       </button>
 
-      {isOpen && (
-        <div className="px-4 sm:px-6 pb-4 sm:pb-6">
-          <p className="text-sm sm:text-base  font-secondary mb-4">
-            {description}
-          </p>
-          <div className="mt-4">
-            <h4 className="text-sm sm:text-base font-semibold mb-2 font-secondary ">
-              Our consultants will assist you with:
-            </h4>
-            <ul className="space-y-2">
-              {points.map((point, index) => (
-                <li
-                  key={index}
-                  className="flex items-start gap-2 text-xs sm:text-sm  font-secondary"
-                >
-                  <ChevronRight className=" w-4 h-4 mt-1" />
-                  {point}
-                </li>
-              ))}
-            </ul>
+      <div
+        className={`overflow-hidden transition-all duration-1000 ease-in-out ${
+          isOpen ? "max-h-[1000px]" : "max-h-0"
+        }`}
+      >
+        {isOpen && (
+          <div className="px-4 sm:px-6 pb-4 sm:pb-6">
+            <p className="text-sm sm:text-base font-secondary mb-4">
+              {description}
+            </p>
+            <div className="mt-4">
+              <h4 className="text-sm sm:text-base font-semibold mb-2 font-secondary">
+                Our consultants will assist you with:
+              </h4>
+              <ul className="space-y-2">
+                {points.map((point, index) => (
+                  <li
+                    key={index}
+                    className="flex items-start gap-2 text-xs sm:text-sm font-secondary"
+                  >
+                    <ChevronRight className="w-4 h-4 mt-1" />
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+
 const Footer: React.FC = () => {
   return (
     <footer className="w-full bg-fill-neutral-strong">
@@ -27,28 +28,28 @@ const Footer: React.FC = () => {
                 </h3>
                 <ul role="list" className="mt-6 space-y-4">
                   <li>
-                    <a
+                    <Link
                       href="/academy"
                       className="text-accentsecondary text-sm font-normal font-secondary"
                     >
                       Academy
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
+                    <Link
                       href="/consulting"
                       className="text-accentsecondary text-sm font-normal font-secondary"
                     >
                       Consultation
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
+                    <Link
                       href="/talent-matching"
                       className="text-accentsecondary text-sm font-normal font-secondary"
                     >
                       Talent matching
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -58,20 +59,21 @@ const Footer: React.FC = () => {
                 </h3>
                 <ul role="list" className="mt-6 space-y-4">
                   <li>
-                    <a
+                    <Link
                       href="#"
                       className="text-accentsecondary text-sm font-normal font-secondary"
                     >
                       X
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      target="_blank" href="https://linkedin.com/company/valuehut-limited"
+                    <Link
+                      target="_blank"
+                      href="https://linkedin.com/company/valuehut-limited"
                       className="text-accentsecondary text-sm font-normal font-secondary"
                     >
                       LinkedIn
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>

@@ -60,7 +60,7 @@ export const AllCourses: IAllTrainings[] = [
     dates: "19 Jul & 21 Sep 2024",
     rating: 5,
     reviews: 7,
-    logo: "/images/psm.png",
+    logo: "/icons/psm.svg",
   },
   {
     id: 2,
@@ -73,7 +73,7 @@ export const AllCourses: IAllTrainings[] = [
     dates: "19 Jul & 21 Sep 2024",
     rating: 5,
     reviews: 7,
-    logo: "/images/pspo.png",
+    logo: "/icons/pspo.svg",
   },
   {
     id: 3,
@@ -86,7 +86,7 @@ export const AllCourses: IAllTrainings[] = [
     dates: "19 Jul & 21 Sep 2024",
     rating: 5,
     reviews: 7,
-    logo: "/images/psm.png",
+    logo: "/icons/psm.svg",
   },
   {
     id: 4,
@@ -99,6 +99,6 @@ export const AllCourses: IAllTrainings[] = [
     dates: "19 Jul & 21 Sep 2024",
     rating: 5,
     reviews: 7,
-    logo: "/images/psf.png",
+    logo: "/icons/psf.svg",
   },
 ];

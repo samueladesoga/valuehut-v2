@@ -2,12 +2,14 @@ import React from "react";
 import BlogCard from "@/components/Blog/BlogCard/BlogCard";
 import BlogItem from "@/components/Blog/BlogItem/BlogItem";
 import ArticlesSection from "@/components/Blog/ArticleSection/articles-section";
-import { Articles } from "@/data/Blog/Articles";
-import { SideArticles } from "@/data/Blog/SideArticles";
-import { MainArticle } from "@/data/Blog/MainArticle";
+import { getAllArticles } from "@/lib/api";
 
-const Blogs: React.FC = () => {
+export default async function Blogs() {
   const sortingOptions = ["Latest", "Oldest", "Most viewed"];
+  const NewArticles = await getAllArticles();
+  const mainArticle = NewArticles.props.posts[0];
+  const sideArticles = NewArticles.props.posts.slice(1, 6);
+
   return (
     <div className="bg-[#F5F5F5] py-7">
       <div className="bg-[#f5f5f5] px-4 md:px-4 lg:px-0 container mt-[100px]">
@@ -20,25 +22,24 @@ const Blogs: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-28 ">
             <div className="rounded-xl">
               <BlogCard
-                image={MainArticle.image}
-                title={MainArticle.title}
-                description={MainArticle.description}
-                date={MainArticle.date}
-                category={MainArticle.category}
-                slug={MainArticle.slug}
+                image={mainArticle.cover.url}
+                title={mainArticle.title}
+                description={mainArticle.description}
+                date={mainArticle.date}
+                category={mainArticle.category}
+                slug={mainArticle.slug}
               />
             </div>
             <div className="grid grid-cols-1 w-full ">
               <h1 className="font-primary font-medium text-[26px] leading-[33px] sm:hidden mt-8 sm:mt-0">
                 Latest Articles
               </h1>
-              {SideArticles.map((sideArticle, index) => (
+              {sideArticles.map((sideArticle, index) => (
                 <div key={index} className="my-1">
                   <BlogItem
-                    image={sideArticle.image}
+                    image={sideArticle.cover.url}
                     title={sideArticle.title}
                     date={sideArticle.date}
-                    tag={sideArticle.tag}
                     slug={sideArticle.slug}
                   />
                 </div>
@@ -49,12 +50,11 @@ const Blogs: React.FC = () => {
       </div>
       <section className="mt-20">
         <ArticlesSection
-          articles={Articles}
+          articles={NewArticles.props.posts}
           sortingOptions={sortingOptions}
           defaultSortBy="Latest"
         />
       </section>
     </div>
   );
-};
-export default Blogs;
+}

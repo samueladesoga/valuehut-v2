@@ -1,22 +1,25 @@
 "use client";
-
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import Button from "@/components/Button/Button";
+import { convertDate } from "@/utils/ConvertDate";
 
-interface Article {
-  id: number;
+interface IArticle {
+  id?: number;
   title: string;
   date: string;
   category: string;
   image: string;
   slug: string;
+  cover: {
+    url: string;
+  };
 }
 
 interface ArticlesSectionProps {
-  articles: Article[];
+  articles: IArticle[];
   sortingOptions: string[];
   defaultSortBy: string;
 }
@@ -28,6 +31,13 @@ const ArticlesSection: React.FC<ArticlesSectionProps> = ({
 }) => {
   const [sortBy, setSortBy] = useState(defaultSortBy);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [visibleArticles, setVisibleArticles] = useState(6);
+
+  const loadMoreArticles = () => {
+    setVisibleArticles((prev) => prev + 6);
+  };
+
+  const allArticlesDisplayed = visibleArticles >= articles.length;
 
   return (
     <div className="container py-10 bg-white rounded-3xl px-4 ">
@@ -62,46 +72,49 @@ const ArticlesSection: React.FC<ArticlesSectionProps> = ({
           </div>
         </div>
 
-        <div className="flex sm:flex-row flex-col gap-10">
-          <div>
-            {articles.map((article) => (
+        <div className="flex justify-between sm:flex-row flex-col gap-10">
+          <div className="w-2/3">
+            {articles.slice(0, visibleArticles).map((article) => (
               <article
-              key={article.id}
-              className="
+                key={article.id}
+                className="
                 flex gap-6 border-b border-[#DEDEDE]
                 py-3
                 overflow-hidden
                 items-start  
               "
-            >
-              <Image
-                src={article.image}
-                alt={article.title}
-                width={132}
-                height={90}
-                className="rounded-lg w-[100px] h-[76px] sm:w-[132px] sm:h-[90px] object-cover flex-shrink-0"
-              />
-              <div className="flex flex-col gap-3 w-full overflow-hidden">
-                <Link
-                  href={`/blog/${article.slug}`}
-                  className="
+              >
+                <Image
+                  src={article.cover.url}
+                  alt={article.title}
+                  width={132}
+                  height={90}
+                  className="rounded-lg w-[100px] h-[76px] sm:w-[132px] sm:h-[90px] object-cover flex-shrink-0"
+                />
+                <div className="flex flex-col gap-8 w-full">
+                  <div>
+                    <Link
+                      href={`/blog/${article.slug}`}
+                      className="
                     font-secondary text-[14px] leading-[18px] 
                     sm:text-[19px] sm:leading-[24.7px] font-medium text-main 
                     line-clamp-2 overflow-hidden
                   "
-                >
-                  {article.title}
-                </Link>
-                <p className="text-xs text-secondary font-normal font-secondary line-clamp-1">
-                  {article.date} - {article.category}
-                </p>
-              </div>
-            </article>
-            
+                    >
+                      {article.title}
+                    </Link>
+                  </div>
+                  <div>
+                    <p className="text-xs text-secondary font-normal font-secondary">
+                      {convertDate(article.date)} -{article.category}
+                    </p>
+                  </div>
+                </div>
+              </article>
             ))}
           </div>
 
-          <div className="bg-[#ECECEC] sm:w-[348px] h-[280px] sm:h-[532px] rounded-lg flex items-center justify-center">
+          <div className="bg-[#ECECEC] w-[348px] h-[280px] sm:h-[532px] rounded-lg flex items-center justify-center">
             <p className="Text-Main font-secondary font-semibold text-[21px] leading-[29px]">
               Ad Example / CTA
             </p>
@@ -114,8 +127,10 @@ const ArticlesSection: React.FC<ArticlesSectionProps> = ({
             size="medium"
             rounded="full"
             className="mt-9"
+            onClick={loadMoreArticles}
+            disabled={allArticlesDisplayed}
           >
-            Load more articles
+            {allArticlesDisplayed ? "No more articles" : "Load more articles"}
           </Button>
         </div>
       </div>
