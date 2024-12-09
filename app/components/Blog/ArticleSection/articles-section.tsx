@@ -33,13 +33,13 @@ const ArticlesSection: React.FC<ArticlesSectionProps> = ({
     <div className="container py-10 bg-white rounded-3xl px-4 ">
       <div className="p-4">
         <div className="flex flex-row justify-between">
-          <h1 className="font-secondary font-medium text-[26px] leading-[33px] sm:text-5xl ">
+          <h1 className="font-secondary font-medium text-[26px] leading-[33px] sm:text-5xl  pb-4">
             All articles
           </h1>
           <div>
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="flex items-center gap-2 text-sm font-secondary text-main"
+              className="flex items-center gap-2 text-sm font-secondary text-main pt-1"
             >
               Sort by: {sortBy} <ChevronDown className="w-4 h-4" />
             </button>
@@ -62,40 +62,52 @@ const ArticlesSection: React.FC<ArticlesSectionProps> = ({
           </div>
         </div>
 
-        <div className="flex sm:flex-row flex-col py-2 gap-8">
+        <div className="flex sm:flex-row flex-col gap-10">
           <div>
             {articles.map((article) => (
               <article
-                key={article.id}
-                className="flex gap-3 border-b border-[#DEDEDE] py-4"
-              >
-                <Image
-                  src={article.image}
-                  alt={article.title}
-                  width={132}
-                  height={90}
-                  className="rounded-lg w-[100px] h-[76px] sm:w-[132px] sm:h-[90px] object-cover"
-                />
-                <div className="flex flex-col items-start gap-3 ">
-                  <Link
-                    href={`/blog/${article.slug}`}
-                    className="font-secondary text-[14px] leading-[18px] sm:text-[19px] sm:leading-[24.7px] font-medium text-main     "
-                  >
-                    {article.title}
-                  </Link>
-                  <p className="text-xs text-secondary font-normal font-secondary">
-                    {article.date} - {article.category}
-                  </p>
-                </div>
-              </article>
+              key={article.id}
+              className="
+                flex gap-6 border-b border-[#DEDEDE]
+                py-3
+                overflow-hidden
+                items-start  
+              "
+            >
+              <Image
+                src={article.image}
+                alt={article.title}
+                width={132}
+                height={90}
+                className="rounded-lg w-[100px] h-[76px] sm:w-[132px] sm:h-[90px] object-cover flex-shrink-0"
+              />
+              <div className="flex flex-col gap-3 w-full overflow-hidden">
+                <Link
+                  href={`/blog/${article.slug}`}
+                  className="
+                    font-secondary text-[14px] leading-[18px] 
+                    sm:text-[19px] sm:leading-[24.7px] font-medium text-main 
+                    line-clamp-2 overflow-hidden
+                  "
+                >
+                  {article.title}
+                </Link>
+                <p className="text-xs text-secondary font-normal font-secondary line-clamp-1">
+                  {article.date} - {article.category}
+                </p>
+              </div>
+            </article>
+            
             ))}
           </div>
+
           <div className="bg-[#ECECEC] sm:w-[348px] h-[280px] sm:h-[532px] rounded-lg flex items-center justify-center">
-            <p className="Text-Main font-secondary  font-semibold text-[21px]  leading-[29px]">
+            <p className="Text-Main font-secondary font-semibold text-[21px] leading-[29px]">
               Ad Example / CTA
             </p>
           </div>
         </div>
+
         <div>
           <Button
             bgColor="fill-brand-secondary"

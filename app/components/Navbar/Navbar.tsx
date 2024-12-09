@@ -7,6 +7,7 @@ import Image from "next/image";
 import { ChevronDown, X } from "lucide-react";
 import { StaticImageData } from "next/image";
 import { usePathname } from "next/navigation";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 interface NavbarProps {
   logoX: StaticImageData;

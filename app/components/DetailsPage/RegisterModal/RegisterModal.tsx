@@ -4,6 +4,7 @@ import React from "react";
 import Button from "@/components/Button/Button";
 import Image from "next/image";
 import { IRegisterModal } from "@/data/Academy/RegisterModal";
+import { useRouter } from "next/navigation";
 
 interface RegisterModalProps extends IRegisterModal {
   onClose: () => void;
@@ -16,6 +17,11 @@ const RegisterModal = ({
   countries,
   onClose,
 }: RegisterModalProps) => {
+  const router = useRouter()
+
+  const handleRouting = ()=>{
+    router.push("/checkout")
+  }
   return (
     <>
       <div
@@ -77,7 +83,7 @@ const RegisterModal = ({
 
             <Button
               className="w-full text-sm font-medium font-secondary text-accentmain"
-              onClick={() => alert("Proceeding to checkout")}
+              onClick={handleRouting}
               bgColor="fill-neutral-strong"
               rounded="lg"
             >
