@@ -48,10 +48,10 @@ const BookACallCTA: React.FC<BookACallCTAProps> = ({
         <Image
           src={imageUrl}
           alt="Consultant ready to help"
-          width={325}
-          height={428}
+          width={350}
+          height={450}
           objectFit="cover"
-          className="bg-no-repeat rounded-md  h-[428] w-[325px] sm:mb-6 mb-0"
+          className="bg-no-repeat rounded-md sm:mb-6 mb-0"
         />
       </div>
     </div>
