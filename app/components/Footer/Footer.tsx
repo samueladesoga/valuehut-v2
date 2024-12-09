@@ -67,7 +67,7 @@ const Footer: React.FC = () => {
                   </li>
                   <li>
                     <a
-                      href="#"
+                      target="_blank" href="https://linkedin.com/company/valuehut-limited"
                       className="text-accentsecondary text-sm font-normal font-secondary"
                     >
                       LinkedIn
