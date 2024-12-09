@@ -85,7 +85,7 @@ const Footer: React.FC = () => {
                 >
                   <li>
                     <p className="text-accentsecondary text-sm font-normal font-secondary">
-                      UK Office:
+                      UK office:
                     </p>
                     <p>Email: info@valuehut.co</p>
                     <p> Call: +44(0)7946713054</p>
