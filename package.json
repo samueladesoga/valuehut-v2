@@ -10,6 +10,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^16.0.0",
     "@shadcn/ui": "^0.0.4",
     "intl": "^1.2.5",
     "lucide-react": "^0.456.0",

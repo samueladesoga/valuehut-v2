@@ -74,9 +74,9 @@ const ArticlesSection: React.FC<ArticlesSectionProps> = ({
 
         <div className="flex justify-between sm:flex-row flex-col gap-10">
           <div className="w-2/3">
-            {articles.slice(0, visibleArticles).map((article) => (
+            {articles.slice(0, visibleArticles).map((article,index) => (
               <article
-                key={article.id}
+                key={index}
                 className="
                 flex gap-6 border-b border-[#DEDEDE]
                 py-3
