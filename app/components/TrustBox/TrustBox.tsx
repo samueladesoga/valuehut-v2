@@ -1,3 +1,4 @@
+"use client"
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 
@@ -20,7 +21,7 @@ const TrustBox = () => {
   return (
     <div
       ref={ref}
-      className="trustpilot-widget"
+      className="trustpilot-widget w-full"
       data-locale="en-US"
       data-template-id="54ad5defc6454f065c28af8b"
       data-businessunit-id="5c12d8d7393a0100015d1c3e"

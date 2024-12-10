@@ -39,6 +39,13 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <script
+          type="text/javascript"
+          src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
+          async
+        ></script>
+      </head>
       <body>
         <Navbar logoX={logoX} logoY={logoY} menu={Menu} navLinks={navLinks} />
         {children}

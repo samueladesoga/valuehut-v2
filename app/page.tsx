@@ -44,7 +44,9 @@ export default function Home() {
       <div className="py-6 sm:py-16">
         <TalentMatchingCTA />
       </div>
-      <Testimonials />
+      <div>
+        <Testimonials />
+      </div>
       <LatestArticles
         title="Latest articles"
         articles={Articles}
