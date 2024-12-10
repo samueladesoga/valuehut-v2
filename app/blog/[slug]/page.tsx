@@ -11,15 +11,18 @@ export interface PageProps {
 
 }
 
-export default async function BlogPost({ params }: PageProps) {
-  const  param  = await params;
-  const post = await getSlugArticle(param.slug);
+export default async function BlogPost({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const slug = (await params).slug
+
+  const post = await getSlugArticle(slug);
   
   if (!post) {
     notFound();
   }
-
-  console.log(post, 'post')
 
   const content = post.content?.json as unknown as Document;
 
