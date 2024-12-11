@@ -104,7 +104,6 @@ export default function CourseDetailsPage() {
                 className="w-full md:w-1/3"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                whileOutOfView={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.5, delay: 0 }}
                 viewport={{ once: false, amount: 0.2 }}
               >
@@ -119,7 +118,6 @@ export default function CourseDetailsPage() {
                 className="w-full md:w-1/3"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                whileOutOfView={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.5, delay: 0.05 }}
                 viewport={{ once: false, amount: 0.2 }}
               >
@@ -134,7 +132,6 @@ export default function CourseDetailsPage() {
                 className="w-full md:w-1/3"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                whileOutOfView={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
                 viewport={{ once: false, amount: 0.2 }}
               >
@@ -176,7 +173,7 @@ export default function CourseDetailsPage() {
                       {info.descriptions}
                     </p>
                   </div>
-                )
+                ),
               )}
             </div>
           </div>

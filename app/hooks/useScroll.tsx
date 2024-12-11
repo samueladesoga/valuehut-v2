@@ -11,7 +11,7 @@ const useScroll = <T extends HTMLElement>(options = {}) => {
       ([entry]) => {
         setIsIntersecting(entry.isIntersecting);
       },
-      { threshold: 0.1, ...options }
+      { threshold: 0.1, ...options },
     );
     if (ref.current) {
       observer.observe(ref.current);

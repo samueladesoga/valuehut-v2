@@ -32,7 +32,6 @@ export default function HeroBanner({
               className="text-[41px] leading-[45.1px] sm:text-[54px] sm:leading-[59.4px] font-primary font-normal"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              whileOutOfView={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: 0 }}
               viewport={{ once: false, amount: 0.2 }}
             >
@@ -42,7 +41,6 @@ export default function HeroBanner({
               className="text-xl font-secondary text-accentmain font-medium"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              whileOutOfView={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: 0.05 }}
               viewport={{ once: false, amount: 0.2 }}
             >
@@ -51,7 +49,6 @@ export default function HeroBanner({
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              whileOutOfView={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: false, amount: 0.1 }}
               className="flex text-start text-main"

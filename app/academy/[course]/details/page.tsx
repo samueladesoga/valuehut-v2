@@ -59,7 +59,6 @@ function page() {
                     opacity: 1,
                     y: 0,
                   }}
-                  whileOutOfView={{ opacity: 0, y: 30 }}
                   transition={{
                     duration: 0.5,
                     delay: index * 0.05,

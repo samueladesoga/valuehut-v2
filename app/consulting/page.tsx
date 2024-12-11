@@ -85,9 +85,6 @@ function ConsultingPage() {
         />
       </div>
       <div className="py-12 flex flex-col-reverse sm:flex-col">
-
-
-
         <div className="flex flex-col md:flex-row justify-center items-center gap-2 sm:gap-8 mt-5 sm:my-16">
           <div className="md:hidden rounded-[21.5px] relative">
             <div className=" absolute inset-0 rounded-[21px]  bg-gradient-to-t from-[#1A1B13] sm:hidden">
@@ -129,40 +126,38 @@ function ConsultingPage() {
             />
           </div>
           <motion.div
-          className="hidden md:block"
-          initial={{ rotate: -10, x: 65 }}
-          whileInView={{ rotate: 0, x: 0 }}
-          whileOutOfView={{ rotate: -10, x: 65 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: false, amount: 0.2 }}
-        >
-          <Image
+            className="hidden md:block"
+            initial={{ rotate: -10, x: 65 }}
+            whileInView={{ rotate: 0, x: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: false, amount: 0.2 }}
+          >
+            <Image
               src={leftImage}
               alt="question"
               width={265}
               height={382}
               className="object-cover h-[382px] sm:w-[261px] w-[361px] rounded-[21px]"
             />
-        </motion.div>
+          </motion.div>
 
-        <motion.div
-          className="hidden md:block"
-          initial={{ rotate: 10, x: -65 }}
-          whileInView={{ rotate: 0, x: 0 }}
-          whileOutOfView={{ rotate: 10, x: -65 }}
-          transition={{ duration: 0.5 }} rounded-lg shadow-lg
-          viewport={{ once: false, amount: 0.2 }}
-        >
-           <Image
+          <motion.div
+            className="hidden md:block"
+            initial={{ rotate: 10, x: -65 }}
+            whileInView={{ rotate: 0, x: 0 }}
+            transition={{ duration: 0.5 }}
+            rounded-lg
+            shadow-lg
+            viewport={{ once: false, amount: 0.2 }}
+          >
+            <Image
               src={rightImage}
               alt="blend"
               width={265}
               height={382}
               className="object-cover h-[382px] sm:w-[261px]  w-[361px] rounded-[21.5px] transform  sm:scale-x-[-1]"
             />
-        </motion.div>
-
-
+          </motion.div>
         </div>
 
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto">

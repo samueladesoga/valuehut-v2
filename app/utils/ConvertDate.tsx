@@ -1,4 +1,4 @@
-import { DateTimeFormatOptions } from 'intl';
+import { DateTimeFormatOptions } from "intl";
 
 type Options = {
   day: string;
@@ -10,7 +10,10 @@ export function convertDate(dateString: string) {
 
   const options: Options = { day: "2-digit", month: "short", year: "2-digit" };
 
-  const formattedDate = dateObj.toLocaleDateString("en-GB", options as DateTimeFormatOptions);
+  const formattedDate = dateObj.toLocaleDateString(
+    "en-GB",
+    options as DateTimeFormatOptions,
+  );
 
   const dayAdjustedDate = formattedDate.replace(/^\d+/, "22");
 

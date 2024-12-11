@@ -20,9 +20,7 @@ const BlogItem: React.FC<BlogItemProps> = ({
 }) => {
   const router = useRouter();
   return (
-    <div
-      className="blog-item flex gap-3 rounded-2xl bg-white shadow-md h-[95px] overflow-hidden sm:p-0  p-2"
-    >
+    <div className="blog-item flex gap-3 rounded-2xl bg-white shadow-md h-[95px] overflow-hidden sm:p-0  p-2">
       <div className=" sm:w-[136px] sm:h-[95px] w-[100px] h-[76px] flex-shrink-0">
         <Image
           src={image}

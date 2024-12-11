@@ -41,7 +41,6 @@ export interface IArticle {
   };
 }
 
-
 export interface IAuthor {
   fullName: string;
   profilePicture: {
@@ -80,7 +79,7 @@ export const getAllArticles = async () => {
       },
 
       body: JSON.stringify({ query }),
-    }
+    },
   ).then((res) => res.json());
 
   const posts: IPostType[] = data.data?.blogCollection?.items;
@@ -105,9 +104,9 @@ export const getAllArticles = async () => {
   };
 };
 
-
-
-export const getSlugArticle = async (slug: string): Promise<IArticle | null> => {
+export const getSlugArticle = async (
+  slug: string,
+): Promise<IArticle | null> => {
   if (!slug) {
     return null;
   }
@@ -151,14 +150,13 @@ export const getSlugArticle = async (slug: string): Promise<IArticle | null> => 
         Authorization: `Bearer ${process.env.BLOG_ACCESS_TOKEN}`,
       },
       body: JSON.stringify({ query, variables }),
-      next: { 
-        revalidate: 10
-      }
-    }
-  ).then(res => res.json());
- 
+      next: {
+        revalidate: 10,
+      },
+    },
+  ).then((res) => res.json());
 
-  const data = await response
+  const data = await response;
   const post = data.data?.blogCollection?.items[0];
 
   if (!post) {

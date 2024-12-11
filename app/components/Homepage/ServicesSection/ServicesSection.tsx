@@ -31,7 +31,6 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({
                 <motion.h1
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  whileOutOfView={{ opacity: 0, y: 20 }}
                   transition={{
                     duration: 0.5,
                     delay: 0.05,
@@ -55,7 +54,6 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({
           className="col-span-1"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          whileOutOfView={{ opacity: 0, y: 20 }}
           transition={{
             duration: 0.5,
             delay: 0,

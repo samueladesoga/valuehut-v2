@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation"; 
+import { useRouter } from "next/navigation";
 import Button from "@/components/Button/Button";
 import SectionTitle from "@/components/SectionTitle/SectionTitle";
 import SectionPara from "@/components/SectionPara/SectionPara";
@@ -10,10 +10,10 @@ import Blend from "@/blend.svg";
 import Questions from "@/question.svg";
 
 const ServicesOverview = () => {
-  const router = useRouter(); 
+  const router = useRouter();
 
   const navigateToConsulting = () => {
-    router.push("/consulting"); 
+    router.push("/consulting");
   };
 
   return (
@@ -25,7 +25,7 @@ const ServicesOverview = () => {
           bgColor="fill-brand-secondary"
           rounded="full"
           size="medium"
-          onClick={navigateToConsulting} 
+          onClick={navigateToConsulting}
         >
           Explore our services
         </Button>
@@ -55,7 +55,6 @@ const ServicesOverview = () => {
           className="hidden md:block bg-[#E5DFD9] rounded-lg shadow-lg"
           initial={{ rotate: -10, x: 65 }}
           whileInView={{ rotate: 0, x: 0 }}
-          whileOutOfView={{ rotate: -10, x: 65 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: false, amount: 0.2 }}
         >
@@ -70,7 +69,6 @@ const ServicesOverview = () => {
           className="hidden md:block bg-[#A5E0E7] rounded-lg shadow-lg"
           initial={{ rotate: 10, x: -65 }}
           whileInView={{ rotate: 0, x: 0 }}
-          whileOutOfView={{ rotate: 10, x: -65 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: false, amount: 0.2 }}
         >

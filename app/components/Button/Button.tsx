@@ -43,9 +43,7 @@ const Button: React.FC<ButtonProps> = ({
     full: "rounded-full",
   };
 
-  const disabledClasses = disabled
-    ? "opacity-50 cursor-not-allowed"
-    : "";
+  const disabledClasses = disabled ? "opacity-50 cursor-not-allowed" : "";
 
   return (
     <button

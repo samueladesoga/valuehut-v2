@@ -45,7 +45,6 @@ const TalentMatchingCTA: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          whileOutOfView={{ opacity: 0, y: 20 }}
           transition={{
             duration: 0.5,
             delay: 0.1,
@@ -90,7 +89,7 @@ const CTAHeading: React.FC<CTAHeadingProps> = ({ text }) => (
         <span key={index} className="text-accentsecondary">
           {word}{" "}
         </span>
-      )
+      ),
     )}
   </h2>
 );

@@ -17,11 +17,11 @@ const RegisterModal = ({
   countries,
   onClose,
 }: RegisterModalProps) => {
-  const router = useRouter()
+  const router = useRouter();
 
-  const handleRouting = ()=>{
-    router.push("/checkout")
-  }
+  const handleRouting = () => {
+    router.push("/checkout");
+  };
   return (
     <>
       <div

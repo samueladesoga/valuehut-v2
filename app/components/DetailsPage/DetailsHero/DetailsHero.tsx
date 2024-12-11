@@ -34,9 +34,8 @@ function DetailsHero({
           <div className="flex flex-col sm:flex-row text-sm font-medium font-secondary text-main gap-2 sm:gap-8 pt-6">
             <motion.div
               className="flex gap-[6px]"
-              initial={{ opacity: 1, y: 20 }} 
-              whileInView={{ opacity: 1, y: 0 }} 
-              whileOutOfView={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 1, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.05 }}
               viewport={{ once: false, amount: 0.2 }}
             >
@@ -52,10 +51,9 @@ function DetailsHero({
 
             <motion.div
               initial={{ opacity: 1, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }} 
-              whileOutOfView={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.5, delay: 0.15 }} 
-              viewport={{ once: false, amount: 0.2 }} 
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              viewport={{ once: false, amount: 0.2 }}
             >
               {reviews.rating} ({reviews.count} reviews)
             </motion.div>
