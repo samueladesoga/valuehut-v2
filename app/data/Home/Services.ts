@@ -31,7 +31,9 @@ export const coCreatingData: IServicesSection = {
     {
       title: "Academy",
       description:
-        "Developing Organisation agility capabilities is a complex journey of Learning and Unlearning",
+        `Empowering professionals with cutting-edge skills and transformative learning experiences, 
+        providing training courses that equip your teams with the dynamic capabilities needed to thrive 
+        in rapidly evolving business landscapes.`,
       buttonText: "Explore Courses",
       buttonLink: "#",
       bgColor: "bg-[#05668D]",
@@ -40,7 +42,10 @@ export const coCreatingData: IServicesSection = {
     {
       title: "Consulting",
       description:
-        "Our training courses have been carefully designed to provide individuals and teams",
+        ` Delivering expert strategic guidance that helps organisations navigate complex business challenges, 
+        offering innovative solutions and actionable insights that drive operational excellence and strategic 
+        transformation.
+`,
       buttonText: "Read More",
       buttonLink: "#",
       bgColor: "bg-[#02374B]",
@@ -49,7 +54,9 @@ export const coCreatingData: IServicesSection = {
     {
       title: "Talent Matching",
       description:
-        "Established product delivery teams often face challenges related to adoption",
+        `Connecting organisations with exceptional professionals who can drive innovation, efficiency, and 
+        sustainable growth, ensuring that businesses are paired with top-tier agile talent perfectly aligned 
+        with their strategic objectives.`,
       buttonText: "Read More",
       buttonLink: "#",
       bgColor: "bg-[#A97240]",

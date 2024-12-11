@@ -37,8 +37,8 @@ export default function Home() {
         }
       />
       <HeroBanner
-        title="Redefine the way you work."
-        subtitle="Helping organizations transform into a network of interdependent product teams across different sectors."
+        title="Transforming Organisations and Teams leading to better outcomes."
+        subtitle="Your people are the heart of your organisation; hence, our mission is to help improve how people work, lead, and are led."
       />
       <ServicesOverview />
       <div className="py-6 sm:py-16">
