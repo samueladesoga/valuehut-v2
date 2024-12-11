@@ -11,9 +11,9 @@ export interface HeroSectionProps {
 }
 
 export const heroData: HeroSectionProps = {
-  title: "Redefine the way you work.",
+  title: "Transforming Organisations and Teams.",
   subtitle:
-    "Helping organizations transform into a network of interdependent product teams across different sectors.",
+    "Your people are the heart of your organisation; hence, our mission is to help improve how people work, lead, and are led.",
   buttonText: "Get Started Now",
   buttonLink: "/get-started",
   showRating: true,

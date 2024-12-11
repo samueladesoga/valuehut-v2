@@ -37,7 +37,7 @@ export default function Home() {
         }
       />
       <HeroBanner
-        title="Transforming Organisations and Teams leading to better outcomes."
+        title="Transforming Organisations and Teams."
         subtitle="Your people are the heart of your organisation; hence, our mission is to help improve how people work, lead, and are led."
       />
       <ServicesOverview />
