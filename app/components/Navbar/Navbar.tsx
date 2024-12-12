@@ -23,7 +23,7 @@ interface NavbarProps {
 
 const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(
-    null,
+    null
   );
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -53,16 +53,22 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
     };
   }, []);
   const pathname = usePathname();
+  const isWhiteBackgroundRoutes = ["/about-us", "/faqs", "/blog", "/checkout"];
+  const isWhiteHero = pathname.startsWith("/blog/");
 
   const logo =
-    ["/about-us", "/faqs", "/blog", "/checkout"].includes(pathname) || scrolled
+    isWhiteBackgroundRoutes.includes(pathname) || scrolled
       ? logoY
-      : logoX;
+      : isWhiteHero
+        ? logoY
+        : logoX;
 
   const navbarStyle =
-    ["/about-us", "/faqs", "/blog", "/checkout"].includes(pathname) || scrolled
+    isWhiteBackgroundRoutes.includes(pathname) || scrolled
       ? "bg-white text-black shadow-md"
-      : "bg-[#707070]/10 backdrop-blur-3xl text-white";
+      : isWhiteHero
+        ? "bg-white text-black shadow-md"
+        : "bg-[#707070]/10 backdrop-blur-3xl text-white";
 
   return (
     <div className={`fixed w-full md:pt-3 z-50`}>
@@ -112,7 +118,7 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
                 >
                   {link.label}
                 </Link>
-              ),
+              )
             )}
           </div>
 
@@ -144,7 +150,7 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
                 </h4>
                 <Image
                   src={menu}
-                  alt="menu"
+                  alt="menu"  
                   width={200}
                   height={200}
                   className="h-auto w-auto"
@@ -200,7 +206,7 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
                       {link.label}
                     </Link>
                   </li>
-                ),
+                )
               )}
               <li>
                 <Link href="/contact-us">
