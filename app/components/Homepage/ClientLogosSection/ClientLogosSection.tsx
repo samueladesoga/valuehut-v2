@@ -2,10 +2,18 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { clientLogos, Logo } from "@/data/Home/clientLogos";
 import Image from "next/image";
 
-const ClientLogosSection = () => {
+interface Logo {
+  url: string;        
+  title: string;      
+}
+
+interface LogosDataProps {
+  logos: Logo[];
+}
+
+const ClientLogosSection = ({ logos }: LogosDataProps) => {
   return (
     <div className="client-logos-container container flex flex-col justify-center items-center text-center p-6 py-16 font-secondary font-medium">
       <div className="flex justify-center">
@@ -23,16 +31,16 @@ const ClientLogosSection = () => {
               repeat: Infinity,
               ease: "linear",
             }}
-            className="flex flex-shrink-0 gap-8 sm:gap-20"
+            className="flex flex-shrink-0 gap-8 sm:gap-20 "
           >
-            {clientLogos.map((logo: Logo) => (
-              <div key={logo.id} className="h-20 w-20">
+            {logos.map((logo: Logo, index: number) => (
+              <div key={index} className="h-20 w-20">
                 <Image
                   src={logo.url}
-                  alt={`Logo of ${logo.name}`}
+                  alt={`Logo of ${logo.title}`}
                   width={200}
                   height={200}
-                  className="h-20 w-20 opacity-75 hover:opacity-100 transition-opacity duration-300"
+                  className="h-20 w-20 grayscale  hover:grayscale-0 transition-opacity duration-300 "
                 />
               </div>
             ))}
@@ -48,14 +56,14 @@ const ClientLogosSection = () => {
             }}
             className="flex flex-shrink-0 gap-8 sm:gap-20"
           >
-            {clientLogos.map((logo: Logo) => (
-              <div key={logo.id} className="h-20 w-20">
+            {logos.map((logo: Logo, index: number) => (
+              <div key={index} className="h-20 w-20">
                 <Image
                   src={logo.url}
-                  alt={`Logo of ${logo.name}`}
-                  width={200}
+                  alt={`Logo of ${logo.title}`}
+                  width={250}
                   height={200}
-                  className="h-20 w-20 opacity-75 hover:opacity-100 transition-opacity duration-300"
+                  className="h-20 w-20 grayscale  hover:grayscale-0  transition-opacity duration-300 "
                 />
               </div>
             ))}

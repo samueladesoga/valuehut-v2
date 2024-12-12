@@ -1,15 +1,15 @@
-import HeroSection from "./components/Homepage/HeroSection/HeroSection";
-import ClientLogosSection from "./components/Homepage/ClientLogosSection/ClientLogosSection";
-import ServicesSection from "./components/Homepage/ServicesSection/ServicesSection";
-import OurMission from "./components/Homepage/OurMission/OurMission";
-import HeroBanner from "./components/Homepage/HeroBanner/HeroBanner";
-import ServicesOverview from "./components/Homepage/ServicesOverview/ServicesOverview";
-import TalentMatchingCTA from "./components/Homepage/TalentMatchingCTA/TalentMatchingCTA";
-import Testimonials from "./components/Homepage/Testimonials/Testimonials";
-import LatestArticles from "./components/Homepage/LatestArticles/LatestArticles";
-import BookACallCTA from "./components/Homepage/BookACallCTA/BookACallCTA";
-import { Articles } from "./data/Home/Testimonials";
+import HeroSection from "@/components/Homepage/HeroSection/HeroSection";
+import ServicesSection from "@/components/Homepage/ServicesSection/ServicesSection";
+import OurMission from "@/components/Homepage/OurMission/OurMission";
+import HeroBanner from "@/components/Homepage/HeroBanner/HeroBanner";
+import ServicesOverview from "@/components/Homepage/ServicesOverview/ServicesOverview";
+import TalentMatchingCTA from "@/components/Homepage/TalentMatchingCTA/TalentMatchingCTA";
+import Testimonials from "@/components/Homepage/Testimonials/Testimonials";
+import LatestArticles from "@/components/Homepage/LatestArticles/LatestArticles";
+import BookACallCTA from "@/components/Homepage/BookACallCTA/BookACallCTA";
+import { Articles } from "@/data/Home/Testimonials";
 import { heroData } from "./data/Home/HeroSection";
+import ClientLogosSectionWrapper from "@/components/Homepage/ClientLogosSectionWrapper/ClientLogosSectionWrapper";
 
 export default function Home() {
   return (
@@ -25,14 +25,12 @@ export default function Home() {
         smallScreenImage={heroData.smallScreenImage}
         largeScreenImage={heroData.largeScreenImage}
       />
-      <ClientLogosSection />
+      <ClientLogosSectionWrapper />
       <ServicesSection />
-      <OurMission
-        description="Helping organisations transform into a network of interdependent product teams across different business units."
-      />
+      <OurMission description="Helping organisations transform into a network of interdependent product teams across different business units." />
       <HeroBanner
-        title="Transforming Organisations and Teams."
-        subtitle="Your people are the heart of your organisation; hence, our mission is to help improve how people work, lead, and are led."
+        title="Redefine the way you work."
+        subtitle="Helping organizations transform into a network of interdependent product teams across different sectors."
       />
       <ServicesOverview />
       <div className="py-6 sm:py-16">

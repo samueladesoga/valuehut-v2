@@ -79,7 +79,7 @@ export const getAllArticles = async () => {
       },
 
       body: JSON.stringify({ query }),
-    },
+    }
   ).then((res) => res.json());
 
   const posts: IPostType[] = data.data?.blogCollection?.items;
@@ -105,7 +105,7 @@ export const getAllArticles = async () => {
 };
 
 export const getSlugArticle = async (
-  slug: string,
+  slug: string
 ): Promise<IArticle | null> => {
   if (!slug) {
     return null;
@@ -153,7 +153,7 @@ export const getSlugArticle = async (
       next: {
         revalidate: 10,
       },
-    },
+    }
   ).then((res) => res.json());
 
   const data = await response;
@@ -175,5 +175,43 @@ export const getSlugArticle = async (
       title: post.cover.title,
     },
     author: post.author,
+  };
+};
+
+export const getClientLogos = async () => {
+  const query = `
+    {
+        clientLogosCollection {
+            items{
+                title
+                logosCollection {
+                    items{
+                        title
+                        url
+                    }
+                }
+            }
+        } 
+    }
+ 
+ `;
+  const data = await fetch(
+    `https://graphql.contentful.com/content/v1/spaces/${process.env.BLOG_SPACE_ID}`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.BLOG_ACCESS_TOKEN}`,
+      },
+
+      body: JSON.stringify({ query }),
+    }
+  ).then((res) => res.json());
+
+  const logos = data.data?.clientLogosCollection?.items;
+
+  return {
+    title: logos[0].title,
+    logos: logos[0].logosCollection.items,
   };
 };
