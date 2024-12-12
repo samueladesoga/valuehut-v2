@@ -42,7 +42,7 @@ export const coCreatingData: IServicesSection = {
     {
       title: "Consulting",
       description:
-        ` Delivering expert strategic guidance that helps organisations navigate complex business challenges, 
+        `Delivering expert strategic guidance that helps organisations navigate complex business challenges, 
         offering innovative solutions and actionable insights that drive operational excellence and strategic 
         transformation.
 `,

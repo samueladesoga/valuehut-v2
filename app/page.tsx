@@ -30,11 +30,6 @@ export default function Home() {
       <ServicesSection />
       <OurMission
         description="Helping organisations transform into a network of interdependent product teams across different business units."
-        button={
-          <Button size="medium" border rounded="full" textColor="main">
-            Button example
-          </Button>
-        }
       />
       <HeroBanner
         title="Transforming Organisations and Teams."
