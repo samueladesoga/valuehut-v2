@@ -6,7 +6,19 @@ export interface ServiceItem {
 
 export const services: ServiceItem[] = [
   {
-    title: "Product Management",
+    title: "Delivery Management",
+    description:
+      "Product Management practices help organizations turn ideas into valuable products, generate revenue, and eventually retire them. These practices also quickly eliminate products that don't scale, reducing waste and aligning product efforts with organizational strategy.",
+    points: [
+      "Creation of product goals for products in your organisation using OKR Framework",
+      "Design a product framework for effective collaboration with multiple stakeholders across the organisation",
+      "Metrics that help the product teams show progress toward the defined product goals",
+      "Embracing an empirical process approach towards Product Management",
+      "Defining practices for ordering product backlog items in the product backlog",
+    ],
+  },
+  {
+    title: "Product Delivery",
     description:
       "Product Management practices help organizations turn ideas into valuable products, generate revenue, and eventually retire them. These practices also quickly eliminate products that don't scale, reducing waste and aligning product efforts with organizational strategy.",
     points: [
@@ -28,7 +40,7 @@ export const services: ServiceItem[] = [
     ],
   },
   {
-    title: "Test Automation",
+    title: "Test Strategy & Automation",
     description:
       "Test Automation practices help organizations ensure software quality efficiently.",
     points: [
@@ -38,7 +50,7 @@ export const services: ServiceItem[] = [
     ],
   },
   {
-    title: "Agile Fundamentals Training",
+    title: "Enterprise and Team Coaching",
     description:
       "Agile Fundamentals Training helps organizations adopt agile methodologies effectively.",
     points: [
