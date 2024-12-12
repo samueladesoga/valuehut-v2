@@ -20,6 +20,7 @@ const getBackgroundColor = (index: number) => {
     "bg-[#D5D5D5]",
     "bg-[#FFF4EC]",
     "bg-[#E5EEF7]",
+    "bg-[#D5D5D5]",
   ];
   return colors[index % colors.length];
 };
