@@ -9,7 +9,6 @@ import Testimonials from "./components/Homepage/Testimonials/Testimonials";
 import LatestArticles from "./components/Homepage/LatestArticles/LatestArticles";
 import BookACallCTA from "./components/Homepage/BookACallCTA/BookACallCTA";
 import { Articles } from "./data/Home/Testimonials";
-import Button from "./components/Button/Button";
 import { heroData } from "./data/Home/HeroSection";
 
 export default function Home() {
