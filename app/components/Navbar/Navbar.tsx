@@ -70,6 +70,9 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
         ? "bg-white text-black shadow-md"
         : "bg-[#707070]/10 backdrop-blur-3xl text-white";
 
+  const isNavbarWhite =
+    isWhiteBackgroundRoutes.includes(pathname) || scrolled || isWhiteHero;
+
   return (
     <div className={`fixed w-full md:pt-3 z-50`}>
       <nav
@@ -133,27 +136,43 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
           </Link>
 
           <button
-            className="lg:hidden flex items-center text-white focus:outline-none"
+            className={`lg:hidden flex items-center focus:outline-none ${
+              isNavbarWhite ? "text-main" : "text-accentMain"
+            }`}
             onClick={toggleMobileMenu}
           >
             {isMobileMenuOpen ? (
               <div className="flex justify-center gap-[6px] items-center">
-                <h4 className="text-[12px] leading-[22px] font-bold font-secondary uppercase">
+                <h4
+                  className={`text-[12px] leading-[22px] font-bold font-secondary uppercase ${
+                    isNavbarWhite ? "text-main" : "text-accentMain"
+                  }`}
+                >
                   menu
                 </h4>
-                <X className="h-3.5 w-3.5" />
+                <X
+                  className={`h-3.5 w-3.5 ${
+                    isNavbarWhite ? "text-main" : "text-accentMain"
+                  }`}
+                />
               </div>
             ) : (
               <div className="flex justify-center gap-[6px] items-center">
-                <h4 className="text-[12px] leading-[22px] font-bold font-secondary uppercase">
+                <h4
+                  className={`text-[12px] leading-[22px] font-bold font-secondary uppercase ${
+                    isNavbarWhite ? "text-main" : "text-accentMain"
+                  }`}
+                >
                   menu
                 </h4>
                 <Image
                   src={menu}
-                  alt="menu"  
+                  alt="menu"
                   width={200}
                   height={200}
-                  className="h-auto w-auto"
+                  className={`h-auto w-auto ${
+                    isNavbarWhite ? "filter invert" : ""
+                  }`}
                 />
               </div>
             )}
