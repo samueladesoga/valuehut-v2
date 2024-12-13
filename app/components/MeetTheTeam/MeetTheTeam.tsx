@@ -3,6 +3,7 @@ import React from "react";
 
 function MeetTheTeam() {
   return (
+    <div>
     <section className="flex flex-col lg:flex-row justify-between items-center gap-8">
       <div className="bg-[#E5DFD9] flex flex-col gap-8 md:gap-10 p-8 rounded-[20px]">
         <div className="flex flex-col sm:flex-row gap-4">
@@ -116,7 +117,9 @@ function MeetTheTeam() {
           business environment.
         </p>
       </div>
-      <div className="bg-[#A5E0E7] flex flex-col gap-8 md:gap-10 p-8 rounded-[20px]">
+    </section>
+    <section className="flex flex-col lg:flex-row justify-between items-center gap-8">
+    <div className="bg-[#A5E0E7] flex flex-col gap-8 md:gap-10 p-8 rounded-[20px]">
         <div className="flex flex-col sm:flex-row gap-4">
           <Image
             src={"/images/Coach-01.png"}
@@ -230,6 +233,7 @@ function MeetTheTeam() {
         </p>
       </div>
     </section>
+    </div>
   );
 }
 
