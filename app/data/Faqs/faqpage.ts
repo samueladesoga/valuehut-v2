@@ -37,21 +37,27 @@ export const faqs: FAQItem[] = [
   },
   {
     category: "Academy",
-    question: "What programs does the Academy offer?",
+    question: "What courses does the Academy offer?",
     answer:
-      "The Academy offers a wide range of programs in various fields. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+      "Our courses include scrum.org Agile Leadership, Product Management and Scrum Mastery Courses. We also design and deliver bespoke courses depending on your organisation needs.",
   },
   {
     category: "Academy",
-    question: "What are the admission requirements for the Academy?",
+    question: "What is the mode of delivery for the courses?",
     answer:
-      "The admission requirements for the Academy vary depending on the program. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+      "The courses are delivered Virtually or In Person; our course administrators will specify the mode of training on the class page.",
   },
   {
     category: "Academy",
-    question: "What is the duration of the Academy programs?",
+    question: "How much does it cost for the courses?",
     answer:
-      "The duration of the Academy programs varies from program to program. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+      "The cost depends on the country of primary residence for each attendee or the organisation they work for. You will be asked to enter your country of residence before payment and you will be able to see the cost on the next page.",
+  },
+  {
+    category: "Academy",
+    question: "Can I claim PDU credits from the Project Management Institute (PMI) after taking this course?",
+    answer:
+      "Attendees are able to claim 7 PDU credits from the Project Management Institute (PMI) for each day spent in a class. This means you get 14 PDU credit for a 2 days class",
   },
   {
     category: "Consulting",
