@@ -62,7 +62,9 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({
         >
           <ServiceCard
             title="Academy"
-            description="Developing Organisation agility capabilities is a complex journey of Learning and Unlearning"
+            description="Empowering professionals with cutting-edge skills and transformative learning experiences, 
+            providing training courses that equip your teams with the dynamic capabilities needed to thrive 
+            in rapidly evolving business landscapes."
             bgColor="bg-[#05668D]"
             href="/academy"
             buttonText="Explore Courses"
@@ -81,7 +83,9 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({
         >
           <ServiceCard
             title="Consulting"
-            description="Our training courses have been carefully designed to provide individuals and teams"
+            description="Delivering expert strategic guidance that helps organisations navigate complex business challenges, 
+            offering innovative solutions and actionable insights that drive operational excellence and strategic 
+            transformation."
             bgColor="bg-[#02374B]"
             href="/consulting"
             buttonText="Read More"
@@ -100,7 +104,9 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({
         >
           <ServiceCard
             title="Talent Matching"
-            description="Established product delivery teams often face challenges related to adoption"
+            description="Connecting organisations with exceptional professionals who can drive innovation, efficiency, and 
+            sustainable growth, ensuring that businesses are paired with top-tier agile talent perfectly aligned 
+            with their strategic objectives."
             bgColor="bg-[#A97240]"
             href="/talent-matching"
             buttonText="Read More"
