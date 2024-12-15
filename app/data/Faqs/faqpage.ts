@@ -66,13 +66,6 @@ export const faqs: FAQItem[] = [
       "The Consulting department provides a wide range of services to clients. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
   },
   {
-    category: "Academy",
-    question:
-      "What are the career prospects after completing an Academy program?",
-    answer:
-      "Completing an Academy program opens up various career prospects. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
-  },
-  {
     category: "Talent Matching",
     question: "How does the Talent Matching process work?",
     answer:
