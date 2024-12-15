@@ -36,7 +36,7 @@ export default function HiringProcess() {
             <HiringCard
               bgColor="bg-[#C5D8E0]"
               text="01"
-              description="Meet with the Hiring Manager to understand the business and team needs."
+              description="A meeting with the hiring manager to understand your organisation and team needs."
             />
           </motion.div>
 
@@ -52,7 +52,7 @@ export default function HiringProcess() {
             <HiringCard
               bgColor="bg-[#C4EBE3]"
               text="02"
-              description="Draft a Job description and get client approval."
+              description="Draft and review job description; followed by the hiring manager's approval."
             />
           </motion.div>
 
@@ -68,7 +68,7 @@ export default function HiringProcess() {
             <HiringCard
               bgColor="bg-[#F5E5D7]"
               text="03"
-              description="Present relevant profiles with 7 working days."
+              description="Present relevant profiles with 7-10 working days."
             />
           </motion.div>
           {/* {Steps.map((step: ISteps, index: number) => (
