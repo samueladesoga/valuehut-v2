@@ -38,7 +38,7 @@ export default function Home() {
       </div>
       <div>
         <Testimonials />
-      </div>Value
+      </div>
       <LatestArticles
         title="Latest articles"
         articles={Articles}
