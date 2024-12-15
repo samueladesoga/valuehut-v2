@@ -29,7 +29,7 @@ export default function Home() {
       <ServicesSection />
       <OurMission description="Helping organisations transform into a network of interdependent product teams across different business units." />
       <HeroBanner
-        title="ValueHut Academy"
+        title="Academy"
         subtitle="An integral part of your organisation's transformational journey - explore our Agile Leadership, Product Management, Scrum Mastery and other courses; delivered by seasoned Consultants."
       />
       <ServicesOverview />

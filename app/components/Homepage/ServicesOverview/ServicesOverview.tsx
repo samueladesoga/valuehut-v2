@@ -19,15 +19,15 @@ const ServicesOverview = () => {
   return (
     <section className="max-w-[924px] px-6 xl:px-0 py-12 flex flex-col mx-auto gap-4">
       <div className="max-w-[582px] mx-auto flex flex-col justify-center items-center gap-8 sm:gap-8">
-        <SectionTitle title="Take your business to the next level" />
-        <SectionPara para="Helping Organisations transform into a network of interdependent product teams across different business units into a network of interdependent." />
+        <SectionTitle title="Consulting Service" />
+        <SectionPara para="Our consultants advice and drive meaningful change across your organisation; helping deliver strategic initiatives while upskilling your people in the process." />
         <Button
           bgColor="fill-brand-secondary"
           rounded="full"
           size="medium"
           onClick={navigateToConsulting}
         >
-          Explore our services
+          Explore all services
         </Button>
       </div>
       <div className="flex flex-col md:flex-row justify-center items-center gap-2 md:gap-8 mt-5 sm:my-16">

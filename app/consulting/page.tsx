@@ -187,7 +187,7 @@ function ConsultingPage() {
       <div className="pb-0 md:pb-20 mt-10 md:mt-0 ">
         <BookACallCTA
           title="Ready to book a free call?"
-          description="ValueHut Consultancy is an Agile Management Consultant, helping organizations explore better ways of working and leading."
+          description="ValueHut Consultancy is an Agile Management Consultany, helping organizations explore better ways of working and leading."
           buttonText="Book a free call"
           imageUrl="/images/BookACallCTA-image.png"
         />
