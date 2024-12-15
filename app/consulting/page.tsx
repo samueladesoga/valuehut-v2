@@ -67,7 +67,7 @@ function ConsultingPage() {
         <WhyChooseUs
           title={"Why Choose Us?"}
           subtitle={
-            "Established product delivery teams often face challenges related to adoption"
+            "Our consultants have successfully helped organisation delivered products while upskilling teams in these organisations."
           }
           stats={[
             {

@@ -56,7 +56,7 @@ function page() {
         <WhyChooseUs
           title={"Why choose us?"}
           subtitle={
-            "Established product delivery teams often face challenges related to adoption"
+            "Our talent network includes experienced Professionals that we have met through our Academy and Consulting services."
           }
           stats={[
             {

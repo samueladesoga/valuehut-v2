@@ -40,7 +40,7 @@ export default function Home() {
         <div className="container flex pt-14 justify-between flex-col-reverse lg:flex-row gap-20 lg:gap-2">
           <div className="px-4 xl:px-0 bg-white lg:bg-inherit">
             <h1 className=" text-7xl sm:text-8xl font-primary font-medium bg-white lg:bg-inherit">
-              All trainings
+              All Courses
             </h1>
           </div>
           <TrainingsPartners />

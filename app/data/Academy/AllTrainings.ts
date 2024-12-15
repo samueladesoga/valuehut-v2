@@ -37,9 +37,9 @@ export interface IAcadmeyHero {
 }
 
 export const AcademyHero: IAcadmeyHero = {
-  title: "Maximize your career growth with us",
+  title: "Agile and Scrum Courses",
   subtitle:
-    "Helping Organisations transform into a network of interdependent product teams across different business units.",
+    "Join an upcoming Agile Leadership, Product Management or Scrum Mastery course guaranteed to get your organisation working faster, better and safer.",
   backgroundImage: "/images/trainings.png",
   pill: "ACADEMY",
   showRating: true,

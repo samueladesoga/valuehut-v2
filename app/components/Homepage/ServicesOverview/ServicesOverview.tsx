@@ -35,7 +35,7 @@ const ServicesOverview = () => {
           <div className="bg-[#E5DFD9] rounded-lg shadow-lg">
             <Card
               title="Delivery Management"
-              description="Developing Organisation agility capabilities is a complex journey of Learning and Unlearning"
+              description="Our consultants lead your organisations delivery teams; building capabilities within your organisation helping them build great products"
               icon={Questions}
             />
           </div>
@@ -44,8 +44,8 @@ const ServicesOverview = () => {
         <div className="md:hidden">
           <div className="bg-[#A5E0E7] rounded-lg shadow-lg">
             <Card
-              title="Consulting"
-              description="Developing Organisation agility capabilities is a complex journey of Learning and Unlearning"
+                title="Product Delivery"
+                description="Outsource the delivery of your product ideas to us; idea to minimum viable product in 3months using Incremental and Iterative approaches."
               icon={Blend}
             />
           </div>
@@ -60,7 +60,7 @@ const ServicesOverview = () => {
         >
           <Card
             title="Delivery Management"
-            description="Developing Organisation agility capabilities is a complex journey of Learning and Unlearning"
+            description="Our consultants lead your organisations delivery teams; building capabilities within your organisation helping them build great products"
             icon={Questions}
           />
         </motion.div>
@@ -73,8 +73,8 @@ const ServicesOverview = () => {
           viewport={{ once: false, amount: 0.2 }}
         >
           <Card
-            title="Consulting"
-            description="Developing Organisation agility capabilities is a complex journey of Learning and Unlearning"
+            title="Product Delivery"
+            description="Outsource the delivery of your product ideas to us; idea to minimum viable product in 3months using Incremental and Iterative approaches."
             icon={Blend}
           />
         </motion.div>

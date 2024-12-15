@@ -30,15 +30,15 @@ const TalentMatchingCTA: React.FC = () => {
         </div>
 
         <div>
-          <CTAHeading text="We help you find the right talent, fast." />
+          <CTAHeading text="Recruitment service, done better." />
           <div className="flex flex-col sm:flex-row gap-8">
             <CTASubheading
-              headline="Headline one"
-              description="Established product delivery teams often face challenges related to adoption."
+              headline="Specialist"
+              description="Our recruitment service caters for Delivery Managers/Lead, Scrum Masters and Product Owners."
             />
             <CTASubheading
-              headline="Headline two"
-              description="Our tailored solutions make adoption seamless and effective."
+              headline="Why us"
+              description="We screen candidates better than traditional recruiters."
             />
           </div>
         </div>
