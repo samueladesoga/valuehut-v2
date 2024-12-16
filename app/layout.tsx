@@ -30,7 +30,7 @@ export default function RootLayout({
       href: "/resources",
       subLinks: [
         { label: "About Us", href: "/about-us" },
-        { label: "Faqs", href: "/faqs" },
+        { label: "FAQs", href: "/faqs" },
         { label: "Blog", href: "/blog" },
       ],
     },
