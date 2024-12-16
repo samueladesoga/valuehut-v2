@@ -94,7 +94,7 @@ const ContactForm: React.FC<ContactFormProps> = () => {
               className="w-full p-4 border text-sm border-[#bfbfbf] font-normal rounded-md text-secondary"
               required
             >
-              <option value="">Choose options</option>
+              <option value="">Select a service</option>
               <option value="academy">Academy</option>
               <option value="consulting">Consulting</option>
               <option value="talent-matching">Talent Matching</option>
