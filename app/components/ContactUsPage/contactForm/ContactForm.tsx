@@ -84,7 +84,7 @@ const ContactForm: React.FC<ContactFormProps> = () => {
               htmlFor="interest"
               className="block font-primary font-medium text-lg !leading-[22.8px] mb-1"
             >
-              What are you interested in
+              What are you interested in?            
             </label>
             <select
               id="interest"
@@ -95,9 +95,9 @@ const ContactForm: React.FC<ContactFormProps> = () => {
               required
             >
               <option value="">Choose options</option>
-              <option value="option1">Option 1</option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
+              <option value="academy">Academy</option>
+              <option value="consulting">Consulting</option>
+              <option value="talent-matching">Talent Matching</option>
             </select>
           </div>
           <div>
