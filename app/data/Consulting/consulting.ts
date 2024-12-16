@@ -8,7 +8,7 @@ export interface IHeroSection {
 export const consultingheroData: IHeroSection = {
   title: "Consulting",
   subtitle:
-    "Write a concise description that clearly defines this consulting service, emphasizing its key aspects and value.",
+    "Helping you deliver better products safer and faster; ensuring allignment with your organisation's stategic initiatives",
   backgroundImage: "/consulting/consulting.png",
   buttonText: "Book a consultation",
 };
