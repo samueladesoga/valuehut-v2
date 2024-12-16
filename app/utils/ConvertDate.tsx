@@ -12,10 +12,27 @@ export function convertDate(dateString: string) {
 
   const formattedDate = dateObj.toLocaleDateString(
     "en-GB",
-    options as DateTimeFormatOptions,
+    options as DateTimeFormatOptions
   );
 
   const dayAdjustedDate = formattedDate.replace(/^\d+/, "22");
 
   return dayAdjustedDate;
+}
+
+export function getDay(dateInput: string): string {
+  const date = new Date(dateInput);
+  return date.getUTCDate().toString().padStart(2, "0");
+}
+
+export function getMonthAndDay(dateInput: string): string {
+  const date = new Date(dateInput);
+  const month = date.toLocaleString("en-US", { month: "short" });
+  const day = date.getUTCDate().toString().padStart(2, "0");
+  return `${month} ${day}`;
+}
+
+export function getYear(dateInput: string): string {
+  const date = new Date(dateInput);
+  return date.getUTCFullYear().toString();
 }

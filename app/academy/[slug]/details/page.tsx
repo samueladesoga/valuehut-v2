@@ -28,7 +28,7 @@ function page() {
 
       <div className="bg-white xl:px-12 py-8 mt-12 ">
         <div className="container px-4 xl:px-0 flex flex-col gap-14">
-          <Aboutcourse />
+          <Aboutcourse description={""} logo={""} />
           <div className="flex flex-col gap-5">
             <h1 className="text-6xl font-medium text-main font-primary">
               Course Learning Objectives

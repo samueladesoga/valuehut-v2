@@ -1,7 +1,11 @@
 import Image from "next/image";
 import React from "react";
+interface IAboutcourse {
+  description: string;
+  logo: string;
+}
 
-function Aboutcourse() {
+function Aboutcourse({ description, logo }: IAboutcourse) {
   return (
     <div className="flex flex-col-reverse md:flex-row justify-between items-start md:items-center gap-5 md:gap-40 ">
       <div className="flex flex-col gap-3">
@@ -9,15 +13,10 @@ function Aboutcourse() {
           About this course
         </h1>
         <p className="text-sm font-secondary font-medium text-body">
-          Professional Scrum Master (PSM) is an interactive, activity-based
-          course where students gain a thorough understanding of Professional
-          Scrum and the role of the Scrum Master. Students develop a deep
-          understanding of the underlying principles of Scrum and the Agile
-          mindset while learning the practices applied by successful Scrum Teams
-          through a combination of discussion and exercises in class.
+          {description}
         </p>
       </div>
-      <Image src={"/images/psm.png"} width={150} height={150} alt="image" />
+      <Image src={logo} width={150} height={150} alt="image" />
     </div>
   );
 }

@@ -6,7 +6,15 @@ import { usePathname, useRouter } from "next/navigation";
 import Button from "@/components/Button/Button";
 import { IUpcomingClassesData } from "@/data/Academy/UpcomingClasses";
 
-function Table({ id, dates, time, type, fullBook }: IUpcomingClassesData) {
+function Table({
+  id,
+  startDate,
+  endDate,
+  year,
+  time,
+  type,
+  filled,
+}: IUpcomingClassesData) {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -17,29 +25,29 @@ function Table({ id, dates, time, type, fullBook }: IUpcomingClassesData) {
     <tr key={id}>
       <td
         className={`w-[25%] xl:w-[25%] px-3 py-4 text-sm font-medium font-secondary ${
-          fullBook ? "text-secondary" : "text-main"
+          filled ? "text-secondary" : "text-main"
         }`}
       >
-        {dates}
+        {startDate} - {endDate}, {year}
       </td>
 
       <td
         className={`w-[20%] xl:w-[25%] px-3 py-4 text-sm font-medium font-secondary ${
-          fullBook ? "text-secondary" : "text-main"
+          filled ? "text-secondary" : "text-main"
         }`}
       >
         {time}
       </td>
       <td
         className={`w-[20%] xl:w-[25%] px-3 py-4 text-sm font-medium font-secondary ${
-          fullBook ? "text-secondary" : "text-main"
+          filled ? "text-secondary" : "text-main"
         }`}
       >
         {type}
       </td>
       <td className="w-[35%] xl:w-[25%]">
         <div className="w-full flex  xl:gap-4 justify-end ">
-          {!fullBook ? (
+          {!filled ? (
             <>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}

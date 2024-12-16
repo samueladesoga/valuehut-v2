@@ -35,7 +35,9 @@ const CourseCard = ({
               {title}
             </h2>
             <p className="text-sm font-normal font-secondary text-body">
-              {description}
+              {description.length > 120
+                ? `${description.slice(0, 120)}...`
+                : description}
             </p>
             <div className="flex gap-4 pt-6">
               <Button

@@ -1,28 +1,41 @@
-"use client";
-
 import React from "react";
 import HeroComponent from "@/components/HeroComponent/HeroComponent";
 import CourseCard from "@/components/CourseCard/CourseCard";
 import { AllCourses, AcademyHero } from "@/data/Academy/AllTrainings";
-import FilterDropdown from "@/components/FilterDropdown/FilterDropdown";
+// import FilterDropdown from "@/components/FilterDropdown/FilterDropdown";
 import Testimonials from "@/components/Homepage/Testimonials/Testimonials";
 import { faqs } from "@/data/Faqs/faqpage";
 import FAQ from "@/components/FaqPage/Faq/Faq";
 import TrainingsPartners from "@/components/TrainingsPage/TriningsPartners/TrainingsPartners";
+import { getAllCourses } from "@/lib/courseApi";
 
-export default function Home() {
-  const filterOptions = [
-    { value: "latest", label: "Latest" },
-    { value: "highestRated", label: "Highest Rated" },
-    { value: "duration", label: "Shortest Duration" },
-  ];
+interface ICourseCard {
+  id: number;
+  title: string;
+  description: string;
+  level: string;
+  duration: string;
+  dates: string;
+  rating: number;
+  slug: string;
+  reviews: number;
+  logo: string;
+}
 
-  const handleFilterChange = (selectedFilter: {
-    value: string;
-    label: string;
-  }) => {
-    console.log("Selected Filter:", selectedFilter.value);
-  };
+export default async function Home() {
+  // const filterOptions = [
+  //   { value: "latest", label: "Latest" },
+  //   { value: "highestRated", label: "Highest Rated" },
+  //   { value: "duration", label: "Shortest Duration" },
+  // ];
+
+  // const handleFilterChange = (selectedFilter: {
+  //   value: string;
+  //   label: string;
+  // }) => {
+  //   console.log("Selected Filter:", selectedFilter.value);
+  // };
+  const course = await getAllCourses();
 
   return (
     <>
@@ -40,7 +53,7 @@ export default function Home() {
         <div className="container flex pt-14 justify-between flex-col-reverse lg:flex-row gap-20 lg:gap-2">
           <div className="px-4 xl:px-0 bg-white lg:bg-inherit">
             <h1 className=" text-7xl sm:text-8xl font-primary font-medium bg-white lg:bg-inherit">
-              All Courses
+              All trainings
             </h1>
           </div>
           <TrainingsPartners />
@@ -48,15 +61,15 @@ export default function Home() {
 
         <div className="container bg-white lg:bg-inherit px-4 xl:px-0 ">
           <div className="">
-            <FilterDropdown
+            {/* <FilterDropdown
               options={filterOptions}
               onChange={handleFilterChange}
-            />
+            /> */}
           </div>
         </div>
         <div className="container  pt-[1px] lg:pt-5">
           <div className="flex flex-col gap-[2px]">
-            {AllCourses.map((course) => (
+            {course.map((course: ICourseCard) => (
               <CourseCard
                 key={course.id}
                 title={course.title}
