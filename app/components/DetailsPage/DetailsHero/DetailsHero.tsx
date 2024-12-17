@@ -26,10 +26,12 @@ function DetailsHero({
       <div className="flex gap-5 justify-between">
         <div className="max-w-[633px] ">
           <h1 className="block text-[46px] leading-[59px] font-primary font-medium text-main">
-            {title} <span>{schedule.date}</span>
+            {title} <span className="block">{schedule.date}</span>
           </h1>
           <p className="text-sm font-medium font-secondary text-body pt-6">
-            {description}
+            {description.length > 130
+              ? `${description.slice(0, 150)}...`
+              : description}
           </p>
           <div className="flex flex-col sm:flex-row text-sm font-medium font-secondary text-main gap-2 sm:gap-8 pt-6">
             <motion.div
@@ -58,7 +60,7 @@ function DetailsHero({
               {reviews.rating} ({reviews.count} reviews)
             </motion.div>
           </div>
-          <div className="grid grid-cols-2 lg:grid-cols-6 gap-4 justify-between bg-white py-4 px-8 rounded-xl mt-10">
+          <div className="grid grid-cols-2 lg:grid-cols-10 gap-4 justify-between bg-white p-4 rounded-xl mt-10">
             <div className="flex flex-col gap-2  lg:col-span-2">
               <h4 className="text-sm font-normal font-secondary text-main">
                 Starting Price
@@ -67,7 +69,7 @@ function DetailsHero({
                 {pricing.startingPrice}
               </span>
             </div>
-            <div className="flex flex-col gap-2 lg:col-span-2">
+            <div className="flex flex-col gap-2 lg:col-span-3">
               <h4 className="text-sm font-normal font-secondary text-main">
                 Date
               </h4>
@@ -75,7 +77,7 @@ function DetailsHero({
                 {schedule.date}
               </span>
             </div>
-            <div className="flex flex-col gap-2 ">
+            <div className="flex flex-col gap-2 lg:col-span-3">
               <h4 className="text-sm font-normal font-secondary text-main">
                 Time
               </h4>
@@ -83,7 +85,7 @@ function DetailsHero({
                 {schedule.time}
               </span>
             </div>
-            <div className="flex flex-col gap-2 ">
+            <div className="flex flex-col gap-2 lg:col-span-2">
               <h4 className="text-sm font-normal font-secondary text-main">
                 Class type
               </h4>
@@ -108,8 +110,9 @@ function DetailsHero({
             src={images.heroImage}
             width={530}
             height={411}
+            objectFit="cover"
             alt="image"
-            className="object-containr"
+            className="w-[530px] h-[422px] object-cover rounded-[20px]"
           />
         </div>
       </div>

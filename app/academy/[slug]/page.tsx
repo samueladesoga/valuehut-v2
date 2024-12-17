@@ -14,6 +14,7 @@ import { getCourse } from "@/lib/courseApi";
 import { AdditionalBenefitCard } from "@/components/AcademyPage/AdditionalBenefit/AdditonalBenefitCard";
 
 interface IClasses {
+  classId: number;
   id: string;
   time: string;
   classType: string;
@@ -23,6 +24,11 @@ interface IClasses {
   year: string;
 }
 
+export interface PageProps {
+  params: {
+    slug: string;
+  };
+}
 export default async function CourseDetailsPage({
   params,
 }: {
@@ -75,6 +81,7 @@ export default async function CourseDetailsPage({
                 <tbody className="bg-white" key={index}>
                   <Table
                     key={row.id}
+                    classId={row.classId}
                     startDate={row.startDate}
                     endDate={row.endDate}
                     year={row.year}
@@ -97,6 +104,7 @@ export default async function CourseDetailsPage({
               time={row.time}
               type={row.classType}
               filled={row.filled}
+              classId={row.classId}
             />
           ))}
         </div>

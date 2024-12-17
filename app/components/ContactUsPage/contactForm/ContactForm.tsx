@@ -84,7 +84,7 @@ const ContactForm: React.FC<ContactFormProps> = () => {
               htmlFor="interest"
               className="block font-primary font-medium text-lg !leading-[22.8px] mb-1"
             >
-              What are you interested in?            
+              What are you interested in?
             </label>
             <select
               id="interest"

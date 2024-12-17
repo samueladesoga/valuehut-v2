@@ -44,8 +44,8 @@ const ServicesOverview = () => {
         <div className="md:hidden">
           <div className="bg-[#A5E0E7] rounded-lg shadow-lg">
             <Card
-                title="Product Delivery"
-                description="Outsource the delivery of your product ideas to us; idea to minimum viable product in 3months using Incremental and Iterative approaches."
+              title="Product Delivery"
+              description="Outsource the delivery of your product ideas to us; idea to minimum viable product in 3months using Incremental and Iterative approaches."
               icon={Blend}
             />
           </div>

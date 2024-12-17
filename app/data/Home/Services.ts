@@ -30,8 +30,7 @@ export const coCreatingData: IServicesSection = {
   cards: [
     {
       title: "Academy",
-      description:
-        `Empowering professionals with cutting-edge skills and transformative learning experiences, 
+      description: `Empowering professionals with cutting-edge skills and transformative learning experiences, 
         providing training courses that equip your teams with the dynamic capabilities needed to thrive 
         in rapidly evolving business landscapes.`,
       buttonText: "Explore Courses",
@@ -41,8 +40,7 @@ export const coCreatingData: IServicesSection = {
     },
     {
       title: "Consulting",
-      description:
-        `Delivering expert strategic guidance that helps organisations navigate complex business challenges, 
+      description: `Delivering expert strategic guidance that helps organisations navigate complex business challenges, 
         offering innovative solutions and actionable insights that drive operational excellence and strategic 
         transformation.
 `,
@@ -53,8 +51,7 @@ export const coCreatingData: IServicesSection = {
     },
     {
       title: "Talent Matching",
-      description:
-        `Connecting organisations with exceptional professionals who can drive innovation, efficiency, and 
+      description: `Connecting organisations with exceptional professionals who can drive innovation, efficiency, and 
         sustainable growth, ensuring that businesses are paired with top-tier agile talent perfectly aligned 
         with their strategic objectives.`,
       buttonText: "Read More",

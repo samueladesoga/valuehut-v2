@@ -23,7 +23,7 @@ interface NavbarProps {
 
 const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(
-    null
+    null,
   );
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -121,13 +121,12 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
                 >
                   {link.label}
                 </Link>
-              )
+              ),
             )}
           </div>
 
           <Link href="/contact-us">
             <Button
-              rounded="full"
               bgColor="fill-brand-secondary"
               className="py-2 px-5 text-xs font-medium text-main hidden lg:flex"
             >
@@ -225,7 +224,7 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
                       {link.label}
                     </Link>
                   </li>
-                )
+                ),
               )}
               <li>
                 <Link href="/contact-us">

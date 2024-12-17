@@ -60,48 +60,60 @@ const CourseCard = ({
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-start gap-3">
-          <div className="flex gap-2">
-            <Image
-              src={"/icons/layers.svg"}
-              width={24}
-              height={24}
-              alt="level"
-            />
-            {level}
-          </div>
-          <div className="flex gap-2">
-            <Image
-              src={"/icons/clock.svg"}
-              width={24}
-              height={24}
-              alt="duration"
-            />
-            {duration}
-          </div>
-          <div className="flex gap-2">
-            <Image
-              src={"/icons/calendar.svg"}
-              width={24}
-              height={24}
-              alt="date"
-            />
-            {dates}
-          </div>
-          <div className="flex justify-between gap-3">
-            <div className="flex gap-1">
-              {Array.from({ length: parseInt(String(rating)) }, (_, index) => (
-                <Image
-                  key={index}
-                  src={"/Assets/rating.svg"}
-                  alt="rating"
-                  width={24}
-                  height={24}
-                />
-              ))}
+        <div className="w-full lg:w-[195px] flex flex-col items-start gap-3">
+          {level && (
+            <div className="flex gap-2">
+              <Image
+                src={"/icons/layers.svg"}
+                width={24}
+                height={24}
+                alt="level"
+              />
+              {level}
             </div>
-            <span>({reviews} reviews)</span>
-          </div>
+          )}
+          {duration && (
+            <div className="flex gap-2">
+              <Image
+                src={"/icons/clock.svg"}
+                width={24}
+                height={24}
+                alt="duration"
+              />
+              {duration}
+            </div>
+          )}
+          {dates && (
+            <div className="flex gap-2">
+              <Image
+                src={"/icons/calendar.svg"}
+                width={24}
+                height={24}
+                alt="date"
+              />
+              {dates}
+            </div>
+          )}
+
+          {reviews && (
+            <div className="flex justify-between gap-3">
+              <div className="flex gap-1">
+                {Array.from(
+                  { length: parseInt(String(rating)) },
+                  (_, index) => (
+                    <Image
+                      key={index}
+                      src={"/Assets/rating.svg"}
+                      alt="rating"
+                      width={24}
+                      height={24}
+                    />
+                  ),
+                )}
+              </div>
+              <span>({reviews} reviews)</span>
+            </div>
+          )}
         </div>
       </div>
     </section>

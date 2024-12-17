@@ -55,7 +55,8 @@ export const faqs: FAQItem[] = [
   },
   {
     category: "Academy",
-    question: "Can I claim PDU credits from the Project Management Institute (PMI) after taking this course?",
+    question:
+      "Can I claim PDU credits from the Project Management Institute (PMI) after taking this course?",
     answer:
       "Attendees are able to claim 7 PDU credits from the Project Management Institute (PMI) for each day spent in a class. This means you get 14 PDU credit for a 2 days class",
   },

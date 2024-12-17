@@ -12,7 +12,7 @@ export function convertDate(dateString: string) {
 
   const formattedDate = dateObj.toLocaleDateString(
     "en-GB",
-    options as DateTimeFormatOptions
+    options as DateTimeFormatOptions,
   );
 
   const dayAdjustedDate = formattedDate.replace(/^\d+/, "22");

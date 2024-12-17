@@ -6,4 +6,5 @@ export interface IUpcomingClassesData {
   time: string;
   type: string;
   filled: boolean;
+  classId: number;
 }

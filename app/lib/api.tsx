@@ -79,7 +79,7 @@ export const getAllArticles = async () => {
       },
 
       body: JSON.stringify({ query }),
-    }
+    },
   ).then((res) => res.json());
 
   const posts: IPostType[] = data.data?.blogCollection?.items;
@@ -105,7 +105,7 @@ export const getAllArticles = async () => {
 };
 
 export const getSlugArticle = async (
-  slug: string
+  slug: string,
 ): Promise<IArticle | null> => {
   if (!slug) {
     return null;
@@ -153,7 +153,7 @@ export const getSlugArticle = async (
       next: {
         revalidate: 10,
       },
-    }
+    },
   ).then((res) => res.json());
 
   const data = await response;
@@ -205,7 +205,7 @@ export const getClientLogos = async () => {
       },
 
       body: JSON.stringify({ query }),
-    }
+    },
   ).then((res) => res.json());
 
   const logos = data.data?.clientLogosCollection?.items;

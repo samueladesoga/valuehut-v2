@@ -14,12 +14,13 @@ function Table({
   time,
   type,
   filled,
+  classId,
 }: IUpcomingClassesData) {
   const router = useRouter();
   const pathname = usePathname();
 
   const handleClassesDetails = () => {
-    router.push(`${pathname}/details`);
+    router.push(`${pathname}/details/${classId}`);
   };
   return (
     <tr key={id}>

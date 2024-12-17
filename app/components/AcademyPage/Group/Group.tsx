@@ -13,12 +13,13 @@ function Group({
   time,
   type,
   filled,
+  classId,
 }: IUpcomingClassesData) {
   const router = useRouter();
   const pathname = usePathname();
 
   const handleClassesDetails = () => {
-    router.push(`${pathname}/details`);
+    router.push(`${pathname}/details/${classId}`);
   };
   return (
     <div className="flex flex-col items-start gap-6  bg-white w-full p-6 rounded-xl">

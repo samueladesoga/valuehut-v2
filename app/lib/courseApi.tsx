@@ -83,7 +83,7 @@ export const getAllCourses = async () => {
       },
 
       body: JSON.stringify({ query }),
-    }
+    },
   ).then((res) => res.json());
 
   const posts = data.data?.courseCollection.items;
@@ -154,7 +154,7 @@ export const getCourse = async (slug: string) => {
         query,
         variables: { slug },
       }),
-    }
+    },
   );
 
   const data = await response.json();
@@ -170,7 +170,8 @@ export const getCourse = async (slug: string) => {
     duration: course.classesCollection.items[0]?.time,
     dates: convertDate(course.classesCollection.items[0]?.startDate),
     image: course.imageUrl.url,
-    classes: course.classesCollection.items.map((item) => ({
+    classes: course.classesCollection.items.map((item, index) => ({
+      classId: index + 1,
       identifier: item.identifier,
       filled: item.filled,
       startDate: getMonthAndDay(item.startDate),

@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 interface Logo {
-  url: string;        
-  title: string;      
+  url: string;
+  title: string;
 }
 
 interface LogosDataProps {
