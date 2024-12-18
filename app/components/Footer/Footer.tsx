@@ -40,7 +40,7 @@ const Footer: React.FC = () => {
                       href="/consulting"
                       className="text-accentsecondary text-sm font-normal font-secondary"
                     >
-                      Consultation
+                      Consulting
                     </Link>
                   </li>
                   <li>
@@ -58,21 +58,21 @@ const Footer: React.FC = () => {
                   Social
                 </h3>
                 <ul role="list" className="mt-6 space-y-4">
-                  <li>
-                    <Link
-                      href="#"
-                      className="text-accentsecondary text-sm font-normal font-secondary"
-                    >
-                      X
-                    </Link>
-                  </li>
-                  <li>
+                <li>
                     <Link
                       target="_blank"
                       href="https://linkedin.com/company/valuehut-limited"
                       className="text-accentsecondary text-sm font-normal font-secondary"
                     >
                       LinkedIn
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="https://www.scrum.org/valuehut-consulting-limited"
+                      className="text-accentsecondary text-sm font-normal font-secondary"
+                    >
+                      ValueHut on Scrum.Org
                     </Link>
                   </li>
                 </ul>
@@ -90,14 +90,14 @@ const Footer: React.FC = () => {
                       UK office:
                     </p>
                     <p>Email: info@valuehut.co</p>
-                    <p> Call: +44(0)7946713054</p>
+                    <p>Tel: +44(0)7946713054</p>
                   </li>
                   <li>
                     <p className="text-accentsecondary text-sm font-normal font-secondary">
                       Nigeria office:
                     </p>
                     <p>Email: info@valuehut.co</p>
-                    <p>Call: +234(0)8143021499</p>
+                    <p>Tel: +234(0)8143021499</p>
                   </li>
                 </ul>
               </div>
@@ -124,11 +124,11 @@ const Footer: React.FC = () => {
         <div className="mt-10 pt-8 sm:mt-20 lg:mt-24  w-full flex justify-center md:justify-between ">
           <div className="flex flex-col-reverse sm:flex-row w-full justify-between text-sm  font-secondary text-accentmain font-medium">
             <p className="text-sm font-secondary text-accentmain mt-4  sm:mt-0 w-full  text-center md:text-start justify-center  font-medium">
-              2024 ValueHut - All rights reserved.
+              2024 ValueHut Consulting Limited - All rights reserved.
             </p>
             <nav className=" w-full flex  gap-10 justify-between md:justify-end">
-              <Link href="/privacy-policy">Privacy Policy</Link>
-              <Link href="/terms-and-conditions">Terms & Conditions</Link>
+              <Link href="#">Privacy Policy</Link>
+              <Link href="#">Terms & Conditions</Link>
             </nav>
           </div>
         </div>
