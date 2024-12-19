@@ -5,7 +5,7 @@ function WhoAreWe() {
     <section className="md:flex justify-between items-start">
       <div className="w-full md:w-1/2 flex flex-col justify-between items-center md:items-start gap-8">
         <h1 className="text-8xl font-medium text-[#141834] font-primary text-center md:text-left">
-          who are we
+          Who are we
         </h1>
         <button className="hidden md:flex rounded-full bg-[#FF9F5A] px-6 py-3 text-main text-sm font-medium hover:bg-[#FF9F5A]/90">
           Get to know us better
