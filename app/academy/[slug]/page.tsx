@@ -9,9 +9,9 @@ import Aboutcourse from "@/components/AcademyPage/ Aboutcourse/ Aboutcourse";
 import Table from "@/components/AcademyPage/Table/Table";
 import Group from "@/components/AcademyPage/Group/Group";
 import { notFound } from "next/navigation";
-import { HiringCard } from "@/components/HiringCard/HiringCard";
 import { getCourse } from "@/lib/courseApi";
 import { AdditionalBenefitCard } from "@/components/AcademyPage/AdditionalBenefit/AdditonalBenefitCard";
+import WhoShouldAttend from "@/components/AcademyPage/WhoShouldAttend/WhoShouldAttend";
 
 interface IClasses {
   classId: number;
@@ -54,6 +54,7 @@ export default async function CourseDetailsPage({
   if (!post) {
     notFound();
   }
+
   return (
     <div className="bg-[#f5f5f5]">
       <HeroComponent title={course.title} backgroundImage={course.image} />
@@ -64,49 +65,65 @@ export default async function CourseDetailsPage({
       </div>
 
       <div className="md:bg-white pt-10">
+        <h1 className="container px-4 xl:px-0 text-6xl font-medium text-main font-primary">
+          Upcoming Classes
+        </h1>
         <div className="container px-4 xl:px-0">
-          <h1 className=" text-6xl font-medium text-main font-primary">
-            Upcoming Classes
-          </h1>
           <div className="hidden md:block">
-            <table className="w-full bg-[#032432] mt-6 rounded-t-md">
-              <thead className="text-sm font-semibold font-secondary text-white">
-                <tr className="uppercase tracking-[8%]">
-                  <td className="px-3 py-4">dates</td>
-                  <td className="px-3 py-4">time</td>
-                  <td className="px-3 py-4">type</td>
-                </tr>
-              </thead>
-              {UpcomingClassesData.map((row: IClasses, index: number) => (
-                <tbody className="bg-white" key={index}>
-                  <Table
-                    key={row.id}
-                    classId={row.classId}
-                    startDate={row.startDate}
-                    endDate={row.endDate}
-                    year={row.year}
-                    time={row.time}
-                    type={row.classType}
-                    filled={row.filled}
-                  />
-                </tbody>
-              ))}
-            </table>
+            {UpcomingClassesData.length > 0 ? (
+              <table className="w-full bg-[#032432] mt-6 rounded-t-md">
+                <thead className="text-sm font-semibold font-secondary text-white">
+                  <tr className="uppercase tracking-[8%]">
+                    <td className="px-3 py-4">dates</td>
+                    <td className="px-3 py-4">time</td>
+                    <td className="px-3 py-4">type</td>
+                  </tr>
+                </thead>
+                {UpcomingClassesData.map((row: IClasses, index: number) => (
+                  <tbody className="bg-white" key={index}>
+                    <Table
+                      key={row.id}
+                      classId={row.classId}
+                      startDate={row.startDate}
+                      endDate={row.endDate}
+                      year={row.year}
+                      time={row.time}
+                      type={row.classType}
+                      filled={row.filled}
+                    />
+                  </tbody>
+                ))}
+              </table>
+            ) : (
+              <div className="py-5">
+                <p className="text-lg font-medium text-main font-secondary">
+                  No classes available
+                </p>
+              </div>
+            )}
           </div>
         </div>
-        <div className="flex flex-col gap-3 items-start md:hidden">
-          {UpcomingClassesData.map((row: IClasses) => (
-            <Group
-              key={row.id}
-              startDate={row.startDate}
-              endDate={row.endDate}
-              year={row.year}
-              time={row.time}
-              type={row.classType}
-              filled={row.filled}
-              classId={row.classId}
-            />
-          ))}
+        <div className="container px-4 xl:px-0 flex flex-col gap-3 items-start md:hidden">
+          {UpcomingClassesData.length > 0 ? (
+            UpcomingClassesData.map((row: IClasses) => (
+              <Group
+                key={row.id}
+                startDate={row.startDate}
+                endDate={row.endDate}
+                year={row.year}
+                time={row.time}
+                type={row.classType}
+                filled={row.filled}
+                classId={row.classId}
+              />
+            ))
+          ) : (
+            <div className="py-5">
+              <p className="text-lg font-medium text-main font-secondary">
+                No classes available
+              </p>
+            </div>
+          )}
         </div>
       </div>
       {CourseObjectivesData && (
@@ -130,28 +147,7 @@ export default async function CourseDetailsPage({
         </div>
       )}
       {WhoShouldAttendData && (
-        <div className="bg-[#f5f5f5]">
-          <div className="container px-4 xl:px-0 py-16">
-            <div className="flex flex-col gap-5">
-              <h3 className="text-6xl font-medium text-main font-primary">
-                {WhoShouldAttendData.title}
-              </h3>
-              <div className="flex flex-col md:flex-row gap-4">
-                {WhoShouldAttendData.contentList.map(
-                  (attend: string, index: number) => (
-                    <div key={index}>
-                      <HiringCard
-                        bgColor="bg-[#C5D8E0]"
-                        text={index + 1 + "."}
-                        description={attend}
-                      />
-                    </div>
-                  )
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
+        <WhoShouldAttend WhoShouldAttendData={WhoShouldAttendData} />
       )}
 
       <div>

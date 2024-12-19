@@ -1,6 +1,5 @@
 // "use client";
 import React from "react";
-// import { motion } from "framer-motion";
 import DetailsHero from "@/components/DetailsPage/DetailsHero/DetailsHero";
 import { courseDetails } from "@/data/Academy/CourseDetails";
 import OurPartners from "@/components/FaqPage/OurPartners/OurPartners";
@@ -9,8 +8,8 @@ import Aboutcourse from "@/components/AcademyPage/ Aboutcourse/ Aboutcourse";
 import CourseObjectives from "@/components/AcademyPage/CourseObjectives/CourseObjectives";
 import ClientReviews from "@/components/ClientReviews/ClientReviews";
 import MoreInformation from "@/components/DetailsPage/Moreinformation/Moreinformation";
-import { HiringCard } from "@/components/HiringCard/HiringCard";
 import { getCourse } from "@/lib/courseApi";
+import WhoShouldAttend from "@/components/AcademyPage/WhoShouldAttend/WhoShouldAttend";
 
 export interface PageProps {
   params: {
@@ -45,7 +44,6 @@ export default async function DetailsPage({
     (item: { title: string }) => item.title === "Who should attend?"
   );
 
-  const bgColors = ["bg-[#05668D33]", "bg-[#02C39A33]", "bg-[#F6A75F33]"];
   return (
     <div className="bg-[#f5f5f5]">
       <DetailsHero
@@ -84,44 +82,7 @@ export default async function DetailsPage({
       </div>
 
       {WhoShouldAttendData && (
-        <div className="bg-[#f5f5f5]">
-          <div className="container px-4 xl:px-0 py-16">
-            <div className="flex flex-col gap-5">
-              <h3 className="text-6xl font-medium text-main font-primary">
-                {WhoShouldAttendData.title}
-              </h3>
-              <div className="flex flex-col md:flex-row gap-4">
-                {WhoShouldAttendData.contentList.map(
-                  (attend: string, index: number) => (
-                    // <motion.div
-                    //   key={info.number}
-                    //   className="w-full md:w-1/3"
-                    //   initial={{ opacity: 0, y: 30 }}
-                    //   whileInView={{
-                    //     opacity: 1,
-                    //     y: 0,
-                    //   }}
-                    //   transition={{
-                    //     duration: 0.5,
-                    //     delay: index * 0.05,
-                    //   }}
-                    //   viewport={{ once: false, amount: 0.2 }}
-                    // >
-                    <div key={index}>
-                      <HiringCard
-                        bgColor={bgColors[index % bgColors.length]}
-                        text={`0${index + 1}`}
-                        description={attend}
-                      />
-                    </div>
-
-                    // </motion.div>
-                  )
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
+        <WhoShouldAttend WhoShouldAttendData={WhoShouldAttendData} />
       )}
 
       <div className="py-20 md:py-36 ">
