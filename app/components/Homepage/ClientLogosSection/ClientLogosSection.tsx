@@ -33,17 +33,21 @@ const ClientLogosSection = ({ logos }: LogosDataProps) => {
             }}
             className="flex flex-shrink-0 gap-8 sm:gap-20 "
           >
-            {logos.map((logo: Logo, index: number) => (
-              <div key={index} className="h-20 w-20">
-                <Image
-                  src={logo.url}
-                  alt={`Logo of ${logo.title}`}
-                  width={200}
-                  height={200}
-                  className="h-20 w-20 grayscale  hover:grayscale-0 transition-opacity duration-300 "
-                />
-              </div>
-            ))}
+          {logos.map((logo: Logo, index: number) => (
+  <div
+    key={index}
+    className="flex-shrink-0 h-20 w-20 flex justify-center items-center overflow-hidden"
+  >
+    <Image
+      src={logo.url}
+      alt={`Logo of ${logo.title}`}
+      width={200}
+      height={200}
+      className="h-full w-auto object-contain grayscale hover:grayscale-0 transition-opacity duration-300"
+    />
+  </div>
+))}
+
           </motion.div>
 
           <motion.div

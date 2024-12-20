@@ -13,6 +13,9 @@ import Image from "next/image";
 import Button from "@/components/Button/Button";
 import { ChevronRight } from "lucide-react";
 import WhyChooseUs from "@/components/WhyChooseUs/WhyChooseUs";
+import { useRouter } from "next/navigation"; 
+
+
 
 const getBackgroundColor = (index: number) => {
   const colors = [
@@ -26,6 +29,13 @@ const getBackgroundColor = (index: number) => {
 };
 
 function ConsultingPage() {
+
+
+  const router = useRouter(); 
+
+const navigateToContactUs = () => {
+  router.push("/contact-us"); 
+};
   const [openIndex, setOpenIndex] = useState<number>(0);
   return (
     <div className="bg-[#f5f5f5]">
@@ -178,6 +188,7 @@ function ConsultingPage() {
             icon={<ChevronRight />}
             rounded="full"
             className="mt-5 text-start "
+            onClick={navigateToContactUs}
           >
             Let&apos;s get in touch
           </Button>

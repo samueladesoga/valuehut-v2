@@ -114,7 +114,7 @@ const ArticlesSection: React.FC<ArticlesSectionProps> = ({
             ))}
           </div>
 
-          <div className="bg-[#ECECEC] w-full h-[280px] sm:h-[532px] rounded-lg flex items-center justify-center">
+          <div className="bg-[#ECECEC] w-[348px] h-[280px] sm:h-[532px] rounded-lg flex items-center justify-center">
             <p className="Text-Main font-secondary font-semibold text-[21px] leading-[29px]">
               Ad Example / CTA
             </p>

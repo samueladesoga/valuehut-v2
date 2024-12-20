@@ -43,16 +43,15 @@ const BookACallCTA: React.FC<BookACallCTAProps> = ({
           </Button>
         </motion.div>
       </div>
-      <div className="">
-        <Image
-          src={imageUrl}
-          alt="Consultant ready to help"
-          width={350}
-          height={450}
-          objectFit="cover"
-          className="bg-no-repeat rounded-md sm:mb-6 mb-0"
-        />
-      </div>
+ <div className="flex-shrink-0 w-[307px] h-auto mb-0 sm:mb-6">
+  <Image
+    src={imageUrl}
+    alt="Consultant ready to help"
+    width={307}
+    height={428}
+    className="w-full h-auto object-contain bg-no-repeat rounded-md"
+  />
+</div>
     </div>
   );
 };
