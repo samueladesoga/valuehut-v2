@@ -4,8 +4,22 @@ import TeamCard from "@/components/MeetTheTeam/TeamCard";
 function MeetTheTeam() {
   const teamMembers = [
     {
+      bgColor: "bg-[#A5E0E7]",
+      imageSrc: "/images/nigel-thurlow.jpg",
+      name: "Nigel Thurlow",
+      role: "Advisor",
+      description: `Nigel Thurlow is an expert in organizational design, author, and renowned speaker who serves 
+      as a consultant to industry in business agility — and as an expert in the application of cross-disciplinary 
+      methods and approaches to accelerate business change.`,
+      socialLinks: [
+        { icon: "/icons/twitter.svg", alt: "twitter" },
+        { icon: "/icons/likdin.svg", alt: "linkedin" },
+        { icon: "/icons/share.svg", alt: "share" },
+      ],
+    },
+    {
       bgColor: "bg-[#E5DFD9]",
-      imageSrc: "/images/Coach-02.png",
+      imageSrc: "/images/sam-adesoga.png",
       name: "Samuel Adesoga",
       role: "Principal Coach",
       description: `Sam is our Principal Coach and Lead Trainer at ValueHut Consulting; 
@@ -20,25 +34,8 @@ function MeetTheTeam() {
       ],
     },
     {
-      bgColor: "bg-[#A5E0E7]",
-      imageSrc: "/images/Coach-01.png",
-      name: "Temitope Adesoga",
-      role: "Partner Coach",
-      description: `Temitope is a Partner Coach and Trainer at ValueHut Consulting; 
-        Temi is an experienced Lean-Agile Practitioner, Accredited Kanban Trainer, ICAgile Instructor 
-        Agile Coach, Professional Scrum Master, Agile Project Manager, SAFe Program consultant and Kanban 
-        Management Professional with over 10 years’ experience empowering and coaching development teams 
-        and organizations in the adoption agile principles and improving the flow of customer value through 
-        scalable, maintainable software solutions.`,
-      socialLinks: [
-        { icon: "/icons/twitter.svg", alt: "twitter" },
-        { icon: "/icons/likdin.svg", alt: "linkedin" },
-        { icon: "/icons/share.svg", alt: "share" },
-      ],
-    },
-    {
       bgColor: "bg-[#A5E0C6]",
-      imageSrc: "/images/Coach-01.png",
+      imageSrc: "/images/temitope-awere.png",
       name: "Temitope Adesoga",
       role: "Partner Coach",
       description: `Temitope is a Partner Coach and Trainer at ValueHut Consulting; 
@@ -55,9 +52,9 @@ function MeetTheTeam() {
     },
     {
       bgColor: "bg-[#A5c6d0]",
-      imageSrc: "/images/Coach-01.png",
+      imageSrc: "/images/sam-adesoga.png",
       name: "Temitope Dada",
-      role: "Partner Coach",
+      role: "Executive Assistant",
       description: `Temitope is a Partner Coach and Trainer at ValueHut Consulting; 
         Temi is an experienced Lean-Agile Practitioner, Accredited Kanban Trainer, ICAgile Instructor 
         Agile Coach, Professional Scrum Master, Agile Project Manager, SAFe Program consultant and Kanban 
