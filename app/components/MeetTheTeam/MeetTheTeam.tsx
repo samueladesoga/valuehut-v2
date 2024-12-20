@@ -36,7 +36,7 @@ function MeetTheTeam() {
     {
       bgColor: "bg-[#A5E0C6]",
       imageSrc: "/images/temitope-awere.png",
-      name: "Temitope Adesoga",
+      name: "Temitope Awere",
       role: "Partner Coach",
       description: `Temitope is a Partner Coach and Trainer at ValueHut Consulting; 
         Temi is an experienced Lean-Agile Practitioner, Accredited Kanban Trainer, ICAgile Instructor 
