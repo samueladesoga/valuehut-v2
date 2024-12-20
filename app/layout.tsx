@@ -7,9 +7,9 @@ import Footer from "./components/Footer/Footer";
 import Menu from "../public/images/menu.png";
 
 export const metadata: Metadata = {
-  title: "Discover ValueHut",
+  title: "ValueHut Consulting",
   description:
-    "Discover ValueHut Consulting, an agile coaching and training supporting the adoption of agile ways of working using Training and Coaching. Improve your organisational effectivess and efficiency with our help.",
+    "ValueHut Consultancy is an Agile Management Consultancy, help organisation explore better ways of working and leading to deliver great products and services to their clients.",
 };
 
 export default function RootLayout({
