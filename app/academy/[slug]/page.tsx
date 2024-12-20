@@ -97,7 +97,7 @@ export default async function CourseDetailsPage({
             ) : (
               <div className="py-5">
                 <p className="text-lg font-medium text-main font-secondary">
-                  No classes available
+                  No public classes available. <a href="/contact-us">Contact</a> us if you would like a private class for your organisation.
                 </p>
               </div>
             )}
