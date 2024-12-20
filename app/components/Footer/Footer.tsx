@@ -1,8 +1,20 @@
+"use client"
+
+
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import Button from "@/components/Button/Button";
+import { useRouter } from "next/navigation"; 
 
 const Footer: React.FC = () => {
+
+  const router = useRouter(); 
+
+  const navigateToContactUs = () => {
+    router.push("/contact-us"); 
+  };
+
   return (
     <footer className="w-full bg-fill-neutral-strong">
       <div className="container pb-8 pt-16 px-6 xl:px-0 sm:pt-24 lg:pt-32">
@@ -115,9 +127,17 @@ const Footer: React.FC = () => {
               </p>
             </div>
             <div className="flex justify-center  items-center w-full mt-8 md:mt-0 sm:w-auto  ">
-              <button className="bg-[#FF9F5A] font-secondary h-auto px-6 py-3 rounded-full text-main text-sm font-medium hover:bg-[#FF9F5A]/90">
+            
+              <Button
+                rounded="full"
+                 size="small"
+               
+                bgColor="fill-brand-secondary"
+                className=" text-main px-6 py-3"
+                onClick={navigateToContactUs} 
+              >
                 Let&apos;s get in touch
-              </button>
+              </Button> 
             </div>
           </div>
         </div>

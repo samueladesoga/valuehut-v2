@@ -1,10 +1,14 @@
 "use client";
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import PlusIcon from "@/icons/plus.svg";
 import CircleMinusIcon from "@/icons/remove-circle.svg";
-import Mail from "@/icons//mail.svg";
+import Mail from "@/icons/mail.svg";
 import Mentor from "@/icons/mentor.svg";
+import Button from "@/components/Button/Button";
+import { useRouter } from "next/navigation";
 
 interface FAQItem {
   category: string;
@@ -18,9 +22,22 @@ interface FAQProps {
 
 const FAQ: React.FC<FAQProps> = ({ faqs }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [activeCategory, setActiveCategory] = useState<string>("ValueHut");
+  const [activeCategory, setActiveCategory] = useState<string>("");
 
   const categories = Array.from(new Set(faqs.map((faq) => faq.category)));
+
+  const pathname = usePathname();
+  useEffect(() => {
+    const currentPath = pathname;
+    const pathToCategoryMap: Record<string, string> = {
+      "/value-hut": "ValueHut",
+      "/talent-matching": "Talent Matching",
+      "/academy": "Academy",
+      "/faq": "ValueHut",
+    };
+
+    setActiveCategory(pathToCategoryMap[currentPath] || "ValueHut");
+  }, [pathname]);
 
   const toggleFAQ = (index: number): void => {
     if (openIndex === index) {
@@ -28,6 +45,12 @@ const FAQ: React.FC<FAQProps> = ({ faqs }) => {
     } else {
       setOpenIndex(index);
     }
+  };
+
+  const router = useRouter();
+
+  const navigateToContactUs = () => {
+    router.push("/contact-us");
   };
 
   return (
@@ -41,9 +64,16 @@ const FAQ: React.FC<FAQProps> = ({ faqs }) => {
             <p className="hidden md:flex text-xl font-medium font-secondary">
               You got more to ask?
             </p>
-            <button className="hidden md:flex bg-[#FF9F5A] font-secondary px-6 py-3 rounded-full text-main text-sm font-medium hover:bg-[#FF9F5A]/90">
+          
+            <Button
+              rounded="full"
+              size="small"
+              bgColor="fill-brand-secondary"
+              className=" text-main px-6 py-3"
+              onClick={navigateToContactUs}
+            >
               Let&apos;s connect
-            </button>
+            </Button>
           </div>
           <div className="hidden lg:flex justify-between">
             <div className="flex gap-2 justify-start items-start">
