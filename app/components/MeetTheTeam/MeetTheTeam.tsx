@@ -52,14 +52,13 @@ function MeetTheTeam() {
     },
     {
       bgColor: "bg-[#A5c6d0]",
-      imageSrc: "/images/sam-adesoga.png",
+      imageSrc: "/images/temitope-dada.jpg",
       name: "Temitope Dada",
-      role: "Executive Assistant",
-      description: `Temitope is a Partner Coach and Trainer at ValueHut Consulting; 
-        Temi is an experienced Lean-Agile Practitioner, Accredited Kanban Trainer, ICAgile Instructor 
-        Agile Coach, Professional Scrum Master, Agile Project Manager, SAFe Program consultant and Kanban 
-        Management Professional with over 10 years’ experience empowering and coaching development teams 
-        and organizations`,
+      role: "Training Executive",
+      description: `Temitope is Training Executive at ValueHut Consulting with over four years of experience managing 
+      the administration of learning programs. She specializes in coordinating schedules, overseeing participant enrollment 
+      and high-impact training delivery. Known for her organizational excellence and attention to detail, Temitope plays a 
+      key role in maintaining the quality and professionalism of ValueHut’s Consulting learning experiences.`,
       socialLinks: [
         { icon: "/icons/twitter.svg", alt: "twitter" },
         { icon: "/icons/likdin.svg", alt: "linkedin" },
