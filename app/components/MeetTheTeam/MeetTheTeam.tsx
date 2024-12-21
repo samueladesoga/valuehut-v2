@@ -55,7 +55,7 @@ function MeetTheTeam() {
       imageSrc: "/images/temitope_dada.jpg",
       name: "Temitope Dada",
       role: "Training Executive",
-      description: `Temitope is Training Executive at ValueHut Consulting with over four years of experience managing 
+      description: `Temitope is a Training Executive at ValueHut Consulting with over four years of experience managing 
       the administration of learning programs. She specializes in coordinating schedules, overseeing participant enrollment 
       and high-impact training delivery. Known for her organizational excellence and attention to detail, Temitope plays a 
       key role in maintaining the quality and professionalism of ValueHut’s Consulting learning experiences.`,
