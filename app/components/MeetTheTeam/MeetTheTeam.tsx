@@ -52,7 +52,7 @@ function MeetTheTeam() {
     },
     {
       bgColor: "bg-[#A5c6d0]",
-      imageSrc: "/images/temitope-dada.jpg",
+      imageSrc: "/images/temitope_dada.jpg",
       name: "Temitope Dada",
       role: "Training Executive",
       description: `Temitope is Training Executive at ValueHut Consulting with over four years of experience managing 
