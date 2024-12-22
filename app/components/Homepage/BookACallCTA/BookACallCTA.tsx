@@ -3,12 +3,14 @@ import Image from "next/image";
 import React from "react";
 import Button from "@/components/Button/Button";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 interface BookACallCTAProps {
   title: string;
   description: string;
   buttonText: string;
   imageUrl: string;
+  url?: string;
 }
 
 const BookACallCTA: React.FC<BookACallCTAProps> = ({
@@ -16,6 +18,7 @@ const BookACallCTA: React.FC<BookACallCTAProps> = ({
   description,
   buttonText,
   imageUrl,
+  url,
 }) => {
   return (
     <div className="container  bg-fill-brand-secondary h-auto md:h-[404px] flex flex-col md:flex-row px-8 justify-between items-center xl:rounded-[30px]">
@@ -33,25 +36,27 @@ const BookACallCTA: React.FC<BookACallCTAProps> = ({
           transition={{ duration: 0.5, delay: 0.1 }}
           viewport={{ once: false, amount: 0.2 }}
         >
-          <Button
-            bgColor="[#032432]"
-            textColor="white"
-            rounded="full"
-            className="font-secondary h-auto px-6 py-3 text-main text-sm font-medium "
-          >
-            {buttonText}
-          </Button>
+          <Link target="_blank" href={url || ""}>
+            <Button
+              bgColor="[#032432]"
+              textColor="white"
+              rounded="full"
+              className="font-secondary h-auto px-6 py-3 text-main text-sm font-medium "
+            >
+              {buttonText}
+            </Button>
+          </Link>
         </motion.div>
       </div>
- <div className="flex-shrink-0 w-[307px] h-auto mb-0 sm:mb-6">
-  <Image
-    src={imageUrl}
-    alt="Consultant ready to help"
-    width={307}
-    height={428}
-    className="w-full h-auto object-contain bg-no-repeat rounded-md"
-  />
-</div>
+      <div className="flex-shrink-0 w-[307px] h-auto mb-0 sm:mb-6">
+        <Image
+          src={imageUrl}
+          alt="Consultant ready to help"
+          width={307}
+          height={428}
+          className="w-full h-auto object-contain bg-no-repeat rounded-md"
+        />
+      </div>
     </div>
   );
 };

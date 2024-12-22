@@ -44,6 +44,7 @@ const navigateToContactUs = () => {
         subtitle={consultingheroData.subtitle}
         backgroundImage={consultingheroData.backgroundImage}
         buttonText={consultingheroData.buttonText}
+        buttonLink={consultingheroData.buttonLink}
       />
       <div className="my-16">
         <div className="container  sm:px-0 px-4 sm:p-8">
@@ -201,6 +202,7 @@ const navigateToContactUs = () => {
           description="ValueHut Consultancy is an Agile Management Consultany, helping organizations explore better ways of working and leading."
           buttonText="Book a free call"
           imageUrl="/images/BookACallCTA-image.png"
+          url="https://calendly.com/samueladesoga/valuehut-consulting"
         />
       </div>
     </div>

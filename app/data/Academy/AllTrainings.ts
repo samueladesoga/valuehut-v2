@@ -45,7 +45,7 @@ export const AcademyHero: IAcadmeyHero = {
   showRating: true,
   ratingText: "Excellent",
   ratingDetails: "4.78 out of 5 based on 34 reviews",
-  ratingImage: "/images/logo-01.png",
+  ratingImage: "/images/logo-01.svg",
 };
 
 export const AllCourses: IAllTrainings[] = [

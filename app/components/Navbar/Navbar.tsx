@@ -125,7 +125,7 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
             )}
           </div>
 
-          <Link href="/contact-us">
+          <Link target="_blank" href="https://calendly.com/samueladesoga/valuehut-consulting">
             <Button
               bgColor="fill-brand-secondary"
               className="py-2 px-5 text-xs font-medium text-main hidden lg:flex"

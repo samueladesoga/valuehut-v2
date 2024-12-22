@@ -3,6 +3,7 @@ import { convertDate } from "@/utils/ConvertDate";
 export interface IPostType {
   title: string;
   slug: string;
+  tag: string;
   cover: {
     url: string;
     title: string;
@@ -56,6 +57,7 @@ export const getAllArticles = async () => {
             items{
                 title
                 slug
+                tag
                 cover{
                     url
                     title
@@ -83,12 +85,14 @@ export const getAllArticles = async () => {
   ).then((res) => res.json());
 
   const posts: IPostType[] = data.data?.blogCollection?.items;
+  console.log(posts);
 
   const articles = posts.map((post) => ({
     title: post.title,
     date: convertDate(post.sys.publishedAt.toString()),
     description: post.description,
     category: "",
+    tag: post.tag,
     image: post.cover.url,
     slug: post.slug,
     cover: {

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "./components/Navbar/Navbar";
-import logoY from "../public/logos/v2-dark.png";
-import logoX from "../public/images/Vector.png";
+import logoY from "../public/logos/v2-dark.svg";
+import logoX from "../public/logos/v2-light.svg";
 import Footer from "./components/Footer/Footer";
 import Menu from "../public/images/menu.png";
 

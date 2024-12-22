@@ -28,6 +28,7 @@ export default async function Blogs() {
                 date={mainArticle.date}
                 category={mainArticle.category}
                 slug={mainArticle.slug}
+                tag={mainArticle.tag}
               />
             </div>
             <div className="grid grid-cols-1 w-full ">
@@ -41,6 +42,7 @@ export default async function Blogs() {
                     title={sideArticle.title}
                     date={sideArticle.date}
                     slug={sideArticle.slug}
+                    tag={sideArticle.tag}
                   />
                 </div>
               ))}

@@ -10,7 +10,7 @@ interface IArticle {
   id?: number;
   title: string;
   date: string;
-  category: string;
+  tag: string;
   image: string;
   slug: string;
   cover: {
@@ -106,7 +106,7 @@ const ArticlesSection: React.FC<ArticlesSectionProps> = ({
                   </div>
                   <div>
                     <p className="text-xs text-secondary font-normal font-secondary">
-                      {convertDate(article.date)} -{article.category}
+                      {convertDate(article.date)} -{article.tag}
                     </p>
                   </div>
                 </div>

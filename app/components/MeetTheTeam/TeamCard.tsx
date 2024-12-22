@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 interface ITeamCard {
@@ -7,7 +8,7 @@ interface ITeamCard {
   name: string;
   role: string;
   description: string;
-  socialLinks: { icon: string; alt: string }[];
+  socialLinks: { icon: string; alt: string; url: string }[];
 }
 
 function TeamCard({
@@ -42,9 +43,16 @@ function TeamCard({
             {socialLinks.map((link, index) => (
               <div
                 key={index}
-                className="w-8 h-8 bg-[#F5F5F5] rounded-full p-2 hover:bg-[#f5f5f5ea] flex justify-center items-center"
+                className="w-8 h-8 bg-[#F5F5F5] cursor-pointer rounded-full p-2 hover:bg-[#f5f5f5ea] flex justify-center items-center"
               >
-                <Image src={link.icon} width={14} height={12} alt={link.alt} />
+                <Link href={link.url || ""} target="_blank">
+                  <Image
+                    src={link.icon}
+                    width={14}
+                    height={12}
+                    alt={link.alt}
+                  />
+                </Link>
               </div>
             ))}
           </span>

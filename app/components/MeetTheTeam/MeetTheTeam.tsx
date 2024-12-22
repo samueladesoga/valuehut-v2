@@ -12,9 +12,9 @@ function MeetTheTeam() {
       as a consultant to industry in business agility — and as an expert in the application of cross-disciplinary 
       methods and approaches to accelerate business change.`,
       socialLinks: [
-        { icon: "/icons/twitter.svg", alt: "twitter" },
-        { icon: "/icons/likdin.svg", alt: "linkedin" },
-        { icon: "/icons/share.svg", alt: "share" },
+        { icon: "/icons/twitter.svg", alt: "twitter", url: "https://twitter.com" },
+        { icon: "/icons/likdin.svg", alt: "linkedin", url: "https://linkedin.com" },
+        { icon: "/icons/share.svg", alt: "share", url: "https://share.com" },
       ],
     },
     {
@@ -28,9 +28,9 @@ function MeetTheTeam() {
         to deliver value using Agile Frameworks and Practices; helping developing the mindset required 
         to thrive in Volatile, Uncertain, Complex and Ambiguous (VUCA) business environment.`,
       socialLinks: [
-        { icon: "/icons/twitter.svg", alt: "twitter" },
-        { icon: "/icons/likdin.svg", alt: "linkedin" },
-        { icon: "/icons/share.svg", alt: "share" },
+        { icon: "/icons/twitter.svg", alt: "twitter", url: "https://twitter.com" },
+        { icon: "/icons/likdin.svg", alt: "linkedin", url: "https://linkedin.com" },
+        { icon: "/icons/share.svg", alt: "share", url: "https://share.com" },
       ],
     },
     {
@@ -45,9 +45,9 @@ function MeetTheTeam() {
         and organizations in the adoption agile principles and improving the flow of customer value through 
         scalable, maintainable software solutions.`,
       socialLinks: [
-        { icon: "/icons/twitter.svg", alt: "twitter" },
-        { icon: "/icons/likdin.svg", alt: "linkedin" },
-        { icon: "/icons/share.svg", alt: "share" },
+        { icon: "/icons/twitter.svg", alt: "twitter", url: "https://twitter.com" },
+        { icon: "/icons/likdin.svg", alt: "linkedin", url: "https://linkedin.com" },
+        { icon: "/icons/share.svg", alt: "share", url: "https://share.com" },
       ],
     },
     {
@@ -60,9 +60,9 @@ function MeetTheTeam() {
       and high-impact training delivery. Known for her organizational excellence and attention to detail, Temitope plays a 
       key role in maintaining the quality and professionalism of ValueHut’s Consulting learning experiences.`,
       socialLinks: [
-        { icon: "/icons/twitter.svg", alt: "twitter" },
-        { icon: "/icons/likdin.svg", alt: "linkedin" },
-        { icon: "/icons/share.svg", alt: "share" },
+        { icon: "/icons/twitter.svg", alt: "twitter", url: "https://twitter.com" },
+        { icon: "/icons/likdin.svg", alt: "linkedin", url: "https://linkedin.com" },
+        { icon: "/icons/share.svg", alt: "share", url: "https://share.com" },
       ],
     },
   ];

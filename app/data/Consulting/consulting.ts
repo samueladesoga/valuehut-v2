@@ -3,6 +3,7 @@ export interface IHeroSection {
   subtitle: string;
   backgroundImage: string;
   buttonText: string;
+  buttonLink: string;
 }
 
 export const consultingheroData: IHeroSection = {
@@ -11,4 +12,5 @@ export const consultingheroData: IHeroSection = {
     "Helping teams deliver great products safer and faster; ensuring allignment with the organisation's stategic initiatives",
   backgroundImage: "/consulting/consulting.png",
   buttonText: "Book a consultation",
+  buttonLink: "https://calendly.com/samueladesoga/valuehut-consulting",
 };

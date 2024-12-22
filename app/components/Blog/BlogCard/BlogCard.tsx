@@ -9,6 +9,7 @@ interface BlogCardProps {
   date?: string;
   category?: string;
   slug: string;
+  tag?: string;
 }
 
 const BlogCard: React.FC<BlogCardProps> = ({
@@ -16,6 +17,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
   title,
   description,
   date,
+  tag,
   category,
   slug,
 }) => {
@@ -43,7 +45,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
           {description}
         </p>
         <div className="flex flex-row text-xs font-secondary font-normal text-secondary">
-          <p>{date} - </p>
+          <p>{date} - {tag}</p>
           <span>{category}</span>
         </div>
       </div>

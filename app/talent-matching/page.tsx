@@ -19,6 +19,7 @@ function page() {
         subtitle={heroData.subtitle}
         backgroundImage={heroData.backgroundImage}
         buttonText={heroData.buttonText}
+        buttonLink={heroData.buttonLink}
       />
 
       <div className="px-6 py-6 sm:py-16 xl:px-0">
@@ -29,6 +30,7 @@ function page() {
         title="Start Hiring Now"
         subtitle="Helping Organisations transform into a network of interdependent product"
         image={"/images/TalentSection.png"}
+        btnText="Get Started"
       />
 
       <div className="px-6 py-6 sm:py-16 xl:px-0">

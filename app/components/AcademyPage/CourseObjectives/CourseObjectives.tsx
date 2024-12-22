@@ -4,8 +4,8 @@ import React from "react";
 
 function CourseObjectives({ text }: IObjectives) {
   return (
-    <div className="flex gap-2 items-center max-w-[560px]">
-      <div className="flex justify-center items-start w-3 h-3 shrink-0">
+    <div className="flex items-baseline gap-2 max-w-[560px]">
+      <div className="w-3 h-3 shrink-0">
         <Image
           src="/greater.svg"
           width={24}

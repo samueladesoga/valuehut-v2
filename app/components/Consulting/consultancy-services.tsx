@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { services } from "../../data/Consulting/services";
 import ConsultancyServiceItem from "../Consulting/ConsultancyServiceItem";
 import Button from "../Button/Button";
+import Link from "next/link";
 
 const getBackgroundColor = (index: number) => {
   const colors = [
@@ -30,7 +31,7 @@ export default function ConsultancyServices() {
           <p className="text-xl mb-2 font-medium font-secondary">
             Want to know more?
           </p>
-
+          <Link href="https://calendly.com/samueladesoga/valuehut-consulting">
           <Button
             bgColor="fill-brand-secondary"
             size="medium"
@@ -39,6 +40,7 @@ export default function ConsultancyServices() {
           >
             Book a consultation
           </Button>
+          </Link>
         </div>
       </div>
 

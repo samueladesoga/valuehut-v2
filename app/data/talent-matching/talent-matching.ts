@@ -17,4 +17,5 @@ export const heroData: IHeroSection = {
   ratingText: "Excellent",
   backgroundImage: "/talentmatching/talent-hero.png",
   buttonText: "Book a consultation",
+  buttonLink: "https://calendly.com/samueladesoga/valuehut-consulting",
 };

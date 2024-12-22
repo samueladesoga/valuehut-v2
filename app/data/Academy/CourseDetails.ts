@@ -28,7 +28,7 @@ export const courseDetails: ICourseDetails = {
     "Understand the importance of self-managing teams and the role of Scrum Master in developing the self-managing abilities of the Scrum Team.",
   partner: {
     name: "Scrum.org",
-    logo: "/images/logo-01.png",
+    logo: "/images/logo-01.svg",
   },
   reviews: {
     rating: 4.5,

@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS, Document, INLINES } from "@contentful/rich-text-types";
 import Image from "next/image";
+import Link from "next/link";
 
 export interface PageProps {
   params: {
@@ -95,18 +96,22 @@ export default async function BlogPost({
             <time>{post.date}</time>
             <div className="flex gap-3">
               <p>Share to</p>
-              <Image
-                src={"/icons/linkdin-02.svg"}
-                width={16}
-                height={16}
-                alt="linkdin"
-              />
-              <Image
-                src={"/icons/twitter.svg"}
-                width={16}
-                height={16}
-                alt="twiter"
-              />
+              <Link target="_blank" href="/">
+                <Image
+                  src={"/icons/linkdin-02.svg"}
+                  width={16}
+                  height={16}
+                  alt="linkdin"
+                />
+              </Link>
+              <Link target="_blank" href="/">
+                <Image
+                  src={"/icons/twitter.svg"}
+                  width={16}
+                  height={16}
+                  alt="twiter"
+                />
+              </Link>
             </div>
           </div>
         </div>
@@ -117,18 +122,22 @@ export default async function BlogPost({
           <time>{post.date}</time>
           <div className="flex gap-3">
             <p>Share to</p>
-            <Image
-              src={"/icons/linkdin-02.svg"}
-              width={16}
-              height={16}
-              alt="linkdin"
-            />
-            <Image
-              src={"/icons/twitter.svg"}
-              width={16}
-              height={16}
-              alt="twiter"
-            />
+            <Link target="_blank" href="/">
+              <Image
+                src={"/icons/linkdin-02.svg"}
+                width={16}
+                height={16}
+                alt="linkdin"
+              />
+            </Link>
+            <Link target="_blank" href="/">
+              <Image
+                src={"/icons/twitter.svg"}
+                width={16}
+                height={16}
+                alt="twiter"
+              />
+            </Link>
           </div>
         </div>
       </div>

@@ -1,8 +1,7 @@
 import React from "react";
-import Frame from "@/images/Frame.png";
-import Layer from "@/images/Layer.png";
-import pacemkv from "@/images/pacemkv.png";
-import Logo from "@/images/logo-01.png";
+import Frame from "@/images/Frame.svg";
+import Layer from "@/images/Layer.svg";
+import pacemkv from "@/images/pacemkv.svg";
 import Image from "next/image";
 import { StaticImageData } from "next/image";
 
@@ -18,7 +17,6 @@ const imageData: imageDataProps[] = [
   { id: 3, src: pacemkv, alt: "Pacemkv Image", width: 123, height: 7 },
   { id: 1, src: Layer, alt: "Frame Image", width: 187, height: 40 },
   { id: 2, src: Frame, alt: "Layer Image", width: 122, height: 40 },
-  { id: 4, src: Logo, alt: "Logo", width: 44, height: 40 },
 ];
 
 function TrainingsPartners() {

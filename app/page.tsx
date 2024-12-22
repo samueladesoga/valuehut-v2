@@ -51,6 +51,7 @@ export default function Home() {
           description="We want to understand your context to help us deliver the outcomes you desire."
           buttonText="Book a free call"
           imageUrl="/images/BookACallCTA-image.png"
+          url="https://calendly.com/samueladesoga/valuehut-consulting"
         />
       </div>
     </div>

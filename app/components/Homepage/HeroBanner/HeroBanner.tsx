@@ -11,12 +11,14 @@ interface HeroBannerProps {
   subtitle?: string;
   image?: string;
   button?: React.ReactNode;
+  btnText?: string;
 }
 
 export default function HeroBanner({
   title,
   subtitle,
   image = "/images/image@2x.jpeg",
+  btnText = "Get Started",
 }: HeroBannerProps) {
   const router = useRouter();
 
@@ -61,7 +63,7 @@ export default function HeroBanner({
                 className="mt-5 text-start font-semibold"
                 onClick={() => router.push("/academy")}
               >
-                Explore Courses
+                {btnText}
               </Button>
             </motion.div>
           </div>
