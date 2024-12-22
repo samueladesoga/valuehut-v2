@@ -23,9 +23,9 @@ function MeetTheTeam() {
       name: "Samuel Adesoga",
       role: "Principal Coach",
       description: `Sam is our Principal Coach and Lead Trainer at ValueHut Consulting; 
-        He is an agnostic Enterprise Agile Coach and Practitioner, a Professional Scrum Trainer 
+        He is an Enterprise Delivery Coach and Agile Practitioner, a Professional Scrum Trainer 
         with Scrum.org. In the last 20 years, Sam has supported individuals, teams and Organisations 
-        to deliver value using Agile Frameworks and Practices; ultimately developing the mindset required 
+        to deliver value using Agile Frameworks and Practices; helping developing the mindset required 
         to thrive in Volatile, Uncertain, Complex and Ambiguous (VUCA) business environment.`,
       socialLinks: [
         { icon: "/icons/twitter.svg", alt: "twitter" },

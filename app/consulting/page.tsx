@@ -173,7 +173,7 @@ const navigateToContactUs = () => {
 
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-primary text-[#161A1D] mb-8">
-            Meet our experts
+            Meet our People
           </h2>
 
           <p className="text-lg md:text-xl text-[#161A1D] font-secondary mb-10 max-w-2xl">

@@ -44,7 +44,7 @@ export default function MeetExperts() {
           </div>
 
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-primary text-[#161A1D] mb-8">
-            Meet our experts
+            Meet our people
           </h2>
 
           <p className="text-lg md:text-xl text-[#161A1D] font-secondary mb-10 max-w-2xl">
@@ -63,7 +63,7 @@ export default function MeetExperts() {
       <div className="sm:hidden px-4 py-8">
         <div className="flex flex-col items-start">
           <h2 className="text-4xl font-primary text-[#161A1D] mb-4">
-            Meet our experts
+            Meet our People
           </h2>
 
           <p className="text-base text-[#161A1D] font-secondary mb-6">
