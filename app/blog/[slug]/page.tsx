@@ -78,6 +78,9 @@ export default async function BlogPost({
 
   paragraphCounter = 0;
 
+  const domain = "https://www.valuehut.co";
+  const fullUrl = `${domain}/blog/${slug}`;
+
   return (
     <article className="bg-[#f5f5f5]">
       <div className="max-w-[800px] mx-auto px-4 xl:px-0 py-28 flex flex-col gap-10 ">
@@ -96,20 +99,36 @@ export default async function BlogPost({
             <time>{post.date}</time>
             <div className="flex gap-3">
               <p>Share to</p>
-              <Link target="_blank" href="/">
+              <Link
+                href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
+                  fullUrl
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Share on LinkedIn"
+                className="hover:opacity-80 transition-opacity"
+              >
                 <Image
                   src={"/icons/linkdin-02.svg"}
                   width={16}
                   height={16}
-                  alt="linkdin"
+                  alt="linkedin"
                 />
               </Link>
-              <Link target="_blank" href="/">
+              <Link
+                href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
+                  fullUrl
+                )}&text=${encodeURIComponent(post.title)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Share on Twitter"
+                className="hover:opacity-80 transition-opacity"
+              >
                 <Image
                   src={"/icons/twitter.svg"}
                   width={16}
                   height={16}
-                  alt="twiter"
+                  alt="twitter"
                 />
               </Link>
             </div>
@@ -122,20 +141,36 @@ export default async function BlogPost({
           <time>{post.date}</time>
           <div className="flex gap-3">
             <p>Share to</p>
-            <Link target="_blank" href="/">
+            <Link
+              href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
+                fullUrl
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Share on LinkedIn"
+              className="hover:opacity-80 transition-opacity"
+            >
               <Image
                 src={"/icons/linkdin-02.svg"}
                 width={16}
                 height={16}
-                alt="linkdin"
+                alt="linkedin"
               />
             </Link>
-            <Link target="_blank" href="/">
+            <Link
+              href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
+                fullUrl
+              )}&text=${encodeURIComponent(post.title)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Share on Twitter"
+              className="hover:opacity-80 transition-opacity"
+            >
               <Image
                 src={"/icons/twitter.svg"}
                 width={16}
                 height={16}
-                alt="twiter"
+                alt="twitter"
               />
             </Link>
           </div>

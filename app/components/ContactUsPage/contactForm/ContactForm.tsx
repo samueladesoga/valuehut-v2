@@ -1,10 +1,8 @@
 "use client";
-import React, { useState, ChangeEvent, FormEvent } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useState, ChangeEvent, useRef, FormEvent } from "react";
 import Button from "@/components/Button/Button";
-
-interface ContactFormProps {
-  onSubmit: (formData: FormData) => void;
-}
+import emailjs from "emailjs-com";
 
 interface FormData {
   fullName: string;
@@ -13,7 +11,7 @@ interface FormData {
   message: string;
 }
 
-const ContactForm: React.FC<ContactFormProps> = () => {
+const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
     email: "",
@@ -21,8 +19,12 @@ const ContactForm: React.FC<ContactFormProps> = () => {
     message: "",
   });
 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const formRef = useRef<HTMLFormElement>(null);
+
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -31,18 +33,64 @@ const ContactForm: React.FC<ContactFormProps> = () => {
     }));
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSendEmail = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(formData);
+
+    const { fullName, email, interest, message } = formData;
+
+    if (!fullName || !email || !interest || !message) {
+      alert("All fields are required!");
+      return;
+    }
+
+    if (message.length < 20) {
+      alert("Message must be at least 20 characters long.");
+      return;
+    }
+
+    setIsLoading(true);
+
+    emailjs
+      .sendForm(
+        process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID as string,
+        process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID as string,
+        formRef.current as HTMLFormElement,
+        process.env.NEXT_PUBLIC_EMAIL_USER_ID as string
+      )
+      .then(
+        (response: { status: any; text: any; }) => {
+          console.log("SUCCESS!", response.status, response.text);
+          alert("Email has been sent successfully!");
+          setFormData({
+            fullName: "",
+            email: "",
+            interest: "",
+            message: "",
+          });
+          formRef.current?.reset();
+        },
+        (err: any) => {
+          console.error("FAILED...", err);
+          alert("An error occurred. Please try again.");
+        }
+      )
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-[#ffffff] rounded-xl">
-      <div className=" p-6 rounded-lg shadow-md">
+    <form
+      ref={formRef}
+      onSubmit={handleSendEmail}
+      className="bg-[#ffffff] rounded-xl"
+    >
+      <div className="p-6 rounded-lg shadow-md">
         <h2 className="text-5xl font-primary font-medium mb-6">
           Send a message
         </h2>
-        <form className="space-y-4" onSubmit={handleSubmit}>
+        <div className="space-y-4">
           <div>
             <label
               htmlFor="fullName"
@@ -54,7 +102,6 @@ const ContactForm: React.FC<ContactFormProps> = () => {
               type="text"
               id="fullName"
               name="fullName"
-              value={formData.fullName}
               onChange={handleChange}
               className="w-full p-4 border text-sm border-[#bfbfbf] font-normal rounded-md text-secondary"
               placeholder="Full name"
@@ -72,7 +119,6 @@ const ContactForm: React.FC<ContactFormProps> = () => {
               type="email"
               id="email"
               name="email"
-              value={formData.email}
               onChange={handleChange}
               className="w-full p-4 border text-sm border-[#bfbfbf] font-normal rounded-md text-secondary"
               placeholder="Enter your email"
@@ -89,7 +135,6 @@ const ContactForm: React.FC<ContactFormProps> = () => {
             <select
               id="interest"
               name="interest"
-              value={formData.interest}
               onChange={handleChange}
               className="w-full p-4 border text-sm border-[#bfbfbf] font-normal rounded-md text-secondary"
               required
@@ -110,7 +155,6 @@ const ContactForm: React.FC<ContactFormProps> = () => {
             <textarea
               id="message"
               name="message"
-              value={formData.message}
               onChange={handleChange}
               className="w-full p-4 border text-sm border-[#bfbfbf] font-normal rounded-md text-secondary"
               placeholder="Write anything"
@@ -123,10 +167,11 @@ const ContactForm: React.FC<ContactFormProps> = () => {
             size="medium"
             rounded="lg"
             className="w-full !text-sm"
+            disabled={isLoading}
           >
-            Send Message
+            {isLoading ? "Sending..." : "Send Message"}
           </Button>
-        </form>
+        </div>
       </div>
     </form>
   );
