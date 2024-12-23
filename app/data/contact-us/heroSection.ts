@@ -15,5 +15,5 @@ export const heroData: IHeroSection = {
     "Please fill out the form below and one of us will contact you within 24hrs. Or, contact us by email or phone number listed below.",
   showRating: true,
   ratingText: "Excellent",
-  backgroundImage: "/images/image@2x.jpeg",
+  backgroundImage: "/images/contact-us.jpeg",
 };
