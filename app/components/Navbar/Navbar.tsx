@@ -7,13 +7,13 @@ import Image from "next/image";
 import { ChevronDown, X } from "lucide-react";
 import { StaticImageData } from "next/image";
 import { usePathname } from "next/navigation";
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 interface NavbarProps {
   logoX: StaticImageData;
   logoY: StaticImageData;
   menu: StaticImageData;
   navLinks?: Array<{
+    badge?: string;
     label: string;
     href: string;
     subLinks?: Array<{ label: string; href: string }>;
@@ -23,19 +23,29 @@ interface NavbarProps {
 
 const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(
-    null,
+    null
   );
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  const toggleDropdown = (index: number) => {
-    setOpenDropdownIndex(openDropdownIndex === index ? null : index);
-  };
-
-  const closeDropdown = () => setOpenDropdownIndex(null);
-  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
-
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        closeDropdown();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,26 +62,46 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const toggleDropdown = (index: number) => {
+    setOpenDropdownIndex(openDropdownIndex === index ? null : index);
+  };
+
+  const closeDropdown = () => setOpenDropdownIndex(null);
+  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+
   const pathname = usePathname();
+
   const isWhiteBackgroundRoutes = ["/about-us", "/faqs", "/blog", "/checkout"];
+
+  const isDynamicWhiteBackgroundRoute =
+    pathname.startsWith("/academy/") && pathname.includes("/details/");
+
   const isWhiteHero = pathname.startsWith("/blog/");
 
   const logo =
-    isWhiteBackgroundRoutes.includes(pathname) || scrolled
+    isWhiteBackgroundRoutes.includes(pathname) ||
+    isDynamicWhiteBackgroundRoute ||
+    scrolled
       ? logoY
       : isWhiteHero
         ? logoY
         : logoX;
 
   const navbarStyle =
-    isWhiteBackgroundRoutes.includes(pathname) || scrolled
+    isWhiteBackgroundRoutes.includes(pathname) ||
+    isDynamicWhiteBackgroundRoute ||
+    scrolled
       ? "bg-white text-black shadow-md"
       : isWhiteHero
         ? "bg-white text-black shadow-md"
         : "bg-[#707070]/10 backdrop-blur-3xl text-white";
 
   const isNavbarWhite =
-    isWhiteBackgroundRoutes.includes(pathname) || scrolled || isWhiteHero;
+    isWhiteBackgroundRoutes.includes(pathname) ||
+    isDynamicWhiteBackgroundRoute ||
+    scrolled ||
+    isWhiteHero;
 
   return (
     <div className={`fixed w-full md:pt-3 z-50`}>
@@ -117,11 +147,23 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
                 <Link
                   key={index}
                   href={link.href}
-                  className="hover:text-gray-300"
+                  className="relative flex items-center hover:text-gray-300"
                 >
                   {link.label}
+
+                  {link?.badge && (
+                    <span
+                      className={`ml-1 flex items-center justify-center px-1 text-[10px] font-semibold rounded-full ${
+                        isNavbarWhite
+                          ? "bg-[#E6E4F3] text-main"
+                          : "bg-white text-main"
+                      } min-w-[30px] h-[15px]`}
+                    >
+                      {link.badge}
+                    </span>
+                  )}
                 </Link>
-              ),
+              )
             )}
           </div>
 
@@ -224,7 +266,7 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
                       {link.label}
                     </Link>
                   </li>
-                ),
+                )
               )}
               <li>
                 <Link href="/contact-us">
