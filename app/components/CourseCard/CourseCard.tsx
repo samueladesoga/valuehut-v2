@@ -1,10 +1,43 @@
 "use client";
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
 import Button from "@/components/Button/Button";
 import { ICourseCard } from "@/data/Academy/AllTrainings";
+
+const calculateTotalHours = (duration: string | undefined): number => {
+  if (!duration) {
+    console.error("Duration is undefined or empty.");
+    return 0;
+  }
+  const timeRangeMatch = duration.match(
+    /(\d{1,2}:\d{2})\s*-\s*(\d{1,2}:\d{2})/
+  );
+  if (!timeRangeMatch) {
+    console.error("No valid time range found in duration.");
+    return 0;
+  }
+  const [_, startTime, endTime] = timeRangeMatch;
+  console.log("Extracted Times:", { startTime, endTime });
+  const [startHour, startMinute] = startTime.split(":").map(Number);
+  const [endHour, endMinute] = endTime.split(":").map(Number);
+  if (
+    isNaN(startHour) ||
+    isNaN(startMinute) ||
+    isNaN(endHour) ||
+    isNaN(endMinute)
+  ) {
+    console.error("Invalid time format in extracted times.");
+    return 0;
+  }
+  const startTotalMinutes = startHour * 60 + startMinute;
+  const endTotalMinutes = endHour * 60 + endMinute;
+  const totalMinutes = endTotalMinutes - startTotalMinutes;
+  console.log("Total Minutes:", totalMinutes);
+  return totalMinutes / 60;
+};
 
 const CourseCard = ({
   logo,
@@ -22,6 +55,8 @@ const CourseCard = ({
   const handleViewClasses = () => {
     router.push(`academy/${slug}`);
   };
+
+  const totalHours = calculateTotalHours(duration);
 
   return (
     <section className="bg-white py-8 first:rounded-t-[20px] last:rounded-b-[20px] px-4 lg:px-6">
@@ -80,7 +115,7 @@ const CourseCard = ({
                 height={24}
                 alt="duration"
               />
-              {duration}
+              {totalHours.toFixed(1)} hours
             </div>
           )}
           {dates && (
@@ -108,7 +143,7 @@ const CourseCard = ({
                       width={24}
                       height={24}
                     />
-                  ),
+                  )
                 )}
               </div>
               <span>({reviews} reviews)</span>

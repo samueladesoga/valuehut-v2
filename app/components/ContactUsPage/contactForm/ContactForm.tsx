@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, ChangeEvent, useRef, FormEvent } from "react";
 import Button from "@/components/Button/Button";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 
 interface FormData {
   fullName: string;
