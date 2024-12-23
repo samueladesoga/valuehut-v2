@@ -12,9 +12,9 @@ function MeetTheTeam() {
       as a consultant to industry in business agility — and as an expert in the application of cross-disciplinary 
       methods and approaches to accelerate business change.`,
       socialLinks: [
-        { icon: "/icons/twitter.svg", alt: "twitter", url: "https://twitter.com" },
-        { icon: "/icons/likdin.svg", alt: "linkedin", url: "https://linkedin.com" },
-        { icon: "/icons/share.svg", alt: "share", url: "https://share.com" },
+        { icon: "/icons/twitter.svg", alt: "twitter", url: "https://x.com/NigelThurlow/" },
+        { icon: "/icons/likdin.svg", alt: "linkedin", url: "https://www.linkedin.com/in/nigelthurlow/" },
+        { icon: "/icons/share.svg", alt: "share", url: "https://nigelthurlow.com/" },
       ],
     },
     {
@@ -28,9 +28,9 @@ function MeetTheTeam() {
         to deliver value using Agile Frameworks and Practices; helping developing the mindset required 
         to thrive in Volatile, Uncertain, Complex and Ambiguous (VUCA) business environment.`,
       socialLinks: [
-        { icon: "/icons/twitter.svg", alt: "twitter", url: "https://twitter.com" },
-        { icon: "/icons/likdin.svg", alt: "linkedin", url: "https://linkedin.com" },
-        { icon: "/icons/share.svg", alt: "share", url: "https://share.com" },
+        { icon: "/icons/twitter.svg", alt: "twitter", url: "https://x.com/sadesoga/" },
+        { icon: "/icons/likdin.svg", alt: "linkedin", url: "https://www.linkedin.com/in/samueladesoga/" },
+        { icon: "/icons/share.svg", alt: "share", url: "https://samadesoga.me/" },
       ],
     },
     {
@@ -46,8 +46,8 @@ function MeetTheTeam() {
         scalable, maintainable software solutions.`,
       socialLinks: [
         { icon: "/icons/twitter.svg", alt: "twitter", url: "https://twitter.com" },
-        { icon: "/icons/likdin.svg", alt: "linkedin", url: "https://linkedin.com" },
-        { icon: "/icons/share.svg", alt: "share", url: "https://share.com" },
+        { icon: "/icons/likdin.svg", alt: "linkedin", url: "https://www.linkedin.com/in/temitope-awere-554194118/" },
+        { icon: "/icons/share.svg", alt: "share", url: "https://www.agilematrix.org/" },
       ],
     },
     {
@@ -60,9 +60,7 @@ function MeetTheTeam() {
       and high-impact training delivery. Known for her organizational excellence and attention to detail, Temitope plays a 
       key role in maintaining the quality and professionalism of ValueHut’s Consulting learning experiences.`,
       socialLinks: [
-        { icon: "/icons/twitter.svg", alt: "twitter", url: "https://twitter.com" },
-        { icon: "/icons/likdin.svg", alt: "linkedin", url: "https://linkedin.com" },
-        { icon: "/icons/share.svg", alt: "share", url: "https://share.com" },
+        { icon: "/icons/likdin.svg", alt: "linkedin", url: "https://www.linkedin.com/in/temitope-dada-1398541b0/" },
       ],
     },
   ];
