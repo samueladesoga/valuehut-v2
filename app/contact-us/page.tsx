@@ -19,9 +19,9 @@ const ContactUsPage: React.FC = () => {
         <div className="grid md:grid-cols-2 gap-8 md:gap-20 xl:gap-52 w-full px-0 sm:px-10 lg:px-0 ">
           <div>
             <ContactForm
-              onSubmit={function (): void {
-                throw new Error("Function not implemented.");
-              }}
+              // onSubmit={function (): void {
+              //   throw new Error("Function not implemented.");
+              // }}
             />
           </div>
           <div className=" md:px-0 py-7 w-full sm:max-w-[557px] px-4 ">
