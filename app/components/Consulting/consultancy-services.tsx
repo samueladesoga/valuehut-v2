@@ -32,14 +32,14 @@ export default function ConsultancyServices() {
             Want to know more?
           </p>
           <Link href="https://calendly.com/samueladesoga/valuehut-consulting">
-          <Button
-            bgColor="fill-brand-secondary"
-            size="medium"
-            rounded="full"
-            className=" !text-sm"
-          >
-            Book a consultation
-          </Button>
+            <Button
+              bgColor="fill-brand-secondary"
+              size="medium"
+              rounded="full"
+              className=" !text-sm"
+            >
+              Book a consultation
+            </Button>
           </Link>
         </div>
       </div>

@@ -24,7 +24,7 @@ const ContactForm: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -56,10 +56,10 @@ const ContactForm: React.FC = () => {
         process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID as string,
         process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID as string,
         formRef.current as HTMLFormElement,
-        process.env.NEXT_PUBLIC_EMAIL_USER_ID as string
+        process.env.NEXT_PUBLIC_EMAIL_USER_ID as string,
       )
       .then(
-        (response: { status: any; text: any; }) => {
+        (response: { status: any; text: any }) => {
           console.log("SUCCESS!", response.status, response.text);
           alert("Email has been sent successfully!");
           setFormData({
@@ -73,7 +73,7 @@ const ContactForm: React.FC = () => {
         (err: any) => {
           console.error("FAILED...", err);
           alert("An error occurred. Please try again.");
-        }
+        },
       )
       .finally(() => {
         setIsLoading(false);

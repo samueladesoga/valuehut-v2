@@ -30,18 +30,18 @@ export default async function DetailsPage({
   const course = post[0];
 
   const classDetail = course.classes.find(
-    (cls: { classId: number }) => cls.classId === parseInt(id)
+    (cls: { classId: number }) => cls.classId === parseInt(id),
   );
 
   const combinedDate = `${classDetail.startDate} - ${classDetail.endDate}, ${classDetail.year}`;
   const CourseDetails = course.courseDetails;
 
   const CourseObjectivesData = CourseDetails.find(
-    (item: { title: string }) => item.title === "Course Learning Objectives"
+    (item: { title: string }) => item.title === "Course Learning Objectives",
   );
 
   const WhoShouldAttendData = CourseDetails.find(
-    (item: { title: string }) => item.title === "Who should attend?"
+    (item: { title: string }) => item.title === "Who should attend?",
   );
 
   return (
@@ -73,7 +73,7 @@ export default async function DetailsPage({
                     <div key={index}>
                       <CourseObjectives text={goal} />
                     </div>
-                  )
+                  ),
                 )}
               </div>
             </div>

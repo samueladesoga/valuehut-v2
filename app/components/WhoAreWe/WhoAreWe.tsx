@@ -8,7 +8,10 @@ function WhoAreWe() {
         <h1 className="text-8xl font-medium text-[#141834] font-primary text-center md:text-left">
           Who are we
         </h1>
-        <Link href="https://calendly.com/samueladesoga/valuehut-consulting" target="_blank">
+        <Link
+          href="https://calendly.com/samueladesoga/valuehut-consulting"
+          target="_blank"
+        >
           <button className="hidden md:flex rounded-full bg-[#FF9F5A] px-6 py-3 text-main text-sm font-medium hover:bg-[#FF9F5A]/90">
             Get to know us better
           </button>

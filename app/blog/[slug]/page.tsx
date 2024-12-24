@@ -101,7 +101,7 @@ export default async function BlogPost({
               <p>Share to</p>
               <Link
                 href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
-                  fullUrl
+                  fullUrl,
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -117,7 +117,7 @@ export default async function BlogPost({
               </Link>
               <Link
                 href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
-                  fullUrl
+                  fullUrl,
                 )}&text=${encodeURIComponent(post.title)}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -143,7 +143,7 @@ export default async function BlogPost({
             <p>Share to</p>
             <Link
               href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
-                fullUrl
+                fullUrl,
               )}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -159,7 +159,7 @@ export default async function BlogPost({
             </Link>
             <Link
               href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
-                fullUrl
+                fullUrl,
               )}&text=${encodeURIComponent(post.title)}`}
               target="_blank"
               rel="noopener noreferrer"

@@ -29,7 +29,7 @@ export interface IAcadmeyHero {
   subtitle?: string;
   buttonText?: string;
   buttonLink?: string;
-  backgroundImage?: string;
+  backgroundImage: string;
   showRating?: boolean;
   ratingText?: string;
   ratingDetails?: string;

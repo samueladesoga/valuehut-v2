@@ -6,8 +6,7 @@ export interface HeroSectionProps {
   showRating?: boolean;
   ratingText?: string;
   ratingDetails?: string;
-  smallScreenImage?: string;
-  largeScreenImage?: string;
+  backgroundImage: string;
 }
 
 export const heroData: HeroSectionProps = {
@@ -19,6 +18,5 @@ export const heroData: HeroSectionProps = {
   showRating: true,
   ratingText: "Excellent",
   ratingDetails: "4.78 out of 5 based on 34 reviews",
-  smallScreenImage: "bg-hero-image1",
-  largeScreenImage: "sm:bg-hero-image2",
+  backgroundImage: "/images/hero.png",
 };
