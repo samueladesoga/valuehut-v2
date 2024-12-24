@@ -45,7 +45,9 @@ const BlogCard: React.FC<BlogCardProps> = ({
           {description}
         </p>
         <div className="flex flex-row text-xs font-secondary font-normal text-secondary">
-          <p>{date} - {tag}</p>
+          <p>
+            {date} - {tag}
+          </p>
           <span>{category}</span>
         </div>
       </div>

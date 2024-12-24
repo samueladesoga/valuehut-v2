@@ -22,8 +22,7 @@ export default function Home() {
         ratingText={heroData.ratingText}
         ratingDetails={heroData.ratingDetails}
         showRating={true}
-        smallScreenImage={heroData.smallScreenImage}
-        largeScreenImage={heroData.largeScreenImage}
+        backgroundImage={heroData.backgroundImage}
       />
       <ClientLogosSectionWrapper />
       <ServicesSection />

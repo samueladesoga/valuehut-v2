@@ -64,7 +64,7 @@ const FAQ: React.FC<FAQProps> = ({ faqs }) => {
             <p className="hidden md:flex text-xl font-medium font-secondary">
               You got more to ask?
             </p>
-          
+
             <Button
               rounded="full"
               size="small"

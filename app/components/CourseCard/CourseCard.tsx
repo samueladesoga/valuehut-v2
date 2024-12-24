@@ -13,7 +13,7 @@ const calculateTotalHours = (duration: string | undefined): number => {
     return 0;
   }
   const timeRangeMatch = duration.match(
-    /(\d{1,2}:\d{2})\s*-\s*(\d{1,2}:\d{2})/
+    /(\d{1,2}:\d{2})\s*-\s*(\d{1,2}:\d{2})/,
   );
   if (!timeRangeMatch) {
     console.error("No valid time range found in duration.");
@@ -143,7 +143,7 @@ const CourseCard = ({
                       width={24}
                       height={24}
                     />
-                  )
+                  ),
                 )}
               </div>
               <span>({reviews} reviews)</span>

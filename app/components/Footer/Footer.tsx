@@ -1,18 +1,16 @@
-"use client"
-
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import Button from "@/components/Button/Button";
-import { useRouter } from "next/navigation"; 
+import { useRouter } from "next/navigation";
 
 const Footer: React.FC = () => {
-
-  const router = useRouter(); 
+  const router = useRouter();
 
   const navigateToContactUs = () => {
-    router.push("/contact-us"); 
+    router.push("/contact-us");
   };
 
   return (
@@ -70,7 +68,7 @@ const Footer: React.FC = () => {
                   Social
                 </h3>
                 <ul role="list" className="mt-6 space-y-4">
-                <li>
+                  <li>
                     <Link
                       target="_blank"
                       href="https://linkedin.com/company/valuehut-limited"
@@ -127,17 +125,15 @@ const Footer: React.FC = () => {
               </p>
             </div>
             <div className="flex justify-center  items-center w-full mt-8 md:mt-0 sm:w-auto  ">
-            
               <Button
                 rounded="full"
-                 size="small"
-               
+                size="small"
                 bgColor="fill-brand-secondary"
                 className=" text-main px-6 py-3"
-                onClick={navigateToContactUs} 
+                onClick={navigateToContactUs}
               >
                 Let&apos;s get in touch
-              </Button> 
+              </Button>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 "use client";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect, useState } from "react";
+import React from "react";
 import type { HeroSectionProps } from "@/data/Home/HeroSection";
 import Image from "next/image";
 
@@ -13,32 +13,18 @@ const HeroSection = ({
   showRating,
   ratingText,
   ratingDetails,
-  smallScreenImage,
-  largeScreenImage,
+  backgroundImage,
 }: HeroSectionProps) => {
-  const [backgroundImage, setBackgroundImage] = useState(smallScreenImage);
-
-  useEffect(() => {
-    const updateBackgroundImage = () => {
-      if (window.matchMedia("(min-width: 640px)").matches) {
-        setBackgroundImage(largeScreenImage);
-      } else {
-        setBackgroundImage(smallScreenImage);
-      }
-    };
-
-    updateBackgroundImage();
-
-    window.addEventListener("resize", updateBackgroundImage);
-
-    return () => window.removeEventListener("resize", updateBackgroundImage);
-  }, []);
-
   return (
-    <section className="w-full">
-      <div
-        className={`h-[840px] flex flex-end bg-center bg-cover bg-no-repeat  ${backgroundImage}`}
-      >
+    <section className="w-full relative ">
+      <Image
+        src={backgroundImage}
+        layout="fill"
+        className="object-center object-cover pointer-events-none"
+        alt={title}
+        priority
+      />
+      <div className="bg-gradient-custom relative z-1 h-[840px] flex flex-end">
         <div className="container w-full flex h-full font-primary items-end px-6 2xl:px-0 pb-[60px]">
           <div className="flex flex-col gap-4 space-y-3 bottom-10 w-full text-accentmain">
             <h1 className="text-[47px] md:text-[87px] w-full md:w-[58%] leading-[51px] md:leading-[95.7px] font-semibold font-primary">

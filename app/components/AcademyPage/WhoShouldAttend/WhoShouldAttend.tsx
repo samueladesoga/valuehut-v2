@@ -26,7 +26,7 @@ const WhoShouldAttend = ({ WhoShouldAttendData }: WhoShouldAttendProps) => {
             {(WhoShouldAttendData.contentList ?? []).map(
               (attend: string, index: number) => (
                 <motion.div
-                key={attend} 
+                  key={attend}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{
                     opacity: 1,
@@ -44,7 +44,7 @@ const WhoShouldAttend = ({ WhoShouldAttendData }: WhoShouldAttendProps) => {
                     description={attend}
                   />
                 </motion.div>
-              )
+              ),
             )}
           </div>
         </div>

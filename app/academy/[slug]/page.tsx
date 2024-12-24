@@ -42,14 +42,14 @@ export default async function CourseDetailsPage({
   const CourseDetails = course.courseDetails;
 
   const CourseObjectivesData = CourseDetails.find(
-    (item: { title: string }) => item.title === "Course Learning Objectives"
+    (item: { title: string }) => item.title === "Course Learning Objectives",
   );
   const WhoShouldAttendData = CourseDetails.find(
-    (item: { title: string }) => item.title === "Who should attend?"
+    (item: { title: string }) => item.title === "Who should attend?",
   );
 
   const AdditionalBenefitsData = CourseDetails.find(
-    (item: { title: string }) => item.title === "Additional Benefits"
+    (item: { title: string }) => item.title === "Additional Benefits",
   );
   if (!post) {
     notFound();
@@ -58,11 +58,12 @@ export default async function CourseDetailsPage({
   return (
     <div className="bg-[#f5f5f5]">
       <div className="relative">
-       
         <HeroComponent backgroundImage={course.image} />
         <div className="absolute inset-0 bg-gradient-custom  z-0"></div>
         <div className=" w-full  container inset-0 flex items-center justify-start z-20">
-        <h1 className="text-7xl absolute bottom-10 mb-10 sm:text-[67px] md:max-w-2xl font-primary sm:leading-[80px] font-normal text-accentmain">{course.title}</h1>
+          <h1 className="text-7xl absolute bottom-10 mb-10 sm:text-[67px] md:max-w-2xl font-primary sm:leading-[80px] font-normal text-accentmain">
+            {course.title}
+          </h1>
         </div>
       </div>
       <div className="md:bg-white">
@@ -104,7 +105,8 @@ export default async function CourseDetailsPage({
             ) : (
               <div className="py-5">
                 <p className="text-lg font-medium text-main font-secondary">
-                  No public classes available. <a href="/contact-us">Contact</a> us if you would like a private class for your organisation.
+                  No public classes available. <a href="/contact-us">Contact</a>{" "}
+                  us if you would like a private class for your organisation.
                 </p>
               </div>
             )}
@@ -127,7 +129,8 @@ export default async function CourseDetailsPage({
           ) : (
             <div className="py-5">
               <p className="text-lg font-medium text-main font-secondary">
-                No public classes available. <a href="/contact-us">Contact</a> us if you would like a private class for your organisation.
+                No public classes available. <a href="/contact-us">Contact</a>{" "}
+                us if you would like a private class for your organisation.
               </p>
             </div>
           )}
@@ -146,7 +149,7 @@ export default async function CourseDetailsPage({
                     <div key={index}>
                       <CourseObjectives text={goal} />
                     </div>
-                  )
+                  ),
                 )}
               </div>
             </div>
@@ -175,7 +178,7 @@ export default async function CourseDetailsPage({
                       text={benefit}
                       index={index}
                     />
-                  )
+                  ),
                 )}
               </div>
             </div>
