@@ -7,33 +7,33 @@ interface FAQItem {
 export const faqs: FAQItem[] = [
   {
     category: "ValueHut",
-    question: "What's the best thing about Switzerland?",
+    question: "What makes ValueHut Consulting different from others?",
     answer:
-      "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+      "As a boutique Agile Management Consultancy, we offer a personalised approach rather than one-size-fits-all; as a result we carefully select the clients that we work with. Our focus on measurable outcomes set us apart and we have proof of helping organisations such as yours.",
   },
   {
     category: "ValueHut",
-    question: "What's the capital of Switzerland?",
+    question: "What industries do you work with?",
     answer:
-      "The capital of Switzerland is Bern. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+      "Our methodologies are adaptable to any organization seeking to enhance their ways of working, from technology companies to traditional enterprises undergoing digital transformation.",
   },
   {
     category: "ValueHut",
-    question: "What's the population of Switzerland?",
+    question: "Which Agile Framework and Methodologies do you recommend?",
     answer:
-      "The population of Switzerland is approximately 8.5 million. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+      "What challenges do you want to solve; we would advice you based on our combined experience and inspired some of the most popular Agile and Lean approaches.",
   },
   {
     category: "ValueHut",
-    question: "What's the official language of Switzerland?",
+    question: "How long does a typical engagement last?",
     answer:
-      "The official languages of Switzerland are German, French, Italian, and Romansh. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+      "Each engagement is unique and depends on your organization's goals and current maturity level. Typical transformations range from 3-12 months, with ongoing support available to ensure sustainable change.",
   },
   {
     category: "ValueHut",
-    question: "What's the currency of Switzerland?",
+    question: "Academy or Consulting?",
     answer:
-      "The currency of Switzerland is the Swiss Franc. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+      "It depends on your goals and the level of support that you require. Our training are intense for 1-3 days, while Consulting Services provides an ongoing support for the organisation.",
   },
   {
     category: "Academy",
@@ -64,18 +64,24 @@ export const faqs: FAQItem[] = [
     category: "Consulting",
     question: "What services does the Consulting department provide?",
     answer:
-      "The Consulting department provides a wide range of services to clients. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+      "Our Services include Delivery Management, Outsourcing of Product Delivery, Continuous Delivery including Test Automation among other. Visit our consulting page for more information.",
   },
   {
     category: "Talent Matching",
     question: "How does the Talent Matching process work?",
     answer:
-      "The Talent Matching process involves matching candidates with suitable job opportunities. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+      "We kick off with a discovery call with the Hiring Manager to understand your goals and over the next 7-10 days match you with prequalified professionals within our network",
   },
   {
     category: "Talent Matching",
-    question: "What industries does the Talent Matching team specialize in?",
+    question: "Do you only match Agile Professionals?",
     answer:
-      "The Talent Matching team specializes in various industries. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+      "We have primarily work with digital teams where Professionals with Agile experience are beneficial.",
+  },
+  {
+    category: "Talent Matching",
+    question: "Why ValueHut Consulting and not Traditional Recruiters?",
+    answer:
+      "We have consulted with 100s of teams and we are able to spot true agilist in our first conversation; we will reduce the lead recruitment time to days instead of weeks.",
   },
 ];
