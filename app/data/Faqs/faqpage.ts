@@ -64,7 +64,7 @@ export const faqs: FAQItem[] = [
     category: "Consulting",
     question: "What services does the Consulting department provide?",
     answer:
-      "Our Services include Delivery Management, Outsourcing of Product Delivery, Continuous Delivery including Test Automation among other. Visit our consulting page for more information.",
+      "Our Services include Delivery Management, Outsourcing of Product Delivery, Continuous Delivery including Test Automation among others. Visit our consulting page for more information.",
   },
   {
     category: "Talent Matching",
