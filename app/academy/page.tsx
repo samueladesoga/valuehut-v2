@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import HeroComponent from "@/components/HeroComponent/HeroComponent";
 import CourseCard from "@/components/CourseCard/CourseCard";
-import { AllCourses, AcademyHero } from "@/data/Academy/AllTrainings";
+import { AcademyHero } from "@/data/Academy/AllTrainings";
 // import FilterDropdown from "@/components/FilterDropdown/FilterDropdown";
 import Testimonials from "@/components/Homepage/Testimonials/Testimonials";
 import { faqs } from "@/data/Faqs/faqpage";
@@ -9,33 +10,27 @@ import FAQ from "@/components/FaqPage/Faq/Faq";
 import TrainingsPartners from "@/components/TrainingsPage/TriningsPartners/TrainingsPartners";
 import { getAllCourses } from "@/lib/courseApi";
 
-interface ICourseCard {
-  id: number;
-  title: string;
-  description: string;
-  level: string;
-  duration: string;
-  dates: string;
-  rating: number;
-  slug: string;
-  reviews: number;
-  logo: string;
-}
-
 export default async function Home() {
-  // const filterOptions = [
-  //   { value: "latest", label: "Latest" },
-  //   { value: "highestRated", label: "Highest Rated" },
-  //   { value: "duration", label: "Shortest Duration" },
-  // ];
+  const courses = await getAllCourses();
 
-  // const handleFilterChange = (selectedFilter: {
-  //   value: string;
-  //   label: string;
-  // }) => {
-  //   console.log("Selected Filter:", selectedFilter.value);
-  // };
-  const course = await getAllCourses();
+  const processedCourses = courses.map((course: any) => {
+    const unfilledClasses = course.classes
+      .filter((cls: any) => !cls.filled)
+      .sort(
+        (a: any, b: any) =>
+          new Date(`${a.startDate} ${a.year}`).getTime() -
+          new Date(`${b.startDate} ${b.year}`).getTime(),
+      );
+
+    const firstUnfilledClass = unfilledClasses[0];
+
+    return {
+      ...course,
+      firstUnfilledClassDate: firstUnfilledClass
+        ? `${firstUnfilledClass.startDate} ${firstUnfilledClass.year}`
+        : "No upcoming dates",
+    };
+  });
 
   return (
     <>
@@ -69,14 +64,14 @@ export default async function Home() {
         </div>
         <div className="container  pt-[1px] lg:pt-5">
           <div className="flex flex-col gap-[2px]">
-            {course.map((course: ICourseCard) => (
+            {processedCourses.map((course: any) => (
               <CourseCard
                 key={course.id}
                 title={course.title}
                 description={course.description}
                 level={course.level}
                 duration={course.duration}
-                dates={course.dates}
+                dates={course.firstUnfilledClassDate}
                 rating={course.rating}
                 reviews={course.reviews}
                 logo={course.logo}
@@ -84,7 +79,7 @@ export default async function Home() {
                 slug={course.slug || ""}
               />
             ))}
-            {AllCourses.length === 0 && (
+            {processedCourses.length === 0 && (
               <p className="text-center col-span-full text-gray-500">
                 No courses found.
               </p>

@@ -85,7 +85,6 @@ export const getAllArticles = async () => {
   ).then((res) => res.json());
 
   const posts: IPostType[] = data.data?.blogCollection?.items;
-  console.log(posts);
 
   const articles = posts.map((post) => ({
     title: post.title,

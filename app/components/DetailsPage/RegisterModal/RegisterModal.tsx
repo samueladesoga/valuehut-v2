@@ -1,27 +1,42 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Button from "@/components/Button/Button";
 import Image from "next/image";
-import { IRegisterModal } from "@/data/Academy/RegisterModal";
 import { useRouter } from "next/navigation";
+import {
+  countries,
+  primaryMarket,
+  tertiaryMarket,
+} from "@/data/Countries/countries";
 
-interface RegisterModalProps extends IRegisterModal {
+interface RegisterModalProps {
+  title: string;
+  date: string;
   onClose: () => void;
+  logo: string;
+  courseId: string;
+  classId: string;
 }
 
 const RegisterModal = ({
-  image,
   title,
   date,
-  countries,
   onClose,
+  logo,
+  courseId,
+  classId,
 }: RegisterModalProps) => {
   const router = useRouter();
+  const [selectedCountry, setSelectedCountry] = useState<string>("");
 
   const handleRouting = () => {
-    router.push("/checkout");
+    const lowercaseCountryname = selectedCountry.toLocaleLowerCase();
+    router.push(
+      `/checkout/${courseId}/${classId}?country=${lowercaseCountryname}`,
+    );
   };
+
   return (
     <>
       <div
@@ -32,7 +47,7 @@ const RegisterModal = ({
           <div className="flex flex-col gap-10 bg-white rounded-[20px] px-4 py-8 md:p-8 w-full max-w-[645px]">
             <div className="flex gap-3">
               <Image
-                src={image}
+                src={logo}
                 width={70}
                 height={70}
                 alt="images"
@@ -55,12 +70,30 @@ const RegisterModal = ({
                 <select
                   className="mt-2 w-full px-4 py-5 border text-sm border-neutral-300 font-normal font-secondary rounded-lg text-secondary"
                   defaultValue=""
+                  onChange={(e) => setSelectedCountry(e.target.value)}
                 >
-                  {countries.map((country) => (
-                    <option key={country.code} value={country.code}>
-                      {country.name}
-                    </option>
-                  ))}
+                  <option value="">Select a country...</option>
+                  <optgroup label="Primary Market">
+                    {primaryMarket.map((country, index) => (
+                      <option key={index} value={country}>
+                        {country}
+                      </option>
+                    ))}
+                  </optgroup>
+                  <optgroup label="Secondary Market">
+                    {countries.map((country, index) => (
+                      <option key={index} value={country}>
+                        {country}
+                      </option>
+                    ))}
+                  </optgroup>
+                  <optgroup label="Tertiary Market">
+                    {tertiaryMarket.map((country, index) => (
+                      <option key={index} value={country}>
+                        {country}
+                      </option>
+                    ))}
+                  </optgroup>
                 </select>
               </div>
 

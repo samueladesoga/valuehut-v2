@@ -15,6 +15,9 @@ function DetailsHero({
   pricing,
   schedule,
   images,
+  logo,
+  courseId,
+  classId,
 }: ICourseDetails) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
@@ -118,11 +121,12 @@ function DetailsHero({
       </div>
       {isModalOpen && (
         <RegisterModal
-          image={RegisterModalData.image}
-          countries={RegisterModalData.countries}
-          date={RegisterModalData.date}
+          date={schedule.date}
           title={RegisterModalData.title}
           onClose={handleModalToggle}
+          logo={logo}
+          courseId={courseId}
+          classId={classId}
         />
       )}
     </div>

@@ -55,7 +55,7 @@ const CheckoutCourseDetails: React.FC<CheckoutCourseDetailsProps> = ({
           <h3 className="text-sm font-medium text-main opacity-[70%] font-secondary">
             Country
           </h3>
-          <p className="text-sm font-medium text-main font-secondary">
+          <p className="text-sm font-medium text-main font-secondary capitalize">
             {country}
           </p>
         </div>

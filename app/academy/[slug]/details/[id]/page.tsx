@@ -1,4 +1,3 @@
-// "use client";
 import React from "react";
 import DetailsHero from "@/components/DetailsPage/DetailsHero/DetailsHero";
 import { courseDetails } from "@/data/Academy/CourseDetails";
@@ -22,15 +21,15 @@ export default async function DetailsPage({
 }: {
   params: Promise<{ slug: string; id: string }>;
 }) {
-  const slug = (await params).slug;
-  const id = (await params).id;
+  const courseId = (await params).slug;
+  const classId = (await params).id;
 
-  const post = await getCourse(slug);
+  const post = await getCourse(courseId);
 
   const course = post[0];
 
   const classDetail = course.classes.find(
-    (cls: { classId: number }) => cls.classId === parseInt(id),
+    (cls: { classId: number }) => cls.classId === parseInt(classId),
   );
 
   const combinedDate = `${classDetail.startDate} - ${classDetail.endDate}, ${classDetail.year}`;
@@ -58,6 +57,9 @@ export default async function DetailsPage({
           classType: classDetail.classType,
         }}
         images={{ heroImage: course.image }}
+        logo={course.logo}
+        courseId={courseId}
+        classId={classId}
       />
       <div className="bg-white xl:px-12 py-8 mt-12 ">
         <div className="container px-4 xl:px-0 flex flex-col gap-14">

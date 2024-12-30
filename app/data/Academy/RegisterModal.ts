@@ -4,14 +4,13 @@ export interface ICountry {
 }
 
 export interface IRegisterModal {
-  image: string;
   title: string;
   date: string;
   countries: ICountry[];
+  logo: string;
 }
 
 export const RegisterModalData: IRegisterModal = {
-  image: "/images/psm.png",
   title: "Professional Scrum Master",
   date: "Oct 24 - Oct 25, 2024",
   countries: [
@@ -21,4 +20,5 @@ export const RegisterModalData: IRegisterModal = {
     { code: "AU", name: "Australia" },
     { code: "CA", name: "Canada" },
   ],
+  logo: "",
 };

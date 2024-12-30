@@ -35,7 +35,6 @@ const ContactForm: React.FC = () => {
 
   const handleSendEmail = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
 
     const { fullName, email, interest, message } = formData;
 

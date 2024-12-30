@@ -1,7 +1,7 @@
 export interface OrderSummaryProps {
   subtotal: string;
   discountText: string;
-  total: string;
+  total: number;
   perPerson: string;
 }
 

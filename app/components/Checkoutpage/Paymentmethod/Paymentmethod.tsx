@@ -1,4 +1,6 @@
+"use client";
 import Image from "next/image";
+
 import React, { useState } from "react";
 
 interface PaymentMethod {
@@ -8,20 +10,35 @@ interface PaymentMethod {
   customIcon?: string;
 }
 
+interface InvoiceDetails {
+  fullName: string;
+  email: string;
+  phone: string;
+  address: string;
+  numberOfAttendees: number;
+}
 interface PaymentMethodSelectorProps {
   methods: PaymentMethod[];
-  onSelect?: (method: string) => void;
+  setInvoiceDetails: (
+    updateFn: (prevState: InvoiceDetails) => InvoiceDetails,
+  ) => void;
 }
 
 const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
   methods,
-  onSelect,
+  setInvoiceDetails,
 }) => {
   const [selectedMethod, setSelectedMethod] = useState<string>("");
 
+  const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setInvoiceDetails((prevState) => ({
+      ...prevState,
+      [name]: name === "numberOfAttendees" ? parseInt(value) || 1 : value,
+    }));
+  };
   const handleSelect = (methodId: string) => {
     setSelectedMethod(methodId);
-    onSelect?.(methodId);
   };
 
   return (
@@ -165,6 +182,8 @@ const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
                       <input
                         type="text"
                         id="full-name"
+                        name="fullName"
+                        onChange={handleInput}
                         placeholder="Enter your full name"
                         className="w-full py-5 px-4 border-none rounded-lg font-normal font-secondary text-xl !leading-[25px] text-secondary focus:outline-none focus:ring-0"
                       />
@@ -181,6 +200,8 @@ const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
                         <input
                           type="email"
                           id="email"
+                          name="email"
+                          onChange={handleInput}
                           placeholder="Enter your email"
                           className="w-full py-5 px-4 border-none rounded-lg font-normal font-secondary text-xl !leading-[25px] text-secondary focus:outline-none focus:ring-0"
                         />
@@ -196,6 +217,8 @@ const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
                         <input
                           type="tel"
                           id="phone"
+                          name="phone"
+                          onChange={handleInput}
                           placeholder="Enter your phone number"
                           className="w-full py-5 px-4 border-none rounded-lg font-normal font-secondary text-xl !leading-[25px] text-secondary focus:outline-none focus:ring-0"
                         />
@@ -212,6 +235,8 @@ const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
                       <input
                         type="text"
                         id="address"
+                        name="address"
+                        onChange={handleInput}
                         placeholder="Enter your address"
                         className="w-full py-5 px-4 border-none rounded-lg font-normal font-secondary text-xl !leading-[25px] text-secondary focus:outline-none focus:ring-0"
                       />
@@ -227,8 +252,11 @@ const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
                       <input
                         type="number"
                         id="attendees"
+                        value={1}
+                        name="numberOfAttendees"
                         placeholder="Enter the number of attendees"
                         className="w-full py-5 px-4 border-none rounded-lg font-normal font-secondary text-xl !leading-[25px] text-secondary focus:outline-none focus:ring-0"
+                        onChange={handleInput}
                       />
                     </div>
                   </div>

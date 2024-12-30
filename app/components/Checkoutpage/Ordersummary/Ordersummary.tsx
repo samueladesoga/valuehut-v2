@@ -40,7 +40,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
             Order total
           </h1>
           <p className="text-[26px] leading-[39px] font-semibold text-main font-secondary">
-            {total}
+            £{total}
           </p>
         </div>
       </div>

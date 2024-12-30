@@ -30,11 +30,12 @@ interface ICourses {
   title: string;
   description: string;
   level: string;
+  acronym: string;
   logo: {
     url: string;
   };
   slug: string;
-  duration: string;
+  duration: number;
   dates: string;
   imageUrl: {
     url: string;
@@ -49,6 +50,7 @@ export const getAllCourses = async () => {
       title
       description
       acronym
+      duration
       logo{
         url
       }
@@ -94,8 +96,13 @@ export const getAllCourses = async () => {
     level: course.level,
     logo: course.logo.url,
     slug: course.slug,
-    duration: course.classesCollection.items[0]?.time,
+    duration: course.duration,
     dates: convertDate(course.classesCollection.items[0]?.startDate),
+    classes: course.classesCollection.items.map((item) => ({
+      filled: item.filled,
+      startDate: getMonthAndDay(item.startDate),
+      year: getYear(item.startDate),
+    })),
   }));
   return courses;
 };
@@ -111,6 +118,8 @@ export const getCourse = async (slug: string) => {
           title
           description
           level
+          duration
+          acronym
           logo {
             url
           }
@@ -167,7 +176,8 @@ export const getCourse = async (slug: string) => {
     level: course.level,
     logo: course.logo.url,
     slug: course.slug,
-    duration: course.classesCollection.items[0]?.time,
+    acronym: course.acronym,
+    duration: course.duration,
     dates: convertDate(course.classesCollection.items[0]?.startDate),
     image: course.imageUrl.url,
     classes: course.classesCollection.items.map((item, index) => ({

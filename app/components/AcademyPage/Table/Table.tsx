@@ -6,6 +6,24 @@ import { usePathname, useRouter } from "next/navigation";
 import Button from "@/components/Button/Button";
 import { IUpcomingClassesData } from "@/data/Academy/UpcomingClasses";
 
+const getDisplayDate = (startDate: string, endDate: string): string => {
+  const formatDate = (date: string): string | null => {
+    const parsedDate = new Date(date);
+    if (isNaN(parsedDate.getTime())) return null;
+    return parsedDate.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+    });
+  };
+  const start = formatDate(startDate);
+  const end = formatDate(endDate);
+  if (start && end && start !== end) {
+    return `${start} - ${end}`;
+  }
+  if (start) return start;
+  return "Date Unavailable";
+};
+
 function Table({
   id,
   startDate,
@@ -29,7 +47,7 @@ function Table({
           filled ? "text-secondary" : "text-main"
         }`}
       >
-        {startDate} - {endDate}, {year}
+        {`${getDisplayDate(startDate, endDate)}, ${year}`}
       </td>
 
       <td
