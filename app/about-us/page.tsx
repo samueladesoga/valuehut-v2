@@ -20,7 +20,7 @@ function AboutPage() {
           transition={{ duration: 0.5, delay: 0.1 }}
           viewport={{ once: false, amount: 0.2 }}
         >
-          <SectionTitle title="Co-creating better ways of working and leading." />
+          <SectionTitle title="ValueHut Consulting" />
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -30,7 +30,8 @@ function AboutPage() {
         >
           <SectionPara
             className="font-normal"
-            para="We are an agile Management consultancy that is helping Organisations transform into a network of interdependent product teams across different business units."
+            para="An agile Management consultancy that believes that people provide the organisation's competitive advantage, 
+            hence our mission to improve teamwork across business units."
           />
         </motion.div>
       </div>
@@ -65,19 +66,19 @@ function AboutPage() {
         <WhyChooseUs
           title={"Why choose us?"}
           subtitle={
-            "Established product delivery teams often face challenges related to adoption"
+            "Experienced cnsultants and practitioners with a track record of transforming organisations and teams."
           }
           stats={[
             {
-              number: "23+",
-              title: "Successful Students",
+              number: "100+",
+              title: "Transformed Organisations",
             },
             {
               number: "3x",
-              title: "More chance to get hired",
+              title: "Increase in Organisation Effectiveness",
             },
             {
-              number: "15+",
+              number: "100+",
               title: "Years of collective experience",
             },
           ]}
