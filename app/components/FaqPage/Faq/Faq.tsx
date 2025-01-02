@@ -157,7 +157,7 @@ const FAQ: React.FC<FAQProps> = ({ faqs }) => {
                   </dt>
 
                   <dd
-                    className={`mt-2 pr-16 transition-all duration-500 ease-in-out overflow-hidden ${
+                    className={`mt-2 pr-18 transition-all duration-500 ease-in-out overflow-hidden ${
                       openIndex === index
                         ? "max-h-[1000px] opacity-100"
                         : "max-h-0 opacity-0"
