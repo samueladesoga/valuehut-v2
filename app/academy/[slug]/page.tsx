@@ -1,4 +1,3 @@
-import ClientReviews from "@/components/ClientReviews/ClientReviews";
 import FAQ from "@/components/FaqPage/Faq/Faq";
 import OurPartners from "@/components/FaqPage/OurPartners/OurPartners";
 import HeroComponent from "@/components/HeroComponent/HeroComponent";
