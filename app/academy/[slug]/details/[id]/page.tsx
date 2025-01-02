@@ -9,6 +9,7 @@ import ClientReviews from "@/components/ClientReviews/ClientReviews";
 import MoreInformation from "@/components/DetailsPage/Moreinformation/Moreinformation";
 import { getCourse } from "@/lib/courseApi";
 import WhoShouldAttend from "@/components/AcademyPage/WhoShouldAttend/WhoShouldAttend";
+import Testimonials from "@/components/Homepage/Testimonials/Testimonials";
 
 export interface PageProps {
   params: {
@@ -96,9 +97,8 @@ export default async function DetailsPage({
       <div className="container px-4 xl:px-0 py-14 md:pt-36 md:pb-24">
         <MoreInformation />
       </div>
-
-      <div className="container sm:py-8">
-        <ClientReviews title="What our students say" />
+      <div>
+        <Testimonials />
       </div>
     </div>
   );

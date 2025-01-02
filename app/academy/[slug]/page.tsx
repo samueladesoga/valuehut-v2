@@ -12,6 +12,7 @@ import { notFound } from "next/navigation";
 import { getCourse } from "@/lib/courseApi";
 import { AdditionalBenefitCard } from "@/components/AcademyPage/AdditionalBenefit/AdditonalBenefitCard";
 import WhoShouldAttend from "@/components/AcademyPage/WhoShouldAttend/WhoShouldAttend";
+import Testimonials from "@/components/Homepage/Testimonials/Testimonials";
 
 interface IClasses {
   classId: number;
@@ -189,11 +190,10 @@ export default async function CourseDetailsPage({
       <div className="container px-4 sm:px-0 py-36">
         <OurPartners />
       </div>
-      <FAQ faqs={faqs} />
-
-      <div className="hidden md:flex container px-4 xl:px-0 py-36">
-        <ClientReviews />
+      <div>
+        <Testimonials />
       </div>
+      <FAQ faqs={faqs} />
     </div>
   );
 }

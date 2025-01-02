@@ -17,6 +17,6 @@ export const moreInformationData: IMoreInformation[] = [
   {
     text: "Click here for more reasons to train with ValueHut Consulting",
     isLink: true,
-    href: "#",
+    href: "/blog/a-case-for-agile-and-scrum-training-with-valuehut",
   },
 ];
