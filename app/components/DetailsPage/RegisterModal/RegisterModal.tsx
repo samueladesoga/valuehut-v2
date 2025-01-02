@@ -31,10 +31,8 @@ const RegisterModal = ({
   const [selectedCountry, setSelectedCountry] = useState<string>("");
 
   const handleRouting = () => {
-    const lowercaseCountryname = selectedCountry.toLocaleLowerCase();
-    router.push(
-      `/checkout/${courseId}/${classId}?country=${lowercaseCountryname}`,
-    );
+    const lowercaseCountryname = selectedCountry.toLocaleLowerCase()
+    router.push(`/checkout/${courseId}/${classId}?country=${lowercaseCountryname}`);
   };
 
   return (

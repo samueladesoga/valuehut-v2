@@ -19,7 +19,7 @@ export default async function Home() {
       .sort(
         (a: any, b: any) =>
           new Date(`${a.startDate} ${a.year}`).getTime() -
-          new Date(`${b.startDate} ${b.year}`).getTime(),
+          new Date(`${b.startDate} ${b.year}`).getTime()
       );
 
     const firstUnfilledClass = unfilledClasses[0];

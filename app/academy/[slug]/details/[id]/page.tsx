@@ -29,7 +29,9 @@ export default async function DetailsPage({
   const course = post[0];
 
   const classDetail = course.classes.find(
-    (cls: { classId: number }) => cls.classId === parseInt(classId),
+
+    (cls: { classId: number }) => cls.classId === parseInt(classId)
+
   );
 
   const combinedDate = `${classDetail.startDate} - ${classDetail.endDate}, ${classDetail.year}`;
@@ -58,8 +60,8 @@ export default async function DetailsPage({
         }}
         images={{ heroImage: course.image }}
         logo={course.logo}
-        courseId={courseId}
-        classId={classId}
+        courseId = {courseId}
+        classId= {classId}
       />
       <div className="bg-white xl:px-12 py-8 mt-12 ">
         <div className="container px-4 xl:px-0 flex flex-col gap-14">

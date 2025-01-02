@@ -19,9 +19,7 @@ interface InvoiceDetails {
 }
 interface PaymentMethodSelectorProps {
   methods: PaymentMethod[];
-  setInvoiceDetails: (
-    updateFn: (prevState: InvoiceDetails) => InvoiceDetails,
-  ) => void;
+  setInvoiceDetails: (updateFn: (prevState: InvoiceDetails) => InvoiceDetails) => void;
 }
 
 const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
@@ -32,9 +30,9 @@ const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
 
   const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setInvoiceDetails((prevState) => ({
+    setInvoiceDetails(prevState => ({
       ...prevState,
-      [name]: name === "numberOfAttendees" ? parseInt(value) || 1 : value,
+      [name]: name === 'numberOfAttendees' ? parseInt(value) || 1 : value
     }));
   };
   const handleSelect = (methodId: string) => {

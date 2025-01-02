@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
-import { parseMultipartFormData } from "./multipartParser";
+import { NextRequest, NextResponse } from 'next/server';
+import nodemailer from 'nodemailer';
+import { parseMultipartFormData } from './multipartParser';
 
 export async function POST(req: NextRequest) {
   try {
@@ -15,16 +15,16 @@ export async function POST(req: NextRequest) {
 
     if (
       !uploadedFile ||
-      typeof toEmail !== "string" ||
-      typeof subject !== "string" ||
-      typeof customerName !== "string" ||
-      typeof courseName !== "string"
+      typeof toEmail !== 'string' ||
+      typeof subject !== 'string' ||
+      typeof customerName !== 'string' ||
+      typeof courseName !== 'string'
     ) {
-      return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+      return NextResponse.json({ error: 'Invalid request' }, { status: 400 });
     }
 
     const transporter = nodemailer.createTransport({
-      host: "email-smtp.us-east-1.amazonaws.com",
+      host: 'email-smtp.us-east-1.amazonaws.com',
       port: 465,
       secure: true,
       auth: {
@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
     const mailOptions = {
       from: '"ValueHut" <info@valuehut.co>',
       to: toEmail,
-      bcc: "info@valuehut.co",
+      bcc: 'info@valuehut.co',
       subject: subject,
       html: `
         <!DOCTYPE html>
@@ -112,15 +112,10 @@ export async function POST(req: NextRequest) {
     };
 
     const info = await transporter.sendMail(mailOptions);
-    return NextResponse.json(
-      { message: "Email sent: " + info.response },
-      { status: 200 },
-    );
+    return NextResponse.json({ message: 'Email sent: ' + info.response }, { status: 200 });
   } catch (error) {
     console.error(error);
-    return NextResponse.json(
-      { error: "Failed to send email" },
-      { status: 500 },
-    );
+    return NextResponse.json({ error: 'Failed to send email' }, { status: 500 });
   }
 }
+
