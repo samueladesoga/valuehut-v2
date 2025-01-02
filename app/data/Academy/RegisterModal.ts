@@ -7,7 +7,7 @@ export interface IRegisterModal {
   title: string;
   date: string;
   countries: ICountry[];
-  logo:string
+  logo: string;
 }
 
 export const RegisterModalData: IRegisterModal = {
@@ -20,5 +20,5 @@ export const RegisterModalData: IRegisterModal = {
     { code: "AU", name: "Australia" },
     { code: "CA", name: "Canada" },
   ],
-  logo: ""
+  logo: "",
 };

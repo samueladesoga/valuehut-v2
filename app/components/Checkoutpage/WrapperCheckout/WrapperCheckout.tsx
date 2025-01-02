@@ -7,10 +7,7 @@ import Paymentmethod from "../Paymentmethod/Paymentmethod";
 import CheckoutCourseDetails from "../CheckoutCourseDetails/CheckoutCourseDetails";
 import OrderSummary from "../Ordersummary/Ordersummary";
 import Button from "@/components/Button/Button";
-import {
-  primaryMarket,
-  tertiaryMarket,
-} from "@/data/Countries/countries";
+import { primaryMarket, tertiaryMarket } from "@/data/Countries/countries";
 import { orderSummary } from "@/data/Academy/OrderSummary";
 import { useRouter, useSearchParams } from "next/navigation";
 import InvoiceDocument from "../InvoiceDocument/InvoiceDocument";
@@ -52,7 +49,6 @@ function WrapperCheckout({ course, classId }: any) {
   const [_errors, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
- 
   const [invoiceDetails, setInvoiceDetails] = useState<InvoiceDetails>({
     fullName: "",
     email: "",
@@ -64,20 +60,20 @@ function WrapperCheckout({ course, classId }: any) {
   const acronym = course.acronym;
 
   const classDetail = course.classes.find(
-    (cls: { classId: number }) => cls.classId === parseInt(classId)
+    (cls: { classId: number }) => cls.classId === parseInt(classId),
   );
   const country = searchParams[1];
 
   useEffect(() => {
     if (classDetail) {
       let price;
-      if(country === 'united kingdom'){
+      if (country === "united kingdom") {
         price = classDetail.ukPrice;
-      }else if(primaryMarket.includes(country)){
+      } else if (primaryMarket.includes(country)) {
         price = classDetail.primary;
-      }else if(tertiaryMarket.includes(country)){
+      } else if (tertiaryMarket.includes(country)) {
         price = classDetail.tertiary;
-      }else{
+      } else {
         price = classDetail.secondary;
       }
       setClassPrice(price * invoiceDetails.numberOfAttendees);
@@ -133,7 +129,7 @@ function WrapperCheckout({ course, classId }: any) {
       .then((data) => {
         if (data.error) {
           setError(
-            "An error occurred while sending you an invoice. please try again later!"
+            "An error occurred while sending you an invoice. please try again later!",
           );
           setSuccess(null);
         } else {
@@ -143,7 +139,7 @@ function WrapperCheckout({ course, classId }: any) {
       .catch((error) => {
         console.error(error);
         setError(
-          "An error occurred while sending you an email. please try again later!"
+          "An error occurred while sending you an email. please try again later!",
         );
         setSuccess(null);
       })

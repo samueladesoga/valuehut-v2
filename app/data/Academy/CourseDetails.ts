@@ -20,10 +20,10 @@ export interface ICourseDetails {
   images: {
     heroImage: string;
   };
-  logo:string
+  logo: string;
 
-  courseId:string
-  classId:string
+  courseId: string;
+  classId: string;
 }
 
 export const courseDetails: ICourseDetails = {
@@ -51,5 +51,5 @@ export const courseDetails: ICourseDetails = {
   },
   logo: "",
   courseId: "",
-  classId: ""
+  classId: "",
 };

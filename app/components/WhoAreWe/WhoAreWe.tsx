@@ -23,8 +23,9 @@ function WhoAreWe() {
             Our Vision
           </h2>
           <p className="text-lg font-normal text-center font-secondary md:text-left">
-          Creating Organisations that are able to meaningfully engage their employees to create 
-          great product and services that their customer love.
+            Creating Organisations that are able to meaningfully engage their
+            employees to create great product and services that their customer
+            love.
           </p>
         </div>
         <div className="flex flex-col justify-between gap-3">
@@ -32,10 +33,12 @@ function WhoAreWe() {
             Our Mission
           </h2>
           <p className="text-lg font-normal text-center font-secondary md:text-left">
-          At ValueHut Consulting, we help organizations, teams and individual improve their ways of working 
-          leveraging practices from agile and lean methods. Through our service pillars – Academy, Consulting 
-          and Talent Matching, we partner with our clients to build effective organizations that solve complex 
-          problems and are able deliver products their customers love. 
+            At ValueHut Consulting, we help organizations, teams and individual
+            improve their ways of working leveraging practices from agile and
+            lean methods. Through our service pillars – Academy, Consulting and
+            Talent Matching, we partner with our clients to build effective
+            organizations that solve complex problems and are able deliver
+            products their customers love.
           </p>
         </div>
         <button className="flex md:hidden items-center justify-center rounded-full bg-[#FF9F5A] px-6 py-3 text-main text-sm font-medium hover:bg-[#FF9F5A]/90">

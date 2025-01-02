@@ -85,7 +85,7 @@ export const getAllCourses = async () => {
       },
 
       body: JSON.stringify({ query }),
-    }
+    },
   ).then((res) => res.json());
 
   const posts = data.data?.courseCollection.items;
@@ -163,7 +163,7 @@ export const getCourse = async (slug: string) => {
         query,
         variables: { slug },
       }),
-    }
+    },
   );
 
   const data = await response.json();
