@@ -6,7 +6,6 @@ import Button from "@/components/Button/Button";
 import { IUpcomingClassesData } from "@/data/Academy/UpcomingClasses";
 
 function Group({
-  id,
   startDate,
   endDate,
   year,
