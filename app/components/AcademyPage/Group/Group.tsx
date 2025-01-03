@@ -48,11 +48,6 @@ function Group({
 
   return (
     <div className="flex flex-col items-start gap-6 bg-white w-full p-6 rounded-xl">
-      <div>
-        <h1 className="text-xl font-semibold font-secondary text-main">
-          Group {classId}
-        </h1>
-      </div>
 
       <div>
         <h4 className="text-sm font-normal font-secondary text-secondary">
