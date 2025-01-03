@@ -28,12 +28,20 @@ const RegisterModal = ({
   classId,
 }: RegisterModalProps) => {
   const router = useRouter();
-  const [selectedCountry, setSelectedCountry] = useState<string>("United Kingdom");
+  const [selectedCountry, setSelectedCountry] =
+    useState<string>("United Kingdom");
 
   const handleRouting = () => {
-    const lowercaseCountryname = selectedCountry.toLocaleLowerCase()
-    router.push(`/checkout/${courseId}/${classId}?country=${lowercaseCountryname}`);
+    const lowercaseCountryname = selectedCountry.toLocaleLowerCase();
+    router.push(
+      `/checkout/${courseId}/${classId}?country=${lowercaseCountryname}`
+    );
   };
+
+  const secondaryMarket = countries.filter(
+    (country) =>
+      !primaryMarket.includes(country) && !tertiaryMarket.includes(country)
+  );
 
   return (
     <>
@@ -66,7 +74,7 @@ const RegisterModal = ({
                   Select your country of residence
                 </p>
                 <select
-                  className="mt-2 w-full px-4 py-5 border text-sm border-neutral-300 font-normal font-secondary rounded-lg text-secondary"
+                  className="appearance-none mt-2 w-full px-4 py-5 border text-sm border-neutral-300 font-normal font-secondary rounded-lg text-secondary"
                   defaultValue={selectedCountry}
                   onChange={(e) => setSelectedCountry(e.target.value)}
                 >
@@ -78,7 +86,7 @@ const RegisterModal = ({
                     ))}
                   </optgroup>
                   <optgroup label="Secondary Market">
-                    {countries.map((country, index) => (
+                    {secondaryMarket.map((country, index) => (
                       <option key={index} value={country}>
                         {country}
                       </option>

@@ -8,7 +8,6 @@ import CheckoutCourseDetails from "../CheckoutCourseDetails/CheckoutCourseDetail
 import OrderSummary from "../Ordersummary/Ordersummary";
 import Button from "@/components/Button/Button";
 import { primaryMarket, tertiaryMarket } from "@/data/Countries/countries";
-import { orderSummary } from "@/data/Academy/OrderSummary";
 import { useRouter, useSearchParams } from "next/navigation";
 import InvoiceDocument from "../InvoiceDocument/InvoiceDocument";
 import { pdf } from "@react-pdf/renderer";
@@ -49,6 +48,7 @@ function WrapperCheckout({ course, classId }: any) {
   const [success, setSuccess] = useState<string | null>(null);
   const [_errors, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [subtotal, setSubtotal] = useState(0);
 
   const [details, setDetails] = useState<Details>({
     fullName: "",
@@ -70,16 +70,21 @@ function WrapperCheckout({ course, classId }: any) {
       let price;
       if (country === "united kingdom") {
         price = classDetail.ukPrice;
+        setSubtotal(price);
       } else if (primaryMarket.includes(country)) {
         price = classDetail.primary;
+        setSubtotal(price);
       } else if (tertiaryMarket.includes(country)) {
         price = classDetail.tertiary;
+        setSubtotal(price);
       } else {
         price = classDetail.secondary;
+        setSubtotal(price);
       }
       setClassPrice(price * details.numberOfAttendees);
     }
   }, [classDetail, country, details]);
+
   const handlePayment = async () => {
     if (!details.fullName.trim()) {
       setError("Full Name is required to proceed.");
@@ -246,10 +251,8 @@ function WrapperCheckout({ course, classId }: any) {
             />
             <div className="flex flex-col gap-3">
               <OrderSummary
-                perPerson={orderSummary.perPerson}
-                subtotal={combinedDate}
+                subtotal={subtotal}
                 total={classPrice}
-                discountText={orderSummary.discountText}
                 isUk={country === "united kingdom"}
               />
 

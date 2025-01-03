@@ -6,24 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import Button from "@/components/Button/Button";
 import { IUpcomingClassesData } from "@/data/Academy/UpcomingClasses";
 import RegisterModal from "@/components/DetailsPage/RegisterModal/RegisterModal";
-
-const getDisplayDate = (startDate: string, endDate: string): string => {
-  const formatDate = (date: string): string | null => {
-    const parsedDate = new Date(date);
-    if (isNaN(parsedDate.getTime())) return null;
-    return parsedDate.toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-    });
-  };
-  const start = formatDate(startDate);
-  const end = formatDate(endDate);
-  if (start && end && start !== end) {
-    return `${start} - ${end}`;
-  }
-  if (start) return start;
-  return "Date Unavailable";
-};
+import { getDisplayDate } from "@/utils/ConvertDate";
 
 function Table({
   startDate,

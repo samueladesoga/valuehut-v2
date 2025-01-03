@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import Button from "@/components/Button/Button";
 import { IUpcomingClassesData } from "@/data/Academy/UpcomingClasses";
 import RegisterModal from "@/components/DetailsPage/RegisterModal/RegisterModal";
+import { getDisplayDate } from "@/utils/ConvertDate";
 
 function Group({
   startDate,
@@ -58,7 +59,7 @@ function Group({
           Date
         </h4>
         <span className="text-xl font-semibold font-secondary text-main">
-          {startDate} - {endDate}, {year}
+          {`${getDisplayDate(startDate, endDate)}, ${year}`}
         </span>
       </div>
 
