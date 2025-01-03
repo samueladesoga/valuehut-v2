@@ -10,18 +10,12 @@ interface ParsedData {
   files: { [key: string]: FileData[] };
 }
 
-export async function parseMultipartFormData(
-  formData: FormData,
-): Promise<ParsedData> {
+export async function parseMultipartFormData(formData: FormData): Promise<ParsedData> {
   const fields: { [key: string]: string[] } = {};
   const files: { [key: string]: FileData[] } = {};
 
   for (const [key, value] of formData.entries()) {
-    if (
-      typeof value === "object" &&
-      "arrayBuffer" in value &&
-      "name" in value
-    ) {
+    if (typeof value === 'object' && 'arrayBuffer' in value && 'name' in value) {
       if (!files[key]) {
         files[key] = [];
       }
@@ -41,3 +35,4 @@ export async function parseMultipartFormData(
 
   return { fields, files };
 }
+

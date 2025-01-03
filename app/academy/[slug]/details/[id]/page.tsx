@@ -8,7 +8,6 @@ import CourseObjectives from "@/components/AcademyPage/CourseObjectives/CourseOb
 import MoreInformation from "@/components/DetailsPage/Moreinformation/Moreinformation";
 import { getCourse } from "@/lib/courseApi";
 import WhoShouldAttend from "@/components/AcademyPage/WhoShouldAttend/WhoShouldAttend";
-import Testimonials from "@/components/Homepage/Testimonials/Testimonials";
 
 export interface PageProps {
   params: {
@@ -29,18 +28,25 @@ export default async function DetailsPage({
   const course = post[0];
 
   const classDetail = course.classes.find(
-    (cls: { classId: number }) => cls.classId === parseInt(classId),
+    (cls: { classId: number }) => cls.classId === parseInt(classId)
   );
 
-  const combinedDate = `${classDetail.startDate} - ${classDetail.endDate}, ${classDetail.year}`;
+  const startDateDay = classDetail.startDate.split(" ")[1];
+  const endDateDay = classDetail.endDate.split(" ")[0];
+
+  const combinedDate =
+    startDateDay === endDateDay
+      ? `${classDetail.startDate}, ${classDetail.year}`
+      : `${classDetail.startDate} - ${classDetail.endDate}, ${classDetail.year}`;
+
   const CourseDetails = course.courseDetails;
 
   const CourseObjectivesData = CourseDetails.find(
-    (item: { title: string }) => item.title === "Course Learning Objectives",
+    (item: { title: string }) => item.title === "Course Learning Objectives"
   );
 
   const WhoShouldAttendData = CourseDetails.find(
-    (item: { title: string }) => item.title === "Who should attend?",
+    (item: { title: string }) => item.title === "Who should attend?"
   );
 
   return (
@@ -50,7 +56,6 @@ export default async function DetailsPage({
         description={course.description}
         partner={courseDetails.partner}
         reviews={courseDetails.reviews}
-        pricing={{ startingPrice: `£${classDetail.ukPrice}` }}
         schedule={{
           date: combinedDate,
           time: classDetail.time,
@@ -75,7 +80,7 @@ export default async function DetailsPage({
                     <div key={index}>
                       <CourseObjectives text={goal} />
                     </div>
-                  ),
+                  )
                 )}
               </div>
             </div>
@@ -95,9 +100,6 @@ export default async function DetailsPage({
 
       <div className="container px-4 xl:px-0 py-14 md:pt-36 md:pb-24">
         <MoreInformation />
-      </div>
-      <div>
-        <Testimonials />
       </div>
     </div>
   );

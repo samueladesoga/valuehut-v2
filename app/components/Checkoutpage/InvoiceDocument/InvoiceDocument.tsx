@@ -185,7 +185,7 @@ const InvoiceDocument = ({
             <Text style={[tableStyles.totalsAmount, tableStyles.tableCell]}>
               {currency}{" "}
               {Number(
-                isUk ? totalPrice + totalPrice * 0.2 : totalPrice,
+                isUk ? totalPrice + totalPrice * 0.2 : totalPrice
               ).toFixed(2)}
             </Text>
           </View>

@@ -1,7 +1,7 @@
 "use client";
-import Image from "next/image";
 
-import React, { useState } from "react";
+import Image from "next/image";
+import React from "react";
 
 interface PaymentMethod {
   id: string;
@@ -10,7 +10,7 @@ interface PaymentMethod {
   customIcon?: string;
 }
 
-interface InvoiceDetails {
+interface details {
   fullName: string;
   email: string;
   phone: string;
@@ -19,24 +19,27 @@ interface InvoiceDetails {
 }
 interface PaymentMethodSelectorProps {
   methods: PaymentMethod[];
-  setInvoiceDetails: (
-    updateFn: (prevState: InvoiceDetails) => InvoiceDetails,
-  ) => void;
+  details: details;
+  setdetails: (updateFn: (prevState: details) => details) => void;
+  selectedMethod: string;
+  setSelectedMethod: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
   methods,
-  setInvoiceDetails,
+  details,
+  setdetails,
+  selectedMethod,
+  setSelectedMethod,
 }) => {
-  const [selectedMethod, setSelectedMethod] = useState<string>("");
-
   const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setInvoiceDetails((prevState) => ({
+    setdetails((prevState) => ({
       ...prevState,
       [name]: name === "numberOfAttendees" ? parseInt(value) || 1 : value,
     }));
   };
+
   const handleSelect = (methodId: string) => {
     setSelectedMethod(methodId);
   };
@@ -50,7 +53,7 @@ const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
         {methods.map((method) => (
           <div
             key={method.id}
-            className={`flex flex-col p-4 border rounded-lg cursor-pointer transition-colors ${
+            className={`flex flex-col py-5 px-4 border rounded-lg cursor-pointer transition-colors ${
               selectedMethod === method.id
                 ? "border-[#05668D] bg-[#EFF7F8]"
                 : "border-gray-300 hover:bg-gray-100"
@@ -70,7 +73,6 @@ const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
                     <div className="w-[16px] h-[16px] rounded-full bg-fill-brand-primary flex justify-center items-center"></div>
                   )}
                 </div>
-
                 <span className="text-lg !leading-[24px] font-semibold font-secondary text-[#141834]">
                   {method.name}
                 </span>
@@ -94,6 +96,7 @@ const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
                 )}
               </div>
             </div>
+
             <div>
               {method.name === "Credit Card" &&
                 selectedMethod === method.id && (
@@ -169,62 +172,10 @@ const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
                     </div>
                   </div>
                 )}
+
               {method.name === "Pay with Invoice" &&
                 selectedMethod === method.id && (
                   <div className="flex flex-col gap-8 mt-8">
-                    <div className="flex flex-col gap-2">
-                      <label
-                        htmlFor="full-name"
-                        className="block text-sm !leading-[19px] font-medium font-secondary text-main"
-                      >
-                        Full Name
-                      </label>
-                      <input
-                        type="text"
-                        id="full-name"
-                        name="fullName"
-                        onChange={handleInput}
-                        placeholder="Enter your full name"
-                        className="w-full py-5 px-4 border-none rounded-lg font-normal font-secondary text-xl !leading-[25px] text-secondary focus:outline-none focus:ring-0"
-                      />
-                    </div>
-
-                    <div className="flex justify-between gap-3">
-                      <div className="w-full flex flex-col gap-2">
-                        <label
-                          htmlFor="email"
-                          className="block text-sm !leading-[19px] font-medium font-secondary text-main"
-                        >
-                          Email
-                        </label>
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          onChange={handleInput}
-                          placeholder="Enter your email"
-                          className="w-full py-5 px-4 border-none rounded-lg font-normal font-secondary text-xl !leading-[25px] text-secondary focus:outline-none focus:ring-0"
-                        />
-                      </div>
-
-                      <div className="w-full flex flex-col gap-2">
-                        <label
-                          htmlFor="phone"
-                          className="block text-sm !leading-[19px] font-medium font-secondary text-main"
-                        >
-                          Phone Number
-                        </label>
-                        <input
-                          type="tel"
-                          id="phone"
-                          name="phone"
-                          onChange={handleInput}
-                          placeholder="Enter your phone number"
-                          className="w-full py-5 px-4 border-none rounded-lg font-normal font-secondary text-xl !leading-[25px] text-secondary focus:outline-none focus:ring-0"
-                        />
-                      </div>
-                    </div>
-
                     <div className="flex flex-col gap-2">
                       <label
                         htmlFor="address"
@@ -236,28 +187,49 @@ const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
                         type="text"
                         id="address"
                         name="address"
+                        value={details.address}
                         onChange={handleInput}
                         placeholder="Enter your address"
                         className="w-full py-5 px-4 border-none rounded-lg font-normal font-secondary text-xl !leading-[25px] text-secondary focus:outline-none focus:ring-0"
                       />
                     </div>
 
-                    <div className="flex flex-col gap-2">
-                      <label
-                        htmlFor="attendees"
-                        className="block text-sm !leading-[19px] font-medium font-secondary text-main"
-                      >
-                        Number of Attendees
-                      </label>
-                      <input
-                        type="number"
-                        id="attendees"
-                        value={1}
-                        name="numberOfAttendees"
-                        placeholder="Enter the number of attendees"
-                        className="w-full py-5 px-4 border-none rounded-lg font-normal font-secondary text-xl !leading-[25px] text-secondary focus:outline-none focus:ring-0"
-                        onChange={handleInput}
-                      />
+                    <div className="flex justify-between gap-3">
+                      <div className="w-full flex flex-col gap-2">
+                        <label
+                          htmlFor="phone"
+                          className="block text-sm !leading-[19px] font-medium font-secondary text-main"
+                        >
+                          Phone Number
+                        </label>
+                        <input
+                          type="number"
+                          id="phone"
+                          name="phone"
+                          value={details.phone}
+                          onChange={handleInput}
+                          placeholder="Enter your phone number"
+                          className="w-full py-5 px-4 border-none rounded-lg font-normal font-secondary text-xl !leading-[25px] text-secondary focus:outline-none focus:ring-0"
+                        />
+                      </div>
+
+                      <div className="w-full flex flex-col gap-2">
+                        <label
+                          htmlFor="attendees"
+                          className="block text-sm !leading-[19px] font-medium font-secondary text-main"
+                        >
+                          Number of Attendees
+                        </label>
+                        <input
+                          type="number"
+                          id="attendees"
+                          value={details.numberOfAttendees}
+                          name="numberOfAttendees"
+                          placeholder="Enter the number of attendees"
+                          className="w-full py-5 px-4 border-none rounded-lg font-normal font-secondary text-xl !leading-[25px] text-secondary focus:outline-none focus:ring-0"
+                          onChange={handleInput}
+                        />
+                      </div>
                     </div>
                   </div>
                 )}

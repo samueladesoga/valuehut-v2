@@ -4,7 +4,6 @@ import { ICourseDetails } from "@/data/Academy/CourseDetails";
 import Image from "next/image";
 import React, { useState } from "react";
 import RegisterModal from "../RegisterModal/RegisterModal";
-import { RegisterModalData } from "@/data/Academy/RegisterModal";
 import { motion } from "framer-motion";
 
 function DetailsHero({
@@ -12,7 +11,6 @@ function DetailsHero({
   description,
   partner,
   reviews,
-  pricing,
   schedule,
   images,
   logo,
@@ -63,16 +61,8 @@ function DetailsHero({
               {reviews.rating} ({reviews.count} reviews)
             </motion.div>
           </div>
-          <div className="grid grid-cols-2 lg:grid-cols-10 gap-4 justify-between bg-white p-4 rounded-xl mt-10">
-            <div className="flex flex-col gap-2  lg:col-span-2">
-              <h4 className="text-sm font-normal font-secondary text-main">
-                Starting Price
-              </h4>
-              <span className=" text-sm font-semibold font-secondary text-main">
-                {pricing.startingPrice}
-              </span>
-            </div>
-            <div className="flex flex-col gap-2 lg:col-span-3">
+          <div className="grid grid-cols-2 sm:grid-cols-9 gap-4 justify-between bg-white p-4 rounded-xl mt-10">
+            <div className="flex flex-col gap-2 sm:col-span-3">
               <h4 className="text-sm font-normal font-secondary text-main">
                 Date
               </h4>
@@ -80,7 +70,7 @@ function DetailsHero({
                 {schedule.date}
               </span>
             </div>
-            <div className="flex flex-col gap-2 lg:col-span-3">
+            <div className="flex flex-col gap-2 sm:col-span-3">
               <h4 className="text-sm font-normal font-secondary text-main">
                 Time
               </h4>
@@ -88,7 +78,7 @@ function DetailsHero({
                 {schedule.time}
               </span>
             </div>
-            <div className="flex flex-col gap-2 lg:col-span-2">
+            <div className="flex flex-col gap-2 sm:col-span-3">
               <h4 className="text-sm font-normal font-secondary text-main">
                 Class type
               </h4>
@@ -122,7 +112,7 @@ function DetailsHero({
       {isModalOpen && (
         <RegisterModal
           date={schedule.date}
-          title={RegisterModalData.title}
+          title={title}
           onClose={handleModalToggle}
           logo={logo}
           courseId={courseId}

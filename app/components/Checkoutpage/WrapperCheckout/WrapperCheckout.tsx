@@ -19,7 +19,7 @@ interface PaymentMethod {
   creditCards?: string;
   customIcon?: string;
 }
-interface InvoiceDetails {
+interface Details {
   fullName: string;
   email: string;
   phone: string;
@@ -42,6 +42,7 @@ const paymentMethods: PaymentMethod[] = [
 
 function WrapperCheckout({ course, classId }: any) {
   const router = useRouter();
+  const [selectedMethod, setSelectedMethod] = useState<string>("");
   const [searchParams] = useSearchParams();
   const [classPrice, setClassPrice] = useState(0);
   const [loading, setLoading] = useState<boolean>(false);
@@ -49,7 +50,7 @@ function WrapperCheckout({ course, classId }: any) {
   const [_errors, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const [invoiceDetails, setInvoiceDetails] = useState<InvoiceDetails>({
+  const [details, setDetails] = useState<Details>({
     fullName: "",
     email: "",
     phone: "",
@@ -60,7 +61,7 @@ function WrapperCheckout({ course, classId }: any) {
   const acronym = course.acronym;
 
   const classDetail = course.classes.find(
-    (cls: { classId: number }) => cls.classId === parseInt(classId),
+    (cls: { classId: number }) => cls.classId === parseInt(classId)
   );
   const country = searchParams[1];
 
@@ -76,23 +77,63 @@ function WrapperCheckout({ course, classId }: any) {
       } else {
         price = classDetail.secondary;
       }
-      setClassPrice(price * invoiceDetails.numberOfAttendees);
+      setClassPrice(price * details.numberOfAttendees);
     }
-  }, [classDetail, country, invoiceDetails]);
-
+  }, [classDetail, country, details]);
   const handlePayment = async () => {
+    if (!details.fullName.trim()) {
+      setError("Full Name is required to proceed.");
+      setSuccess(null);
+      return;
+    }
+
+    if (!details.email.trim()) {
+      setError("Email is required to proceed.");
+      setSuccess(null);
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(details.email)) {
+      setError("Please enter a valid email address.");
+      setSuccess(null);
+      return;
+    }
+
+    if (selectedMethod === "invoice") {
+      if (!details.address.trim()) {
+        setError("Address is required for 'Pay with Invoice' method.");
+        setSuccess(null);
+        return;
+      }
+
+      if (!details.phone.trim()) {
+        setError("Phone Number is required for 'Pay with Invoice' method.");
+        setSuccess(null);
+        return;
+      }
+
+      if (!/^\d{10,15}$/.test(details.phone)) {
+        setError("Please enter a valid phone number (10-15 digits).");
+        setSuccess(null);
+        return;
+      }
+    }
+
     setLoading(true);
+    setError(null);
+
     const data = {
-      fullname: invoiceDetails.fullName,
-      phoneNumber: invoiceDetails.phone,
-      email: invoiceDetails.email,
-      quantity: invoiceDetails.numberOfAttendees,
+      fullname: details.fullName,
+      phoneNumber: details.phone,
+      email: details.email,
+      quantity: details.numberOfAttendees,
     };
 
     const Course = {
       startDate: classDetail.startDate,
       endDate: classDetail.endDate,
-      quantity: invoiceDetails.numberOfAttendees,
+      quantity: details.numberOfAttendees,
       price: classPrice,
       acronym: acronym,
     };
@@ -129,7 +170,7 @@ function WrapperCheckout({ course, classId }: any) {
       .then((data) => {
         if (data.error) {
           setError(
-            "An error occurred while sending you an invoice. please try again later!",
+            "An error occurred while sending you an invoice. Please try again later!"
           );
           setSuccess(null);
         } else {
@@ -139,7 +180,7 @@ function WrapperCheckout({ course, classId }: any) {
       .catch((error) => {
         console.error(error);
         setError(
-          "An error occurred while sending you an email. please try again later!",
+          "An error occurred while sending you an email. Please try again later!"
         );
         setSuccess(null);
       })
@@ -154,12 +195,16 @@ function WrapperCheckout({ course, classId }: any) {
     setIsModalOpen((prev) => !prev);
     router.push("/academy");
   };
+
   return (
     <div className="bg-[#f5f5f5]">
       <div className="container pb-24 sm:pb-36">
         <div className="flex flex-col gap-6 pt-36 bg-white sm:bg-[#f5f5f5] p-4">
           <div className="flex justify-start items-start">
-            <button className="py-1 px-[10px] bg-[#E4EEF3] rounded-full  flex gap-2 items-center">
+            <button
+              className="py-1 px-[10px] bg-[#E4EEF3] rounded-full  flex gap-2 items-center"
+              onClick={() => router.back()}
+            >
               <Image
                 src={"/less.svg"}
                 width={20}
@@ -180,10 +225,13 @@ function WrapperCheckout({ course, classId }: any) {
 
         <div className="flex flex-col lg:flex-row  justify-between gap-3 ">
           <div className="w-full lg:w-[742px] flex flex-col gap-16 bg-white p-4 md:p-8 lg:rounded-3xl">
-            <ContactInformation />
+            <ContactInformation setDetails={setDetails} details={details} />
             <Paymentmethod
               methods={paymentMethods}
-              setInvoiceDetails={setInvoiceDetails}
+              details={details}
+              setdetails={setDetails}
+              selectedMethod={selectedMethod}
+              setSelectedMethod={setSelectedMethod}
             />
           </div>
 
@@ -202,6 +250,7 @@ function WrapperCheckout({ course, classId }: any) {
                 subtotal={combinedDate}
                 total={classPrice}
                 discountText={orderSummary.discountText}
+                isUk={country === "united kingdom"}
               />
 
               <Button
@@ -231,7 +280,7 @@ function WrapperCheckout({ course, classId }: any) {
               <p>An email containing your envoice has been successfuly sent.</p>
               <p>
                 To download your invoice, please check your email (
-                {invoiceDetails.email})
+                {details.email})
               </p>
               <Button
                 className="w-full text-sm font-medium font-secondary text-accentmain"

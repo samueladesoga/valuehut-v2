@@ -9,9 +9,6 @@ export interface ICourseDetails {
     rating: number;
     count: number;
   };
-  pricing: {
-    startingPrice: string;
-  };
   schedule: {
     date: string;
     time: string;
@@ -20,10 +17,10 @@ export interface ICourseDetails {
   images: {
     heroImage: string;
   };
-  logo: string;
+  logo:string
 
-  courseId: string;
-  classId: string;
+  courseId:string
+  classId:string
 }
 
 export const courseDetails: ICourseDetails = {
@@ -38,9 +35,6 @@ export const courseDetails: ICourseDetails = {
     rating: 4.5,
     count: 78345,
   },
-  pricing: {
-    startingPrice: "£950 + VAT",
-  },
   schedule: {
     date: "Oct 24 - Oct 25, 2024",
     time: "2h 45m",
@@ -51,5 +45,5 @@ export const courseDetails: ICourseDetails = {
   },
   logo: "",
   courseId: "",
-  classId: "",
+  classId: ""
 };

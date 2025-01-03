@@ -3,6 +3,7 @@ export interface OrderSummaryProps {
   discountText: string;
   total: number;
   perPerson: string;
+  isUk: boolean
 }
 
 export const orderSummary = {

@@ -11,7 +11,6 @@ import { notFound } from "next/navigation";
 import { getCourse } from "@/lib/courseApi";
 import { AdditionalBenefitCard } from "@/components/AcademyPage/AdditionalBenefit/AdditonalBenefitCard";
 import WhoShouldAttend from "@/components/AcademyPage/WhoShouldAttend/WhoShouldAttend";
-import Testimonials from "@/components/Homepage/Testimonials/Testimonials";
 
 interface IClasses {
   classId: number;
@@ -42,14 +41,14 @@ export default async function CourseDetailsPage({
   const CourseDetails = course.courseDetails;
 
   const CourseObjectivesData = CourseDetails.find(
-    (item: { title: string }) => item.title === "Course Learning Objectives",
+    (item: { title: string }) => item.title === "Course Learning Objectives"
   );
   const WhoShouldAttendData = CourseDetails.find(
-    (item: { title: string }) => item.title === "Who should attend?",
+    (item: { title: string }) => item.title === "Who should attend?"
   );
 
   const AdditionalBenefitsData = CourseDetails.find(
-    (item: { title: string }) => item.title === "Additional Benefits",
+    (item: { title: string }) => item.title === "Additional Benefits"
   );
   if (!post) {
     notFound();
@@ -90,7 +89,6 @@ export default async function CourseDetailsPage({
                 {UpcomingClassesData.map((row: IClasses, index: number) => (
                   <tbody className="bg-white" key={index}>
                     <Table
-                      key={row.id}
                       classId={row.classId}
                       startDate={row.startDate}
                       endDate={row.endDate}
@@ -98,6 +96,8 @@ export default async function CourseDetailsPage({
                       time={row.time}
                       type={row.classType}
                       filled={row.filled}
+                      courseId={slug}
+                      course={course}
                     />
                   </tbody>
                 ))}
@@ -114,9 +114,9 @@ export default async function CourseDetailsPage({
         </div>
         <div className="container px-4 xl:px-0 flex flex-col gap-3 items-start md:hidden">
           {UpcomingClassesData.length > 0 ? (
-            UpcomingClassesData.map((row: IClasses) => (
+            UpcomingClassesData.map((row: IClasses, index: number) => (
               <Group
-                key={row.id}
+                key={index}
                 startDate={row.startDate}
                 endDate={row.endDate}
                 year={row.year}
@@ -124,6 +124,8 @@ export default async function CourseDetailsPage({
                 type={row.classType}
                 filled={row.filled}
                 classId={row.classId}
+                courseId={slug}
+                course={course}
               />
             ))
           ) : (
@@ -149,7 +151,7 @@ export default async function CourseDetailsPage({
                     <div key={index}>
                       <CourseObjectives text={goal} />
                     </div>
-                  ),
+                  )
                 )}
               </div>
             </div>
@@ -178,7 +180,7 @@ export default async function CourseDetailsPage({
                       text={benefit}
                       index={index}
                     />
-                  ),
+                  )
                 )}
               </div>
             </div>
@@ -188,9 +190,6 @@ export default async function CourseDetailsPage({
 
       <div className="container px-4 sm:px-0 py-36">
         <OurPartners />
-      </div>
-      <div>
-        <Testimonials />
       </div>
       <FAQ faqs={faqs} />
     </div>

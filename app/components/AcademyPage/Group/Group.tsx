@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Button from "@/components/Button/Button";
 import { IUpcomingClassesData } from "@/data/Academy/UpcomingClasses";
+import RegisterModal from "@/components/DetailsPage/RegisterModal/RegisterModal";
 
 function Group({
   startDate,
@@ -13,17 +14,47 @@ function Group({
   type,
   filled,
   classId,
+  courseId,
+  course,
 }: IUpcomingClassesData) {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [combinedDate, setCombinedDate] = useState<string>("");
   const router = useRouter();
   const pathname = usePathname();
 
+  const handleModalToggle = () => {
+    setIsModalOpen((prev) => !prev);
+  };
+
   const handleClassesDetails = () => {
     router.push(`${pathname}/details/${classId}`);
+
+    const classDetail = course.classes.find(
+      (cls: { classId: number }) => cls.classId === classId
+    );
+
+    if (classDetail) {
+      const startDateDay = classDetail.startDate.split(" ")[1];
+      const endDateDay = classDetail.endDate.split(" ")[0];
+
+      const date =
+        startDateDay === endDateDay
+          ? `${classDetail.startDate}, ${classDetail.year}`
+          : `${classDetail.startDate} - ${classDetail.endDate}, ${classDetail.year}`;
+      setCombinedDate(date);
+    }
   };
+
   return (
-    <div className="flex flex-col items-start gap-6  bg-white w-full p-6 rounded-xl">
+    <div className="flex flex-col items-start gap-6 bg-white w-full p-6 rounded-xl">
       <div>
-        <h4 className="text-sm font-normal font-secondary text-secondary ">
+        <h1 className="text-xl font-semibold font-secondary text-main">
+          Group {classId}
+        </h1>
+      </div>
+
+      <div>
+        <h4 className="text-sm font-normal font-secondary text-secondary">
           Date
         </h4>
         <span className="text-xl font-semibold font-secondary text-main">
@@ -32,7 +63,7 @@ function Group({
       </div>
 
       <div>
-        <h4 className="text-sm font-normal font-secondary text-secondary ">
+        <h4 className="text-sm font-normal font-secondary text-secondary">
           Time
         </h4>
         <span className="text-xl font-semibold font-secondary text-main">
@@ -41,7 +72,7 @@ function Group({
       </div>
 
       <div>
-        <h4 className="text-sm font-normal font-secondary text-secondary ">
+        <h4 className="text-sm font-normal font-secondary text-secondary">
           Type
         </h4>
         <span className="text-xl font-semibold font-secondary text-main">
@@ -60,7 +91,12 @@ function Group({
             >
               View Details
             </Button>
-            <Button size="small" rounded="full" border>
+            <Button
+              size="small"
+              rounded="full"
+              border
+              onClick={handleModalToggle}
+            >
               Book Now
             </Button>
           </>
@@ -72,6 +108,16 @@ function Group({
           </div>
         )}
       </div>
+      {isModalOpen && (
+        <RegisterModal
+          date={combinedDate}
+          title={course.title}
+          onClose={handleModalToggle}
+          logo={course.logo}
+          courseId={courseId}
+          classId={classId as unknown as string}
+        />
+      )}
     </div>
   );
 }

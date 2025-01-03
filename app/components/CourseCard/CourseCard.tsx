@@ -110,7 +110,7 @@ const CourseCard = ({
                       width={24}
                       height={24}
                     />
-                  ),
+                  )
                 )}
               </div>
               <span>({reviews} reviews)</span>

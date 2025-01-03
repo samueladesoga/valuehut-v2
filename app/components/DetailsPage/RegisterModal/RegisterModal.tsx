@@ -28,13 +28,11 @@ const RegisterModal = ({
   classId,
 }: RegisterModalProps) => {
   const router = useRouter();
-  const [selectedCountry, setSelectedCountry] = useState<string>("");
+  const [selectedCountry, setSelectedCountry] = useState<string>("United Kingdom");
 
   const handleRouting = () => {
-    const lowercaseCountryname = selectedCountry.toLocaleLowerCase();
-    router.push(
-      `/checkout/${courseId}/${classId}?country=${lowercaseCountryname}`,
-    );
+    const lowercaseCountryname = selectedCountry.toLocaleLowerCase()
+    router.push(`/checkout/${courseId}/${classId}?country=${lowercaseCountryname}`);
   };
 
   return (
@@ -45,7 +43,7 @@ const RegisterModal = ({
       >
         <div className="px-4 sm:px-0" onClick={(e) => e.stopPropagation()}>
           <div className="flex flex-col gap-10 bg-white rounded-[20px] px-4 py-8 md:p-8 w-full max-w-[645px]">
-            <div className="flex gap-3">
+            <div className="flex items-center gap-3">
               <Image
                 src={logo}
                 width={70}
@@ -69,10 +67,9 @@ const RegisterModal = ({
                 </p>
                 <select
                   className="mt-2 w-full px-4 py-5 border text-sm border-neutral-300 font-normal font-secondary rounded-lg text-secondary"
-                  defaultValue=""
+                  defaultValue={selectedCountry}
                   onChange={(e) => setSelectedCountry(e.target.value)}
                 >
-                  <option value="">Select a country...</option>
                   <optgroup label="Primary Market">
                     {primaryMarket.map((country, index) => (
                       <option key={index} value={country}>

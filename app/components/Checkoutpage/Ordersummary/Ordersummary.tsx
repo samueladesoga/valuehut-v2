@@ -6,7 +6,9 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
   discountText,
   total,
   perPerson,
+  isUk,
 }) => {
+  const currency = isUk ? "£" : "$";
   return (
     <div className="w-full sm:w-[486px] sm:p-8 bg-white sm:rounded-xl p-4">
       <div className="flex flex-col gap-6">
@@ -40,7 +42,8 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
             Order total
           </h1>
           <p className="text-[26px] leading-[39px] font-semibold text-main font-secondary">
-            £{total}
+            {currency}
+            {total}
           </p>
         </div>
       </div>

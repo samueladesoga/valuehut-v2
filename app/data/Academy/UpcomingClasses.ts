@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface IUpcomingClassesData {
-  id?: number;
   startDate: string;
   endDate: string;
   year: string;
@@ -7,4 +7,6 @@ export interface IUpcomingClassesData {
   type: string;
   filled: boolean;
   classId: number;
+  courseId: string;
+  course: any;
 }
