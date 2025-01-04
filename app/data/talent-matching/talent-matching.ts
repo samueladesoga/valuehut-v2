@@ -10,9 +10,9 @@ export interface IHeroSection {
 }
 
 export const heroData: IHeroSection = {
-  title: "Recruitment for Agile Professionals",
+  title: "Recruitment for IT, Transformation & Product Professionals",
   subtitle:
-    "Our talent matching services helps you recruits Delivery Managers or Leads, Scrum Masters and Product Owners.",
+    "Talent Matching and screening done by professional consultants who have experiences of working in similar organisations as yours and working in similar roles you are hiring for.", 
   showRating: true,
   ratingText: "Excellent",
   backgroundImage: "/talentmatching/talent-hero.png",
