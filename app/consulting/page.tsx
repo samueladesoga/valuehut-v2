@@ -13,6 +13,7 @@ import Image from "next/image";
 import Button from "@/components/Button/Button";
 import { ChevronRight } from "lucide-react";
 import WhyChooseUs from "@/components/WhyChooseUs/WhyChooseUs";
+import ClientReviews from "@/components/ClientReviews/ClientReviews";
 import { useRouter } from "next/navigation";
 
 const getBackgroundColor = (index: number) => {
@@ -190,6 +191,10 @@ function ConsultingPage() {
             Let&apos;s get in touch
           </Button>
         </div>
+      </div>
+
+      <div className="container px-6 py-6 sm:py-16 xl:px-0">
+        <ClientReviews />
       </div>
 
       <div className="pb-0 md:pb-20 mt-10 md:mt-0 ">

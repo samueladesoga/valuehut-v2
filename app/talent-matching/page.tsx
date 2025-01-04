@@ -1,4 +1,3 @@
-import ClientReviews from "@/components/ClientReviews/ClientReviews";
 import FAQ from "@/components/FaqPage/Faq/Faq";
 import HeroComponent from "@/components/HeroComponent/HeroComponent";
 import HeroBanner from "@/components/Homepage/HeroBanner/HeroBanner";
@@ -75,10 +74,6 @@ function page() {
             },
           ]}
         />
-      </div>
-
-      <div className="container px-6 py-6 sm:py-16 xl:px-0">
-        <ClientReviews />
       </div>
 
       <div className="py-20">
