@@ -10,7 +10,7 @@ export interface IHeroSection {
 }
 
 export const heroData: IHeroSection = {
-  title: "Let's get in touch.",
+  title: "Get in touch.",
   subtitle:
     "Please fill out the form below and one of us will contact you within 24hrs. Or, contact us by email or phone number listed below.",
   showRating: true,
