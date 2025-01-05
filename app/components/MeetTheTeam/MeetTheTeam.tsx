@@ -21,9 +21,8 @@ function MeetTheTeam() {
       bgColor: "bg-[#E5DFD9]",
       imageSrc: "/images/sam-adesoga.png",
       name: "Samuel Adesoga",
-      role: "Principal Coach",
-      description: `Sam is our Principal Coach and Lead Trainer at ValueHut Consulting; 
-        He is an Enterprise Delivery Coach and Agile Practitioner, a Professional Scrum Trainer 
+      role: "Founder & Managing Consultant",
+      description: `Sam is an Enterprise Delivery Coach and Agile Practitioner, a Professional Scrum Trainer 
         with Scrum.org. In the last 20 years, Sam has supported individuals, teams and Organisations 
         to deliver value using Agile Frameworks and Practices; helping developing the mindset required 
         to thrive in Volatile, Uncertain, Complex and Ambiguous (VUCA) business environment.`,
@@ -37,7 +36,7 @@ function MeetTheTeam() {
       bgColor: "bg-[#A5E0C6]",
       imageSrc: "/images/temitope-awere.png",
       name: "Temitope Awere",
-      role: "Partner Coach",
+      role: "Partner Consultant",
       description: `Temitope is a Partner Coach and Trainer at ValueHut Consulting; 
         Temi is an experienced Lean-Agile Practitioner, Accredited Kanban Trainer, ICAgile Instructor 
         Agile Coach, Professional Scrum Master, Agile Project Manager, SAFe Program consultant and Kanban 
