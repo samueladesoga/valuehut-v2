@@ -9,6 +9,7 @@ import MoreInformation from "@/components/DetailsPage/Moreinformation/Moreinform
 import { getCourse } from "@/lib/courseApi";
 import WhoShouldAttend from "@/components/AcademyPage/WhoShouldAttend/WhoShouldAttend";
 import Testimonials from "@/components/Homepage/Testimonials/Testimonials";
+import { getDay, getMonthAndDay } from "@/utils/ConvertDate";
 
 export interface PageProps {
   params: {
@@ -37,8 +38,8 @@ export default async function DetailsPage({
 
   const combinedDate =
     startDateDay === endDateDay
-      ? `${classDetail.startDate}, ${classDetail.year}`
-      : `${classDetail.startDate} - ${classDetail.endDate}, ${classDetail.year}`;
+      ? `${getMonthAndDay(classDetail.startDate)}, ${classDetail.year}`
+      : `${getMonthAndDay(classDetail.startDate)} - ${getDay(classDetail.endDate)}, ${classDetail.year}`;
 
   const CourseDetails = course.courseDetails;
 
@@ -101,7 +102,7 @@ export default async function DetailsPage({
         <MoreInformation />
       </div>
       <div className="py-28">
-          <Testimonials />
+        <Testimonials />
       </div>
     </div>
   );

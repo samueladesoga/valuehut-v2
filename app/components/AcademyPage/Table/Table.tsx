@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import Button from "@/components/Button/Button";
 import { IUpcomingClassesData } from "@/data/Academy/UpcomingClasses";
 import RegisterModal from "@/components/DetailsPage/RegisterModal/RegisterModal";
-import { getDisplayDate } from "@/utils/ConvertDate";
+import { getDay, getDisplayDate, getMonthAndDay } from "@/utils/ConvertDate";
 
 function Table({
   startDate,
@@ -41,8 +41,8 @@ function Table({
 
   const combinedDate =
     startDateDay === endDateDay
-      ? `${classDetail.startDate}, ${classDetail.year}`
-      : `${classDetail.startDate} - ${classDetail.endDate}, ${classDetail.year}`;
+      ? `${getMonthAndDay(classDetail.startDate)}, ${classDetail.year}`
+      : `${getMonthAndDay(classDetail.startDate)} - ${getDay(classDetail.endDate)}, ${classDetail.year}`;
   return (
     <>
       <tr>

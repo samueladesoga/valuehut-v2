@@ -3,6 +3,7 @@ import React from "react";
 import { Page, Text, View, Document, Image } from "@react-pdf/renderer";
 import { styles, tableStyles } from "./file.styles";
 import LogoVH from "@/logo192.png";
+import { getMonthAndDay, getYear } from "@/utils/ConvertDate";
 
 interface Idata {
   quantity: number;
@@ -31,6 +32,8 @@ const InvoiceDocument = ({
   const today = new Date().toLocaleDateString();
   const totalPrice = selectedCourse ? selectedCourse.price * data.quantity : 0;
   const currency = isUk ? "£" : "$";
+
+  console.log("Data", data);
 
   return (
     <Document>
@@ -138,12 +141,14 @@ const InvoiceDocument = ({
             </View>
             <View style={tableStyles.tableCol}>
               <Text style={tableStyles.tableCell}>
-                {selectedCourse?.startDate}
+                {getMonthAndDay(selectedCourse?.startDate)},{" "}
+                {getYear(selectedCourse?.startDate)}
               </Text>
             </View>
             <View style={tableStyles.tableCol}>
               <Text style={tableStyles.tableCell}>
-                {selectedCourse?.endDate}
+                {getMonthAndDay(selectedCourse?.endDate)},{" "}
+                {getYear(selectedCourse?.endDate)}
               </Text>
             </View>
             <View style={tableStyles.tableCol}>

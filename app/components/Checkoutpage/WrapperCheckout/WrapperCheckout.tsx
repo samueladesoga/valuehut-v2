@@ -11,7 +11,7 @@ import { primaryMarket, tertiaryMarket } from "@/data/Countries/countries";
 import { useRouter, useSearchParams } from "next/navigation";
 import InvoiceDocument from "../InvoiceDocument/InvoiceDocument";
 import { pdf } from "@react-pdf/renderer";
-import { getDisplayDate } from "@/utils/ConvertDate";
+import { getDisplayDate, getMonthAndDay, getYear } from "@/utils/ConvertDate";
 
 interface PaymentMethod {
   id: string;
@@ -137,8 +137,14 @@ function WrapperCheckout({ course, classId }: any) {
     };
 
     const Course = {
-      startDate: classDetail.startDate,
-      endDate: classDetail.endDate,
+      startDate:
+        getMonthAndDay(classDetail.startDate) +
+        ", " +
+        getYear(classDetail.startDate),
+      endDate:
+        getMonthAndDay(classDetail.endDate) +
+        ", " +
+        getYear(classDetail.endDate),
       quantity: details.numberOfAttendees,
       price: classPrice,
       acronym: acronym,

@@ -1,9 +1,4 @@
-import {
-  convertDate,
-  getMonthAndDay,
-  getDay,
-  getYear,
-} from "@/utils/ConvertDate";
+import { convertDate, getYear } from "@/utils/ConvertDate";
 
 interface ICourses {
   courseDetailsCollection: {
@@ -100,7 +95,7 @@ export const getAllCourses = async () => {
     dates: convertDate(course.classesCollection.items[0]?.startDate),
     classes: course.classesCollection.items.map((item) => ({
       filled: item.filled,
-      startDate: getMonthAndDay(item.startDate),
+      startDate: item.startDate,
       year: getYear(item.startDate),
     })),
   }));
@@ -184,8 +179,8 @@ export const getCourse = async (slug: string) => {
       classId: index + 1,
       identifier: item.identifier,
       filled: item.filled,
-      startDate: getMonthAndDay(item.startDate),
-      endDate: getDay(item.endDate),
+      startDate: item.startDate,
+      endDate: item.endDate,
       year: getYear(item.startDate),
       classType: item.classType,
       time: item.time,

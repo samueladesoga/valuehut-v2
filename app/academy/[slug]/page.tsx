@@ -12,6 +12,7 @@ import { getCourse } from "@/lib/courseApi";
 import { AdditionalBenefitCard } from "@/components/AcademyPage/AdditionalBenefit/AdditonalBenefitCard";
 import WhoShouldAttend from "@/components/AcademyPage/WhoShouldAttend/WhoShouldAttend";
 import Testimonials from "@/components/Homepage/Testimonials/Testimonials";
+import { getDay, getMonthAndDay } from "@/utils/ConvertDate";
 
 interface IClasses {
   classId: number;
@@ -91,8 +92,8 @@ export default async function CourseDetailsPage({
                   <tbody className="bg-white" key={index}>
                     <Table
                       classId={row.classId}
-                      startDate={row.startDate}
-                      endDate={row.endDate}
+                      startDate={getMonthAndDay(row.startDate)}
+                      endDate={getDay(row.endDate)}
                       year={row.year}
                       time={row.time}
                       type={row.classType}
@@ -118,8 +119,8 @@ export default async function CourseDetailsPage({
             UpcomingClassesData.map((row: IClasses, index: number) => (
               <Group
                 key={index}
-                startDate={row.startDate}
-                endDate={row.endDate}
+                startDate={getMonthAndDay(row.startDate)}
+                endDate={getDay(row.endDate)}
                 year={row.year}
                 time={row.time}
                 type={row.classType}
@@ -192,7 +193,7 @@ export default async function CourseDetailsPage({
         <OurPartners />
       </div>
       <div className="py-28">
-          <Testimonials />
+        <Testimonials />
       </div>
       <FAQ faqs={faqs} />
     </div>

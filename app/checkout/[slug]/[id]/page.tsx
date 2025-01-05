@@ -5,7 +5,7 @@ import WrapperCheckout from "@/components/Checkoutpage/WrapperCheckout/WrapperCh
 export default async function PaymentForm({
   params,
 }: {
-  params: Promise<{ slug: string; id: string; }>;
+  params: Promise<{ slug: string; id: string }>;
 }) {
   const courseId = (await params).slug;
   const classId = (await params).id;

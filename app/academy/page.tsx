@@ -9,6 +9,7 @@ import { faqs } from "@/data/Faqs/faqpage";
 import FAQ from "@/components/FaqPage/Faq/Faq";
 import TrainingsPartners from "@/components/TrainingsPage/TriningsPartners/TrainingsPartners";
 import { getAllCourses } from "@/lib/courseApi";
+import { getMonthAndDay, getYear } from "@/utils/ConvertDate";
 
 export default async function Home() {
   const courses = await getAllCourses();
@@ -27,7 +28,7 @@ export default async function Home() {
     return {
       ...course,
       firstUnfilledClassDate: firstUnfilledClass
-        ? `${firstUnfilledClass.startDate} ${firstUnfilledClass.year}`
+        ? `${getMonthAndDay(firstUnfilledClass.startDate)}, ${getYear(firstUnfilledClass.startDate)}`
         : "No upcoming dates",
     };
   });
@@ -64,21 +65,24 @@ export default async function Home() {
         </div>
         <div className="container  pt-[1px] lg:pt-5">
           <div className="flex flex-col gap-[2px]">
-            {processedCourses.map((course: any) => (
-              <CourseCard
-                key={course.id}
-                title={course.title}
-                description={course.description}
-                level={course.level}
-                duration={course.duration}
-                dates={course.firstUnfilledClassDate}
-                rating={course.rating}
-                reviews={course.reviews}
-                logo={course.logo}
-                id={course.id}
-                slug={course.slug || ""}
-              />
-            ))}
+            {processedCourses.map(
+              (course: any, index: React.Key | null | undefined) => (
+                <div key={index}>
+                  <CourseCard
+                    title={course.title}
+                    description={course.description}
+                    level={course.level}
+                    duration={course.duration}
+                    dates={course.firstUnfilledClassDate}
+                    rating={course.rating}
+                    reviews={course.reviews}
+                    logo={course.logo}
+                    id={course.id}
+                    slug={course.slug || ""}
+                  />
+                </div>
+              )
+            )}
             {processedCourses.length === 0 && (
               <p className="text-center col-span-full text-gray-500">
                 No courses found.
