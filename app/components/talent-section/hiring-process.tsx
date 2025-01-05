@@ -1,6 +1,7 @@
 "use client";
 import Button from "../Button/Button";
 import React from "react";
+import Link from "next/link";
 import { HiringCard } from "@/components/HiringCard/HiringCard";
 import { motion } from "framer-motion";
 
@@ -12,15 +13,17 @@ export default function HiringProcess() {
           <h2 className=" leading-[61px] text-[47px] lg:text-5xl xl:text-9xl font-primary font-medium text-main mb-6">
             How does our hiring process work?
           </h2>
+          <Link href={"https://calendly.com/samueladesoga/valuehut-consulting"} target="_blank">
+            <Button
+              bgColor="fill-brand-secondary"
+              size="medium"
+              rounded="full"
+              className="mt-8 "
+            >
+              Get more information
+            </Button>
+          </Link>
 
-          <Button
-            bgColor="fill-brand-secondary"
-            size="medium"
-            rounded="full"
-            className="mt-8 "
-          >
-            Get more information
-          </Button>
         </div>
 
         <div className="space-y-4">

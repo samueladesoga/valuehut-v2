@@ -40,12 +40,11 @@ export default function TalentSection() {
 
           <div className="w-full md:max-w-[50%]">
             <h2 className="text-[47px] leading-[61px] lg:text-5xl xl:text-9xl font-medium font-primary mb-4">
-              We help you hire top-notch talent
+              Transparent recruitment service.
             </h2>
             <p className="text-lg lg:text-xl text-main font-normal font-secondary mb-8">
-              Our talent matching service provides no-frills Professional Scrum
-              Masters; individuals who successfully build self-managing teams
-              that deliver value to their customers.
+              Our talent matching service provides no-frills IT, Transformation & Product Professionals to help you achieve your business goals.
+              We only recommend talents that we would hire in our consulting business. Give us a try today and see the difference.
             </p>
           </div>
         </div>

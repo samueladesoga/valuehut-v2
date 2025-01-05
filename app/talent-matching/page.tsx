@@ -51,6 +51,7 @@ function page() {
             "Candidates must understand practices and prrinciples over tools"
           ]}
           buttonLabel="Learn more"
+          buttonLink="/contact-us"
         />
       </div>
 

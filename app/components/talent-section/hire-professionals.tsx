@@ -26,7 +26,7 @@ export default function HireProfessionals() {
             <HireCard
               title={"Hire Quickly"}
               description={
-                "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form."
+                "xIn publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form."
               }
               imageSrc={"/icons/rocket.svg"}
               bgColor={"bg-[#C5D8E0]"}

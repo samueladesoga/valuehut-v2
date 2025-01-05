@@ -5,12 +5,14 @@ import Image from "next/image";
 import arrowright from "@/icons/arrowright.svg";
 import CriteriImage from "@/images/CriteriaImage.png";
 import Button from "../Button/Button";
+import Link from "next/link";
 
 interface CriteriaSectionProps {
   title?: string;
   description?: string;
   highlights?: string[];
   buttonLabel?: string;
+  buttonLink?: string;
 }
 
 const CriteriaSection: React.FC<CriteriaSectionProps> = ({
@@ -18,6 +20,7 @@ const CriteriaSection: React.FC<CriteriaSectionProps> = ({
   description,
   highlights,
   buttonLabel,
+  buttonLink,
 }) => {
   return (
     <section className="container py-16">
@@ -48,14 +51,16 @@ const CriteriaSection: React.FC<CriteriaSectionProps> = ({
               </li>
             ))}
           </ul>
-          <Button
-            bgColor="fill-brand-secondary"
-            size="medium"
-            rounded="full"
-            className="mt-8 "
-          >
-            {buttonLabel}
-          </Button>
+          <Link href={buttonLink || ""} target="_blank">
+            <Button
+              bgColor="fill-brand-secondary"
+              size="medium"
+              rounded="full"
+              className="mt-8 "
+            >
+              {buttonLabel}
+            </Button>
+          </Link>
         </div>
 
         <div>
