@@ -11,6 +11,7 @@ import { primaryMarket, tertiaryMarket } from "@/data/Countries/countries";
 import { useRouter, useSearchParams } from "next/navigation";
 import InvoiceDocument from "../InvoiceDocument/InvoiceDocument";
 import { pdf } from "@react-pdf/renderer";
+import { getDisplayDate } from "@/utils/ConvertDate";
 
 interface PaymentMethod {
   id: string;
@@ -194,7 +195,7 @@ function WrapperCheckout({ course, classId }: any) {
       });
   };
 
-  const combinedDate = `${classDetail.startDate} - ${classDetail.endDate}, ${classDetail.year}`;
+  const combinedDate = `${getDisplayDate(classDetail.startDate, classDetail.endDate)}, ${classDetail.year}`;
 
   const handleModalToggle = () => {
     setIsModalOpen((prev) => !prev);
@@ -237,6 +238,8 @@ function WrapperCheckout({ course, classId }: any) {
               setdetails={setDetails}
               selectedMethod={selectedMethod}
               setSelectedMethod={setSelectedMethod}
+              amount={classPrice}
+              country={country}
             />
           </div>
 
@@ -255,15 +258,16 @@ function WrapperCheckout({ course, classId }: any) {
                 total={classPrice}
                 isUk={country === "united kingdom"}
               />
-
-              <Button
-                size="large"
-                bgColor="fill-brand-secondary"
-                className="rounded-xl text-main"
-                onClick={handlePayment}
-              >
-                <span>{loading ? "Loading..." : "Buy Now"}</span>
-              </Button>
+              {selectedMethod === "invoice" && (
+                <Button
+                  size="large"
+                  bgColor="fill-brand-secondary"
+                  className="rounded-xl text-main"
+                  onClick={handlePayment}
+                >
+                  <span>{loading ? "Loading..." : "Buy Now"}</span>
+                </Button>
+              )}
               {_errors || success ? (
                 <p
                   className={`text-sm mt-6 text-center ${success ? "text-green-600" : ""} ${_errors ? "text-red-600" : ""}`}

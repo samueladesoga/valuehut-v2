@@ -2,6 +2,13 @@
 
 import Image from "next/image";
 import React from "react";
+import {
+  loadStripe,
+  Appearance,
+  StripeElementsOptions,
+} from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import PaymentWithCreadit from "./CardPayment";
 
 interface PaymentMethod {
   id: string;
@@ -23,7 +30,17 @@ interface PaymentMethodSelectorProps {
   setdetails: (updateFn: (prevState: details) => details) => void;
   selectedMethod: string;
   setSelectedMethod: React.Dispatch<React.SetStateAction<string>>;
+  amount: number;
+  country: string;
 }
+
+if (!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY) {
+  throw new Error("NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY is not defined");
+}
+
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+);
 
 const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
   methods,
@@ -31,6 +48,8 @@ const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
   setdetails,
   selectedMethod,
   setSelectedMethod,
+  amount,
+  country,
 }) => {
   const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -44,15 +63,45 @@ const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
     setSelectedMethod(methodId);
   };
 
+  const appearance: Appearance = {
+    theme: "stripe",
+    variables: {
+      colorPrimary: "#05668D",
+      colorBackground: "#EFF7F8",
+      colorText: "#141834",
+      colorDanger: "#df1b41",
+      fontFamily: "Ideal Sans, system-ui, sans-serif",
+      spacingUnit: "6px",
+      borderRadius: "4px",
+    },
+    rules: {
+      ".Tab": {
+        display: "none",
+      },
+      ".Input": {
+        backgroundColor: "#EFF7F8",
+      },
+      ".Label": {
+        color: "#141834",
+      },
+    },
+  };
+
+  const elementsOptions: StripeElementsOptions = {
+    mode: "payment",
+    amount: amount * 100,
+    currency: country === "united kingdom" ? "gbp" : "usd",
+    appearance,
+  };
   return (
     <div>
       <h2 className="text-xl !leading-[27px] font-semibold font-secondary pb-5">
         Payment Method
       </h2>
       <div className="grid gap-4">
-        {methods.map((method) => (
+        {methods.map((method, index: number) => (
           <div
-            key={method.id}
+            key={index}
             className={`flex flex-col py-5 px-4 border rounded-lg cursor-pointer transition-colors ${
               selectedMethod === method.id
                 ? "border-[#05668D] bg-[#EFF7F8]"
@@ -100,76 +149,10 @@ const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
             <div>
               {method.name === "Credit Card" &&
                 selectedMethod === method.id && (
-                  <div className="flex flex-col gap-8 mt-8">
-                    <div className="flex flex-col gap-2">
-                      <label
-                        htmlFor="card-number"
-                        className="block text-sm !leading-[19px] font-medium font-secondary text-main"
-                      >
-                        Card Number
-                      </label>
-                      <div className="relative">
-                        <input
-                          type="text"
-                          id="card-number"
-                          maxLength={16}
-                          placeholder="1234 5678 9012 3456"
-                          className="w-full py-5 px-4 border-none rounded-lg font-normal font-secondary text-xl !leading-[25px] text-secondary focus:outline-none focus:ring-0"
-                          style={{
-                            MozAppearance: "textfield",
-                          }}
-                        />
-                        <Image
-                          src={"/images/visa.png"}
-                          width={56}
-                          height={18}
-                          alt="images"
-                          className="absolute right-4 top-5"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="flex justify-between gap-3">
-                      <div className="w-full flex flex-col gap-2">
-                        <label
-                          htmlFor="expiration-date"
-                          className="block text-sm !leading-[19px] font-medium font-secondary text-main"
-                        >
-                          Expiration Date
-                        </label>
-                        <input
-                          type="text"
-                          id="expiration-date"
-                          placeholder="MM/YY"
-                          className="w-full py-5 px-4 border-none rounded-lg font-normal font-secondary text-xl !leading-[25px] text-secondary focus:outline-none focus:ring-0"
-                        />
-                      </div>
-
-                      <div className="w-full flex flex-col gap-2">
-                        <label
-                          htmlFor="security-code"
-                          className="block text-sm !leading-[19px] font-medium font-secondary text-main"
-                        >
-                          Security Code
-                        </label>
-
-                        <div className="relative">
-                          <input
-                            type="text"
-                            id="security-code"
-                            placeholder="123"
-                            className="w-full py-5 px-4 border-none rounded-lg font-normal font-secondary text-xl !leading-[25px] text-secondary focus:outline-none focus:ring-0"
-                          />
-                          <Image
-                            src={"/images/securitycode.png"}
-                            width={43}
-                            height={27}
-                            alt="images"
-                            className="absolute right-4 top-5"
-                          />
-                        </div>
-                      </div>
-                    </div>
+                  <div className="mt-8">
+                    <Elements options={elementsOptions} stripe={stripePromise}>
+                      <PaymentWithCreadit amount={amount} country={country} />
+                    </Elements>
                   </div>
                 )}
 
@@ -194,42 +177,22 @@ const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
                       />
                     </div>
 
-                    <div className="flex justify-between gap-3">
-                      <div className="w-full flex flex-col gap-2">
-                        <label
-                          htmlFor="phone"
-                          className="block text-sm !leading-[19px] font-medium font-secondary text-main"
-                        >
-                          Phone Number
-                        </label>
-                        <input
-                          type="number"
-                          id="phone"
-                          name="phone"
-                          value={details.phone}
-                          onChange={handleInput}
-                          placeholder="Enter your phone number"
-                          className="w-full py-5 px-4 border-none rounded-lg font-normal font-secondary text-xl !leading-[25px] text-secondary focus:outline-none focus:ring-0"
-                        />
-                      </div>
-
-                      <div className="w-full flex flex-col gap-2">
-                        <label
-                          htmlFor="attendees"
-                          className="block text-sm !leading-[19px] font-medium font-secondary text-main"
-                        >
-                          Number of Attendees
-                        </label>
-                        <input
-                          type="number"
-                          id="attendees"
-                          value={details.numberOfAttendees}
-                          name="numberOfAttendees"
-                          placeholder="Enter the number of attendees"
-                          className="w-full py-5 px-4 border-none rounded-lg font-normal font-secondary text-xl !leading-[25px] text-secondary focus:outline-none focus:ring-0"
-                          onChange={handleInput}
-                        />
-                      </div>
+                    <div className="w-full flex flex-col gap-2">
+                      <label
+                        htmlFor="phone"
+                        className="block text-sm !leading-[19px] font-medium font-secondary text-main"
+                      >
+                        Phone Number
+                      </label>
+                      <input
+                        type="number"
+                        id="phone"
+                        name="phone"
+                        value={details.phone}
+                        onChange={handleInput}
+                        placeholder="Enter your phone number"
+                        className="w-full py-5 px-4 border-none rounded-lg font-normal font-secondary text-xl !leading-[25px] text-secondary focus:outline-none focus:ring-0"
+                      />
                     </div>
                   </div>
                 )}
