@@ -9,6 +9,7 @@ import Mail from "@/icons/mail.svg";
 import Mentor from "@/icons/mentor.svg";
 import Button from "@/components/Button/Button";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface FAQItem {
   category: string;
@@ -94,7 +95,9 @@ const FAQ: React.FC<FAQProps> = ({ faqs }) => {
                   Book a consultation
                 </h2>
                 <p className="text-sm text-main font-secondary">
-                  Open Calendly
+                  <Link href={"https://calendly.com/samueladesoga/valuehut-consulting"} target="_blank">
+                    Open Calendly
+                  </Link>
                 </p>
               </div>
             </div>
