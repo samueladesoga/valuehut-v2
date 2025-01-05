@@ -102,7 +102,7 @@ function ConsultingPage() {
                   Samuel Adesoga
                 </h1>
                 <h3 className="font-secondary font-semibold text-sm text-[#FFFFFF]">
-                  Principal Coach
+                  Founder and Managing Consultant
                 </h3>
               </div>
             </div>
@@ -122,7 +122,7 @@ function ConsultingPage() {
                   Temitope Awere
                 </h1>
                 <h3 className="font-secondary font-semibold text-sm text-[#FFFFFF]">
-                  Partner Coach
+                  Partner Consultant
                 </h3>
               </div>
             </div>

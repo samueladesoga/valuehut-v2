@@ -12,12 +12,12 @@ interface Expert {
 const experts: Expert[] = [
   {
     name: "Samuel Adesoga",
-    role: "Principal Coach",
+    role: "Founder & Managing Consultant",
     image: "/placeholder.svg?height=400&width=400",
   },
   {
     name: "Temitope Awere",
-    role: "Partner Coach",
+    role: "Partner Consultant",
     image: "/placeholder.svg?height=400&width=400",
   },
 ];
