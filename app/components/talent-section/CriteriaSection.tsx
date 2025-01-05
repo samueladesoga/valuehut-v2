@@ -30,7 +30,7 @@ const CriteriaSection: React.FC<CriteriaSectionProps> = ({
             {description}
           </p>
           <p className="text-base sm:text-xl font-secondary text-main font-semibold mb-4">
-            Majority of these adverts have criteria such:
+            Our approach includes the following:
           </p>
           <ul className="space-y-4">
             {highlights?.map((text, index) => (

@@ -43,12 +43,12 @@ function page() {
 
       <div className="px-6 py-6 sm:py-16 xl:px-0">
         <CriteriaSection
-          title="skip criteria that limit finding great talent"
-          description="We have reviewed hundreds of Job Adverts for Scrum Master, Delivery Leads, Delivery Managers and we have observed that these adverts have not been written to attract Professional Scrum Masters."
+          title="A refined approach to finding great talent"
+          description="Having reviewed hundreds of Job Adverts for IT, Transformation & Product Professionals, we observed that the majority of adverts doesn't seem to have been written in a manner that reflects the realities of the job being recruited for. This is why we work to create job description to help you fund great talent."
           highlights={[
-            "Candidate must hold a CSM or PSM 1 certification",
-            "Candidates must be able to hold Scrum Ceremonies",
-            "Candidates must be familiar with Jira and any similar tools out there",
+            "Certifications do not guarantee competence",
+            "Candidates experiences are validated by our teams of consultants",
+            "Candidates must understand practices and prrinciples over tools"
           ]}
           buttonLabel="Learn more"
         />
@@ -58,19 +58,19 @@ function page() {
         <WhyChooseUs
           title={"Why choose us?"}
           subtitle={
-            "Our talent network includes experienced Professionals that we have met through our Academy and Consulting services."
+            "Our talent network includes experienced Professionals and Consultant that have passed through our Academy and Consulting service pillars."
           }
           stats={[
             {
-              number: "23+",
-              title: "Successful Students",
+              number: "50+",
+              title: "Successful Matches",
             },
             {
               number: "3x",
-              title: "More chance to get hired",
+              title: "Increased chance to hire the right talent",
             },
             {
-              number: "15+",
+              number: "100+",
               title: "Years of collective experience",
             },
           ]}
