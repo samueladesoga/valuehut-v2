@@ -44,7 +44,7 @@ function page() {
       <div className="px-6 py-6 sm:py-16 xl:px-0">
         <CriteriaSection
           title="A refined approach to finding great talent"
-          description="Having reviewed hundreds of Job Adverts for IT, Transformation & Product Professionals, we observed that the majority of adverts doesn't seem to have been written in a manner that reflects the realities of the job being recruited for. This is why we work to create job description to help you fund great talent."
+          description="Having reviewed hundreds of Job Adverts for IT, Transformation & Product Professionals, we observed that the majority of adverts do not seem to be written in a manner that reflects the realities of the job being recruited for. This is why create job description to help you find great talent."
           highlights={[
             "Certifications do not guarantee competence",
             "Candidates experiences are validated by our teams of consultants",
