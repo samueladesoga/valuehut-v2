@@ -26,7 +26,7 @@ export default function HireProfessionals() {
             <HireCard
               title={"Hire Quickly"}
               description={
-                "xIn publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form."
+                "Reduce the number of rejected candidates at first stage interviews"
               }
               imageSrc={"/icons/rocket.svg"}
               bgColor={"bg-[#C5D8E0]"}
@@ -45,7 +45,7 @@ export default function HireProfessionals() {
             <HireCard
               title={"Top candidates"}
               description={
-                "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form."
+                "Our candidates are top 1% in their chosen field of work"
               }
               imageSrc={"/icons/talent-star.svg"}
               bgColor={"bg-[#C4EBE3]"}
@@ -64,7 +64,7 @@ export default function HireProfessionals() {
             <HireCard
               title={"Leading the Future"}
               description={
-                "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form."
+                "We help hire people that support your evolving business needs."
               }
               imageSrc={"/icons/Vector.svg"}
               bgColor={"bg-[#F5E5D7]"}
