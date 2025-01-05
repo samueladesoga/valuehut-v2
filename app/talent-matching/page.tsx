@@ -26,10 +26,11 @@ function page() {
       </div>
 
       <HeroBanner
-        title="Start Hiring Now"
-        subtitle="Helping Organisations transform into a network of interdependent product"
+        title="Let's get started"
+        subtitle="We will reduce your lead time by at least 50% and increase your chances of hiring the right talent by 3x."
         image={"/images/TalentSection.png"}
-        btnText="Get Started"
+        btnText="Contact us"
+        btnLink="/contact-us"
       />
 
       <div className="px-6 py-6 sm:py-16 xl:px-0">

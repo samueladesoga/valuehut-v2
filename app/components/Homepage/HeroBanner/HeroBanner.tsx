@@ -5,6 +5,7 @@ import Button from "@/components/Button/Button";
 import { ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 interface HeroBannerProps {
   title?: string;
@@ -12,6 +13,7 @@ interface HeroBannerProps {
   image?: string;
   button?: React.ReactNode;
   btnText?: string;
+  btnLink?: string;
 }
 
 export default function HeroBanner({
@@ -19,6 +21,7 @@ export default function HeroBanner({
   subtitle,
   image = "/images/image@2x.jpeg",
   btnText = "Get Started",
+  btnLink = "#",
 }: HeroBannerProps) {
   const router = useRouter();
 
@@ -55,16 +58,18 @@ export default function HeroBanner({
               viewport={{ once: false, amount: 0.1 }}
               className="flex text-start text-main"
             >
-              <Button
-                bgColor="fill-brand-secondary"
-                size="medium"
-                icon={<ChevronRight />}
-                rounded="full"
-                className="mt-5 text-start font-semibold"
-                onClick={() => router.push("/academy")}
-              >
-                {btnText}
-              </Button>
+              <Link href={btnLink || ""} target="_blank">
+                <Button
+                  bgColor="fill-brand-secondary"
+                  size="medium"
+                  icon={<ChevronRight />}
+                  rounded="full"
+                  className="mt-5 text-start font-semibold"
+                  onClick={() => router.push("/academy")}
+                >
+                  {btnText}
+                </Button>
+              </Link>
             </motion.div>
           </div>
         </div>
