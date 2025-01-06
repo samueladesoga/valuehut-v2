@@ -291,7 +291,7 @@ function WrapperCheckout({ course, classId }: any) {
         <div className="fixed inset-0 flex items-center justify-center bg-[#03243266] bg-opacity-[40%] z-50">
           <div className="px-4 sm:px-0" onClick={(e) => e.stopPropagation()}>
             <div className="flex flex-col gap-10 bg-white rounded-[20px] px-4 py-8 md:p-8 w-full max-w-[645px]">
-              <p>An email containing your envoice has been successfuly sent.</p>
+              <p>An email containing your invoice has been successfuly sent.</p>
               <p>
                 To download your invoice, please check your email (
                 {details.email})
