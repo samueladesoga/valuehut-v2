@@ -50,15 +50,6 @@ const CourseCard = ({
               >
                 View Classes
               </Button>
-              <Button
-                size="medium"
-                rounded="full"
-                border={true}
-                className="mt-5 text-start"
-                onClick={handleViewClasses}
-              >
-                Book Now
-              </Button>
             </div>
           </div>
         </div>

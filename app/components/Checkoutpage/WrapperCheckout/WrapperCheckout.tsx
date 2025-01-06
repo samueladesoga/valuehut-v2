@@ -262,6 +262,7 @@ function WrapperCheckout({ course, classId }: any) {
               <OrderSummary
                 subtotal={subtotal}
                 total={classPrice}
+                quantity={details.numberOfAttendees}
                 isUk={country === "united kingdom"}
               />
               {selectedMethod === "invoice" && (
