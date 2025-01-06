@@ -37,7 +37,7 @@ const HeroComponent: React.FC<HeroSectionProps> = ({
         priority
       />
       <div className="bg-gradient-custom relative z-1 h-[600px] flex flex-end">
-        <div className="flex items-end container sm:px-4 md:px-0 pb-20 px-6 xl:px-0 overflow-x-hidden">
+        <div className="flex items-end justify-between container sm:px-4 md:px-0 pb-20 px-6 xl:px-0 overflow-x-hidden">
           <div className="flex items-start flex-col gap-4 space-y-3 bottom-10 w-full md:w-1/2">
             {pill && (
               <div className="bg-fill-Brand-quaternary text-main text-xs font-secondary px-3 py-1 font-semibold rounded-full">

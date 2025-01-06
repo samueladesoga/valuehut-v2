@@ -72,10 +72,10 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
 
   const pathname = usePathname();
 
-  const isWhiteBackgroundRoutes = ["/about-us", "/faqs", "/blog", "/checkout"];
+  const isWhiteBackgroundRoutes = ["/about-us", "/faqs", "/blog", "/checkout/"];
 
   const isDynamicWhiteBackgroundRoute =
-    pathname.startsWith("/academy/") && pathname.includes("/details/");
+    pathname.startsWith("/academy/") && pathname.includes("/details/") || pathname.startsWith("/checkout/");
 
   const isWhiteHero = pathname.startsWith("/blog/");
 
