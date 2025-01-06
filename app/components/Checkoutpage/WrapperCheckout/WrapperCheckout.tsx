@@ -146,7 +146,7 @@ function WrapperCheckout({ course, classId }: any) {
         ", " +
         getYear(classDetail.endDate),
       quantity: details.numberOfAttendees,
-      price: classPrice,
+      price: subtotal,
       acronym: acronym,
     };
 
