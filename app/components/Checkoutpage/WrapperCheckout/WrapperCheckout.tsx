@@ -272,7 +272,7 @@ function WrapperCheckout({ course, classId }: any) {
                   className="rounded-xl text-main"
                   onClick={handlePayment}
                 >
-                  <span>{loading ? "Loading..." : "Buy Now"}</span>
+                  <span>{loading ? "Loading..." : "Send Invoice"}</span>
                 </Button>
               )}
               {_errors || success ? (

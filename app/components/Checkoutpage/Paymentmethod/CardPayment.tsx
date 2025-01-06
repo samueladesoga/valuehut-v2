@@ -131,10 +131,10 @@ function PaymentWithCreadit({
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-8 rounded-lg shadow-xl max-w-md w-full">
             <h2 className="text-2xl font-bold mb-4 text-center">
-              Thank You for Your Purchase!
+              Thank you!
             </h2>
             <p className="text-center mb-6">
-              Your payment was successful. We appreciate your business!
+              Your payment was successful. We will send you an email with more information within 24hous
             </p>
             <Button
               size="large"
@@ -142,7 +142,7 @@ function PaymentWithCreadit({
               className="rounded-xl text-main w-full"
               onClick={handleRedirect}
             >
-              Go to Academy
+              Back to Academy Homepage
             </Button>
           </div>
         </div>
