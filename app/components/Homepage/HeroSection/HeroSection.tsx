@@ -33,11 +33,13 @@ const HeroSection = ({
             <p className="text-[18px] font-secondary sm:text-[21px] leading-[27px] sm:leading-[31px] w-full sm:w-[58%] font-medium  ">
               {subtitle}
             </p>
-            <a href={buttonLink}>
-              <button className="bg-[#FF9F5A] font-secondary px-6 py-3 rounded-full text-main text-sm font-medium hover:bg-[#FF9F5A]/90">
-                {buttonText}
-              </button>
-            </a>
+            {buttonText && (
+              <a href={buttonLink}>
+                <button className="bg-[#FF9F5A] font-secondary px-6 py-3 rounded-full text-main text-sm font-medium hover:bg-[#FF9F5A]/90">
+                  {buttonText}
+                </button>
+              </a>
+            )}
           </div>
 
           {showRating && (
