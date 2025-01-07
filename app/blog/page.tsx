@@ -15,7 +15,7 @@ export default async function Blogs() {
       <div className="bg-[#f5f5f5] px-4 md:px-4 lg:px-0 container mt-[100px]">
         <div>
           <h2 className="text-[47px] sm:text-9xl leading-[61px] font-primary  mb-9 text-main sm:font-normal font-medium">
-            Our Articles
+            Featured Articles
           </h2>
         </div>
         <div>
