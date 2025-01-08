@@ -8,15 +8,17 @@ export const services: ServiceItem[] = [
   {
     title: "Delivery Management",
     description:
-      `Product Management practices help organizations turn ideas into valuable products, generate revenue, 
-      and eventually retire them. These practices also quickly eliminate products that don't scale, 
-      reducing waste and aligning product efforts with organizational strategy.`,
+      `We offer specialized Delivery Management services designed to help organizations successfully 
+      navigate the complexities of modern product development. Regardless of the size of your organisation, 
+      from scale ups to multinationals our delivery consultants bring the expertise needed to ensure alignment, 
+      effectiveness, and consistent delivery of value to your customers. We focus on enabling teams and 
+      leadership to work together effectively, creating an environment where innovation thrives, and outcomes 
+      are predictable.`,
     points: [
-      "Creating product goals for products in your organisation using OKR Framework",
-      "Designing a product framework for effective collaboration with multiple stakeholders across the organisation",
-      "Metrics that help the product teams show progress toward the defined product goals",
-      "Embracing an empirical process approach towards Product Management",
-      "Defining practices for ordering product backlog items in the product backlog",
+      "Establishing delivery frameworks that support end-to-end accountability",
+      "Maintaining a clear roadmap that aligns with your organization’s strategic objectives",
+      "Embedding themselves within your teams to  identify bottlenecks, reduce cycle time, and enable consistent delivery of high-quality products and services. ",
+      "Providing coaching and mentoring to leaders and teams alike.",
     ],
   },
   {
