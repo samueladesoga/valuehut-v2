@@ -5,6 +5,7 @@ import logoY from "../public/logos/v2-dark.svg";
 import logoX from "../public/logos/v2-light.svg";
 import Footer from "./components/Footer/Footer";
 import Menu from "../public/images/menu.png";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata: Metadata = {
   title: "ValueHut Consulting",
@@ -50,6 +51,7 @@ export default function RootLayout({
         <Navbar logoX={logoX} logoY={logoY} menu={Menu} navLinks={navLinks} />
         {children}
         <Footer />
+        <SpeedInsights />
       </body>
     </html>
   );
