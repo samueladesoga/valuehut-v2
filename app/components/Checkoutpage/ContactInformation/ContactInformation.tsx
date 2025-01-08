@@ -77,6 +77,7 @@ function ContactInformation({
               <input
                 type="number"
                 id="attendees"
+                minLength={1}
                 value={details.numberOfAttendees}
                 name="numberOfAttendees"
                 placeholder="Enter the number of attendees"
