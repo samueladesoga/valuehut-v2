@@ -24,7 +24,7 @@ export const services: ServiceItem[] = [
   {
     title: "Product Delivery",
     description:
-      `Our Product Delivery service helps your organisation's ideas into great products, we use sound product 
+      `Our Product Delivery service helps your organisation's turn ideas into great products, we use sound product 
       management practices to help you extract revenue from these products and eventually retire these products.
       As part our services, we help identify products that do not scale, support your organisation to pivot these 
       product or sunset them. We have observed that there is inherently a lot of waste in organisations by continually 
