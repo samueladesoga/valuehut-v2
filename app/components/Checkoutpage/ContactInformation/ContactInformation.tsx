@@ -19,10 +19,20 @@ function ContactInformation({
 }: PaymentMethodSelectorProps) {
   const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setDetails((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+
+    setDetails((prevState) => {
+      if (name === "numberOfAttendees") {
+        const newValue = Math.max(1, parseInt(value, 10) || 0);
+        return {
+          ...prevState,
+          [name]: newValue,
+        };
+      }
+      return {
+        ...prevState,
+        [name]: value,
+      };
+    });
   };
 
   return (
@@ -77,7 +87,6 @@ function ContactInformation({
               <input
                 type="number"
                 id="attendees"
-                minLength={1}
                 value={details.numberOfAttendees}
                 name="numberOfAttendees"
                 placeholder="Enter the number of attendees"

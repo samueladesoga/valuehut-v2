@@ -32,9 +32,6 @@ const InvoiceDocument = ({
   const today = new Date().toLocaleDateString();
   const totalPrice = selectedCourse ? selectedCourse.price * data.quantity : 0;
   const currency = isUk ? "£" : "$";
-
-  console.log("Data", data);
-
   return (
     <Document>
       <Page size="A4" style={styles.page}>

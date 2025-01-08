@@ -151,7 +151,12 @@ const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
                 selectedMethod === method.id && (
                   <div className="mt-8">
                     <Elements options={elementsOptions} stripe={stripePromise}>
-                      <PaymentWithCreadit amount={amount} country={country} />
+                      <PaymentWithCreadit
+                        amount={amount}
+                        country={country}
+                        fullName={details.fullName}
+                        email={details.email}
+                      />
                     </Elements>
                   </div>
                 )}
