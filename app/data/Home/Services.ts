@@ -20,12 +20,12 @@ export interface IServicesSection {
 }
 
 export const coCreatingData: IServicesSection = {
-  title: "Co-creating better ways of working and leading",
+  title: "Creating better ways of working and leading.",
   subtitle:
-    "Established product delivery teams often face challenges related to adoption",
+    "We help organisations navigate through the complexities of modern product development.",
   statistics: [
-    { value: "25+", label: "Years of collective experience" },
-    { value: "3x", label: "More Efficient Workflow" },
+    { value: "100+", label: "Years of collective experience" },
+    { value: "3x", label: "More Effective Teams" },
   ],
   cards: [
     {
