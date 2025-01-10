@@ -114,12 +114,13 @@ export async function POST(request: NextRequest) {
       // Return client secret to the frontend for further payment handling if needed
       return NextResponse.json({ clientSecret: paymentIntent.client_secret });
     }
-
-    // Handle other unexpected statuses
-    return NextResponse.json(
-      { error: "Payment was not successful" },
-      { status: 400 }
-    );
+    else {
+      // Handle other unexpected statuses
+      return NextResponse.json(
+        { error: "Payment was not successful" },
+        { status: 400 }
+      );
+    }
   } catch (error) {
     console.error("Internal Error", error);
     return NextResponse.json(
