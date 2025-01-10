@@ -111,12 +111,10 @@ export async function POST(request: NextRequest) {
       });
       // Return client secret to the frontend for further payment handling if needed
       return NextResponse.json({ clientSecret: paymentIntent.client_secret });
-  } catch (error:any) {
-    const errMSG = error.type === 'StripeCardError'
-    ? 'Your card was declined. Please try again with a different payment method.'
-    : 'An error occurred while processing your payment. Please try again later.'
+  } catch (error) {
+      error
     return NextResponse.json(
-      { error: errMSG },
+      { error: "Payment failed, try again" },
       { status: 500 }
     );
   }
