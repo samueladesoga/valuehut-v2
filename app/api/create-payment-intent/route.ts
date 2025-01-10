@@ -112,7 +112,7 @@ export async function POST(request: NextRequest) {
       // Return client secret to the frontend for further payment handling if needed
       return NextResponse.json({ clientSecret: paymentIntent.client_secret });
   } catch (error) {
-      error
+    console.error("Internal Error", error);
     return NextResponse.json(
       { error: "Payment failed, try again" },
       { status: 500 }
