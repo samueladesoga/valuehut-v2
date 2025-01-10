@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 import { NextRequest, NextResponse } from "next/server";
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-const nodemailer = require("nodemailer");
+//const nodemailer = require("nodemailer");
 
-const transporter = nodemailer.createTransport({
-  host: "email-smtp.us-east-1.amazonaws.com",
-  port: 465,
-  secure: true,
-  auth: {
-    user: process.env.SMTP_USERNAME,
-    pass: process.env.SMTP_PASSWORD,
-  },
-});
+// const transporter = nodemailer.createTransport({
+//   host: "email-smtp.us-east-1.amazonaws.com",
+//   port: 465,
+//   secure: true,
+//   auth: {
+//     user: process.env.SMTP_USERNAME,
+//     pass: process.env.SMTP_PASSWORD,
+//   },
+// });
 
 export async function POST(request: NextRequest) {
   try {
@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
     }
 
     const taxRate = isUk ? 0.2 : 0;
-    const taxAmount = amount * taxRate;
+    //const taxAmount = amount * taxRate;
     const totalAmount = amount * (1 + taxRate);
 
     // Create a customer in Stripe
@@ -46,9 +46,9 @@ export async function POST(request: NextRequest) {
     });
 
     // Check payment status before sending email
-      const formattedAmount = amount.toFixed(2);
-      const formattedTax = taxAmount.toFixed(2);
-      const formattedTotal = totalAmount.toFixed(2);
+      //const formattedAmount = amount.toFixed(2);
+      //const formattedTax = taxAmount.toFixed(2);
+      //const formattedTotal = totalAmount.toFixed(2);
 
       // Send payment receipt email
       // await transporter.sendMail({
