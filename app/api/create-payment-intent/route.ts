@@ -46,13 +46,6 @@ export async function POST(request: NextRequest) {
     });
 
     // Check payment status before sending email
-    if (paymentIntent.status === "requires_payment_method") {
-      return NextResponse.json(
-        { error: "Payment method required" },
-        { status: 400 }
-      );
-    }
-
     if (paymentIntent.status === "succeeded") {
       const formattedAmount = amount.toFixed(2);
       const formattedTax = taxAmount.toFixed(2);
