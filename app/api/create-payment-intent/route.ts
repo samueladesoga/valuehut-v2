@@ -46,7 +46,6 @@ export async function POST(request: NextRequest) {
     });
 
     // Check payment status before sending email
-    if (paymentIntent.status === "succeeded") {
       const formattedAmount = amount.toFixed(2);
       const formattedTax = taxAmount.toFixed(2);
       const formattedTotal = totalAmount.toFixed(2);
@@ -110,21 +109,14 @@ export async function POST(request: NextRequest) {
           </html>
         `,
       });
-
       // Return client secret to the frontend for further payment handling if needed
       return NextResponse.json({ clientSecret: paymentIntent.client_secret });
-    }
-    else {
-      // Handle other unexpected statuses
-      return NextResponse.json(
-        { error: "Payment was not successful" },
-        { status: 400 }
-      );
-    }
-  } catch (error) {
-    console.error("Internal Error", error);
+  } catch (error:any) {
+    const errMSG = error.type === 'StripeCardError'
+    ? 'Your card was declined. Please try again with a different payment method.'
+    : 'An error occurred while processing your payment. Please try again later.'
     return NextResponse.json(
-      { error: "internal server error" },
+      { error: errMSG },
       { status: 500 }
     );
   }
