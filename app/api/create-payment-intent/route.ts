@@ -51,64 +51,64 @@ export async function POST(request: NextRequest) {
       const formattedTotal = totalAmount.toFixed(2);
 
       // Send payment receipt email
-      await transporter.sendMail({
-        from: '"ValueHut" <info@valuehut.co>',
-        to: email,
-        bcc: "info@valuehut.co",
-        subject: "Payment Receipt",
-        html: `
-          <html>
-          <head>
-            <style>
-              body {
-                font-family: Arial, sans-serif;
-                color: #333;
-                background-color: #f7f7f7;
-                padding: 20px;
-              }
-              .container {
-                background-color: #fff;
-                padding: 20px;
-                border-radius: 8px;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-                max-width: 600px;
-                margin: 20px auto;
-                border: 1px solid #ddd;
-              }
-              .header {
-                font-size: 20px;
-                margin-bottom: 10px;
-              }
-              .content {
-                font-size: 16px;
-                line-height: 1.6;
-              }
-              .footer {
-                text-align: center;
-                color: #999;
-                font-size: 14px;
-              }
-            </style>
-          </head>
-          <body>
-            <div class="container">
-              <div class="header">Thank You for Your Purchase!</div>
-              <div class="content">
-                Hello ${fullName},<br><br>
-                Thank you for your purchase. Here are the details of your transaction:<br><br>
-                <strong>Amount:</strong> ${formattedAmount} ${currency.toUpperCase()}<br>
-                <strong> Tax ${isUk ? "20%" : "0%"}:</strong> ${formattedTax} ${currency.toUpperCase()}<br>
-                <strong>Total Paid:</strong> ${formattedTotal} ${currency.toUpperCase()}<br><br>
-                Should you have any questions or require further assistance, feel free to contact us.
-              </div>
-              <div class="footer">
-                © ValueHut Consulting - All rights reserved
-              </div>
-            </div>
-          </body>
-          </html>
-        `,
-      });
+      // await transporter.sendMail({
+      //   from: '"ValueHut" <info@valuehut.co>',
+      //   to: email,
+      //   bcc: "info@valuehut.co",
+      //   subject: "Payment Receipt",
+      //   html: `
+      //     <html>
+      //     <head>
+      //       <style>
+      //         body {
+      //           font-family: Arial, sans-serif;
+      //           color: #333;
+      //           background-color: #f7f7f7;
+      //           padding: 20px;
+      //         }
+      //         .container {
+      //           background-color: #fff;
+      //           padding: 20px;
+      //           border-radius: 8px;
+      //           box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      //           max-width: 600px;
+      //           margin: 20px auto;
+      //           border: 1px solid #ddd;
+      //         }
+      //         .header {
+      //           font-size: 20px;
+      //           margin-bottom: 10px;
+      //         }
+      //         .content {
+      //           font-size: 16px;
+      //           line-height: 1.6;
+      //         }
+      //         .footer {
+      //           text-align: center;
+      //           color: #999;
+      //           font-size: 14px;
+      //         }
+      //       </style>
+      //     </head>
+      //     <body>
+      //       <div class="container">
+      //         <div class="header">Thank You for Your Purchase!</div>
+      //         <div class="content">
+      //           Hello ${fullName},<br><br>
+      //           Thank you for your purchase. Here are the details of your transaction:<br><br>
+      //           <strong>Amount:</strong> ${formattedAmount} ${currency.toUpperCase()}<br>
+      //           <strong> Tax ${isUk ? "20%" : "0%"}:</strong> ${formattedTax} ${currency.toUpperCase()}<br>
+      //           <strong>Total Paid:</strong> ${formattedTotal} ${currency.toUpperCase()}<br><br>
+      //           Should you have any questions or require further assistance, feel free to contact us.
+      //         </div>
+      //         <div class="footer">
+      //           © ValueHut Consulting - All rights reserved
+      //         </div>
+      //       </div>
+      //     </body>
+      //     </html>
+      //   `,
+      // });
       // Return client secret to the frontend for further payment handling if needed
       return NextResponse.json({ clientSecret: paymentIntent.client_secret });
   } catch (error) {
