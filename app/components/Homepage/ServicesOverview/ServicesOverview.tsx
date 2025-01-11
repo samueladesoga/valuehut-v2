@@ -32,7 +32,7 @@ const ServicesOverview = () => {
       </div>
       <div className="flex flex-col md:flex-row justify-center items-center gap-2 md:gap-8 mt-5 sm:my-16">
         <div className="md:hidden">
-          <div className="bg-[#E5DFD9] rounded-lg shadow-lg">
+          <div className="bg-[#E5DFD9] rounded-lg">
             <Card
               title="Delivery Management"
               description="Our consultants lead your organisations delivery teams; building capabilities within your organisation helping them build great products"
@@ -42,7 +42,7 @@ const ServicesOverview = () => {
         </div>
 
         <div className="md:hidden">
-          <div className="bg-[#A5E0E7] rounded-lg shadow-lg">
+          <div className="bg-[#A5E0E7] rounded-lg">
             <Card
               title="Product Delivery"
               description="Outsource the delivery of your product ideas to us; idea to minimum viable product in 3months using Incremental and Iterative approaches."
@@ -52,7 +52,7 @@ const ServicesOverview = () => {
         </div>
 
         <motion.div
-          className="hidden md:block bg-[#E5DFD9] rounded-lg shadow-lg"
+          className="hidden md:block bg-[#E5DFD9] rounded-lg"
           initial={{ rotate: -10, x: 65 }}
           whileInView={{ rotate: 0, x: 0 }}
           transition={{ duration: 0.5 }}
@@ -66,7 +66,7 @@ const ServicesOverview = () => {
         </motion.div>
 
         <motion.div
-          className="hidden md:block bg-[#A5E0E7] rounded-lg shadow-lg"
+          className="hidden md:block bg-[#A5E0E7] rounded-lg"
           initial={{ rotate: 10, x: -65 }}
           whileInView={{ rotate: 0, x: 0 }}
           transition={{ duration: 0.5 }}
