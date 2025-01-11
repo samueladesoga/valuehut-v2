@@ -22,7 +22,7 @@ const WhyChooseUs: React.FC<WhyChooseUsProps> = ({
         <h2 className="text-4xl sm:text-6xl lg:text-9xl font-primary text-accentmain font-medium">
           {title}
         </h2>
-        <p className="text-sm sm:text-2xl text-accentmain font-normal font-secondary mt-4">
+        <p className="text-sm sm:text-2xl text-center text-accentmain font-normal font-secondary mt-4">
           {subtitle}
         </p>
       </div>

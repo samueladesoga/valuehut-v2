@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 
 export default function HireProfessionals() {
   return (
-    <div className="bg-[#F5F5F5] px-6 py-6 sm:py-16 xl:px-0">
-      <div className="container mx-auto px-4 sm:px-0">
+    <div className="bg-[#F5F5F5] py-6 sm:py-16">
+      <div className="container">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-12">
           <h2 className="text-7xl font-medium xl:text-8xl font-primary text-main mb-6 lg:mb-0">
             Hire only professionals
