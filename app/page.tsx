@@ -46,8 +46,8 @@ export default function Home() {
 
       <div className="mb-0 md:mb-20 mt-10 md:mt-0">
         <BookACallCTA
-          title="We are here to help?"
-          description="Are to ready to have a no-obligation chat about your organisational challenges? "
+          title="We are here to help."
+          description="Are you ready to have a no-obligation chat about your organisational challenges? "
           buttonText="Book a free call"
           imageUrl="/images/BookACallCTA-image.png"
           url="https://calendly.com/samueladesoga/valuehut-consulting"
