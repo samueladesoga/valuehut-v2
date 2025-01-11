@@ -35,13 +35,13 @@ export default function ArticlesSection({
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? articles.length - 1 : prevIndex - 1,
+      prevIndex === 0 ? articles.length - 1 : prevIndex - 1
     );
   };
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === articles.length - 1 ? 0 : prevIndex + 1,
+      prevIndex === articles.length - 1 ? 0 : prevIndex + 1
     );
   };
 
@@ -90,7 +90,7 @@ export default function ArticlesSection({
                 className="flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-2"
                 style={{ scrollSnapAlign: "start" }}
               >
-                <div className="border border-gray-300 rounded-lg shadow-md bg-white">
+                <div className="border border-gray-300 rounded-lg bg-white">
                   <Image
                     src={article.image}
                     alt={article.title}
@@ -118,7 +118,7 @@ export default function ArticlesSection({
           <div className="absolute  bottom-[-70px] left-3 block md:hidden transform -translate-y-1/2">
             <button
               onClick={handlePrev}
-              className=" w-8 h-8 bg-white  flex items-center justify-center rounded-full shadow hover:bg-gray-100"
+              className=" w-8 h-8 bg-white  flex items-center justify-center rounded-full hover:bg-gray-100"
             >
               <Image src={less} alt="less" />
             </button>
@@ -126,7 +126,7 @@ export default function ArticlesSection({
           <div className="absolute  left-14  bottom-[-70px] block md:hidden transform -translate-y-1/2">
             <button
               onClick={handleNext}
-              className=" w-8 h-8 bg-white  flex items-center justify-center rounded-full shadow hover:bg-gray-100"
+              className=" w-8 h-8 bg-white  flex items-center justify-center rounded-full hover:bg-gray-100"
             >
               <Image src={greater} alt="greater" />
             </button>

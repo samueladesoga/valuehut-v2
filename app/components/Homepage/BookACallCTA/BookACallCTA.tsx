@@ -21,7 +21,7 @@ const BookACallCTA: React.FC<BookACallCTAProps> = ({
   url,
 }) => {
   return (
-    <div className="container  bg-fill-brand-secondary h-auto md:h-[404px] flex flex-col md:flex-row px-8 justify-between items-center xl:rounded-[30px]">
+    <div className="container  bg-fill-brand-secondary h-auto md:h-[404px] p-0 sm:p-20 flex flex-col md:flex-row px-8 justify-between items-center xl:rounded-[30px]">
       <div className="mt-10 py-10 md:mt-0 ">
         <h2 className="text-[47px] sm:text-9xl font-normal text-main font-primary leading-[61px] ">
           {title}
