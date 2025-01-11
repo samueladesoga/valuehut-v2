@@ -6,6 +6,7 @@ import { ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 interface HeroBannerProps {
   title?: string;
@@ -27,12 +28,16 @@ export default function HeroBanner({
 
   return (
     <section className="container px-6 py-6 sm:py-16 xl:px-0">
-      <div
-        className="bg-gradient-custom h-[700px] flex flex-end bg-cover rounded-[30px] object-cover bg-center bg-no-repeat relative"
-        style={{ backgroundImage: `url(${image})` }}
-      >
-        <div className="container flex relative z-10 p-9 sm:p-20">
-          <div className="absolute flex flex-col gap-4 bottom-10 sm:w-1/2 text-accentmain">
+      <div className="h-[600px] flex flex-end bg-cover rounded-[30px] object-cover bg-center bg-no-repeat relative">
+        <Image
+          src={image}
+          layout="fill"
+          className="object-center object-cover rounded-3xl pointer-events-none"
+          alt={title ?? ""}
+          priority
+        />
+        <div className="bg-gradient-custom rounded-3xl container flex relative z-1 p-9 sm:p-20">
+          <div className=" absolute flex flex-col gap-4 bottom-10 sm:w-1/2 text-accentmain">
             <motion.h1
               className="text-[41px] leading-[45.1px] sm:text-[54px] sm:leading-[59.4px] font-primary font-normal"
               initial={{ opacity: 0, y: 20 }}
