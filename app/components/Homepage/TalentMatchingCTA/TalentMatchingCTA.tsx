@@ -64,7 +64,7 @@ const TalentMatchingCTA: React.FC = () => {
         </motion.div>
       </div>
 
-      <div className="max-w-[454px] bg-[#E7EDE4] rounded-[20px] pt-6 px-6 flex justify-center items-center shadow-lg flex-col gap-2">
+      <div className="max-w-[454px] bg-[#E7EDE4] rounded-[20px] pt-6 px-6 flex justify-center items-center flex-col gap-2">
         <div className="flex gap-2 items-center">
           <hr className="w-14 rotate-90 border-2 border-[#FBAC65]" />
           <p className="text-sm italic  w-full text-main font-normal">

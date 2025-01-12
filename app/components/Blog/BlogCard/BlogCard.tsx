@@ -23,7 +23,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
 }) => {
   const router = useRouter();
   return (
-    <div className="rounded-[20px] shadow-lg  w-full">
+    <div className="rounded-[20px] w-full">
       <div className=" w-full  h-[200px] md:h-[375px]">
         <Image
           src={image}

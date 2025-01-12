@@ -156,7 +156,6 @@ function ConsultingPage() {
             whileInView={{ rotate: 0, x: 0 }}
             transition={{ duration: 0.5 }}
             rounded-lg
-            shadow-lg
             viewport={{ once: false, amount: 0.2 }}
           >
             <Image
