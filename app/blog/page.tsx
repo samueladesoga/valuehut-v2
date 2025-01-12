@@ -3,6 +3,13 @@ import BlogCard from "@/components/Blog/BlogCard/BlogCard";
 import BlogItem from "@/components/Blog/BlogItem/BlogItem";
 import ArticlesSection from "@/components/Blog/ArticleSection/articles-section";
 import { getAllArticles } from "@/lib/api";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blogs",
+  description:
+    "ValueHut Consultancy is an Agile Management Consultancy, help organisation explore better ways of working and leading to deliver great products and services to their clients.",
+};
 
 export default async function Blogs() {
   const sortingOptions = ["Latest", "Oldest", "Most viewed"];
