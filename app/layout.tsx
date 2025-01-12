@@ -5,10 +5,13 @@ import logoY from "../public/logos/v2-dark.svg";
 import logoX from "../public/logos/v2-light.svg";
 import Footer from "./components/Footer/Footer";
 import Menu from "../public/images/menu.png";
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
-  title: "ValueHut Consulting",
+  title: {
+    template: "%s | ValueHut Consulting",
+    default: "ValueHut Consulting", // a default is required when creating a template
+  },
   description:
     "ValueHut Consultancy is an Agile Management Consultancy, help organisation explore better ways of working and leading to deliver great products and services to their clients.",
 };

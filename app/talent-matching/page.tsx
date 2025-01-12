@@ -9,6 +9,13 @@ import WhyChooseUs from "@/components/WhyChooseUs/WhyChooseUs";
 import { heroData } from "@/data/talent-matching/talent-matching";
 import React from "react";
 import { faqs } from "@/data/Faqs/faqpage";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Talent Matching",
+  description:
+    "ValueHut Consultancy is an Agile Management Consultancy, help organisation explore better ways of working and leading to deliver great products and services to their clients.",
+};
 
 function page() {
   return (
@@ -48,7 +55,7 @@ function page() {
           highlights={[
             "Certifications do not guarantee competence",
             "Candidates experiences are validated by our teams of consultants",
-            "Candidates must understand practices and prrinciples over tools"
+            "Candidates must understand practices and prrinciples over tools",
           ]}
           buttonLabel="Learn more"
           buttonLink="/contact-us"

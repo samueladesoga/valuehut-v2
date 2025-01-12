@@ -8,7 +8,7 @@ import {
   StripeElementsOptions,
 } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import PaymentWithCreadit from "./CardPayment";
+import PaymentWithCredit from "./CardPayment";
 
 interface PaymentMethod {
   id: string;
@@ -23,6 +23,8 @@ interface details {
   phone: string;
   address: string;
   numberOfAttendees: number;
+  acronym?: string;
+  startDate?: string;
 }
 interface PaymentMethodSelectorProps {
   methods: PaymentMethod[];
@@ -151,11 +153,12 @@ const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
                 selectedMethod === method.id && (
                   <div className="mt-8">
                     <Elements options={elementsOptions} stripe={stripePromise}>
-                      <PaymentWithCreadit
+                      <PaymentWithCredit
                         amount={amount}
                         country={country}
                         fullName={details.fullName}
                         email={details.email}
+                        acronym={details.acronym}
                       />
                     </Elements>
                   </div>
