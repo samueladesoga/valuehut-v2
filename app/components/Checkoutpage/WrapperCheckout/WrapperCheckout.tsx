@@ -25,6 +25,7 @@ interface Details {
   phone: string;
   address: string;
   numberOfAttendees: number;
+  acronym?: string;
 }
 
 const paymentMethods: PaymentMethod[] = [
@@ -51,19 +52,20 @@ function WrapperCheckout({ course, classId }: any) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [subtotal, setSubtotal] = useState(0);
 
+  const classDetail = course.classes.find(
+    (cls: { classId: number }) => cls.classId === parseInt(classId)
+  );
+
   const [details, setDetails] = useState<Details>({
     fullName: "",
     email: "",
     phone: "",
     address: "",
     numberOfAttendees: 1,
+    acronym: course.acronym ?? "",
   });
 
   const acronym = course.acronym;
-
-  const classDetail = course.classes.find(
-    (cls: { classId: number }) => cls.classId === parseInt(classId)
-  );
   const country = searchParams[1];
 
   useEffect(() => {

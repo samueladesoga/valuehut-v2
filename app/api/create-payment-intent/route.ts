@@ -4,10 +4,11 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 export async function POST(request: NextRequest) {
   try {
-    const { amount, currency, email, isUk, fullName } = await request.json();
+    const { amount, currency, email, isUk, fullName, acronym, } =
+      await request.json();
 
     // Validate input data
-    if (!amount || !currency || !email || !fullName) {
+    if (!amount || !currency || !email || !fullName || !acronym) {
       return NextResponse.json(
         { error: "Invalid input data" },
         { status: 400 }
@@ -16,6 +17,14 @@ export async function POST(request: NextRequest) {
 
     const taxRate = isUk ? 0.2 : 0;
     const totalAmount = amount * (1 + taxRate);
+
+    // Getting the acronym from the course
+    if (!acronym) {
+      return NextResponse.json(
+        { error: "Invalid input data" },
+        { status: 400 }
+      );
+    }
 
     // Create a customer in Stripe
     const customer = await stripe.customers.create({
@@ -26,14 +35,15 @@ export async function POST(request: NextRequest) {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: Math.round(totalAmount * 100), // Amount in smallest currency unit (e.g., cents)
       currency: currency,
+      statement_descriptor_suffix: acronym,
       customer: customer.id,
       receipt_email: email,
       automatic_payment_methods: {
         enabled: true,
       },
     });
-      // Return client secret to the frontend for further payment handling if needed
-      return NextResponse.json({ clientSecret: paymentIntent.client_secret });
+    // Return client secret to the frontend for further payment handling if needed
+    return NextResponse.json({ clientSecret: paymentIntent.client_secret });
   } catch (error) {
     console.error("Internal Error", error);
     return NextResponse.json(
