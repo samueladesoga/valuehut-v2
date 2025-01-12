@@ -70,7 +70,7 @@ const FAQ: React.FC<FAQProps> = ({ faqs }) => {
               rounded="full"
               size="small"
               bgColor="fill-brand-secondary"
-              className=" text-main px-6 py-3"
+              className=" text-main px-6 py-3 hidden sm:block"
               onClick={navigateToContactUs}
             >
               Let&apos;s connect
@@ -95,7 +95,12 @@ const FAQ: React.FC<FAQProps> = ({ faqs }) => {
                   Book a consultation
                 </h2>
                 <p className="text-sm text-main font-secondary">
-                  <Link href={"https://calendly.com/samueladesoga/valuehut-consulting"} target="_blank">
+                  <Link
+                    href={
+                      "https://calendly.com/samueladesoga/valuehut-consulting"
+                    }
+                    target="_blank"
+                  >
                     Open Calendly
                   </Link>
                 </p>
@@ -104,7 +109,7 @@ const FAQ: React.FC<FAQProps> = ({ faqs }) => {
           </div>
         </div>
         <div className="lg:w-1/2 flex flex-col items-start justify-center gap-8">
-          <div className="flex gap-3 items-center mb-4 flex-wrap">
+          <div className="flex gap-3 items-center px-4 sm:px-0 mb-4 flex-wrap">
             {categories.map((category) => (
               <button
                 key={category}

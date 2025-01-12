@@ -66,7 +66,7 @@ function AboutPage() {
         <WhyChooseUs
           title={"Why choose us?"}
           subtitle={
-            "Experienced cnsultants and practitioners with a track record of transforming organisations and teams."
+            "Experienced consultants and practitioners with a track record of transforming organisations and teams."
           }
           stats={[
             {

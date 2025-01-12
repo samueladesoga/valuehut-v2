@@ -5,6 +5,7 @@ import Button from "@/components/Button/Button";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronDown, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { StaticImageData } from "next/image";
 import { usePathname } from "next/navigation";
 
@@ -23,7 +24,7 @@ interface NavbarProps {
 
 const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(
-    null,
+    null
   );
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -75,33 +76,23 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
   const isWhiteBackgroundRoutes = ["/about-us", "/faqs", "/blog", "/checkout/"];
 
   const isDynamicWhiteBackgroundRoute =
-    pathname.startsWith("/academy/") && pathname.includes("/details/") || pathname.startsWith("/checkout/");
+    (pathname.startsWith("/academy/") && pathname.includes("/details/")) ||
+    pathname.startsWith("/checkout/");
 
   const isWhiteHero = pathname.startsWith("/blog/");
 
-  const logo =
-    isWhiteBackgroundRoutes.includes(pathname) ||
-    isDynamicWhiteBackgroundRoute ||
-    scrolled
-      ? logoY
-      : isWhiteHero
-        ? logoY
-        : logoX;
-
-  const navbarStyle =
-    isWhiteBackgroundRoutes.includes(pathname) ||
-    isDynamicWhiteBackgroundRoute ||
-    scrolled
-      ? "bg-white text-black shadow-md"
-      : isWhiteHero
-        ? "bg-white text-black shadow-md"
-        : "bg-[#707070]/10 backdrop-blur-3xl text-white";
-
   const isNavbarWhite =
+    isMobileMenuOpen ||
     isWhiteBackgroundRoutes.includes(pathname) ||
     isDynamicWhiteBackgroundRoute ||
     scrolled ||
     isWhiteHero;
+
+  const logo = isNavbarWhite ? logoY : logoX;
+
+  const navbarStyle = isNavbarWhite
+    ? "bg-white text-black shadow-md"
+    : "bg-[#707070]/10 backdrop-blur-3xl text-white";
 
   return (
     <div className={`fixed w-full md:pt-3 z-50`}>
@@ -163,7 +154,7 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
                     </span>
                   )}
                 </Link>
-              ),
+              )
             )}
           </div>
 
@@ -223,68 +214,91 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
           </button>
         </div>
 
-        {isMobileMenuOpen && (
-          <div className="lg:hidden bg-[#707070]/10 backdrop-blur-3xl p-6 absolute inset-x-0 top-full">
-            <ul className="flex flex-col space-y-4 text-white">
-              {navLinks.map((link, index) =>
-                link.subLinks ? (
-                  <li key={index} className="relative">
-                    <button
-                      onClick={() => toggleDropdown(index)}
-                      className="flex items-center justify-between w-full focus:outline-none"
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              className="fixed inset-0 bg-white z-50 flex flex-col px-6 py-8"
+              initial={{ opacity: 0, x: "100%" }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: "100%" }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="flex items-center justify-between border-b pb-4">
+                <Image src={logo} alt="Logo" width={118} height={31} />
+                <button
+                  onClick={toggleMobileMenu}
+                  className="text-black focus:outline-none"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
+
+              <ul className="flex flex-col mt-6 space-y-6">
+                {navLinks.map((link, index) =>
+                  link.subLinks ? (
+                    <li key={index}>
+                      <button
+                        onClick={() => toggleDropdown(index)}
+                        className="flex items-center justify-between w-full text-black"
+                      >
+                        {link.label}
+                        <ChevronDown
+                          className={`h-4 w-4 ml-2 transition-transform ${
+                            openDropdownIndex === index ? "rotate-180" : ""
+                          }`}
+                        />
+                      </button>
+                      <AnimatePresence>
+                        {openDropdownIndex === index && (
+                          <motion.ul
+                            className="mt-2 space-y-2 pl-4"
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            {link.subLinks.map((subLink, subIndex) => (
+                              <li key={subIndex}>
+                                <Link
+                                  href={subLink.href}
+                                  className="block hover:text-gray-700"
+                                  onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                  {subLink.label}
+                                </Link>
+                              </li>
+                            ))}
+                          </motion.ul>
+                        )}
+                      </AnimatePresence>
+                    </li>
+                  ) : (
+                    <li key={index}>
+                      <Link
+                        href={link.href}
+                        className="block hover:text-gray-300"
+                        onClick={toggleMobileMenu}
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  )
+                )}
+                <li>
+                  <Link href="/contact-us">
+                    <Button
+                      rounded="md"
+                      bgColor="fill-brand-secondary"
+                      className="w-full rounded-lg py-2 text-xs font-medium text-main"
                     >
-                      {link.label}
-                      <ChevronDown
-                        className={`h-4 w-4 ml-1 transition-transform ${
-                          openDropdownIndex === index ? "rotate-180" : ""
-                        }`}
-                      />
-                    </button>
-                    {openDropdownIndex === index && (
-                      <ul className="mt-2 space-y-2 pl-4 text-gray-300">
-                        {link.subLinks.map((subLink, subIndex) => (
-                          <li key={subIndex}>
-                            <Link
-                              href={subLink.href}
-                              className="block hover:text-white"
-                              onClick={() => {
-                                toggleMobileMenu();
-                                closeDropdown();
-                              }}
-                            >
-                              {subLink.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </li>
-                ) : (
-                  <li key={index}>
-                    <Link
-                      href={link.href}
-                      className="block hover:text-gray-300"
-                      onClick={toggleMobileMenu}
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ),
-              )}
-              <li>
-                <Link href="/contact-us">
-                  <Button
-                    rounded="md"
-                    bgColor="fill-brand-secondary"
-                    className="w-full rounded-lg py-2 text-xs font-medium text-main"
-                  >
-                    Book a free call
-                  </Button>
-                </Link>
-              </li>
-            </ul>
-          </div>
-        )}
+                      Book a free call
+                    </Button>
+                  </Link>
+                </li>
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
     </div>
   );

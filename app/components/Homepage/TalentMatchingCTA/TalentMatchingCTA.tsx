@@ -23,8 +23,8 @@ const TalentMatchingCTA: React.FC = () => {
   const router = useRouter();
 
   return (
-    <section className="bg-fill-neutral-strong container flex flex-col md:flex-row xl:rounded-[30px] items-center px-6 pt-20 pb-10 justify-between relative space-y-8 lg:space-y-0 lg:space-x-8">
-      <div className="flex flex-col gap-6 items-start">
+    <section className="bg-fill-neutral-strong container flex flex-col md:flex-row xl:rounded-[30px] items-center p-9 sm:p-20 pt-20 pb-10 justify-between relative space-y-8 lg:space-y-0 lg:space-x-8">
+      <div className="flex flex-col gap-6 items-start ">
         <div className="text-2xs text-[#ffff] font-semibold uppercase tracking-wider px-3 py-1 rounded-full border border-[#fff]/50">
           Talent Matching
         </div>
