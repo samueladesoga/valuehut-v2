@@ -36,6 +36,7 @@ export async function POST(request: NextRequest) {
       amount: Math.round(totalAmount * 100), // Amount in smallest currency unit (e.g., cents)
       currency: currency,
       statement_descriptor_suffix: acronym,
+      description: `Payment for ${acronym}`,
       customer: customer.id,
       receipt_email: email,
       automatic_payment_methods: {
