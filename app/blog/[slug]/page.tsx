@@ -25,10 +25,12 @@ export default async function BlogPost({
     notFound();
   }
 
-  const content = post.content?.json as unknown as Document;
+  const content = post.content as unknown as Document;
   let paragraphCounter = 0;
 
-  const renderOptions = {
+  const renderOptions = (
+    embeddedAssets: { id: string; url: string; title: string }[]
+  ) => ({
     renderNode: {
       [BLOCKS.PARAGRAPH]: (node: any, children: React.ReactNode) => {
         paragraphCounter++;
@@ -73,21 +75,41 @@ export default async function BlogPost({
           {children}
         </a>
       ),
-    },
-  };
 
-  paragraphCounter = 0;
+      [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
+        const asset = embeddedAssets.find(
+          (item) => item.id === node.data.target.sys.id
+        );
+
+        if (asset) {
+          return (
+            <div className="my-8">
+              <Image
+                src={`${asset.url}`}
+                width={800} // Default or dynamic width
+                height={450} // Default or dynamic height
+                alt={asset.title || "Embedded asset"}
+                className="rounded-lg"
+              />
+            </div>
+          );
+        }
+
+        return <p>Embedded asset could not be loaded.</p>;
+      },
+    },
+  });
 
   const domain = "https://www.valuehut.co";
   const fullUrl = `${domain}/blog/${slug}`;
 
   return (
     <article className="bg-[#f5f5f5]">
-      <div className="max-w-[800px] mx-auto px-4 xl:px-0 py-28 flex flex-col gap-10 ">
+      <div className="max-w-[800px] mx-auto px-4 xl:px-0 py-28 flex flex-col gap-10">
         <h1 className="max-w-[770px] mx-auto text-[37px] leading-[44px] sm:text-[41px] sm:leading-[49px] text-center text-main font-primary font-medium">
           {post.title}
         </h1>
-        <div className="flex flex-col gap-4 sm:gap-6 ">
+        <div className="flex flex-col gap-4 sm:gap-6">
           <Image
             src={post.cover.url}
             width={800}
@@ -101,7 +123,7 @@ export default async function BlogPost({
               <p>Share to</p>
               <Link
                 href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
-                  fullUrl,
+                  fullUrl
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -117,7 +139,7 @@ export default async function BlogPost({
               </Link>
               <Link
                 href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
-                  fullUrl,
+                  fullUrl
                 )}&text=${encodeURIComponent(post.title)}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -135,7 +157,11 @@ export default async function BlogPost({
           </div>
         </div>
         <div>
-          {content && documentToReactComponents(content, renderOptions)}
+          {content &&
+            documentToReactComponents(
+              content,
+              renderOptions(post.embeddedAssets)
+            )}
         </div>
         <div className="flex justify-between items-center text-secondary text-xs font-normal font-secondary border-t py-4 border-[#555555] border-opacity-[30%]">
           <time>{post.date}</time>
@@ -143,7 +169,7 @@ export default async function BlogPost({
             <p>Share to</p>
             <Link
               href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
-                fullUrl,
+                fullUrl
               )}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -159,7 +185,7 @@ export default async function BlogPost({
             </Link>
             <Link
               href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
-                fullUrl,
+                fullUrl
               )}&text=${encodeURIComponent(post.title)}`}
               target="_blank"
               rel="noopener noreferrer"
