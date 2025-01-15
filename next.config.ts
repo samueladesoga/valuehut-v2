@@ -1,6 +1,9 @@
+/** @type {import('next').NextConfig} */
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  experimental: {},
+  reactStrictMode: true,
   /* config options here */
   images: {
     formats: ["image/avif", "image/webp"],
