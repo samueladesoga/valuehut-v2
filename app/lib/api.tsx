@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { convertDate } from "@/utils/ConvertDate";
 
 export interface IPostType {
@@ -29,6 +30,7 @@ export interface IArticle {
   content?: {
     json: Document;
   };
+  embeddedAssets: any;
   image: string;
   slug: string;
   cover: {
@@ -113,6 +115,7 @@ export const getSlugArticle = async (
   if (!slug) {
     return null;
   }
+
   const query = `
     query GetArticleBySlug($slug: String!) {
       blogCollection(where: { slug: $slug }, limit: 1) {
@@ -129,6 +132,17 @@ export const getSlugArticle = async (
           description
           content {
             json
+            links {
+              assets {
+                block {
+                  sys {
+                    id
+                  }
+                  url
+                  title
+                }
+              }
+            }
           }
           author {
             sys {
@@ -140,9 +154,7 @@ export const getSlugArticle = async (
     }
   `;
 
-  const variables = {
-    slug: slug,
-  };
+  const variables = { slug };
 
   const response = await fetch(
     `https://graphql.contentful.com/content/v1/spaces/${process.env.BLOG_SPACE_ID}`,
@@ -153,24 +165,27 @@ export const getSlugArticle = async (
         Authorization: `Bearer ${process.env.BLOG_ACCESS_TOKEN}`,
       },
       body: JSON.stringify({ query, variables }),
-      next: {
-        revalidate: 10,
-      },
     }
   ).then((res) => res.json());
 
-  const data = await response;
-  const post = data.data?.blogCollection?.items[0];
+  const post = response.data?.blogCollection?.items[0];
 
   if (!post) {
     return null;
   }
 
+  const embeddedAssets = post.content.links.assets.block.map((asset: any) => ({
+    id: asset.sys.id,
+    url: asset.url,
+    title: asset.title,
+  }));
+
   return {
     title: post.title,
     date: convertDate(post.sys.publishedAt.toString()),
     description: post.description,
-    content: post.content,
+    content: post.content.json,
+    embeddedAssets,
     image: post.cover.url,
     slug: post.slug,
     cover: {
