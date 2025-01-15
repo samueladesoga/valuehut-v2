@@ -33,13 +33,14 @@ export default async function DetailsPage({
     (cls: { classId: number }) => cls.classId === parseInt(classId)
   );
 
-  const startDateDay = classDetail.startDate.split(" ")[1];
-  const endDateDay = classDetail.endDate.split(" ")[0];
+  const startDate = new Date(classDetail.startDate);
+  const endDate = new Date(classDetail.endDate);
 
-  const combinedDate =
-    startDateDay === endDateDay
-      ? `${getMonthAndDay(classDetail.startDate)}, ${classDetail.year}`
-      : `${getMonthAndDay(classDetail.startDate)} - ${getDay(classDetail.endDate)}, ${classDetail.year}`;
+  const isSameDay = startDate.toDateString() === endDate.toDateString();
+
+  const combinedDate = isSameDay
+    ? `${getMonthAndDay(classDetail.startDate)}, ${classDetail.year}`
+    : `${getMonthAndDay(classDetail.startDate)} - ${getDay(classDetail.endDate)}, ${classDetail.year}`;
 
   const CourseDetails = course.courseDetails;
 
