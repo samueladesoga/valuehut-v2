@@ -16,6 +16,7 @@ interface Props {
   fullName: string;
   email: string;
   acronym?: string;
+  startDate?: string;
 }
 
 const PaymentWithCredit: React.FC<Props> = ({
@@ -24,6 +25,7 @@ const PaymentWithCredit: React.FC<Props> = ({
   fullName,
   email,
   acronym,
+  startDate,
 }) => {
   const router = useRouter();
   const stripe = useStripe();
@@ -47,6 +49,7 @@ const PaymentWithCredit: React.FC<Props> = ({
           fullName,
           isUk: country === "united kingdom",
           acronym,
+          startDate,
         }),
       })
         .then((res) => res.json())
@@ -66,7 +69,7 @@ const PaymentWithCredit: React.FC<Props> = ({
       setLoading(false);
       setErrorMessage("Full Name and valid Email are required.");
     }
-  }, [amount, country, email, fullName, acronym]);
+  }, [amount, country, email, fullName, acronym, startDate]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

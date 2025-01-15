@@ -1,10 +1,11 @@
+import { getMonthAndDay, getYear } from "@/utils/ConvertDate";
 /* eslint-disable @typescript-eslint/no-require-imports */
 import { NextRequest, NextResponse } from "next/server";
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 export async function POST(request: NextRequest) {
   try {
-    const { amount, currency, email, isUk, fullName, acronym, } =
+    const { amount, currency, email, isUk, fullName, acronym, startDate } =
       await request.json();
 
     // Validate input data
@@ -36,7 +37,7 @@ export async function POST(request: NextRequest) {
       amount: Math.round(totalAmount * 100), // Amount in smallest currency unit (e.g., cents)
       currency: currency,
       statement_descriptor_suffix: acronym,
-      description: `Payment for ${acronym}`,
+      description: `Payment for ${acronym} - ${(getMonthAndDay(startDate))}, ${getYear(startDate)}`,
       customer: customer.id,
       receipt_email: email,
       automatic_payment_methods: {
