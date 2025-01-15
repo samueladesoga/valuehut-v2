@@ -159,6 +159,7 @@ const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
                         fullName={details.fullName}
                         email={details.email}
                         acronym={details.acronym}
+                        startDate={details.startDate}
                       />
                     </Elements>
                   </div>
