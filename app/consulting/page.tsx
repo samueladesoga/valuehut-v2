@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Consulting",
   description:
-    "ValueHut Consultancy is an Agile Management Consultancy, help organisation explore better ways of working and leading to deliver great products and services to their clients.",
+    "ValueHut Consulting provide Agile and Product Management consulting services to help you achieve your business goals to our global clients - London, Lagos, Accra and other parts of the world.",
 };
 
 const Page: NextPage = () => {

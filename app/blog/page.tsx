@@ -8,7 +8,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Blogs",
   description:
-    "ValueHut Consultancy is an Agile Management Consultancy, help organisation explore better ways of working and leading to deliver great products and services to their clients.",
+    "ValueHut Consulting Blogs is a collection of articles, insights and news on Agile, Scrum, Leadership, Product Management and more.",
 };
 
 export default async function Blogs() {

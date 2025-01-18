@@ -9,6 +9,13 @@ import FAQ from "@/components/FaqPage/Faq/Faq";
 import TrainingsPartners from "@/components/TrainingsPage/TriningsPartners/TrainingsPartners";
 import { getAllCourses } from "@/lib/courseApi";
 import { getMonthAndDay, getYear } from "@/utils/ConvertDate";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Academy",
+  description:
+    "ValueHut Consulting Academy delivers Agile Leadership and Scrum courses to develop individual, teams and overall organisations.",
+};
 
 export default async function Home() {
   const courses = await getAllCourses();

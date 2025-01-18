@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "ValueHut Consultancy is an Agile Management Consultancy, help organisation explore better ways of working and leading to deliver great products and services to their clients.",
+    "Contact ValueHut Consulting for your agile and product management consulting and training needs.",
 };
 
 const ContactUsPage: React.FC = () => {
