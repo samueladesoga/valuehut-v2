@@ -10,47 +10,29 @@ export interface IReviews {
 export const Reviews: IReviews[] = [
   {
     id: 1,
-    title: "Product Owner Training Feedback",
-    date: "4 days ago",
+    title: "Helped get our project back on track",
+    date: "4 years ago",
     description:
-      "Good training. Good delivery. Very Knowledgeable trainer and continuously engaged the trainees throughout the session.",
-    name: "Student Name",
-    rating: 3,
+      "Sam helped rescue our rewrite project for our SaaS product; He was able to help with setting clear directions for the delivery team and whilst supporting the team to deliver the project in time for the launch.",
+    name: "Kevin, Founder & Product Owner",
+    rating: 5,
   },
   {
     id: 2,
-    title: "Great clarity, explanation and real life examples",
-    date: "4 days ago",
+    title: "Guided our software delivery team at JP Morgan",
+    date: "1 year ago",
     description:
-      "Good training. Good delivery. Very Knowledgeable trainer and continuously engaged the trainees throughout the session.",
-    name: "Student Name",
+      "Sam guided our software development team at JPMorgan. Initially we had two Jira projects, only one with sprints, and always over-committed on the other. He helped us simplify this, make sure we were focussed on business priorities, reduce silos, work out our velocity, and commit to delivering this, reduce churn and develop a very clear agile process.",
+    name: "Roger, Software Development Manager",
     rating: 5,
   },
   {
     id: 3,
-    title: "Detailed and practical sessions",
-    date: "4 days ago",
+    title: "Strong automation skills",
+    date: "10 years ago",
     description:
-      "Good training. Good delivery. Very Knowledgeable trainer and continuously engaged the trainees throughout the session.",
-    name: "Student Name",
-    rating: 5,
-  },
-  {
-    id: 4,
-    title: "Session was interactive and engaging",
-    date: "4 days ago",
-    description:
-      "Good training. Good delivery. Very Knowledgeable trainer and continuously engaged the trainees throughout the session.",
-    name: "Student Name",
-    rating: 5,
-  },
-  {
-    id: 5,
-    title: "Exceptional training and support",
-    date: "3 days ago",
-    description:
-      "Great training delivery. Trainer was highly skilled and addressed all the doubts with practical examples.",
-    name: "Student Name",
+      "Samuel combines strong automation skills in a number of programming languages, and excellent technical exploratory testing skills. He keeps his skills up to date and brings new tools into the team to help everyone improve. I hope to work with Samuel and his team again.",
+    name: "Alan R",
     rating: 5,
   },
 ];
