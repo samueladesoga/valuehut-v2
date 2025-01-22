@@ -27,17 +27,22 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create a customer in Stripe
-    const customer = await stripe.customers.create({
-      email: email,
-    });
+    // Find or create a customer
+    const existingCustomers = await stripe.customers.list({ email, limit: 1 });
+    let customer;
+
+    if (existingCustomers.data.length > 0) {
+      customer = existingCustomers.data[0]; // Existing customer found
+    } else {
+      customer = await stripe.customers.create({ email }); // No existing customer, creating new
+    }
 
     // Create a payment intent
     const paymentIntent = await stripe.paymentIntents.create({
       amount: Math.round(totalAmount * 100), // Amount in smallest currency unit (e.g., cents)
       currency: currency,
       statement_descriptor_suffix: acronym,
-      description: `Payment for ${acronym} - ${(getMonthAndDay(startDate))}, ${getYear(startDate)}`,
+      description: `Payment for ${acronym} - ${getMonthAndDay(startDate)}, ${getYear(startDate)}`,
       customer: customer.id,
       receipt_email: email,
       automatic_payment_methods: {

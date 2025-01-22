@@ -24,7 +24,7 @@ const ContactForm: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -55,7 +55,7 @@ const ContactForm: React.FC = () => {
         process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID as string,
         process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID as string,
         formRef.current as HTMLFormElement,
-        process.env.NEXT_PUBLIC_EMAIL_USER_ID as string,
+        process.env.NEXT_PUBLIC_EMAIL_USER_ID as string
       )
       .then(
         (response: { status: any; text: any }) => {
@@ -72,7 +72,7 @@ const ContactForm: React.FC = () => {
         (err: any) => {
           console.error("FAILED...", err);
           alert("An error occurred. Please try again.");
-        },
+        }
       )
       .finally(() => {
         setIsLoading(false);
@@ -85,7 +85,7 @@ const ContactForm: React.FC = () => {
       onSubmit={handleSendEmail}
       className="bg-[#ffffff] rounded-xl"
     >
-      <div className="p-6 rounded-lg shadow-md">
+      <div className="p-4 sm:p-6 rounded-lg shadow-md">
         <h2 className="text-5xl font-primary font-medium mb-6">
           Send a message
         </h2>

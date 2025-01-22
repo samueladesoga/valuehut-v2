@@ -40,8 +40,8 @@ const ArticlesSection: React.FC<ArticlesSectionProps> = ({
   const allArticlesDisplayed = visibleArticles >= articles.length;
 
   return (
-    <div className="container py-10 bg-white rounded-3xl px-4 ">
-      <div className="p-4">
+    <div className="container py-10 bg-white rounded-3xl px-4 xl:px-0">
+      <div className="">
         <div className="flex flex-row justify-between">
           <h1 className="font-secondary font-medium text-[26px] leading-[33px] sm:text-5xl  pb-4">
             All articles
