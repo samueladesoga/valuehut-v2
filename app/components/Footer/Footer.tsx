@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="w-full bg-fill-neutral-strong">
-      <div className="container pb-8 pt-16 px-6 xl:px-0 sm:pt-24 lg:pt-32">
+      <div className="container pb-8 pt-16 px-4 xl:px-0 sm:pt-24 lg:pt-32">
         <div className="xl:grid xl:grid-cols-2 xl:gap-8">
           <div className="space-y-8">
             <Image

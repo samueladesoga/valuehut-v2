@@ -29,7 +29,7 @@ function AboutUs() {
           viewport={{ once: false, amount: 0.2 }}
         >
           <SectionPara
-            className="font-normal"
+            className="font-normal px-4 xl:px-0"
             para="An agile Management consultancy that believes that people provide the organisation's competitive advantage, 
             hence our mission to improve teamwork across business units."
           />
@@ -54,11 +54,11 @@ function AboutUs() {
         <OurPartners />
       </div>
 
-      <div className="container sm:pt-20">
+      <div className="container px-4 xl:px-0 sm:pt-20">
         <WhoAreWe />
       </div>
 
-      <div className="container sm:pt-28">
+      <div className="container px-4 xl:px-0 sm:pt-28">
         <MeetTheTeam />
       </div>
 
@@ -85,7 +85,7 @@ function AboutUs() {
         />
       </div>
 
-      <div className="container sm:py-8">
+      <div className="container px-4 xl:px-0 sm:py-8">
         <ClientReviews />
       </div>
     </section>

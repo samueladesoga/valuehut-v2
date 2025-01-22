@@ -61,7 +61,7 @@ export default async function CourseDetailsPage({
       <div className="relative">
         <HeroComponent backgroundImage={course.image} />
         <div className="absolute inset-0 bg-gradient-custom  z-0"></div>
-        <div className=" w-full  container inset-0 flex items-center justify-start z-20">
+        <div className=" w-full container px-4 xl:px-0 inset-0 flex items-center justify-start z-20">
           <h1 className="text-7xl absolute bottom-10 mb-10 sm:text-[67px] md:max-w-2xl font-primary sm:leading-[80px] font-normal text-accentmain">
             {course.title}
           </h1>

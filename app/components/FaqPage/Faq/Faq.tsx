@@ -55,7 +55,7 @@ const FAQ: React.FC<FAQProps> = ({ faqs }) => {
   };
 
   return (
-    <div className="bg-[#f5f5f5] sm:bg-white container rounded-3xl p-6 sm:p-16 ">
+    <div className="bg-[#f5f5f5] sm:bg-white container rounded-3xl py-6 px-4 xl:px-0 sm:p-16 ">
       <div className="flex justify-evenly flex-col lg:flex-row gap-8 lg:gap-24 items-center lg:items-start">
         <div className="lg:w-1/2 flex flex-col justify-between h-auto lg:h-[689px] ">
           <div className="flex flex-col items-center lg:items-start justify-start gap-6">
