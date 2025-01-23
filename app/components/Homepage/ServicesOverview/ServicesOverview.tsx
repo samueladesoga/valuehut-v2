@@ -20,7 +20,7 @@ const ServicesOverview = () => {
     <section className="max-w-[924px] px-6 xl:px-0 py-12 flex flex-col mx-auto gap-4">
       <div className="max-w-[582px] mx-auto flex flex-col justify-center items-center gap-8 sm:gap-8">
         <SectionTitle title="Consulting Service" />
-        <SectionPara para="Our consultants advice and drive meaningful change across your organisation; helping deliver strategic initiatives while upskilling your people in the process." />
+        <SectionPara para="Our consultants advise and drive meaningful change across your organisation; helping deliver strategic initiatives while upskilling your people in the process." />
         <Button
           bgColor="fill-brand-secondary"
           rounded="full"
@@ -45,7 +45,7 @@ const ServicesOverview = () => {
           <div className="bg-[#A5E0E7] rounded-lg">
             <Card
               title="Product Delivery"
-              description="Outsource the delivery of your product ideas to us; idea to minimum viable product in 3months using Incremental and Iterative approaches."
+              description="Outsource the delivery of your product ideas to us; idea to minimum viable product in 3 months using Incremental and Iterative approaches."
               icon={Blend}
             />
           </div>
@@ -74,7 +74,7 @@ const ServicesOverview = () => {
         >
           <Card
             title="Product Delivery"
-            description="Outsource the delivery of your product ideas to us; idea to minimum viable product in 3months using Incremental and Iterative approaches."
+            description="Outsource the delivery of your product ideas to us; idea to minimum viable product in 3 months using Incremental and Iterative approaches."
             icon={Blend}
           />
         </motion.div>

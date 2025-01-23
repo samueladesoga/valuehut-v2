@@ -19,11 +19,11 @@ export const Articles = [
   },
   {
     id: 3,
-    title: "Case Study: How we rescued a start-up project within 3months",
+    title: "Case Study: How we rescued a start-up project within 3 months",
     description:
       "As we see more organisations clamouring for the Product Operating Model type of transformation, one question that has been",
     image: "/images/services3.png",
     link: "#",
-    slug: "case-study-how-we-rescued-a-start-up-project-within-3months",
+    slug: "case-study-how-we-rescued-a-start-up-project-within-3 months",
   },
 ];

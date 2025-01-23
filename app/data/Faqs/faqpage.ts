@@ -21,7 +21,7 @@ export const faqs: FAQItem[] = [
     category: "ValueHut",
     question: "Which Agile Framework and Methodologies do you recommend?",
     answer:
-      "What challenges do you want to solve; we would advice you based on our combined experience and inspired some of the most popular Agile and Lean approaches.",
+      "What challenges do you want to solve; we would advise you based on our combined experience and inspired some of the most popular Agile and Lean approaches.",
   },
   {
     category: "ValueHut",
@@ -33,7 +33,7 @@ export const faqs: FAQItem[] = [
     category: "ValueHut",
     question: "Academy or Consulting?",
     answer:
-      "It depends on your goals and the level of support that you require. Our training are intense for 1-3 days, while Consulting Services provides an ongoing support for the organisation.",
+      "It depends on your goals and the level of support that you require. Our classes are intense for 1-3 days, while Consulting Services provides an ongoing support for the organisation.",
   },
   {
     category: "Academy",

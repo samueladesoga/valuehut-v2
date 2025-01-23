@@ -33,11 +33,11 @@ function WhoAreWe() {
             Our Mission
           </h2>
           <p className="text-lg font-normal text-center font-secondary md:text-left">
-            At ValueHut Consulting, we help organizations, teams and individual
-            improve their ways of working leveraging practices from agile and
+            At ValueHut Consulting, we help organizations, teams and individuals
+            improve their ways of working; leveraging practices from agile and
             lean methods. Through our service pillars – Academy, Consulting and
             Talent Matching, we partner with our clients to build effective
-            organizations that solve complex problems and are able deliver
+            organizations that solve complex problems and help them deliver
             products their customers love.
           </p>
         </div>
