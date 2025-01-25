@@ -24,7 +24,7 @@ function MeetTheTeam() {
       role: "Founder & Managing Consultant",
       description: `Sam is an Enterprise Delivery Coach and Agile Practitioner, a Professional Scrum Trainer 
         with Scrum.org. In the last 20 years, Sam has coached individuals, teams and Organisations 
-        to deliver value using Agile Frameworks and Practices; helping them develop the mindset required 
+        to deliver value using Agile Frameworks and Practices; enabling them to develop the mindset required 
         to thrive in Volatile, Uncertain, Complex and Ambiguous (VUCA) business environment.`,
       socialLinks: [
         { icon: "/icons/twitter.svg", alt: "twitter", url: "https://x.com/sadesoga/" },

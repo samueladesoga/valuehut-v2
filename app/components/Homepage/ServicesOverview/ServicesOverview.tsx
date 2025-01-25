@@ -20,7 +20,7 @@ const ServicesOverview = () => {
     <section className="max-w-[924px] px-6 xl:px-0 py-12 flex flex-col mx-auto gap-4">
       <div className="max-w-[582px] mx-auto flex flex-col justify-center items-center gap-8 sm:gap-8">
         <SectionTitle title="Consulting Service" />
-        <SectionPara para="Our consultants advise and drive meaningful change across your organisation; helping deliver strategic initiatives while upskilling your people in the process." />
+        <SectionPara para="Our consultants advise and drive meaningful change across your organisation; enabling the delivery of strategic initiatives while upskilling people in the process." />
         <Button
           bgColor="fill-brand-secondary"
           rounded="full"
@@ -35,7 +35,7 @@ const ServicesOverview = () => {
           <div className="bg-[#E5DFD9] rounded-lg">
             <Card
               title="Delivery Management"
-              description="Our consultants lead your organisations delivery teams; building capabilities within your organisation helping them build great products"
+              description="Our consultants lead your organisations delivery teams; enabling the organisation with capabilities required to build great products"
               icon={Questions}
             />
           </div>
@@ -60,7 +60,7 @@ const ServicesOverview = () => {
         >
           <Card
             title="Delivery Management"
-            description="Our consultants lead your organisations delivery teams; building capabilities within your organisation helping them build great products"
+            description="Our consultants lead your organisations delivery teams; building capabilities within your organisation enabling them in building great products"
             icon={Questions}
           />
         </motion.div>
