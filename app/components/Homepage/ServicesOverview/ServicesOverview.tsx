@@ -35,7 +35,7 @@ const ServicesOverview = () => {
           <div className="bg-[#E5DFD9] rounded-lg">
             <Card
               title="Delivery Management"
-              description="Our consultants lead your organisations delivery teams; enabling the organisation with capabilities required to build great products"
+              description="Our consultants lead your organisation's delivery teams; enabling the organisation with capabilities required to build great products faster and better."
               icon={Questions}
             />
           </div>

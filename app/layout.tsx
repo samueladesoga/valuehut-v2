@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     default: "ValueHut Consulting", // a default is required when creating a template
   },
   description:
-    "ValueHut Consulting is an Agile Management Consultancy, enabling organisations to explore better ways of working and leading to deliver great products and services to their clients.",
+    "ValueHut Consulting is an Agile Management Consultancy, enabling organisations to explore better ways of working thats delivers great products and services to their clients.",
 };
 
 export default function RootLayout({

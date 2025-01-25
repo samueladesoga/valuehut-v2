@@ -174,9 +174,7 @@ function Consulting() {
           </h2>
 
           <p className="text-lg md:text-xl text-[#161A1D] font-secondary mb-10 max-w-2xl">
-            Enabling Organisational transformation into a network of interdependent
-            product teams across different business units into a network of
-            interdependent.
+            Enabling Organisations to transform into a network of self-managing and interdependent teams.
           </p>
 
           <Button
