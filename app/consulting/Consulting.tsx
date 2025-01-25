@@ -174,7 +174,7 @@ function Consulting() {
           </h2>
 
           <p className="text-lg md:text-xl text-[#161A1D] font-secondary mb-10 max-w-2xl">
-            Helping Organisations transform into a network of interdependent
+            Enabling Organisational transformation into a network of interdependent
             product teams across different business units into a network of
             interdependent.
           </p>
@@ -199,7 +199,7 @@ function Consulting() {
       <div className="pb-0 md:pb-20 mt-10 md:mt-0 ">
         <BookACallCTA
           title="Ready to book a free call?"
-          description="ValueHut Consulting is an Agile Management Consultancy, helping organizations explore better ways of working and leading."
+          description="ValueHut Consulting is an Agile Management Consultancy, enabling organizations to explore better ways of working and leading."
           buttonText="Book a free call"
           imageUrl="/images/BookACallCTA-image.png"
           url="https://calendly.com/samueladesoga/valuehut-consulting"

@@ -26,7 +26,7 @@ export default function Home() {
       />
       <ClientLogosSectionWrapper />
       <ServicesSection />
-      <OurMission description="Helping organisations transform into a network of interdependent product teams across different business units." />
+      <OurMission description="Enabling organisations transformation into a network of interdependent product teams across different business units." />
       <HeroBanner
         title="Academy"
         subtitle="An integral part of your organisation's transformational journey - explore our Agile Leadership, Product Management, Scrum Mastery and other courses; delivered by seasoned Consultants."

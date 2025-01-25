@@ -9,7 +9,7 @@ export const faqs: FAQItem[] = [
     category: "ValueHut",
     question: "What makes ValueHut Consulting different from others?",
     answer:
-      "As a boutique Agile Management Consultancy, we offer a personalised approach rather than one-size-fits-all; as a result we carefully select the clients that we work with. Our focus on measurable outcomes set us apart and we have proof of helping organisations such as yours.",
+      "As a boutique Agile Management Consultancy, we offer a personalised approach rather than one-size-fits-all; as a result we carefully select the clients that we work with. Our focus on measurable outcomes set us apart and we have proof of enabling organisations such as yours.",
   },
   {
     category: "ValueHut",
