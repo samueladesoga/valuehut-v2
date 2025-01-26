@@ -44,11 +44,10 @@ export const services: ServiceItem[] = [
     description:
       `A central theme to application delivery is enabling teams to build better products faster. 
       Continuous Integration and Continuous Delivery are practices that enables the product teams 
-      gather feedback in near real time as the product is being built. Continuous Delivery is a set 
-      of practices that provide to the capabilities required to build, test, package and deploy 
-      application code into an environment. Information such as quality of the product and measures 
-      of technical debt are collected; and presented in formats that are easy to understand for entire 
-      product teams. Our consultants have implemented and supported many organisations with their 
+      gather feedback in real time as the product is being built. Continuous Delivery is a set 
+      of practices that provide the capabilities required to build, test, package and deploy 
+      the product continuously. Metrics that represent the quality of the product collected automatically so that 
+      teams can fix as soon as possible. Our consultants have implemented and supported many organisations with their 
       Continuous Delivery Implementation.`,
     points: [
       "An evaluation of the current state including tools / technology being used",
