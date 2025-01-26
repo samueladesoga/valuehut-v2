@@ -66,9 +66,7 @@ export default function MeetExperts() {
           </h2>
 
           <p className="text-base text-[#161A1D] font-secondary mb-6">
-            Enabling Organisational transformation into a network of interdependent
-            product teams across different business units into a network of
-            interdependent.
+            Enabling organisations to transform into a network of self-managing and interdependent teams.
           </p>
 
           <button className="bg-[#FF9F5A] text-white font-secondary px-6 py-3 rounded-full inline-flex items-center gap-2 hover:bg-[#FF9F5A]/90 transition-colors mb-8">
