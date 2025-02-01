@@ -9,6 +9,7 @@ import SectionTitle from "@/components/SectionTitle/SectionTitle";
 import WhoAreWe from "@/components/WhoAreWe/WhoAreWe";
 import ClientReviews from "@/components/ClientReviews/ClientReviews";
 import WhyChooseUs from "@/components/WhyChooseUs/WhyChooseUs";
+import Link from "next/link";
 
 function AboutUs() {
   return (
@@ -28,6 +29,17 @@ function AboutUs() {
           transition={{ duration: 0.5, delay: 0.1 }}
           viewport={{ once: false, amount: 0.2 }}
         >
+          <p className="font-secondary font-normal opacity-70 text-main text-base sm:text-sm text-center">
+            We are the convener of the{" "}
+            <Link
+              href="https://scrumdaynigeria.org"
+              target="_blank"
+              className="underline hover:text-blue-500"
+            >
+              Scrum Day Nigeria
+            </Link>
+            , a yearly conference that brings together.....
+          </p>
           <SectionPara
             className="font-normal px-4 xl:px-0"
             para="An agile Management consultancy that believes that people provide the organisation's competitive advantage, 
@@ -54,11 +66,11 @@ function AboutUs() {
         <OurPartners />
       </div>
 
-      <div className="container px-4 xl:px-0 sm:pt-20">
+      <div className="container sm:pt-20">
         <WhoAreWe />
       </div>
 
-      <div className="container px-4 xl:px-0 sm:pt-28">
+      <div className="container sm:pt-28">
         <MeetTheTeam />
       </div>
 
@@ -66,7 +78,7 @@ function AboutUs() {
         <WhyChooseUs
           title={"Why choose us?"}
           subtitle={
-            "Experienced consultants and practitioners with a track record of transforming teams and organisations."
+            "Experienced consultants and practitioners with a track record of transforming organisations and teams."
           }
           stats={[
             {
@@ -85,7 +97,7 @@ function AboutUs() {
         />
       </div>
 
-      <div className="container px-4 xl:px-0 sm:py-8">
+      <div className="container sm:py-8">
         <ClientReviews />
       </div>
     </section>
