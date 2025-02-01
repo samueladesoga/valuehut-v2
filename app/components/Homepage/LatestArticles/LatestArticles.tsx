@@ -10,11 +10,16 @@ import greater from "@/greater.svg";
 import { useRouter } from "next/navigation";
 
 interface Article {
-  id: number;
+  category: string;
+  cover: {
+    url: string;
+  };
+  date: string;
+  showInHomePage?: boolean;
+  tag: string;
   title: string;
   description: string;
   image: string;
-  link: string;
   slug: string;
 }
 
@@ -84,9 +89,9 @@ export default function ArticlesSection({
             ref={containerRef}
             style={{ scrollSnapType: "x mandatory" }}
           >
-            {articles.map((article) => (
+            {articles.map((article, index: number) => (
               <div
-                key={article.id}
+                key={index}
                 className="flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-2"
                 style={{ scrollSnapAlign: "start" }}
               >
@@ -95,9 +100,9 @@ export default function ArticlesSection({
                     src={article.image}
                     alt={article.title}
                     width={440}
-                    height={200}
+                    height={241}
                     objectFit="cover"
-                    className="bg-no-repeat rounded-md mb-4"
+                    className="w-full h-[241px] bg-no-repeat rounded-t-md mb-4"
                   />
                   <div className="p-6">
                     <h3
@@ -107,7 +112,9 @@ export default function ArticlesSection({
                       {article.title}
                     </h3>
                     <p className="text-sm text-body mb-4">
-                      {article.description}
+                      {article.description.length > 100
+                        ? `${article.description.slice(0, 135)}...`
+                        : description}
                     </p>
                   </div>
                 </div>
