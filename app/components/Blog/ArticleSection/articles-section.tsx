@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import Button from "@/components/Button/Button";
 import { convertDate } from "@/utils/ConvertDate";
+import AdsImage from "@/data/AdsImage/AdsImage.jpg";
 
 interface IArticle {
   id?: number;
@@ -44,7 +45,7 @@ const ArticlesSection: React.FC<ArticlesSectionProps> = ({
       <div className="">
         <div className="flex flex-row justify-between">
           <h1 className="font-secondary font-medium text-[26px] leading-[33px] sm:text-5xl  pb-4">
-            All articles
+            More articles
           </h1>
           <div>
             <button
@@ -114,10 +115,23 @@ const ArticlesSection: React.FC<ArticlesSectionProps> = ({
             ))}
           </div>
 
-          <div className="bg-[#ECECEC] w-[348px] h-[280px] sm:h-[532px] rounded-lg flex items-center justify-center">
-            <p className="Text-Main font-secondary font-semibold text-[21px] leading-[29px]">
-              Ad Example / CTA
-            </p>
+          <div className="rounded-lg flex items-center justify-center">
+            {AdsImage ? (
+              <div>
+                <Image
+                  src={AdsImage}
+                  alt="Ad"
+                  width={380}
+                  height={290}
+                  objectFit="cover"
+                  className="rounded-lg"
+                />
+              </div>
+            ) : (
+              <p className="Text-Main font-secondary bg-[#ECECEC] w-[348px] h-[280px] sm:h-[532px] font-semibold text-[21px] leading-[29px]">
+                Ad Example / CTA
+              </p>
+            )}
           </div>
         </div>
 

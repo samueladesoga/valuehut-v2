@@ -7,11 +7,15 @@ import TalentMatchingCTA from "@/components/Homepage/TalentMatchingCTA/TalentMat
 import Testimonials from "@/components/Homepage/Testimonials/Testimonials";
 import LatestArticles from "@/components/Homepage/LatestArticles/LatestArticles";
 import BookACallCTA from "@/components/Homepage/BookACallCTA/BookACallCTA";
-import { Articles } from "@/data/Home/Testimonials";
 import { heroData } from "./data/Home/HeroSection";
 import ClientLogosSectionWrapper from "@/components/Homepage/ClientLogosSectionWrapper/ClientLogosSectionWrapper";
+import { getAllArticles } from "./lib/api";
 
-export default function Home() {
+export default async function Home() {
+  const AllArticles = await getAllArticles();
+  const Article = AllArticles.props.posts;
+  const articlesToShow = Article.filter((article) => article.showInHomePage);
+  const topThreeArticles = articlesToShow.slice(0, 3);
   return (
     <div className="flex flex-col gap-8 bg-[#f5f5f5]">
       <HeroSection
@@ -40,7 +44,7 @@ export default function Home() {
       </div>
       <LatestArticles
         title="Latest articles"
-        articles={Articles}
+        articles={topThreeArticles}
         description="Insights from our work and experiences with our clients"
       />
 

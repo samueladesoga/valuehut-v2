@@ -67,6 +67,7 @@ export const getAllArticles = async () => {
                 sys{
                     publishedAt
                 }
+                showInHomePage
                 description
             }
         } 
@@ -92,6 +93,7 @@ export const getAllArticles = async () => {
     title: post.title,
     date: convertDate(post.sys.publishedAt.toString()),
     description: post.description,
+    showInHomePage: post.showInHomePage,
     category: "",
     tag: post.tag,
     image: post.cover.url,
