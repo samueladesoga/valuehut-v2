@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Blogs() {
-  const sortingOptions = ["Latest", "Oldest", "Most viewed"];
+  const sortingOptions = ["Latest", "Oldest"];
   const NewArticles = await getAllArticles();
   const articlesToShow = NewArticles.props.posts.filter(
     (article) => article.showInHomePage
@@ -21,9 +21,12 @@ export default async function Blogs() {
 
   const sideArticles = articlesToShow.slice(1, 6);
 
-  const otherArticles = NewArticles.props.posts.filter(
-    (article) => article.showInHomePage === false
-  );
+  const otherArticles = NewArticles.props.posts
+    .filter((article) => article.showInHomePage === false)
+    .map((article) => ({
+      ...article,
+      publishedAt: article.publishedAt.toString(),
+    }));
 
   return (
     <div className="bg-[#F5F5F5] py-7">

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
@@ -17,6 +17,7 @@ interface IArticle {
   cover: {
     url: string;
   };
+  publishedAt: string;
 }
 
 interface ArticlesSectionProps {
@@ -34,11 +35,29 @@ const ArticlesSection: React.FC<ArticlesSectionProps> = ({
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [visibleArticles, setVisibleArticles] = useState(6);
 
+  const sortedArticles = useMemo(() => {
+    return [...articles].sort((a, b) => {
+      const dateA = new Date(a.publishedAt).getTime();
+      const dateB = new Date(b.publishedAt).getTime();
+
+      switch (sortBy) {
+        case "Latest":
+          return dateB - dateA;
+        case "Oldest":
+          return dateA - dateB;
+        case "Most viewed":
+          return 0;
+        default:
+          return 0;
+      }
+    });
+  }, [articles, sortBy]);
+
   const loadMoreArticles = () => {
     setVisibleArticles((prev) => prev + 6);
   };
 
-  const allArticlesDisplayed = visibleArticles >= articles.length;
+  const allArticlesDisplayed = visibleArticles >= sortedArticles.length;
 
   return (
     <div className="container py-10 bg-white rounded-3xl px-4 xl:px-6">
@@ -74,16 +93,11 @@ const ArticlesSection: React.FC<ArticlesSectionProps> = ({
         </div>
 
         <div className="flex justify-between sm:flex-row flex-col gap-10">
-          <div className=" w-full  md:w-2/3">
-            {articles.slice(0, visibleArticles).map((article, index) => (
+          <div className="w-full md:w-2/3">
+            {sortedArticles.slice(0, visibleArticles).map((article, index) => (
               <article
                 key={index}
-                className="
-                flex gap-6 border-b border-[#DEDEDE]
-                py-3
-                overflow-hidden
-                items-start  
-              "
+                className="flex gap-6 border-b border-[#DEDEDE] py-3 overflow-hidden items-start"
               >
                 <Image
                   src={article.cover.url}
@@ -96,18 +110,14 @@ const ArticlesSection: React.FC<ArticlesSectionProps> = ({
                   <div>
                     <Link
                       href={`/blog/${article.slug}`}
-                      className="
-                    font-secondary text-[14px] leading-[18px] 
-                    sm:text-[19px] sm:leading-[24.7px] font-medium text-main 
-                    line-clamp-2 overflow-hidden
-                  "
+                      className="font-secondary text-[14px] leading-[18px] sm:text-[19px] sm:leading-[24.7px] font-medium text-main line-clamp-2 overflow-hidden"
                     >
                       {article.title}
                     </Link>
                   </div>
                   <div>
                     <p className="text-xs text-secondary font-normal font-secondary">
-                      {convertDate(article.date)} -{article.tag}
+                      {convertDate(article.date)} - {article.tag}
                     </p>
                   </div>
                 </div>

@@ -95,6 +95,7 @@ export const getAllArticles = async () => {
     description: post.description,
     showInHomePage: post.showInHomePage,
     category: "",
+    publishedAt: post.sys.publishedAt,
     tag: post.tag,
     image: post.cover.url,
     slug: post.slug,
