@@ -27,7 +27,7 @@ const HeroSection = ({
       <div className="bg-gradient-custom relative z-1 h-[840px] flex flex-end">
         <div className="container w-full flex h-full font-primary items-end px-6 2xl:px-0 pb-[60px]">
           <div className="flex flex-col gap-4 space-y-3 bottom-10 w-full text-accentmain">
-            <h1 className="text-[47px] md:text-[87px] w-full md:w-[58%] leading-[51px] md:leading-[95.7px] font-semibold font-primary">
+            <h1 className="text-[47px] md:text-[87px] w-full md:w-[75%] leading-[51px] md:leading-[95.7px] font-semibold font-primary">
               {title}
             </h1>
             <p className="text-[18px] font-secondary sm:text-[21px] leading-[27px] sm:leading-[31px] w-full sm:w-[58%] font-medium  ">
