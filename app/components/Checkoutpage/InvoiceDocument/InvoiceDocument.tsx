@@ -9,6 +9,7 @@ interface Idata {
   quantity: number;
   fullname: string;
   phoneNumber: string;
+  address: string;
   email: string;
 }
 
@@ -106,6 +107,13 @@ const InvoiceDocument = ({
             }}
           >
             Email: {data.email}
+          </Text>
+          <Text
+            style={{
+              fontWeight: "light",
+            }}
+          >
+            Address: {data.address}
           </Text>
         </View>
         <View style={tableStyles.table}>

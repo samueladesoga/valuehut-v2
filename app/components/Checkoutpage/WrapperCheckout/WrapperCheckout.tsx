@@ -137,6 +137,7 @@ function WrapperCheckout({ course, classId }: any) {
       fullname: details.fullName,
       phoneNumber: details.phone,
       email: details.email,
+      address: details.address,
       quantity: details.numberOfAttendees,
     };
 
