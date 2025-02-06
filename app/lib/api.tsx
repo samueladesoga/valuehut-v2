@@ -10,6 +10,7 @@ export interface IPostType {
     title: string;
   };
   sys: {
+    firstPublishedAt: any;
     publishedAt: Date;
   };
   description: string;
@@ -22,6 +23,7 @@ export interface IPostType {
     };
   };
   showInHomePage?: boolean;
+  isFeatured?: boolean;
 }
 export interface IArticle {
   title: string;
@@ -65,9 +67,11 @@ export const getAllArticles = async () => {
                     title
                 }
                 sys{
-                    publishedAt
+                  firstPublishedAt
+                  publishedAt
                 }
                 showInHomePage
+                isFeatured
                 description
             }
         } 
@@ -91,11 +95,12 @@ export const getAllArticles = async () => {
 
   const articles = posts.map((post) => ({
     title: post.title,
-    date: convertDate(post.sys.publishedAt.toString()),
+    date: convertDate(post.sys.firstPublishedAt.toString()),
     description: post.description,
     showInHomePage: post.showInHomePage,
+    isFeatured: post.isFeatured,
     category: "",
-    publishedAt: post.sys.publishedAt,
+    firstPublishedAt: post.sys.firstPublishedAt,
     tag: post.tag,
     image: post.cover.url,
     slug: post.slug,
@@ -130,6 +135,7 @@ export const getSlugArticle = async (
             title
           }
           sys {
+          firstPublishedAt
             publishedAt
           }
           description
@@ -185,7 +191,7 @@ export const getSlugArticle = async (
 
   return {
     title: post.title,
-    date: convertDate(post.sys.publishedAt.toString()),
+    date: convertDate(post.sys.firstPublishedAt.toString()),
     description: post.description,
     content: post.content.json,
     embeddedAssets,

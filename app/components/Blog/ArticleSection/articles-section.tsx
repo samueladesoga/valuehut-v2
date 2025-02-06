@@ -17,7 +17,7 @@ interface IArticle {
   cover: {
     url: string;
   };
-  publishedAt: string;
+  firstPublishedAt: string;
 }
 
 interface ArticlesSectionProps {
@@ -37,8 +37,8 @@ const ArticlesSection: React.FC<ArticlesSectionProps> = ({
 
   const sortedArticles = useMemo(() => {
     return [...articles].sort((a, b) => {
-      const dateA = new Date(a.publishedAt).getTime();
-      const dateB = new Date(b.publishedAt).getTime();
+      const dateA = new Date(a.firstPublishedAt).getTime();
+      const dateB = new Date(b.firstPublishedAt).getTime();
 
       switch (sortBy) {
         case "Latest":
@@ -127,7 +127,7 @@ const ArticlesSection: React.FC<ArticlesSectionProps> = ({
 
           <div className="rounded-lg flex items-center justify-center">
             {AdsImage ? (
-              <div>
+              <Link href={"https://scrumdaynigeria.org/"} target="_blank">
                 <Image
                   src={AdsImage}
                   alt="Ad"
@@ -136,7 +136,7 @@ const ArticlesSection: React.FC<ArticlesSectionProps> = ({
                   objectFit="cover"
                   className="rounded-lg"
                 />
-              </div>
+              </Link>
             ) : (
               <p className="Text-Main font-secondary bg-[#ECECEC] w-[348px] h-[280px] sm:h-[532px] font-semibold text-[21px] leading-[29px]">
                 Ad Example / CTA

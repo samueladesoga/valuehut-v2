@@ -1,23 +1,26 @@
-import { DateTimeFormatOptions } from "intl";
+export function convertDate(dateString: string | number | Date) {
+  const date = new Date(dateString);
 
-type Options = {
-  day: string;
-  month: string;
-  year: string;
-};
-export function convertDate(dateString: string) {
-  const dateObj = new Date(dateString);
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
 
-  const options: Options = { day: "2-digit", month: "short", year: "2-digit" };
+  const day = date.getUTCDate();
+  const month = monthNames[date.getUTCMonth()];
+  const year = date.getUTCFullYear().toString().slice(-2);
 
-  const formattedDate = dateObj.toLocaleDateString(
-    "en-GB",
-    options as DateTimeFormatOptions
-  );
-
-  const dayAdjustedDate = formattedDate.replace(/^\d+/, "22");
-
-  return dayAdjustedDate;
+  return `${day.toString().padStart(2, "0")} ${month} ${year}`;
 }
 
 export function getDay(dateInput: string): string {

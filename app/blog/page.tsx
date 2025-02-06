@@ -15,17 +15,17 @@ export default async function Blogs() {
   const sortingOptions = ["Latest", "Oldest"];
   const NewArticles = await getAllArticles();
   const articlesToShow = NewArticles.props.posts.filter(
-    (article) => article.showInHomePage
+    (article) => article.isFeatured
   );
   const mainArticle = articlesToShow[0];
 
   const sideArticles = articlesToShow.slice(1, 6);
 
   const otherArticles = NewArticles.props.posts
-    .filter((article) => article.showInHomePage === false)
+    .filter((article) => article.isFeatured === false || !article.isFeatured)
     .map((article) => ({
       ...article,
-      publishedAt: article.publishedAt.toString(),
+      firstPublishedAt: article.firstPublishedAt.toString(),
     }));
 
   return (
