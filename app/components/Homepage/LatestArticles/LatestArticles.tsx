@@ -119,7 +119,7 @@ export default function ArticlesSection({
                     </p>
                     <div>
                       <p className="text-xs text-secondary font-normal font-secondary">
-                        {convertDate(article.date)} - {article.tag}
+                        {article.tag}
                       </p>
                     </div>
                   </div>
