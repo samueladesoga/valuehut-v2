@@ -220,6 +220,13 @@ const InvoiceDocument = ({
             }}
           >
             For UK payment, VAT Registration Number: 206285618
+          </Text>
+          <Text
+            style={{
+              marginTop: 5,
+              fontWeight: "light",
+            }}
+          >
             Payment is to be made into specified Bank account within 7days from
             invoice date. Our bank accounts are below:
           </Text>
@@ -232,7 +239,7 @@ const InvoiceDocument = ({
             marginTop: 50,
           }}
         >
-          <View style={{ fontSize: "10px" }}>
+          <View style={{ fontSize: "8px" }}>
             <Text>USD account</Text>
             <Text>Account holder: Valuehut Limited</Text>
             <Text>ACH and Wire routing number: 026073150</Text>
@@ -241,8 +248,9 @@ const InvoiceDocument = ({
             <Text>Wise&apos;s address: 30 W.26th Street, Sixth Flour</Text>
             <Text>New York NY 10010</Text>
             <Text>United States</Text>
+            <Text>{"\n"}</Text>
           </View>
-          <View style={{ fontSize: "10px" }}>
+          <View style={{ fontSize: "8px" }}>
             <Text>EUR account</Text>
             <Text>Account holder: Valuehut Limited</Text>
             <Text>SWIFT/BIC: TRWIBEB1XXX</Text>
@@ -251,21 +259,22 @@ const InvoiceDocument = ({
             <Text>Wise&apos;s address: Rue du Trône 100, 3rd floor</Text>
             <Text>Brussels 1050</Text>
             <Text>Belgium</Text>
+            <Text>{"\n"}</Text>
           </View>
-          <View style={{ fontSize: "10px" }}>
+          <View style={{ fontSize: "8px" }}>
             <Text>GBP account</Text>
             <Text>Account holder: Valuehut Limited</Text>
             <Text>Account Number: 92489597</Text>
             <Text>Sort Code: 40-04-01</Text>
             <Text>IBAN: GB64HBUK40040192489597</Text>
             <Text>Branch Identifier Code: HBUKBG4106V</Text>
+            <Text>{"\n"}</Text>
           </View>
         </View>
         <View style={styles.pageFooter}>
           <Text>UK: North Westgate House, Harlow. CM20 1YS.</Text>
           <Text>
-            Nigeria: 44, Community Road off Bamishiile Street off Allen Avenue,
-            Ikeja, Lagos.
+            Nigeria: 22 Glover Rd, Ikoyi, Lagos.
           </Text>
         </View>
       </Page>
