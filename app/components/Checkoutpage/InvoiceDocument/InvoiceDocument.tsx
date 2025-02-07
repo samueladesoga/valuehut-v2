@@ -215,30 +215,6 @@ const InvoiceDocument = ({
           </Text>
           <Text
             style={{
-              fontWeight: "light",
-              marginTop: 5,
-            }}
-          >
-            Dacht Solutions Limited
-          </Text>
-          <Text
-            style={{
-              fontWeight: "light",
-              marginTop: 2,
-            }}
-          >
-            Acct Number: 9248959
-          </Text>
-          <Text
-            style={{
-              fontWeight: "light",
-              marginTop: 2,
-            }}
-          >
-            Sort Code: 40-04-01
-          </Text>
-          <Text
-            style={{
               marginTop: 12,
               fontWeight: "light",
             }}
@@ -251,6 +227,7 @@ const InvoiceDocument = ({
               fontWeight: "light",
             }}
           >
+            For UK payment, VAT Registration Number: 206285618
             Payment is to be made into specified Bank account within 7days from
             invoice date. Our bank accounts are below:
           </Text>
@@ -263,7 +240,7 @@ const InvoiceDocument = ({
             marginTop: 50,
           }}
         >
-          <View style={{ fontSize: "6px" }}>
+          <View style={{ fontSize: "10px" }}>
             <Text>USD account</Text>
             <Text>Account holder: Valuehut Limited</Text>
             <Text>ACH and Wire routing number: 026073150</Text>
@@ -273,7 +250,7 @@ const InvoiceDocument = ({
             <Text>New York NY 10010</Text>
             <Text>United States</Text>
           </View>
-          <View style={{ fontSize: "6px" }}>
+          <View style={{ fontSize: "10px" }}>
             <Text>EUR account</Text>
             <Text>Account holder: Valuehut Limited</Text>
             <Text>SWIFT/BIC: TRWIBEB1XXX</Text>
@@ -283,7 +260,7 @@ const InvoiceDocument = ({
             <Text>Brussels 1050</Text>
             <Text>Belgium</Text>
           </View>
-          <View style={{ fontSize: "6px" }}>
+          <View style={{ fontSize: "10px" }}>
             <Text>GBP account</Text>
             <Text>Account holder: Valuehut Limited</Text>
             <Text>Account Number: 92489597</Text>
