@@ -219,6 +219,7 @@ const InvoiceDocument = ({
               fontWeight: "light",
             }}
           >
+            For UK payment, VAT Registration Number: 206285618
             Payment is to be made into specified Bank account within 7days from
             invoice date. Our bank accounts are below:
           </Text>
