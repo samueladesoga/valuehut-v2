@@ -8,7 +8,6 @@ import { useEffect, useRef, useState } from "react";
 import less from "@/less.svg";
 import greater from "@/greater.svg";
 import { useRouter } from "next/navigation";
-import { convertDate } from "@/utils/ConvertDate";
 
 interface Article {
   category: string;
@@ -119,7 +118,7 @@ export default function ArticlesSection({
                     </p>
                     <div>
                       <p className="text-xs text-secondary font-normal font-secondary">
-                        {convertDate(article.date)} - {article.tag}
+                        {article.tag}
                       </p>
                     </div>
                   </div>
