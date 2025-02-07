@@ -8,7 +8,6 @@ import { useEffect, useRef, useState } from "react";
 import less from "@/less.svg";
 import greater from "@/greater.svg";
 import { useRouter } from "next/navigation";
-import { convertDate } from "@/utils/ConvertDate";
 
 interface Article {
   category: string;
