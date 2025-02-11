@@ -59,9 +59,9 @@ const FAQ: React.FC<FAQProps> = ({ faqs }) => {
       <div className="flex justify-evenly flex-col lg:flex-row gap-8 lg:gap-24 items-center lg:items-start">
         <div className="lg:w-1/2 flex flex-col justify-between h-auto lg:h-[689px] ">
           <div className="flex flex-col items-center lg:items-start justify-start gap-6">
-            <h2 className="text-7xl sm:text-9xl font-normal tracking-tight text-center lg:text-left text-[#141834] font-primary">
+            <h1 className="text-7xl sm:text-9xl font-normal tracking-tight text-center lg:text-left text-[#141834] font-primary">
               Frequently asked questions
-            </h2>
+            </h1>
             <p className="hidden md:flex text-xl font-medium font-secondary">
               You got more to ask?
             </p>
