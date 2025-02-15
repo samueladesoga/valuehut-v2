@@ -44,6 +44,6 @@ export const AcademyHero: IAcadmeyHero = {
   pill: "ACADEMY",
   showRating: true,
   ratingText: "Excellent",
-  ratingDetails: "4.78 out of 5 based on 34 reviews",
+  ratingDetails: "4.9 out of 5 based on 26,000+ reviews",
   ratingImage: "/images/logo-01.svg",
 };

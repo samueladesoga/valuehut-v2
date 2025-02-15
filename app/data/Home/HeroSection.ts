@@ -15,6 +15,6 @@ export const heroData: HeroSectionProps = {
     "People are the heart of your organisation and we want to help improve how people work, lead, and are led.",
   showRating: false,
   ratingText: "Excellent",
-  ratingDetails: "4.98 out of 5 based on 34 reviews",
+  ratingDetails: "4.9 out of 5 based on 26,000+ reviews",
   backgroundImage: "/images/hero.png",
 };
