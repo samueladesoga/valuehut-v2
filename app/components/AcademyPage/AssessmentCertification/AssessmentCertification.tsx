@@ -6,9 +6,9 @@ function AssessmentCertification() {
     <div className="container px-4 xl:px-0">
       <div className="flex flex-col md:flex-row justify-between rounded-xl border border-[#D0D0D0] bg-fill-brand-primary p-4 md:p-10 gap-8 md:gap-0">
         <div className="max-w-[818px] flex flex-col gap-4 text-accentmain">
-          <h1 className="text-4xl md:text-6xl font-medium font-primary">
+          <h2 className="text-4xl md:text-6xl font-medium font-primary">
             Assessment Certification
-          </h1>
+          </h2>
           <p className="text-base md:text-lg font-normal font-secondary">
             All participants completing the Professional Scrum Master course
             will receive a password to attempt the Professional Scrum Master I

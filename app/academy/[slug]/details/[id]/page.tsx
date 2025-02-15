@@ -74,9 +74,9 @@ export default async function DetailsPage({
           <Aboutcourse description={course.description} logo={course.logo} />
           {CourseObjectivesData && (
             <div className="flex flex-col gap-5">
-              <h1 className="text-6xl font-medium text-main font-primary">
+              <h2 className="text-6xl font-medium text-main font-primary">
                 {CourseObjectivesData.title}
-              </h1>
+              </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
                 {CourseObjectivesData.contentList.map(
                   (goal: string, index: number) => (

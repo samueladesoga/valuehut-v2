@@ -74,9 +74,9 @@ export default async function CourseDetailsPage({
       </div>
 
       <div className="md:bg-white pt-10">
-        <h1 className="container px-4 xl:px-0 text-6xl font-medium text-main font-primary">
+        <h2 className="container px-4 xl:px-0 text-6xl font-medium text-main font-primary">
           Upcoming Classes
-        </h1>
+        </h2>
         <div className="container px-4 xl:px-0">
           <div className="hidden md:block">
             {UpcomingClassesData.length > 0 ? (
@@ -144,9 +144,9 @@ export default async function CourseDetailsPage({
         <div className="mt-16">
           <div className="container px-4 xl:px-0 ">
             <div className="bg-white rounded-[20px] py-8 px-4 md:px-12 flex flex-col gap-5">
-              <h1 className="text-6xl font-medium text-main font-primary">
+              <h2 className="text-6xl font-medium text-main font-primary">
                 {CourseObjectivesData.title}
-              </h1>
+              </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
                 {CourseObjectivesData.contentList.map(
                   (goal: string, index: number) => (
