@@ -60,7 +60,7 @@ const ServicesOverview = () => {
         >
           <Card
             title="Delivery Management"
-            description="Our consultants lead your organisations delivery teams; building capabilities within your organisation enabling them in building great products"
+            description="Our consultants lead your organisations delivery teams; building capabilities within your organisation enabling them in building great products."
             icon={Questions}
           />
         </motion.div>
