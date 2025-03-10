@@ -30,8 +30,13 @@ export function getDay(dateInput: string): string {
 
 export function getMonthAndDay(dateInput: string): string {
   const date = new Date(dateInput);
+
+  if (isNaN(date.getTime())) {
+    throw new Error("Invalid date input");
+  }
+
   const month = date.toLocaleString("en-US", { month: "short" });
-  const day = date.getUTCDate().toString().padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
   return `${month} ${day}`;
 }
 

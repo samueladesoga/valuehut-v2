@@ -12,7 +12,6 @@ const CourseFilter: React.FC<CourseFilterProps> = ({ courses }) => {
   const [filter, setFilter] = useState("all");
   const [isOpen, setIsOpen] = useState(false);
 
-  console.log(courses);
   const options = [
     { value: "all", label: "All" },
     { value: "beginner", label: "Beginner" },
