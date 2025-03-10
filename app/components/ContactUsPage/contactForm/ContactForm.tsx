@@ -59,6 +59,7 @@ const ContactForm: React.FC = () => {
       )
       .then(
         (response: { status: any; text: any }) => {
+          console.log("SUCCESS!", response.status, response.text);
           alert("Email has been sent successfully!");
           setFormData({
             fullName: "",
