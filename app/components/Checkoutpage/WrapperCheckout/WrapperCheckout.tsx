@@ -76,10 +76,10 @@ function WrapperCheckout({ course, classId }: any) {
       if (country === "united kingdom") {
         price = classDetail.ukPrice;
         setSubtotal(price);
-      } else if (primaryMarket.includes(country)) {
+      } else if (primaryMarket.map(market => market.toLowerCase()).includes(country.toLowerCase())) {
         price = classDetail.primary;
         setSubtotal(price);
-      } else if (tertiaryMarket.includes(country)) {
+      } else if (tertiaryMarket.map(market => market.toLowerCase()).includes(country.toLowerCase())) {
         price = classDetail.tertiary;
         setSubtotal(price);
       } else {
