@@ -31,12 +31,12 @@ function AboutUs() {
         >
           <SectionPara
             className="font-normal px-4 xl:px-0"
-            para="An agile Management consultancy that believes that people provide the organisation's competitive advantage, 
-            hence our mission to improve teamwork across business units."
+            para="An agile Management consultancy that believes teamwork as the ulimate competitive advantage for organisations
+            building better products and services with happier teams"
           />
 
-          <p className="font-secondary font-normal opacity-70 text-main text-base sm:text-sm text-center">
-            We are the convener of the{" "}
+          <div className="font-normal opacity-70 text-main text-base sm:text-sm text-center">
+            Also, we are the organiser of the{" "}
             <Link
               href="https://scrumdaynigeria.org"
               target="_blank"
@@ -44,8 +44,8 @@ function AboutUs() {
             >
               Scrum Day Nigeria
             </Link>
-            , a yearly conference that brings together organisation design experts, agile practitioners, product leaders and business leaders to share insights on how to build high-performing teams and organisations.
-          </p>
+            , a yearly conference for organisation design experts, agile practitioners, product leaders and business leaders to share insights on how to build high-performing teams and organisations.
+          </div>
         </motion.div>
       </div>
       <motion.div
