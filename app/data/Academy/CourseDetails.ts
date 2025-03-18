@@ -32,8 +32,8 @@ export const courseDetails: ICourseDetails = {
     logo: "/images/logo-01.svg",
   },
   reviews: {
-    rating: 4.5,
-    count: 78345,
+    rating: 4.9,
+    count: 26753,
   },
   schedule: {
     date: "Oct 24 - Oct 25, 2024",
