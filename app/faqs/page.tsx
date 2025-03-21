@@ -5,7 +5,7 @@ import OurPartners from "@/components/FaqPage/OurPartners/OurPartners";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "ValueHut Consulting - FAQs",
+  title: "Frequently Asked Questions",
   description:
     "Our FAQs page provide an overview of the agile management consultancy services that we provide, Academy for Agile Leadership and Scrum courses, Consulting for Product and Delivery Management Services and Talent Matching for our Recruitment services.",
 };
