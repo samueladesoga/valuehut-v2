@@ -13,6 +13,7 @@ import { AdditionalBenefitCard } from "@/components/AcademyPage/AdditionalBenefi
 import WhoShouldAttend from "@/components/AcademyPage/WhoShouldAttend/WhoShouldAttend";
 import Testimonials from "@/components/Homepage/Testimonials/Testimonials";
 import { getDay, getMonthAndDay } from "@/utils/ConvertDate";
+import type { Metadata } from "next";
 
 interface IClasses {
   classId: number;
@@ -25,18 +26,56 @@ interface IClasses {
   year: string;
 }
 
-export interface PageProps {
-  params: {
-    slug: string;
-  };
-}
-export default async function CourseDetailsPage({
-  params,
-}: {
+type Props = {
   params: Promise<{ slug: string }>;
-}) {
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = (await params).slug;
   const post = await getCourse(slug);
+
+  if (!post || post.length === 0) {
+    return {
+      title: "Course Not Found",
+      description: "The course you are looking for does not exist.",
+    };
+  }
+
+  const course = post[0];
+
+  return {
+    title: course.title,
+    description: course.description,
+    openGraph: {
+      title: course.title,
+      description: course.description,
+      images: [
+        {
+          url: course.image,
+          width: 800,
+          height: 600,
+          alt: course.title,
+        },
+      ],
+      type: "website",
+      siteName: "Your Site Name",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: course.title,
+      description: course.description,
+      images: [course.image],
+    },
+  };
+}
+
+export default async function CourseDetailsPage({ params }: Props) {
+  const slug = (await params).slug; 
+  const post = await getCourse(slug);
+
+  if (!post || post.length === 0) {
+    notFound();
+  }
   const course = post[0];
 
   const UpcomingClassesData = course.classes;
@@ -52,9 +91,6 @@ export default async function CourseDetailsPage({
   const AdditionalBenefitsData = CourseDetails.find(
     (item: { title: string }) => item.title === "Additional Benefits"
   );
-  if (!post) {
-    notFound();
-  }
 
   return (
     <div className="bg-[#f5f5f5]">
