@@ -12,7 +12,7 @@ import { getMonthAndDay, getYear } from "@/utils/ConvertDate";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: `ValueHut Consulting Academy - ${AcademyHero.title} in collaboration with scrum.org`,
+  title: `${AcademyHero.title} in collaboration with scrum.org`,
   description: AcademyHero.subtitle,
 };
 

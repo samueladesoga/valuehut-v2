@@ -6,10 +6,37 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { BLOCKS, Document, INLINES } from "@contentful/rich-text-types";
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 
-export interface PageProps {
-  params: {
-    slug: string;
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const slug = (await params).slug;
+  const post = await getSlugArticle(slug);
+
+  if (!post) {
+    return {
+      title: "Blog Not Found",
+      description: "The blog you are looking for does not exist.",
+    };
+  }
+
+  return {
+    title: post.title,
+    description: post.title,
+    openGraph: {
+      title: post.title,
+      description: post.title,
+      type: "website",
+      siteName: "ValueHut Consulting Blogs",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.title,
+    },
   };
 }
 
