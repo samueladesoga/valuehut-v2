@@ -12,8 +12,8 @@ import { getMonthAndDay, getYear } from "@/utils/ConvertDate";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "ValueHut Consulting Academy - Agile Leadership and Scrum Courses in collaboration with scrum.org",
-  description: AcademyHero.title,
+  title: `ValueHut Consulting Academy - ${AcademyHero.title} in collaboration with scrum.org`,
+  description: AcademyHero.subtitle,
 };
 
 export default async function Home() {
