@@ -3,7 +3,7 @@ import ContactUs from "./contact-us";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Us",
+  title: "ValueHut Consulting - Contact Us",
   description:
     "Contact ValueHut Consulting for your agile and product management consulting and training needs.",
 };
