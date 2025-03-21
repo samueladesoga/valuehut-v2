@@ -5,9 +5,9 @@ import OurPartners from "@/components/FaqPage/OurPartners/OurPartners";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Faqs",
+  title: "ValueHut Consulting - FAQs",
   description:
-    "ValueHut Consulting is an Agile Management Consultancy, enabling organisations to explore better ways of working that deliver great products and services to their clients.",
+    "Our FAQs page provide an overview of the agile management consultancy services that we provide, Academy for Ahgile Leadership and Scrum course, Consulting for Product and Delivery Management Services and Talent Matching for our Recruitment services.",
 };
 const FaqPage: React.FC = () => {
   return (
