@@ -61,12 +61,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function CourseDetailsPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const slug = (await params).slug;
+export default async function CourseDetailsPage({ params}: Props) {
+  const slug = params.slug;
   const post = await getCourse(slug);
 
   if (!post || post.length === 0) {
