@@ -13,6 +13,9 @@ import { AdditionalBenefitCard } from "@/components/AcademyPage/AdditionalBenefi
 import WhoShouldAttend from "@/components/AcademyPage/WhoShouldAttend/WhoShouldAttend";
 import Testimonials from "@/components/Homepage/Testimonials/Testimonials";
 import { getDay, getMonthAndDay } from "@/utils/ConvertDate";
+import type { Metadata } from "next";
+
+
 
 interface IClasses {
   classId: number;
@@ -30,6 +33,35 @@ export interface PageProps {
     slug: string;
   };
 }
+
+// Generate metadata for the page
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  // Fetch the course data
+  const slug = params.slug;
+  const post = await getCourse(slug);
+  
+  // Check if course exists
+  if (!post || post.length === 0) {
+    return {
+      title: 'Course Not Found',
+      description: 'The requested course could not be found',
+    };
+  }
+  
+  const course = post[0];
+  
+  return {
+    title: course.title,
+    description: course.description,
+    // You can add more metadata properties as needed
+    openGraph: {
+      title: course.title,
+      description: course.description,
+      images: [{ url: course.image }],
+    },
+  };
+}
+
 export default async function CourseDetailsPage({
   params,
 }: {
@@ -37,6 +69,10 @@ export default async function CourseDetailsPage({
 }) {
   const slug = (await params).slug;
   const post = await getCourse(slug);
+
+  if (!post || post.length === 0) {
+    notFound();
+  }
   const course = post[0];
 
   const UpcomingClassesData = course.classes;
