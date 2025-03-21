@@ -28,14 +28,13 @@ interface IClasses {
   year: string;
 }
 
-export interface PageProps {
-  params: {
-    slug: string;
-  };
-}
+type Props = {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
 
 // Generate metadata for the page
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // Fetch the course data
   const slug = params.slug;
   const post = await getCourse(slug);
