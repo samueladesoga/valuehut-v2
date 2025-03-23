@@ -12,8 +12,21 @@ import { getMonthAndDay, getYear } from "@/utils/ConvertDate";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: `${AcademyHero.title} in collaboration with scrum.org`,
-  description: AcademyHero.subtitle,
+  title: "Academy | Agile Leadership and Scrum Courses",
+  description:
+    "Join ValueHut Consulting Academy to master Agile Leadership and Scrum courses. Empower individuals, teams, and organisations with interative training, in partnership with scrum.org",
+  openGraph: {
+    title: "Academy | Agile Leadership and Scrum Courses - ValueHut Consulting",
+    description:
+      "Join ValueHut Consulting Academy to master Agile Leadership and Scrum courses. Empower individuals, teams, and organisations with interative training, in partnership with scrum.org",
+    url: "https://www.valuehut.co/academy",
+    images: [
+      {
+        url: "",
+        alt: "ValueHut Consulting Academy",
+      },
+    ],
+  },
 };
 
 export default async function Home() {
