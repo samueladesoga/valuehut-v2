@@ -8,6 +8,7 @@ import {
   useStripe,
 } from "@stripe/react-stripe-js";
 import Button from "@/components/Button/Button";
+import { sendGTMEvent } from '@next/third-parties/google'
 import { useRouter } from "next/navigation";
 
 interface Props {
@@ -122,6 +123,7 @@ const PaymentWithCredit: React.FC<Props> = ({
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const handleRedirect = () => {
+    sendGTMEvent({ event: 'paymentSucceeded', value: amount, category: 'checkout', label: 'Credit Card' });
     setPaymentSuccess(false);
     router.push("/academy");
   };
