@@ -6,7 +6,7 @@ import logoX from "../public/logos/v2-light.svg";
 import Footer from "./components/Footer/Footer";
 import Menu from "../public/images/menu.png";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { GoogleTagManager } from "./components/GoogleTagManager/GoogleTagManager"
+import { GoogleTagManager } from '@next/third-parties/google'
 
 export const metadata: Metadata = {
   title: {
@@ -45,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <GoogleTagManager />
+      <GoogleTagManager gtmId="AW-975370317" />
         <script
           type="text/javascript"
           src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
