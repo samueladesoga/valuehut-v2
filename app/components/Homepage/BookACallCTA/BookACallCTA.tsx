@@ -4,7 +4,6 @@ import React from "react";
 import Button from "@/components/Button/Button";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { sendGTMEvent } from '@next/third-parties/google'
 
 interface BookACallCTAProps {
   title: string;
@@ -39,7 +38,6 @@ const BookACallCTA: React.FC<BookACallCTAProps> = ({
         >
           <Link target="_blank" href={url || ""}>
             <Button
-              onClick={() => sendGTMEvent({ event: 'buttonClicked', value: 'calendly' })}
               bgColor="[#032432]"
               textColor="white"
               rounded="full"
