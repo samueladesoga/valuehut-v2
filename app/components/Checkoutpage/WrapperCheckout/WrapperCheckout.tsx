@@ -12,6 +12,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import InvoiceDocument from "../InvoiceDocument/InvoiceDocument";
 import { pdf } from "@react-pdf/renderer";
 import { getDisplayDate, getMonthAndDay, getYear } from "@/utils/ConvertDate";
+import { sendGTMEvent } from '@next/third-parties/google'
 
 interface PaymentMethod {
   id: string;
@@ -202,6 +203,7 @@ function WrapperCheckout({ course, classId }: any) {
         setSuccess(null);
       })
       .finally(() => {
+        sendGTMEvent({ event: 'invoiceRequested', value: subtotal, category: 'checkout', label: 'invoice' });
         setLoading(false);
       });
   };
