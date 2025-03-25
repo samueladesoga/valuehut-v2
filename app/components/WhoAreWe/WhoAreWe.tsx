@@ -41,9 +41,14 @@ function WhoAreWe() {
             products their customers love.
           </p>
         </div>
-        <button className="flex md:hidden items-center justify-center rounded-full bg-[#FF9F5A] px-6 py-3 text-main text-sm font-medium hover:bg-[#FF9F5A]/90">
-          Get to know us better
-        </button>
+        <Link
+          href="https://calendly.com/samueladesoga/valuehut-consulting"
+          target="_blank"
+        >
+          <button className="flex md:hidden items-center justify-center rounded-full bg-[#FF9F5A] px-6 py-3 text-main text-sm font-medium hover:bg-[#FF9F5A]/90">
+            Get to know us better
+          </button>
+        </Link>
       </div>
     </section>
   );
