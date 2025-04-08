@@ -45,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-      <GoogleTagManager gtmId="AW-975370317" />
+      <GoogleTagManager gtmId="GTM-KFFTR24H" />
         <script
           type="text/javascript"
           src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
