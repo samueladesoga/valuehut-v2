@@ -31,7 +31,7 @@ function AboutUs() {
         >
           <SectionPara
             className="font-normal px-4 xl:px-0"
-            para="An agile Management consultancy that believes teamwork as the ulimate competitive advantage for organisations
+            para="An agile Management consultancy that believes teamwork as the ultimate competitive advantage for organisations
             building better products and services with happier teams"
           />
 
