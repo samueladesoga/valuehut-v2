@@ -123,7 +123,7 @@ const PaymentWithCredit: React.FC<Props> = ({
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const handleRedirect = () => {
-    sendGTMEvent({ event: 'paymentSucceeded', value: amount, category: 'checkout', label: 'Credit Card' });
+    sendGTMEvent({ event: 'purchase', value: amount, category: 'checkout', label: 'Credit Card' });
     setPaymentSuccess(false);
     router.push("/academy");
   };

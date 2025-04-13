@@ -203,7 +203,7 @@ function WrapperCheckout({ course, classId }: any) {
         setSuccess(null);
       })
       .finally(() => {
-        sendGTMEvent({ event: 'invoiceRequested', value: subtotal, category: 'checkout', label: 'invoice' });
+        sendGTMEvent({ event: 'purchase', value: subtotal, category: 'checkout', label: 'invoice' });
         setLoading(false);
       });
   };

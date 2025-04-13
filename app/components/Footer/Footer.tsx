@@ -25,8 +25,7 @@ const Footer: React.FC = () => {
               height={70}
             />
             <p className="text-balance text-accentmain text-lg font-normal font-secondary">
-              ValueHut Consulting is an Agile Management Consultancy, enabling Organisations to explore better ways of 
-              working thats delivers great products and services to their clients.
+              ValueHut Consulting is an Agile Management Consultancy helping organisations discover better ways of working to deliver exceptional products and services.
             </p>
           </div>
           <div className="mt-16 gap-8 xl:mt-0">
