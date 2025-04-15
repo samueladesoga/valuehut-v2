@@ -31,7 +31,7 @@ function Group({
     router.push(`${pathname}/details/${classSysId}`);
 
     const classDetail = course.classes.find(
-      (cls: { classSysId: string }) => classSysId === classSysId
+      (cls: { classSysId: string }) => cls.classSysId === classSysId
     );
 
     if (classDetail) {
