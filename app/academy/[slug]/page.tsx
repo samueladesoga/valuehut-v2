@@ -16,7 +16,7 @@ import { getDay, getMonthAndDay } from "@/utils/ConvertDate";
 import type { Metadata } from "next";
 
 interface IClasses {
-  classId: number;
+  classSysId: string;
   id: string;
   time: string;
   classType: string;
@@ -131,7 +131,7 @@ export default async function CourseDetailsPage({ params }: Props) {
                 {UpcomingClassesData.map((row: IClasses, index: number) => (
                   <tbody className="bg-white" key={index}>
                     <Table
-                      classId={row.classId}
+                      classSysId={row.classSysId}
                       startDate={getMonthAndDay(row.startDate)}
                       endDate={getDay(row.endDate)}
                       year={row.year}
@@ -165,7 +165,7 @@ export default async function CourseDetailsPage({ params }: Props) {
                 time={row.time}
                 type={row.classType}
                 filled={row.filled}
-                classId={row.classId}
+                classSysId={row.classSysId}
                 courseId={slug}
                 course={course}
               />

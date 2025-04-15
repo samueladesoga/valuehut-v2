@@ -16,7 +16,7 @@ interface RegisterModalProps {
   onClose: () => void;
   logo: string;
   courseId: string;
-  classId: string;
+  classSysId: string;
 }
 
 const RegisterModal = ({
@@ -25,7 +25,7 @@ const RegisterModal = ({
   onClose,
   logo,
   courseId,
-  classId,
+  classSysId,
 }: RegisterModalProps) => {
   const router = useRouter();
   const [selectedCountry, setSelectedCountry] =
@@ -34,7 +34,7 @@ const RegisterModal = ({
   const handleRouting = () => {
     const lowercaseCountryname = selectedCountry.toLocaleLowerCase();
     router.push(
-      `/checkout/${courseId}/${classId}?country=${lowercaseCountryname}`
+      `/checkout/${courseId}/${classSysId}?country=${lowercaseCountryname}`
     );
   };
 

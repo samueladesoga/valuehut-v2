@@ -15,7 +15,7 @@ function DetailsHero({
   images,
   logo,
   courseId,
-  classId,
+  classSysId,
 }: ICourseDetails) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
@@ -116,7 +116,7 @@ function DetailsHero({
           onClose={handleModalToggle}
           logo={logo}
           courseId={courseId}
-          classId={classId}
+          classSysId={classSysId}
         />
       )}
     </div>

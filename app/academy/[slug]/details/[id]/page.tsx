@@ -23,14 +23,14 @@ export default async function DetailsPage({
   params: Promise<{ slug: string; id: string }>;
 }) {
   const courseId = (await params).slug;
-  const classId = (await params).id;
+  const classSysId = (await params).id;
 
   const post = await getCourse(courseId);
 
   const course = post[0];
 
   const classDetail = course.classes.find(
-    (cls: { classId: number }) => cls.classId === parseInt(classId)
+    (cls: { classSysId: string }) => cls.classSysId === classSysId
   );
 
   const startDate = new Date(classDetail.startDate);
@@ -71,7 +71,7 @@ export default async function DetailsPage({
         images={{ heroImage: course.image }}
         logo={course.logo}
         courseId={courseId}
-        classId={classId}
+        classSysId={classSysId}
       />
       <div className="bg-white xl:px-12 py-8 mt-12 ">
         <div className="container px-4 xl:px-0 flex flex-col gap-14">
