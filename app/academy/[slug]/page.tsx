@@ -89,7 +89,7 @@ export default async function CourseDetailsPage({ params }: Props) {
   );
 
   const AssessmentAndCertificationData = CourseDetails.find(
-    (item: { title: string }) => item.title === "Assessment & Certification"
+    (item: { title: string }) => item.title === "Assessment and Certification"
   );
 
   const AdditionalBenefitsData = CourseDetails.find(
@@ -205,9 +205,9 @@ export default async function CourseDetailsPage({ params }: Props) {
       )}
 
       <div>
-        AssessmentCertification && (
+        {AssessmentCertification && (
           <AssessmentCertification content={AssessmentAndCertificationData.content} />
-        )
+        )}
       </div>
       {AdditionalBenefitsData && (
         <div className="bg-[#f5f5f5]">

@@ -53,7 +53,7 @@ export default async function DetailsPage({
   );
 
   const AssessmentAndCertificationData = CourseDetails.find(
-    (item: { title: string }) => item.title === "Assessment & Certification"
+    (item: { title: string }) => item.title === "Assessment and Certification"
   );
 
   return (
@@ -102,9 +102,11 @@ export default async function DetailsPage({
       <div className="py-20 md:py-36 ">
         <OurPartners />
       </div>
-      AssessmentCertification && (
+
+      {AssessmentCertification && (
           <AssessmentCertification content={AssessmentAndCertificationData.content} />
-        )
+        )}
+
       <div className="container px-4 xl:px-0 py-14 md:pt-36 md:pb-24">
         <MoreInformation />
       </div>

@@ -4,6 +4,7 @@ interface ICourses {
   courseDetailsCollection: {
     items: {
       title: string;
+      content: string;
       contentList: string;
     }[];
   };
@@ -124,6 +125,7 @@ export const getCourse = async (slug: string) => {
           courseDetailsCollection {
            items{
            title
+           content
            contentList
            }
           }
@@ -161,7 +163,7 @@ export const getCourse = async (slug: string) => {
     }
   );
 
-  const data = await response.json();
+  const data = await response.json()
 
   const posts = data.data?.courseCollection?.items;
 
@@ -191,6 +193,7 @@ export const getCourse = async (slug: string) => {
     })),
     courseDetails: course.courseDetailsCollection.items.map((item) => ({
       title: item.title,
+      content: item.content,
       contentList: item.contentList,
     })),
   }));
