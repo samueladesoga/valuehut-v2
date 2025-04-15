@@ -11,6 +11,9 @@ interface ICourses {
   classesCollection: {
     items: {
       identifier: string;
+      sys: {
+        id: string;
+      };
       filled: boolean;
       startDate: string;
       endDate: string;
@@ -54,6 +57,9 @@ export const getAllCourses = async () => {
       slug
 			classesCollection {
         items {
+          sys { 
+            id
+          }
           identifier
           filled
           startDate
@@ -119,18 +125,22 @@ export const getCourse = async (slug: string) => {
           logo {
             url
           }
-             imageUrl{
-              url}
+          imageUrl {
+            url
+          }
           slug
           courseDetailsCollection {
-           items{
-           title
-           content
-           contentList
-           }
+            items  {
+              title
+              content
+              contentList
+            }
           }
           classesCollection {
             items {
+              sys { 
+                id
+              }
               identifier
               filled
               startDate
@@ -179,6 +189,7 @@ export const getCourse = async (slug: string) => {
     image: course.imageUrl.url,
     classes: course.classesCollection.items.map((item, index) => ({
       classId: index + 1,
+      uniqueSysId: item.sys.id,
       identifier: item.identifier,
       filled: item.filled,
       startDate: item.startDate,
