@@ -88,6 +88,10 @@ export default async function CourseDetailsPage({ params }: Props) {
     (item: { title: string }) => item.title === "Who should attend?"
   );
 
+  const AssessmentAndCertificationData = CourseDetails.find(
+    (item: { title: string }) => item.title === "Assessment and Certification"
+  );
+
   const AdditionalBenefitsData = CourseDetails.find(
     (item: { title: string }) => item.title === "Additional Benefits"
   );
@@ -201,7 +205,9 @@ export default async function CourseDetailsPage({ params }: Props) {
       )}
 
       <div>
-        <AssessmentCertification />
+        {AssessmentCertification && (
+          <AssessmentCertification content={AssessmentAndCertificationData.content} />
+        )}
       </div>
       {AdditionalBenefitsData && (
         <div className="bg-[#f5f5f5]">

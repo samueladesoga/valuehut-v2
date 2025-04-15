@@ -52,6 +52,10 @@ export default async function DetailsPage({
     (item: { title: string }) => item.title === "Who should attend?"
   );
 
+  const AssessmentAndCertificationData = CourseDetails.find(
+    (item: { title: string }) => item.title === "Assessment and Certification"
+  );
+
   return (
     <div className="bg-[#f5f5f5]">
       <DetailsHero
@@ -98,7 +102,11 @@ export default async function DetailsPage({
       <div className="py-20 md:py-36 ">
         <OurPartners />
       </div>
-      <AssessmentCertification />
+
+      {AssessmentCertification && (
+          <AssessmentCertification content={AssessmentAndCertificationData.content} />
+        )}
+
       <div className="container px-4 xl:px-0 py-14 md:pt-36 md:pb-24">
         <MoreInformation />
       </div>
