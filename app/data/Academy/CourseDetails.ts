@@ -18,9 +18,8 @@ export interface ICourseDetails {
     heroImage: string;
   };
   logo:string
-
   courseId:string
-  classId:string
+  classSysId:string
 }
 
 export const courseDetails: ICourseDetails = {
@@ -45,5 +44,5 @@ export const courseDetails: ICourseDetails = {
   },
   logo: "",
   courseId: "",
-  classId: ""
+  classSysId: ""
 };

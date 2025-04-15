@@ -14,7 +14,7 @@ function Group({
   time,
   type,
   filled,
-  classId,
+  classSysId,
   courseId,
   course,
 }: IUpcomingClassesData) {
@@ -28,10 +28,10 @@ function Group({
   };
 
   const handleClassesDetails = () => {
-    router.push(`${pathname}/details/${classId}`);
+    router.push(`${pathname}/details/${classSysId}`);
 
     const classDetail = course.classes.find(
-      (cls: { classId: number }) => cls.classId === classId
+      (cls: { classSysId: string }) => classSysId === classSysId
     );
 
     if (classDetail) {
@@ -110,7 +110,7 @@ function Group({
           onClose={handleModalToggle}
           logo={course.logo}
           courseId={courseId}
-          classId={classId as unknown as string}
+          classSysId={classSysId as unknown as string}
         />
       )}
     </div>

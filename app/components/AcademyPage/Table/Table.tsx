@@ -15,7 +15,7 @@ function Table({
   time,
   type,
   filled,
-  classId,
+  classSysId,
   courseId,
   course,
 }: IUpcomingClassesData) {
@@ -29,11 +29,11 @@ function Table({
   const pathname = usePathname();
 
   const handleClassesDetails = () => {
-    router.push(`${pathname}/details/${classId}`);
+    router.push(`${pathname}/details/${classSysId}`);
   };
 
   const classDetail = course.classes.find(
-    (cls: { classId: number }) => cls.classId === classId
+    (cls: { classSysId : string}) => cls.classSysId === classSysId
   );
 
   const startDateDay = classDetail.startDate.split(" ")[1];
@@ -111,7 +111,7 @@ function Table({
           onClose={handleModalToggle}
           logo={course.logo}
           courseId={courseId}
-          classId={classId as unknown as string}
+          classSysId={classSysId as unknown as string}
         />
       )}
     </>

@@ -8,11 +8,11 @@ export default async function PaymentForm({
   params: Promise<{ slug: string; id: string }>;
 }) {
   const courseId = (await params).slug;
-  const classId = (await params).id;
+  const classSysId = (await params).id;
 
   const post = await getCourse(courseId);
 
   const course = post[0];
 
-  return <WrapperCheckout course={course} classId={classId} />;
+  return <WrapperCheckout course={course} classSysId={classSysId} />;
 }

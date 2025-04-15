@@ -187,9 +187,8 @@ export const getCourse = async (slug: string) => {
     duration: course.duration,
     dates: convertDate(course.classesCollection.items[0]?.startDate),
     image: course.imageUrl.url,
-    classes: course.classesCollection.items.map((item, index) => ({
-      classId: index + 1,
-      uniqueSysId: item.sys.id,
+    classes: course.classesCollection.items.map((item) => ({
+      classSysId: item.sys.id,
       identifier: item.identifier,
       filled: item.filled,
       startDate: item.startDate,

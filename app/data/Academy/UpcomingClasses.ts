@@ -6,7 +6,7 @@ export interface IUpcomingClassesData {
   time: string;
   type: string;
   filled: boolean;
-  classId: number;
+  classSysId: string;
   courseId: string;
   course: any;
 }

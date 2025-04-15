@@ -43,7 +43,7 @@ const paymentMethods: PaymentMethod[] = [
   },
 ];
 
-function WrapperCheckout({ course, classId }: any) {
+function WrapperCheckout({ course, classSysId }: any) {
   const router = useRouter();
   const [selectedMethod, setSelectedMethod] = useState<string>("");
   const [searchParams] = useSearchParams();
@@ -55,7 +55,7 @@ function WrapperCheckout({ course, classId }: any) {
   const [subtotal, setSubtotal] = useState(0);
 
   const classDetail = course.classes.find(
-    (cls: { classId: number }) => cls.classId === parseInt(classId)
+    (cls: { classSysId: string }) => cls.classSysId === classSysId
   );
 
   const [details, setDetails] = useState<Details>({
