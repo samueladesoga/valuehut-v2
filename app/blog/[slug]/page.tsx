@@ -97,7 +97,7 @@ export default async function BlogPost({
           href={node.data.uri}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-base font-normal font-secondary text-main"
+          className="text-base font-normal font-secondary text-main text-[#07658C] dark:text-[#07658C] hover:underline"
         >
           {children}
         </a>
