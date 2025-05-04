@@ -19,7 +19,6 @@ interface BlogPostProps {
 export default function BlogPost({
   title,
   date,
-  updatedDate,
   imageUrl,
   imageAlt,
   introduction,
