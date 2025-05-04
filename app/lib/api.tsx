@@ -28,6 +28,7 @@ export interface IPostType {
 export interface IArticle {
   title: string;
   date: string;
+  updatedDate: string;
   description: string;
   content?: {
     json: Document;
@@ -92,10 +93,10 @@ export const getAllArticles = async () => {
   ).then((res) => res.json());
 
   const posts: IPostType[] = data.data?.blogCollection?.items;
-
   const articles = posts.map((post) => ({
     title: post.title,
     date: convertDate(post.sys.firstPublishedAt.toString()),
+    updatedDate: convertDate(post.sys.publishedAt.toString()),
     description: post.description,
     showInHomePage: post.showInHomePage,
     isFeatured: post.isFeatured,
@@ -135,7 +136,7 @@ export const getSlugArticle = async (
             title
           }
           sys {
-          firstPublishedAt
+            firstPublishedAt
             publishedAt
           }
           description
@@ -192,6 +193,7 @@ export const getSlugArticle = async (
   return {
     title: post.title,
     date: convertDate(post.sys.firstPublishedAt.toString()),
+    updatedDate: convertDate(post.sys.publishedAt.toString()),
     description: post.description,
     content: post.content.json,
     embeddedAssets,

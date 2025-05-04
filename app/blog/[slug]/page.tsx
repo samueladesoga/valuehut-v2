@@ -145,7 +145,7 @@ export default async function BlogPost({
             className="object-cover rounded-xl"
           />
           <div className="flex justify-between items-center text-secondary text-xs font-normal font-secondary">
-            <time>{post.date}</time>
+            <time>Originally posted on {post.date}</time>
             <div className="flex gap-3">
               <p>Share to</p>
               <Link
@@ -191,7 +191,7 @@ export default async function BlogPost({
             )}
         </div>
         <div className="flex justify-between items-center text-secondary text-xs font-normal font-secondary border-t py-4 border-[#555555] border-opacity-[30%]">
-          <time>{post.date}</time>
+          <time>Post updated on {post.updatedDate}</time>
           <div className="flex gap-3">
             <p>Share to</p>
             <Link

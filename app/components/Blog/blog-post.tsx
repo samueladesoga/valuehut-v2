@@ -9,6 +9,7 @@ interface Section {
 interface BlogPostProps {
   title: string;
   date: string;
+  updatedDate: string;
   imageUrl: string;
   imageAlt: string;
   introduction: string;
