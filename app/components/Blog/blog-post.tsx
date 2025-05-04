@@ -9,6 +9,7 @@ interface Section {
 interface BlogPostProps {
   title: string;
   date: string;
+  updatedDate: string;
   imageUrl: string;
   imageAlt: string;
   introduction: string;
@@ -18,6 +19,7 @@ interface BlogPostProps {
 export default function BlogPost({
   title,
   date,
+  updatedDate,
   imageUrl,
   imageAlt,
   introduction,
