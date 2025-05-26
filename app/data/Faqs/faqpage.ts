@@ -62,25 +62,25 @@ export const faqs: FAQItem[] = [
   },
   {
     category: "Consulting",
-    question: "What types of consulting services does ValueHut offer?",
+    question: "What type of consulting services does ValueHut Consulting offer?",
     answer:
       "ValueHut provides end-to-end Agile and Product Management consulting, including Delivery Management, Product Delivery, and tailored Enterprise & Team Coaching. We help organisations navigate modern product development challenges by embedding agile methodologies and upskilling teams.",
   },
     {
     category: "Consulting",
-    question: "Who are ValueHut’s typical clients and industries?",
+    question: "Who are ValueHut Consulting’s typical clients?",
     answer:
       "Our clients span global industries such as finance, media, and consumer goods—including Barclays, BBC Worldwide, BP, and Sanofi—demonstrating our experience across diverse sectors",
   },
     {
     category: "Consulting",
-    question: "What outcomes can organisations expect from ValueHut’s consulting?",
+    question: "What outcomes can organisations expect from ValueHut Consulting?",
     answer:
       "Organisations partnering with ValueHut typically see transformations including better equipped teams, improved customer satisfaction, an overall improved focus and removal of waste enabled by over 100 years of collective experience",
   },
     {
     category: "Consulting",
-    question: "How does ValueHut ensure transformation and learning happen simultaneously?",
+    question: "How does ValueHut Consulting ensure transformation and learning happen simultaneously?",
     answer:
       "Our consultants don’t just advise—they work alongside your team, delivering strategic guidance and hands-on coaching during implementation. This dual approach ensures transformation is accompanied by real-time, practical learning.",
   },
