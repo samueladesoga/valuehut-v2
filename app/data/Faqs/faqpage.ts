@@ -70,7 +70,7 @@ export const faqs: FAQItem[] = [
     category: "Consulting",
     question: "Who are ValueHut Consulting’s typical clients?",
     answer:
-      "Our clients span global industries such as finance, media, and consumer goods—including Barclays, BBC Worldwide, BP, and Sanofi—demonstrating our experience across diverse sectors",
+      "Our clients span global industries such as finance, media, and consumer goods including Barclays, BBC Worldwide, BP, and Sanofi; demonstrating our experience across diverse sector.",
   },
     {
     category: "Consulting",
