@@ -14,9 +14,9 @@ const CourseFilter: React.FC<CourseFilterProps> = ({ courses }) => {
 
   const options = [
     { value: "all", label: "All" },
-    { value: "beginner", label: "Beginner" },
-    { value: "intermediate", label: "Intermediate" },
-    { value: "advanced", label: "Advanced" },
+    { value: "agile leadership", label: "Agile Leadership" },
+    { value: "product management", label: "Product Management" },
+    { value: "scrum", label: "Scrum" },
   ];
 
   const filteredCourses =
