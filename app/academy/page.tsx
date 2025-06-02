@@ -6,7 +6,7 @@ import { AcademyHero } from "@/data/Academy/AllTrainings";
 import Testimonials from "@/components/Homepage/Testimonials/Testimonials";
 import { faqs } from "@/data/Faqs/faqpage";
 import FAQ from "@/components/FaqPage/Faq/Faq";
-import TrainingPartners from "@/components/TrainingsPage/TriningsPartners/TrainingPartners";
+import TrainingPartners from "@/components/TrainingsPage/TrainingPartners";
 import { getAllCourses } from "@/lib/courseApi";
 import { getMonthAndDay, getYear } from "@/utils/ConvertDate";
 import type { Metadata } from "next";
