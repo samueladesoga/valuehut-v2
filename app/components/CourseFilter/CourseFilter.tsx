@@ -1,7 +1,8 @@
 "use client";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import CourseCard from "@/components/CourseCard/CourseCard";
 
 interface CourseFilterProps {
@@ -9,7 +10,11 @@ interface CourseFilterProps {
 }
 
 const CourseFilter: React.FC<CourseFilterProps> = ({ courses }) => {
-  const [filter, setFilter] = useState("all");
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const initialFilter = searchParams.get("filter") || "all";
+  const [filter, setFilter] = useState(initialFilter);
   const [isOpen, setIsOpen] = useState(false);
 
   const options = [
@@ -18,6 +23,10 @@ const CourseFilter: React.FC<CourseFilterProps> = ({ courses }) => {
     { value: "product management", label: "Product Management" },
     { value: "scrum", label: "Scrum" },
   ];
+
+  useEffect(() => {
+    setFilter(searchParams.get("filter") || "all");
+  }, [searchParams]);
 
   const filteredCourses =
     filter === "all"
@@ -31,6 +40,15 @@ const CourseFilter: React.FC<CourseFilterProps> = ({ courses }) => {
   const handleFilterChange = (option: { value: string }) => {
     setFilter(option.value);
     setIsOpen(false);
+
+    const params = new URLSearchParams(searchParams.toString());
+    if (option.value === "all") {
+      params.delete("filter");
+    } else {
+      params.set("filter", option.value);
+    }
+
+    router.push(`/academy?${params.toString()}`);
   };
 
   return (
