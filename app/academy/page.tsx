@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
+import React, { Suspense } from "react";
 import HeroComponent from "@/components/HeroComponent/HeroComponent";
-import CourseFilter from "@/components/CourseFilter/CourseFilter"; 
+import CourseFilter from "@/components/CourseFilter/CourseFilter";
 import { AcademyHero } from "@/data/Academy/AllTrainings";
 import Testimonials from "@/components/Homepage/Testimonials/Testimonials";
 import { faqs } from "@/data/Faqs/faqpage";
@@ -71,8 +71,9 @@ export default async function Home() {
         </div>
         <TrainingPartners />
       </div>
-
-      <CourseFilter courses={processedCourses} />
+      <Suspense fallback={<div>Loading courses...</div>}>
+        <CourseFilter courses={processedCourses} />
+      </Suspense>
 
       <div className="py-28">
         <Testimonials />
