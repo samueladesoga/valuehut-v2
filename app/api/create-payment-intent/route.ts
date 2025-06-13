@@ -34,7 +34,8 @@ export async function POST(request: NextRequest) {
     if (existingCustomers.data.length > 0) {
       customer = existingCustomers.data[0]; // Existing customer found
     } else {
-      customer = await stripe.customers.create({ email }); // No existing customer, creating new
+
+      customer = await stripe.customers.create({ email: email, name:  fullName }); // No existing customer, creating new
     }
 
     // Create a payment intent
