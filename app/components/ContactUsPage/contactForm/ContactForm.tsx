@@ -3,6 +3,8 @@
 import React, { useState, ChangeEvent, useRef, FormEvent } from "react";
 import Button from "@/components/Button/Button";
 import emailjs from "@emailjs/browser";
+import { Toaster } from "react-hot-toast";
+
 
 interface FormData {
   fullName: string;
@@ -39,12 +41,17 @@ const ContactForm: React.FC = () => {
     const { fullName, email, interest, message } = formData;
 
     if (!fullName || !email || !interest || !message) {
-      alert("All fields are required!");
+
+      import("react-hot-toast").then(({ toast }) => {
+        toast.error("All fields are required!");
+      });
       return;
     }
 
     if (message.length < 20) {
-      alert("Message must be at least 20 characters long.");
+      import("react-hot-toast").then(({ toast }) => {
+        toast.error("Message must be at least 20 characters long.");
+      });
       return;
     }
 
@@ -59,8 +66,12 @@ const ContactForm: React.FC = () => {
       )
       .then(
         (response: { status: any; text: any }) => {
-          console.log("SUCCESS!", response.status, response.text);
-          alert("Email has been sent successfully!");
+          if (typeof window !== "undefined") {
+            // Dynamically import toast only on client side
+            import("react-hot-toast").then(({ toast }) => {
+              toast.success("Email has been sent successfully!");
+            });
+          }
           setFormData({
             fullName: "",
             email: "",
@@ -71,7 +82,11 @@ const ContactForm: React.FC = () => {
         },
         (err: any) => {
           console.error("FAILED...", err);
-          alert("An error occurred. Please try again.");
+          if (typeof window !== "undefined") {
+            import("react-hot-toast").then(({ toast }) => {
+              toast.error("Failed to send email. Please try again.");
+            });
+          }
         }
       )
       .finally(() => {
@@ -85,6 +100,7 @@ const ContactForm: React.FC = () => {
       onSubmit={handleSendEmail}
       className="bg-[#ffffff] rounded-xl"
     >
+      <div><Toaster position="top-center" reverseOrder={false}/></div>
       <div className="p-4 sm:p-6 rounded-lg shadow-md">
         <h2 className="text-5xl font-primary font-medium mb-6">
           Send a message
