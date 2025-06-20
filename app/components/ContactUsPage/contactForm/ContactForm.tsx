@@ -64,22 +64,22 @@ const ContactForm: React.FC = () => {
         formRef.current as HTMLFormElement,
         process.env.NEXT_PUBLIC_EMAIL_USER_ID as string
       )
-      .then(
-        (response: { status: any; text: any }) => {
-          if (typeof window !== "undefined") {
-            // Dynamically import toast only on client side
-            import("react-hot-toast").then(({ toast }) => {
-              toast.success("Email has been sent successfully!");
-            });
-          }
-          setFormData({
-            fullName: "",
-            email: "",
-            interest: "",
-            message: "",
+      .then(      
+        function () {
+        if (typeof window !== "undefined") {
+          // Dynamically import toast only on client side
+          import("react-hot-toast").then(({ toast }) => {
+            toast.success("Email has been sent successfully!");
           });
-          formRef.current?.reset();
-        },
+        }
+        setFormData({
+          fullName: "",
+          email: "",
+          interest: "",
+          message: "",
+        });
+        formRef.current?.reset();
+      },
         (err: any) => {
           console.error("FAILED...", err);
           if (typeof window !== "undefined") {
