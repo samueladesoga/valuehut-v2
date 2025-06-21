@@ -3,7 +3,7 @@
 import React, { useState, ChangeEvent, useRef, FormEvent } from "react";
 import Button from "@/components/Button/Button";
 import emailjs from "@emailjs/browser";
-import { Toaster } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 
 
 interface FormData {
@@ -41,17 +41,12 @@ const ContactForm: React.FC = () => {
     const { fullName, email, interest, message } = formData;
 
     if (!fullName || !email || !interest || !message) {
-
-      import("react-hot-toast").then(({ toast }) => {
         toast.error("All fields are required!");
-      });
       return;
     }
 
     if (message.length < 20) {
-      import("react-hot-toast").then(({ toast }) => {
         toast.error("Message must be at least 20 characters long.");
-      });
       return;
     }
 
@@ -67,10 +62,7 @@ const ContactForm: React.FC = () => {
       .then(      
         function () {
         if (typeof window !== "undefined") {
-          // Dynamically import toast only on client side
-          import("react-hot-toast").then(({ toast }) => {
             toast.success("Email has been sent successfully!");
-          });
         }
         setFormData({
           fullName: "",
@@ -83,9 +75,7 @@ const ContactForm: React.FC = () => {
         (err: any) => {
           console.error("FAILED...", err);
           if (typeof window !== "undefined") {
-            import("react-hot-toast").then(({ toast }) => {
               toast.error("Failed to send email. Please try again.");
-            });
           }
         }
       )
