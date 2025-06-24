@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 interface BlogCardProps {
@@ -35,12 +36,13 @@ const BlogCard: React.FC<BlogCardProps> = ({
         />
       </div>
       <div className="flex flex-col  p-4 gap-4">
-        <h3
+
+        <Link
           className="sm:text-xl leading-[29px] font-secondary text-main font-semibold cursor-pointer "
-          onClick={() => router.push(`/blog/${slug}`)}
+          href={`/blog/${slug}`}
         >
           {title}
-        </h3>
+        </Link>
         <p className="line-clamp-2 sm:line-clamp-2 sm:text-sm font-secondary text-secondary text-[14px] leading-[21px] font-normal">
           {description}
         </p>

@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -32,12 +33,13 @@ const BlogItem: React.FC<BlogItemProps> = ({
       </div>
 
       <div className="flex flex-col p-2 cursor-pointer w-full h-full overflow-hidden">
-        <h2
+
+        <Link
           className="text-main text-sm font-secondary font-medium sm:text-[16px] text-[14px] leading-[18px] sm:leading-[24px] line-clamp-2"
-          onClick={() => router.push(`/blog/${slug}`)}
+          href={`/blog/${slug}`}
         >
           {title}
-        </h2>
+        </Link>
         <div className="flex flex-row font-normal text-secondary font-secondary sm:text-xs text-[12px] leading-[18px] mt-auto">
           <p>
             {date} - {tag}
