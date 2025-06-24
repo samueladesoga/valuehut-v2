@@ -63,9 +63,9 @@ const ArticlesSection: React.FC<ArticlesSectionProps> = ({
     <div className="container py-10 bg-white rounded-3xl px-4 xl:px-6">
       <div className="">
         <div className="flex flex-row justify-between">
-          <h1 className="font-secondary font-medium text-[26px] leading-[33px] sm:text-5xl  pb-4">
+          <h2 className="font-secondary font-medium text-[26px] leading-[33px] sm:text-5xl  pb-4">
             More articles
-          </h1>
+          </h2>
           <div>
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}

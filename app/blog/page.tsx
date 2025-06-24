@@ -32,9 +32,9 @@ export default async function Blogs() {
     <div className="bg-[#F5F5F5] py-7">
       <div className="bg-[#f5f5f5] px-4 md:px-4 lg:px-0 container mt-[100px]">
         <div>
-          <h2 className="text-[47px] sm:text-9xl leading-[61px] font-primary  mb-9 text-main sm:font-normal font-medium">
+          <h1 className="text-[47px] sm:text-9xl leading-[61px] font-primary  mb-9 text-main sm:font-normal font-medium">
             Featured Articles
-          </h2>
+          </h1>
         </div>
         <div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-28 ">

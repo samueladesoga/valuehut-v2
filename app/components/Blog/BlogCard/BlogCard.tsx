@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface BlogCardProps {
   image: string;
@@ -21,7 +21,6 @@ const BlogCard: React.FC<BlogCardProps> = ({
   category,
   slug,
 }) => {
-  const router = useRouter();
   return (
     <div className="rounded-[20px] bg-white w-full">
       <div className=" w-full h-[200px] md:h-[375px]">
@@ -35,12 +34,13 @@ const BlogCard: React.FC<BlogCardProps> = ({
         />
       </div>
       <div className="flex flex-col  p-4 gap-4">
-        <h3
+
+        <Link
           className="sm:text-xl leading-[29px] font-secondary text-main font-semibold cursor-pointer "
-          onClick={() => router.push(`/blog/${slug}`)}
+          href={`/blog/${slug}`}
         >
           {title}
-        </h3>
+        </Link>
         <p className="line-clamp-2 sm:line-clamp-2 sm:text-sm font-secondary text-secondary text-[14px] leading-[21px] font-normal">
           {description}
         </p>
