@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 interface BlogCardProps {
   image: string;
@@ -22,7 +21,6 @@ const BlogCard: React.FC<BlogCardProps> = ({
   category,
   slug,
 }) => {
-  const router = useRouter();
   return (
     <div className="rounded-[20px] bg-white w-full">
       <div className=" w-full h-[200px] md:h-[375px]">

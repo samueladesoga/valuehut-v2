@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import React from "react";
 
 interface BlogItemProps {
@@ -19,7 +18,6 @@ const BlogItem: React.FC<BlogItemProps> = ({
   tag,
   slug,
 }) => {
-  const router = useRouter();
   return (
     <div className="blog-item flex gap-3 rounded-2xl bg-white shadow-md h-[95px] overflow-hidden sm:p-0  p-2">
       <div className=" sm:w-[136px] sm:h-[95px] w-[100px] h-[76px] flex-shrink-0">
@@ -33,7 +31,6 @@ const BlogItem: React.FC<BlogItemProps> = ({
       </div>
 
       <div className="flex flex-col p-2 cursor-pointer w-full h-full overflow-hidden">
-
         <Link
           className="text-main text-sm font-secondary font-medium sm:text-[16px] text-[14px] leading-[18px] sm:leading-[24px] line-clamp-2"
           href={`/blog/${slug}`}
