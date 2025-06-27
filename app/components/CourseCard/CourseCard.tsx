@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import Button from "@/components/Button/Button";
 import { ICourseCard } from "@/data/Academy/AllTrainings";
+import Link from "next/link";
 
 const CourseCard = ({
   logo,
@@ -32,9 +33,9 @@ const CourseCard = ({
             <Image src={logo} width={80} height={80} alt="logo" />
           </div>
           <div className="max-w-[508px] flex flex-col">
-            <h2 className="text-2xl font-medium font-primary text-black pt-1">
+            <Link href={`/academy/${slug}`} className="text-2xl font-medium font-primary text-black pt-1">
               {title}
-            </h2>
+            </Link>
             <p className="text-sm font-normal font-secondary text-body">
               {description.length > 120
                 ? `${description.slice(0, 120)}...`
