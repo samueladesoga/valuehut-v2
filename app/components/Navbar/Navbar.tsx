@@ -285,7 +285,10 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
                   )
                 )}
                 <li>
-                  <Link href="/contact-us">
+                  <Link
+            target="_blank"
+            href="https://calendly.com/samueladesoga/valuehut-consulting"
+          >
                     <Button
                       rounded="md"
                       bgColor="fill-brand-secondary"

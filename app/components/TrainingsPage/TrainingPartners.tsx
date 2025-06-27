@@ -19,7 +19,7 @@ const imageData: imageDataProps[] = [
   { id: 2, src: Frame, alt: "Layer Image", width: 122, height: 40 },
 ];
 
-function TrainingsPartners() {
+function TrainingPartners() {
   return (
     <div className=" flex flex-col justify-between items-center gap-8 lg:gap-5">
       <h3 className="text-sm text-[#141834] font-medium font-secondary">
@@ -42,4 +42,4 @@ function TrainingsPartners() {
   );
 }
 
-export default TrainingsPartners;
+export default TrainingPartners;

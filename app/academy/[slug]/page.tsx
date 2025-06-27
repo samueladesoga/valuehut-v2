@@ -58,7 +58,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         },
       ],
       type: "website",
-      siteName: "Your Site Name",
+      siteName: "ValueHut Consulting | Academy",
     },
     twitter: {
       card: "summary_large_image",

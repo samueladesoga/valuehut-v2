@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
+import React, { Suspense } from "react";
 import HeroComponent from "@/components/HeroComponent/HeroComponent";
-import CourseFilter from "@/components/CourseFilter/CourseFilter"; 
+import CourseFilter from "@/components/CourseFilter/CourseFilter";
 import { AcademyHero } from "@/data/Academy/AllTrainings";
 import Testimonials from "@/components/Homepage/Testimonials/Testimonials";
 import { faqs } from "@/data/Faqs/faqpage";
 import FAQ from "@/components/FaqPage/Faq/Faq";
-import TrainingsPartners from "@/components/TrainingsPage/TriningsPartners/TrainingsPartners";
+import TrainingPartners from "@/components/TrainingsPage/TrainingPartners";
 import { getAllCourses } from "@/lib/courseApi";
 import { getMonthAndDay, getYear } from "@/utils/ConvertDate";
 import type { Metadata } from "next";
@@ -69,10 +69,11 @@ export default async function Home() {
             All courses
           </h2>
         </div>
-        <TrainingsPartners />
+        <TrainingPartners />
       </div>
-
-      <CourseFilter courses={processedCourses} />
+      <Suspense fallback={<div>Loading courses...</div>}>
+        <CourseFilter courses={processedCourses} />
+      </Suspense>
 
       <div className="py-28">
         <Testimonials />

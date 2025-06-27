@@ -62,9 +62,33 @@ export const faqs: FAQItem[] = [
   },
   {
     category: "Consulting",
-    question: "What Consulting services do you provide?",
+    question: "What type of consulting services does ValueHut Consulting offer?",
     answer:
-      "Our Services include Delivery Management, Outsourcing of Product Delivery, Continuous Delivery including Test Automation among others. Visit our consulting page for more information.",
+      "ValueHut provides end-to-end Agile and Product Management consulting, including Delivery Management, Product Delivery, and tailored Enterprise & Team Coaching. We help organisations navigate modern product development challenges by embedding agile methodologies and upskilling teams.",
+  },
+    {
+    category: "Consulting",
+    question: "Who are ValueHut Consulting’s typical clients?",
+    answer:
+      "Our clients span global industries such as finance, media, and consumer goods including Barclays, BBC Worldwide, BP, and Sanofi; demonstrating our experience across diverse sectors.",
+  },
+    {
+    category: "Consulting",
+    question: "What outcomes can organisations expect from ValueHut Consulting?",
+    answer:
+      "Organisations partnering with ValueHut typically see transformations including better equipped teams, improved customer satisfaction, an overall improved focus and removal of waste enabled by over 100 years of collective experience",
+  },
+    {
+    category: "Consulting",
+    question: "How does ValueHut Consulting ensure transformation and learning happen simultaneously?",
+    answer:
+      "Our consultants don’t just advise—they work alongside your team, delivering strategic guidance and hands-on coaching during implementation. This dual approach ensures transformation is accompanied by real-time, practical learning.",
+  },
+    {
+    category: "Consulting",
+    question: "How do I start working with ValueHut Consulting?",
+    answer:
+      "Getting started is easy: you can explore our consulting services on the website and book a free, no-obligation call to discuss your organisational challenges and goals .",
   },
   {
     category: "Talent Matching",
