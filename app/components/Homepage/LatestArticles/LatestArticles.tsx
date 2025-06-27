@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import less from "@/less.svg";
 import greater from "@/greater.svg";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface Article {
   category: string;
@@ -105,12 +106,12 @@ export default function ArticlesSection({
                     className="w-full h-[241px] bg-no-repeat rounded-t-md mb-4"
                   />
                   <div className="p-6">
-                    <h3
-                      className="cursor-pointer text-lg font-primary truncate max-w-96 font-semibold mb-2"
-                      onClick={() => router.push(`/blog/${article.slug}`)}
+                    <Link
+                      href={`/blog/${article.slug}`}
+                      className="cursor-pointer text-lg font-primary line-clamp-1 max-w-96 font-semibold mb-2"
                     >
                       {article.title}
-                    </h3>
+                    </Link>
                     <p className="text-sm text-body mb-4">
                       {article.description.length > 100
                         ? `${article.description.slice(0, 135)}...`
