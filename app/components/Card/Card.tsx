@@ -15,7 +15,7 @@ function Card({ title, description, icon }: CardProps) {
     >
       {icon && <Image src={icon} height={50} width={50} alt="image" />}
       <div className="">
-        <h1 className="text-6xl font-medium font-secondary">{title}</h1>
+        <h3 className="text-6xl font-medium font-secondary">{title}</h3>
         <p className="text-lg font-normal">{description}</p>
       </div>
     </div>
