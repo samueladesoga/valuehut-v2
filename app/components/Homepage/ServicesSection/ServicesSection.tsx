@@ -28,7 +28,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({
           <div className="flex justify-between gap-14 sm:gap-20">
             {statistics.map((stat, index) => (
               <div key={index} className="text-center md:text-left ">
-                <motion.h1
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{
@@ -39,7 +39,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({
                   className="text-main font-primary text-8xl "
                 >
                   {stat.value}
-                </motion.h1>
+                </motion.div>
                 <p className="text-accentMain font-secondary text-sm">
                   {stat.label}
                 </p>
