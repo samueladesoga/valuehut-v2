@@ -102,8 +102,7 @@ export default function ArticlesSection({
                     alt={article.title}
                     width={440}
                     height={241}
-                    objectFit="cover"
-                    className="w-full h-[241px] bg-no-repeat rounded-t-md mb-4"
+                    className="w-full h-[241px] object-cover bg-no-repeat rounded-t-md mb-4"
                   />
                   <div className="p-6">
                     <Link
@@ -115,7 +114,7 @@ export default function ArticlesSection({
                     <p className="text-sm text-body mb-4">
                       {article.description.length > 100
                         ? `${article.description.slice(0, 135)}...`
-                        : description}
+                        : article.description}
                     </p>
                     <div>
                       <p className="text-xs text-secondary font-normal font-secondary">
