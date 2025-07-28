@@ -215,19 +215,19 @@ const InvoiceDocument = ({
           </Text>
           <Text
             style={{
-              marginTop: 12,
-              fontWeight: "light",
-            }}
-          >
-            Terms:
-          </Text>
-          <Text
-            style={{
               marginTop: 5,
               fontWeight: "light",
             }}
           >
             Course Registration is guaranteed on successful payment confirmnation of the total course payment indicated in this invoice.
+          </Text>
+          <Text
+            style={{
+              marginTop: 12,
+              fontWeight: "light",
+            }}
+          >
+            Terms:
           </Text>
           <Text
             style={{
