@@ -215,6 +215,14 @@ const InvoiceDocument = ({
           </Text>
           <Text
             style={{
+              marginTop: 5,
+              fontWeight: "light",
+            }}
+          >
+            Course Registration is guaranteed on successful payment confirmnation of the total course payment indicated in this invoice.
+          </Text>
+          <Text
+            style={{
               marginTop: 12,
               fontWeight: "light",
             }}
@@ -235,7 +243,7 @@ const InvoiceDocument = ({
               fontWeight: "light",
             }}
           >
-            Payment is to be made into specified Bank account within 7days from
+            Please pay using the specified Bank account details within 7days from
             invoice date. Our bank accounts are below:
           </Text>
         </View>
