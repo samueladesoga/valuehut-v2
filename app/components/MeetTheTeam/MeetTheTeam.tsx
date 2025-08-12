@@ -51,15 +51,18 @@ function MeetTheTeam() {
     },
     {
       bgColor: "bg-[#A5c6d0]",
-      imageSrc: "/images/temitope_dada.jpg",
-      name: "Temitope Dada",
-      role: "Training Executive",
-      description: `Temitope is a Training Executive at ValueHut Consulting with over four years of experience managing 
-      the administration of learning programs. She specializes in coordinating schedules, overseeing participant enrollment 
-      and high-impact training delivery. Known for her organizational excellence and attention to detail, Temitope plays a 
-      key role in maintaining the quality and professionalism of ValueHut’s Consulting learning experiences.`,
+      imageSrc: "/images/fisayo-ajayi.jpg",
+      name: "Fisayo Ajayi",
+      role: "Executive Executive",
+      description: `Fisayo is an Executive Assistant at ValueHut Consulting Limited with over eight years 
+      of experience managing the full spectrum of executive office administration. She specializes in coordinating complex 
+      calendars, scheduling classes and managing participant enrollment, streamlining high-volume email workflows, and 
+      preparing high-impact reports and presentations. Drawing on her project coordination background, she helps plan and 
+      execute training sessions and workshops. Adept at leveraging productivity tools to enhance efficiency and streamline 
+      operations, she plays a key role in ensuring professionalism and supporting the delivery of customized training programs 
+      and development workshops at ValueHut Consulting, enabling senior executives to focus on strategic priorities.`,
       socialLinks: [
-        { icon: "/icons/likdin.svg", alt: "linkedin", url: "https://www.linkedin.com/in/temitope-dada-1398541b0/" },
+        { icon: "/icons/likdin.svg", alt: "linkedin", url: "#" },
       ],
     },
   ];
