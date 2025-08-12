@@ -53,7 +53,7 @@ function MeetTheTeam() {
       bgColor: "bg-[#A5c6d0]",
       imageSrc: "/images/fisayo-ajayi.jpg",
       name: "Fisayo Ajayi",
-      role: "Executive Executive",
+      role: "Executive Assistant",
       description: `Fisayo is an Executive Assistant at ValueHut Consulting Limited with over eight years 
       of experience managing the full spectrum of executive office administration. She specializes in coordinating complex 
       calendars, scheduling classes and managing participant enrollment, streamlining high-volume email workflows, and 
