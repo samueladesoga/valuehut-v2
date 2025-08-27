@@ -243,8 +243,8 @@ const InvoiceDocument = ({
               fontWeight: "light",
             }}
           >
-            Please pay using the specified Bank account details within 7days from
-            invoice date. Our bank accounts are below:
+            Attendance to the class will be confirmed on receipt of full payment.
+            Please proceed to make payment into the specified Bank accounts within 7days from the invoice date. Our bank accounts are below:
           </Text>
         </View>
         <View
@@ -289,9 +289,6 @@ const InvoiceDocument = ({
         </View>
         <View style={styles.pageFooter}>
           <Text>UK: North Westgate House, Harlow. CM20 1YS.</Text>
-          <Text>
-            Nigeria: 22 Glover Rd, Ikoyi, Lagos.
-          </Text>
         </View>
       </Page>
     </Document>
