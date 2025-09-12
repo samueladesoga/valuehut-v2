@@ -139,8 +139,8 @@ export default async function CourseDetailsPage({ params }: Props) {
                       type={row.classType}
                       filled={row.filled}
                       courseId={slug}
-                      course={course}
-                    />
+                      course={course} 
+                      timeZone={""}                    />
                   </tbody>
                 ))}
               </table>
@@ -167,8 +167,8 @@ export default async function CourseDetailsPage({ params }: Props) {
                 filled={row.filled}
                 classSysId={row.classSysId}
                 courseId={slug}
-                course={course}
-              />
+                course={course} 
+                timeZone={""}              />
             ))
           ) : (
             <div className="py-5">
