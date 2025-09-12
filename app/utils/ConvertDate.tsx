@@ -45,40 +45,58 @@ export function getYear(dateInput: string): string {
   return date.getUTCFullYear().toString();
 }
 
-function parseDate(date: string, referenceDate?: string): Date | null {
-    // If only day is provided (like "15")
-    if (!date.includes(" ") && referenceDate) {
-      // Try parsing the referenceDate into a real Date first
-      const ref = new Date(referenceDate);
+function parseDate(date: string, timeZone: string, referenceDate?: string): Date | null {
+  console.log("*********************************************")
+  console.log("inside parseDate. Date = " + date)
+  console.log("inside parseDate. Reference Date = " + referenceDate)
+  console.log("*********************************************")
+  // If only day is provided (like "15")
+  if (!date.includes(" ") && referenceDate) {
+    // Try parsing the referenceDate into a real Date first
+    console.log("what is in reference date" + referenceDate)
+    const ref = new Date(referenceDate);
 
-      if (isNaN(ref.getTime())) {
-        return null; // invalid referenceDate
-      }
-
-      // Extract month and year safely
-      const month = ref.toLocaleString("en-US", { month: "long" });
-      const year = ref.getFullYear();
-
-      // Construct a full date string
-      const fullDate = `${month} ${date}, ${year}`;
-      const parsed = new Date(fullDate);
-
-      return isNaN(parsed.getTime()) ? null : parsed;
+    if (isNaN(ref.getTime())) {
+      return null; // invalid referenceDate
     }
 
-    // Try parsing directly
-    const parsed = new Date(date);
+    // Extract month and year safely
+    const month = ref.toLocaleString("en-GB", { month: "long", timeZone: timeZone});
+    const year = ref.getFullYear();
+
+    // Construct a full date string
+    const fullDate = `${month} ${date}, ${year}`;
+    const parsed = new Date(fullDate);
+
     return isNaN(parsed.getTime()) ? null : parsed;
-}
+  }
+
+  // Try parsing directly
+  const parsed = new Date(date);
+  return isNaN(parsed.getTime()) ? null : parsed;
+};
 
 export function getDisplayDate(startDate: string, endDate: string, timeZone: string): string {
-  const start = parseDate(startDate);
-  const end = parseDate(endDate, startDate);
+  console.log(".....................................................")
+  console.log("Why do we need the parseDate function?")
+  console.log("Start Date = " + startDate)
+  console.log("End Date = " + endDate)
+  console.log(".....................................................")
+
+  const start = parseDate(startDate, timeZone);
+  const end = parseDate(endDate, timeZone);
+
+  
+
+
 
   if (!start) return "Date Unavailable";
 
   const startDay = start.getDate();
   const endDay = end?.getDate();
+
+  console.log("Start day is " + startDay)
+  console.log("End day is " + endDay)
 
   if (startDay === endDay || !end) {
     return start.toLocaleDateString("en-GB", {
@@ -96,3 +114,6 @@ export function getDisplayDate(startDate: string, endDate: string, timeZone: str
 
   return `${formattedStart} - ${formattedEnd}`;
 };
+
+
+console.log(getDisplayDate('2025-10-16T00:00:00.000Z', '2025-10-17T00:00:00.000Z', 'Europe/London'))
