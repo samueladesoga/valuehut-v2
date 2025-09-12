@@ -23,6 +23,7 @@ interface IClasses {
   filled: boolean;
   startDate: string;
   endDate: string;
+  timeZone: string;
   year: string;
 }
 
@@ -128,19 +129,19 @@ export default async function CourseDetailsPage({ params }: Props) {
                     <td className="px-3 py-4">type</td>
                   </tr>
                 </thead>
-                {UpcomingClassesData.map((row: IClasses, index: number) => (
+                {UpcomingClassesData.map((upcomingClass: IClasses, index: number) => (
                   <tbody className="bg-white" key={index}>
                     <Table
-                      classSysId={row.classSysId}
-                      startDate={getMonthAndDay(row.startDate)}
-                      endDate={getDay(row.endDate)}
-                      year={row.year}
-                      time={row.time}
-                      type={row.classType}
-                      filled={row.filled}
+                      classSysId={upcomingClass.classSysId}
+                      startDate={getMonthAndDay(upcomingClass.startDate)}
+                      endDate={getDay(upcomingClass.endDate)}
+                      year={upcomingClass.year}
+                      time={upcomingClass.time}
+                      type={upcomingClass.classType}
+                      filled={upcomingClass.filled}
                       courseId={slug}
                       course={course} 
-                      timeZone={""}                    />
+                      timeZone={upcomingClass.timeZone}                    />
                   </tbody>
                 ))}
               </table>
@@ -156,19 +157,19 @@ export default async function CourseDetailsPage({ params }: Props) {
         </div>
         <div className="container px-4 xl:px-0 flex flex-col gap-3 items-start md:hidden">
           {UpcomingClassesData.length > 0 ? (
-            UpcomingClassesData.map((row: IClasses, index: number) => (
+            UpcomingClassesData.map((upcomingClass: IClasses, index: number) => (
               <Group
                 key={index}
-                startDate={getMonthAndDay(row.startDate)}
-                endDate={getDay(row.endDate)}
-                year={row.year}
-                time={row.time}
-                type={row.classType}
-                filled={row.filled}
-                classSysId={row.classSysId}
+                startDate={getMonthAndDay(upcomingClass.startDate)}
+                endDate={getDay(upcomingClass.endDate)}
+                year={upcomingClass.year}
+                time={upcomingClass.time}
+                type={upcomingClass.classType}
+                filled={upcomingClass.filled}
+                classSysId={upcomingClass.classSysId}
                 courseId={slug}
                 course={course} 
-                timeZone={""}              />
+                timeZone={upcomingClass.timeZone}              />
             ))
           ) : (
             <div className="py-5">

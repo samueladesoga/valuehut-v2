@@ -46,7 +46,6 @@ export function getYear(dateInput: string): string {
 }
 
 export const getDisplayDate = (startDate: string, endDate: string, timeZone: string): string => {
-  timeZone = "Europe/London";
   const parseDate = (date: string, referenceDate?: string): Date | null => {
     if (!date.includes(" ") && referenceDate) {
       const [month, year] = referenceDate.split(" ").slice(0, 2);
