@@ -38,6 +38,7 @@ function Table({
 
   const startDateDay = classDetail.startDate.split(" ")[1];
   const endDateDay = classDetail.endDate.split(" ")[0];
+  const timeZone = classDetail.timeZone;
 
   const combinedDate =
     startDateDay === endDateDay
@@ -49,7 +50,7 @@ function Table({
         <td
           className={`w-[25%] xl:w-[25%] px-3 py-4 text-sm font-medium font-secondary ${filled ? "text-secondary" : "text-main"}`}
         >
-          {`${getDisplayDate(startDate, endDate)}, ${year}`}
+          {`${getDisplayDate(startDate, endDate, timeZone)}, ${year}`}
         </td>
         <td
           className={`w-[20%] xl:w-[25%] px-3 py-4 text-sm font-medium font-secondary ${filled ? "text-secondary" : "text-main"}`}

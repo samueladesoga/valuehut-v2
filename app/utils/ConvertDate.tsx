@@ -45,7 +45,7 @@ export function getYear(dateInput: string): string {
   return date.getUTCFullYear().toString();
 }
 
-export const getDisplayDate = (startDate: string, endDate: string): string => {
+export const getDisplayDate = (startDate: string, endDate: string, timeZone: string): string => {
   const parseDate = (date: string, referenceDate?: string): Date | null => {
     if (!date.includes(" ") && referenceDate) {
       const [month, year] = referenceDate.split(" ").slice(0, 2);
@@ -70,14 +70,16 @@ export const getDisplayDate = (startDate: string, endDate: string): string => {
     return start.toLocaleDateString("en-GB", {
       month: "short",
       day: "numeric",
+      timeZone: timeZone,
     });
   }
 
   const formattedStart = start.toLocaleDateString("en-GB", {
     month: "short",
     day: "numeric",
+    timeZone: timeZone,
   });
-  const formattedEnd = end.toLocaleDateString("en-GB", { day: "numeric" });
+  const formattedEnd = end.toLocaleDateString("en-GB", { day: "numeric", timeZone: timeZone });
 
   return `${formattedStart} - ${formattedEnd}`;
 };

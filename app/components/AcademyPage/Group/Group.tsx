@@ -10,6 +10,7 @@ import { getDay, getDisplayDate, getMonthAndDay } from "@/utils/ConvertDate";
 function Group({
   startDate,
   endDate,
+  timeZone,
   year,
   time,
   type,
@@ -37,6 +38,7 @@ function Group({
     if (classDetail) {
       const startDateDay = classDetail.startDate.split(" ")[1];
       const endDateDay = classDetail.endDate.split(" ")[0];
+      const timeZone = classDetail.timeZone;
 
       const date =
         startDateDay === endDateDay
@@ -53,7 +55,7 @@ function Group({
           Date
         </h4>
         <span className="text-xl font-semibold font-secondary text-main">
-          {`${getDisplayDate(startDate, endDate)}, ${year}`}
+          {`${getDisplayDate(startDate, endDate, timeZone)}, ${year}`}
         </span>
       </div>
 

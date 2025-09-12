@@ -17,6 +17,7 @@ interface ICourses {
       filled: boolean;
       startDate: string;
       endDate: string;
+      timeZone: string;
       classType: string;
       time: string;
       ukPrice: number;
@@ -64,6 +65,7 @@ export const getAllCourses = async () => {
           filled
           startDate
           endDate
+          timeZone
           classType
           time
           ukPrice
@@ -145,6 +147,7 @@ export const getCourse = async (slug: string) => {
               filled
               startDate
               endDate
+              timeZone
               classType
               time
               ukPrice
@@ -193,6 +196,7 @@ export const getCourse = async (slug: string) => {
       filled: item.filled,
       startDate: item.startDate,
       endDate: item.endDate,
+      timeZone: item.timeZone,
       year: getYear(item.startDate),
       classType: item.classType,
       time: item.time,
