@@ -38,7 +38,6 @@ function Group({
     if (classDetail) {
       const startDateDay = classDetail.startDate.split(" ")[1];
       const endDateDay = classDetail.endDate.split(" ")[0];
-      const timeZone = classDetail.timeZone;
 
       const date =
         startDateDay === endDateDay
