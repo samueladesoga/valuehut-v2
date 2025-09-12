@@ -35,8 +35,8 @@ function Table({
     (cls: { classSysId : string}) => cls.classSysId === classSysId
   );
 
-  startDate = classDetail.startDate;
-  endDate = classDetail.endDate;
+  //startDate = classDetail.startDate;
+  //endDate = classDetail.endDate;
   const timeZone = classDetail.timeZone;
 
   const combinedDate = getDisplayDate(startDate, endDate, timeZone);

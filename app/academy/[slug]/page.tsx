@@ -133,8 +133,8 @@ export default async function CourseDetailsPage({ params }: Props) {
                   <tbody className="bg-white" key={index}>
                     <Table
                       classSysId={upcomingClass.classSysId}
-                      startDate={getMonthAndDay(upcomingClass.startDate)}
-                      endDate={getDay(upcomingClass.endDate)}
+                      startDate={upcomingClass.startDate}
+                      endDate={upcomingClass.endDate}
                       year={upcomingClass.year}
                       time={upcomingClass.time}
                       type={upcomingClass.classType}
@@ -160,8 +160,8 @@ export default async function CourseDetailsPage({ params }: Props) {
             UpcomingClassesData.map((upcomingClass: IClasses, index: number) => (
               <Group
                 key={index}
-                startDate={getMonthAndDay(upcomingClass.startDate)}
-                endDate={getDay(upcomingClass.endDate)}
+                startDate={upcomingClass.startDate}
+                endDate={upcomingClass.endDate}
                 year={upcomingClass.year}
                 time={upcomingClass.time}
                 type={upcomingClass.classType}
