@@ -70,16 +70,15 @@ export const getDisplayDate = (startDate: string, endDate: string, timeZone: str
     return start.toLocaleDateString("en-GB", {
       month: "short",
       day: "numeric",
-      timeZone: timeZone,
+      timeZone: 'Europe/London',
     });
   }
 
   const formattedStart = start.toLocaleDateString("en-GB", {
-    month: "short",
     day: "numeric",
-    timeZone: timeZone,
+    timeZone: 'Europe/London',
   });
-  const formattedEnd = end.toLocaleDateString("en-GB", { day: "numeric", timeZone: timeZone });
+  const formattedEnd = end.toLocaleDateString("en-GB", { day: "numeric",  month: "short", timeZone: 'Europe/London' });
 
   return `${formattedStart} - ${formattedEnd}`;
 };
