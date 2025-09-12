@@ -46,10 +46,6 @@ export function getYear(dateInput: string): string {
 }
 
 function parseDate(date: string, timeZone: string, referenceDate?: string): Date | null {
-  console.log("*********************************************")
-  console.log("inside parseDate. Date = " + date)
-  console.log("inside parseDate. Reference Date = " + referenceDate)
-  console.log("*********************************************")
   // If only day is provided (like "15")
   if (!date.includes(" ") && referenceDate) {
     // Try parsing the referenceDate into a real Date first
@@ -77,26 +73,13 @@ function parseDate(date: string, timeZone: string, referenceDate?: string): Date
 };
 
 export function getDisplayDate(startDate: string, endDate: string, timeZone: string): string {
-  console.log(".....................................................")
-  console.log("Why do we need the parseDate function?")
-  console.log("Start Date = " + startDate)
-  console.log("End Date = " + endDate)
-  console.log(".....................................................")
-
   const start = parseDate(startDate, timeZone);
   const end = parseDate(endDate, timeZone);
-
-  
-
-
 
   if (!start) return "Date Unavailable";
 
   const startDay = start.getDate();
   const endDay = end?.getDate();
-
-  console.log("Start day is " + startDay)
-  console.log("End day is " + endDay)
 
   if (startDay === endDay || !end) {
     return start.toLocaleDateString("en-GB", {
@@ -115,5 +98,3 @@ export function getDisplayDate(startDate: string, endDate: string, timeZone: str
   return `${formattedStart} - ${formattedEnd}`;
 };
 
-
-console.log(getDisplayDate('2025-10-16T00:00:00.000Z', '2025-10-17T00:00:00.000Z', 'Europe/London'))

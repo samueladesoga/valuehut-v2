@@ -12,7 +12,6 @@ import { getCourse } from "@/lib/courseApi";
 import { AdditionalBenefitCard } from "@/components/AcademyPage/AdditionalBenefit/AdditonalBenefitCard";
 import WhoShouldAttend from "@/components/AcademyPage/WhoShouldAttend/WhoShouldAttend";
 import Testimonials from "@/components/Homepage/Testimonials/Testimonials";
-import { getDay, getMonthAndDay } from "@/utils/ConvertDate";
 import type { Metadata } from "next";
 
 interface IClasses {
