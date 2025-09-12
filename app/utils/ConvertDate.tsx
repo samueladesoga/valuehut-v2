@@ -46,6 +46,7 @@ export function getYear(dateInput: string): string {
 }
 
 export const getDisplayDate = (startDate: string, endDate: string, timeZone: string): string => {
+  timeZone = "Europe/London";
   const parseDate = (date: string, referenceDate?: string): Date | null => {
     if (!date.includes(" ") && referenceDate) {
       const [month, year] = referenceDate.split(" ").slice(0, 2);
@@ -70,13 +71,13 @@ export const getDisplayDate = (startDate: string, endDate: string, timeZone: str
     return start.toLocaleDateString("en-GB", {
       month: "short",
       day: "numeric",
-      timeZone: 'Europe/London',
+      timeZone: timeZone,
     });
   }
 
   const formattedStart = start.toLocaleDateString("en-GB", {
     day: "numeric",
-    timeZone: 'Europe/London',
+    timeZone: timeZone,
   });
   const formattedEnd = end.toLocaleDateString("en-GB", { day: "numeric",  month: "short", timeZone: 'Europe/London' });
 
