@@ -45,19 +45,33 @@ export function getYear(dateInput: string): string {
   return date.getUTCFullYear().toString();
 }
 
-export const getDisplayDate = (startDate: string, endDate: string, timeZone: string): string => {
-  const parseDate = (date: string, referenceDate?: string): Date | null => {
+function parseDate(date: string, referenceDate?: string): Date | null {
+    // If only day is provided (like "15")
     if (!date.includes(" ") && referenceDate) {
-      const [month, year] = referenceDate.split(" ").slice(0, 2);
+      // Try parsing the referenceDate into a real Date first
+      const ref = new Date(referenceDate);
+
+      if (isNaN(ref.getTime())) {
+        return null; // invalid referenceDate
+      }
+
+      // Extract month and year safely
+      const month = ref.toLocaleString("en-US", { month: "long" });
+      const year = ref.getFullYear();
+
+      // Construct a full date string
       const fullDate = `${month} ${date}, ${year}`;
-      const parsedDate = new Date(fullDate);
-      return isNaN(parsedDate.getTime()) ? null : parsedDate;
+      const parsed = new Date(fullDate);
+
+      return isNaN(parsed.getTime()) ? null : parsed;
     }
 
-    const parsedDate = new Date(date);
-    return isNaN(parsedDate.getTime()) ? null : parsedDate;
-  };
+    // Try parsing directly
+    const parsed = new Date(date);
+    return isNaN(parsed.getTime()) ? null : parsed;
+}
 
+export function getDisplayDate(startDate: string, endDate: string, timeZone: string): string {
   const start = parseDate(startDate);
   const end = parseDate(endDate, startDate);
 
