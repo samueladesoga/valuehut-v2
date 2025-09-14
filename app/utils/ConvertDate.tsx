@@ -67,17 +67,17 @@ export const getDisplayDate = (startDate: string, endDate: string): string => {
   const endDay = end?.getDate();
 
   if (startDay === endDay || !end) {
-    return start.toLocaleDateString("en-US", {
+    return start.toLocaleDateString("en-GB", {
       month: "short",
       day: "numeric",
     });
   }
 
-  const formattedStart = start.toLocaleDateString("en-US", {
+  const formattedStart = start.toLocaleDateString("en-GB", {
     month: "short",
     day: "numeric",
   });
-  const formattedEnd = end.toLocaleDateString("en-US", { day: "numeric" });
+  const formattedEnd = end.toLocaleDateString("en-GB", { day: "numeric" });
 
   return `${formattedStart} - ${formattedEnd}`;
 };
