@@ -208,7 +208,7 @@ function WrapperCheckout({ course, classSysId }: any) {
       });
   };
 
-  const combinedDate = `${getDisplayDate(classDetail.startDate, classDetail.endDate)}, ${classDetail.year}`;
+  const combinedDate = `${getDisplayDate(classDetail.startDate, classDetail.endDate, classDetail.timeZone)}, ${classDetail.year}`;
 
   const handleModalToggle = () => {
     setIsModalOpen((prev) => !prev);

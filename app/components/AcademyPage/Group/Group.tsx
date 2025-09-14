@@ -10,6 +10,7 @@ import { getDay, getDisplayDate, getMonthAndDay } from "@/utils/ConvertDate";
 function Group({
   startDate,
   endDate,
+  timeZone,
   year,
   time,
   type,
@@ -53,7 +54,7 @@ function Group({
           Date
         </h4>
         <span className="text-xl font-semibold font-secondary text-main">
-          {`${getDisplayDate(startDate, endDate)}, ${year}`}
+          {`${getDisplayDate(startDate, endDate, timeZone)}, ${year}`}
         </span>
       </div>
 

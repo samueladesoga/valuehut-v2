@@ -2,6 +2,7 @@
 export interface IUpcomingClassesData {
   startDate: string;
   endDate: string;
+  timeZone: string;
   year: string;
   time: string;
   type: string;
