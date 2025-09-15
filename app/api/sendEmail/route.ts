@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
     const fileBuffer = Buffer.from(fileArrayBuffer);
 
     const mailOptions = {
-      from: '"ValueHut" <info@valuehut.co>',
+      from: '"ValueHut Consulting" <info@valuehut.co>',
       to: toEmail,
       bcc: 'info@valuehut.co',
       subject: subject,
@@ -84,16 +84,16 @@ export async function POST(req: NextRequest) {
                     ValueHut Consulting Invoice for <b>${courseName}</b>
                 </div>
                 <div class="content">
-                    Hello ${customerName},<br><br>
+                    Dear ${customerName},<br><br>
 
-                    Thank you for requesting an invoice for the workshop. Please find attached an invoice for the class requested<br><br>
+                    Please find attached an invoice for the ${courseName} class requested<br><br>
 
-                    Should you have any questions or require further assistance including the Bank Details for your preferred currency, feel free to contact us.<br><br>
+                    Should you have any questions or require further assistance including the Bank Details for your preferred currency, feel free to contact us.<br>
 
-                    Thank you for your trust in ValueHut Consulting.
+                    Thank you for your business and we look forward to having you in class.
 
                     Regards, <br>
-                    Temitope <br>
+                    Fisayo Ajayi <br>
                     info@valuehut.co
                 </div>
                 <div class="footer">
