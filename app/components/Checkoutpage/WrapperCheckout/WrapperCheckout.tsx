@@ -58,10 +58,6 @@ function WrapperCheckout({ course, classSysId }: any) {
     (cls: { classSysId: string }) => cls.classSysId === classSysId
   );
 
-  console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++")
-  console.log(classDetail)
-  console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++")
-
   const [details, setDetails] = useState<Details>({
     fullName: "",
     email: "",
@@ -212,12 +208,7 @@ function WrapperCheckout({ course, classSysId }: any) {
       });
   };
 
-  console.log("Start Date: " + classDetail.startDate + "*********************")
-  console.log("Edn Date: " + classDetail.endDate + "*********************")
-  console.log("TIme Zone: " + classDetail.timeZone + "*********************")
-
-  const combinedDate = `${getDisplayDate(classDetail.startDate, classDetail.endDate, classDetail.timeZone)}, ${classDetail.year}`;
-  console.log("Combined Date: " + combinedDate + "*********************")
+  const combinedDate = getDisplayDate(classDetail.startDate, classDetail.endDate, classDetail.timeZone);
 
   const handleModalToggle = () => {
     setIsModalOpen((prev) => !prev);
