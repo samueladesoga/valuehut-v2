@@ -45,35 +45,36 @@ export function getYear(dateInput: string): string {
   return date.getUTCFullYear().toString();
 }
 
-function parseDate(date: string, referenceDate?: string): Date | null {
-    // If only day is provided (like "15")
-    if (!date.includes(" ") && referenceDate) {
-      // Try parsing the referenceDate into a real Date first
-      const ref = new Date(referenceDate);
+function parseDate(date: string, timeZone: string, referenceDate?: string): Date | null {
+  // If only day is provided (like "15")
+  if (!date.includes(" ") && referenceDate) {
+    // Try parsing the referenceDate into a real Date first
+    console.log("what is in reference date" + referenceDate)
+    const ref = new Date(referenceDate);
 
-      if (isNaN(ref.getTime())) {
-        return null; // invalid referenceDate
-      }
-
-      // Extract month and year safely
-      const month = ref.toLocaleString("en-US", { month: "long" });
-      const year = ref.getFullYear();
-
-      // Construct a full date string
-      const fullDate = `${month} ${date}, ${year}`;
-      const parsed = new Date(fullDate);
-
-      return isNaN(parsed.getTime()) ? null : parsed;
+    if (isNaN(ref.getTime())) {
+      return null; // invalid referenceDate
     }
 
-    // Try parsing directly
-    const parsed = new Date(date);
+    // Extract month and year safely
+    const month = ref.toLocaleString("en-GB", { month: "long", timeZone: timeZone});
+    const year = ref.getFullYear();
+
+    // Construct a full date string
+    const fullDate = `${month} ${date}, ${year}`;
+    const parsed = new Date(fullDate);
+
     return isNaN(parsed.getTime()) ? null : parsed;
-}
+  }
+
+  // Try parsing directly
+  const parsed = new Date(date);
+  return isNaN(parsed.getTime()) ? null : parsed;
+};
 
 export function getDisplayDate(startDate: string, endDate: string, timeZone: string): string {
-  const start = parseDate(startDate);
-  const end = parseDate(endDate, startDate);
+  const start = parseDate(startDate, timeZone);
+  const end = parseDate(endDate, timeZone);
 
   if (!start) return "Date Unavailable";
 
@@ -84,6 +85,7 @@ export function getDisplayDate(startDate: string, endDate: string, timeZone: str
     return start.toLocaleDateString("en-GB", {
       month: "short",
       day: "numeric",
+      year: "numeric",
       timeZone: timeZone,
     });
   }
@@ -92,7 +94,8 @@ export function getDisplayDate(startDate: string, endDate: string, timeZone: str
     day: "numeric",
     timeZone: timeZone,
   });
-  const formattedEnd = end.toLocaleDateString("en-GB", { day: "numeric",  month: "short", timeZone: 'Europe/London' });
+  const formattedEnd = end.toLocaleDateString("en-GB", { day: "numeric",  month: "short", year: "numeric", timeZone: 'Europe/London' });
 
   return `${formattedStart} - ${formattedEnd}`;
 };
+

@@ -5,13 +5,12 @@ import { usePathname, useRouter } from "next/navigation";
 import Button from "@/components/Button/Button";
 import { IUpcomingClassesData } from "@/data/Academy/UpcomingClasses";
 import RegisterModal from "@/components/DetailsPage/RegisterModal/RegisterModal";
-import { getDay, getDisplayDate, getMonthAndDay } from "@/utils/ConvertDate";
+import { getDisplayDate } from "@/utils/ConvertDate";
 
 function Group({
   startDate,
   endDate,
   timeZone,
-  year,
   time,
   type,
   filled,
@@ -36,14 +35,8 @@ function Group({
     );
 
     if (classDetail) {
-      const startDateDay = classDetail.startDate.split(" ")[1];
-      const endDateDay = classDetail.endDate.split(" ")[0];
-
-      const date =
-        startDateDay === endDateDay
-          ? `${getMonthAndDay(classDetail.startDate)}, ${classDetail.year}`
-          : `${getMonthAndDay(classDetail.startDate)} - ${getDay(classDetail.endDate)}, ${classDetail.year}`;
-      setCombinedDate(date);
+      const combinedDate = getDisplayDate(startDate, endDate, timeZone);
+      setCombinedDate(combinedDate);
     }
   };
 
@@ -54,7 +47,7 @@ function Group({
           Date
         </h4>
         <span className="text-xl font-semibold font-secondary text-main">
-          {`${getDisplayDate(startDate, endDate, timeZone)}, ${year}`}
+          {`${getDisplayDate(startDate, endDate, timeZone)}`}
         </span>
       </div>
 
