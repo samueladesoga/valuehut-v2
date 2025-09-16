@@ -28,6 +28,7 @@ interface Details {
   numberOfAttendees: number;
   acronym?: string;
   startDate?: string;
+  timeZone? : string;
 }
 
 const paymentMethods: PaymentMethod[] = [
@@ -66,6 +67,7 @@ function WrapperCheckout({ course, classSysId }: any) {
     numberOfAttendees: 1,
     acronym: course.acronym ?? "",
     startDate: classDetail.startDate ?? "",
+    timeZone: classDetail.timeZone ?? "",
   });
 
   const acronym = course.acronym;
