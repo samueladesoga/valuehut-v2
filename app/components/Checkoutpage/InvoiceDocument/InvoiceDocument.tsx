@@ -3,7 +3,7 @@ import React from "react";
 import { Page, Text, View, Document, Image } from "@react-pdf/renderer";
 import { styles, tableStyles } from "./file.styles";
 import LogoVH from "@/logo192.png";
-import { getMonthAndDay, getYear } from "@/utils/ConvertDate";
+import { getDisplayDate } from "@/utils/ConvertDate";
 
 interface Idata {
   quantity: number;
@@ -123,10 +123,7 @@ const InvoiceDocument = ({
               <Text style={tableStyles.tableCell}>Course Name</Text>
             </View>
             <View style={tableStyles.tableColHeader}>
-              <Text style={tableStyles.tableCell}>Start Date</Text>
-            </View>
-            <View style={tableStyles.tableColHeader}>
-              <Text style={tableStyles.tableCell}>End Date</Text>
+              <Text style={tableStyles.tableCell}>Course Date(s)</Text>
             </View>
             <View style={tableStyles.tableColHeader}>
               <Text style={tableStyles.tableCell}>Quantity</Text>
@@ -147,14 +144,7 @@ const InvoiceDocument = ({
             </View>
             <View style={tableStyles.tableCol}>
               <Text style={tableStyles.tableCell}>
-                {getMonthAndDay(selectedCourse?.startDate, selectedCourse?.timeZone)},{" "}
-                {getYear(selectedCourse?.startDate)}
-              </Text>
-            </View>
-            <View style={tableStyles.tableCol}>
-              <Text style={tableStyles.tableCell}>
-                {getMonthAndDay(selectedCourse?.endDate, selectedCourse?.timeZone)},{" "}
-                {getYear(selectedCourse?.endDate)}
+                {getDisplayDate(selectedCourse.startDate, selectedCourse.endDate, selectedCourse.timeZone)}
               </Text>
             </View>
             <View style={tableStyles.tableCol}>
