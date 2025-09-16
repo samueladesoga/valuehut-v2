@@ -31,7 +31,6 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const courses = await getAllCourses();
-
   const processedCourses = courses.map((course: any) => {
     const unfilledClasses = course.classes
       .filter((cls: any) => !cls.filled)

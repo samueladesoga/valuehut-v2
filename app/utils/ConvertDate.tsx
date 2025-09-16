@@ -23,21 +23,20 @@ export function convertDate(dateString: string | number | Date) {
   return `${day.toString().padStart(2, "0")} ${month} ${year}`;
 }
 
-export function getDay(dateInput: string): string {
-  const date = new Date(dateInput);
-  return date.getUTCDate().toString().padStart(2, "0");
-}
+export function getMonthAndDay(dateInput: string | Date, timeZone: string): string {
+  const date = typeof dateInput === 'string' ? new Date(dateInput) : dateInput;
+  if (isNaN(date.getTime())) throw new Error('Invalid date input');
 
-export function getMonthAndDay(dateInput: string, timeZone: string): string {
-  const date = new Date(dateInput);
+  const parts = new Intl.DateTimeFormat('en-GB', {
+    timeZone,
+    month: 'short',
+    day: '2-digit',
+  }).formatToParts(date);
 
-  if (isNaN(date.getTime())) {
-    throw new Error("Invalid date input");
-  }
+  const month = parts.find(p => p.type === 'month')?.value ?? '';
+  const day = parts.find(p => p.type === 'day')?.value ?? '';
 
-  const month = date.toLocaleString("en-GB", { month: "short", timeZone: timeZone, });
-  const day = date.getDate().toString().padStart(2, "0");
-  return `${month} ${day}`;
+  return `${month} ${day}`; // e.g., "Sep 16"
 }
 
 export function getYear(dateInput: string): string {
@@ -49,7 +48,6 @@ function parseDate(date: string, timeZone: string, referenceDate?: string): Date
   // If only day is provided (like "15")
   if (!date.includes(" ") && referenceDate) {
     // Try parsing the referenceDate into a real Date first
-    console.log("what is in reference date" + referenceDate)
     const ref = new Date(referenceDate);
 
     if (isNaN(ref.getTime())) {
@@ -94,7 +92,7 @@ export function getDisplayDate(startDate: string, endDate: string, timeZone: str
     day: "numeric",
     timeZone: timeZone,
   });
-  const formattedEnd = end.toLocaleDateString("en-GB", { day: "numeric",  month: "short", year: "numeric", timeZone: 'Europe/London' });
+  const formattedEnd = end.toLocaleDateString("en-GB", { day: "numeric",  month: "short", year: "numeric", timeZone: timeZone });
 
   return `${formattedStart} - ${formattedEnd}`;
 };

@@ -31,7 +31,7 @@ const InvoiceDocument = ({
   selectedCourse: IselectedCourse;
   isUk: boolean;
 }) => {
-  const today = new Date().toLocaleDateString();
+  const today = new Date().toLocaleDateString("en-GB", { timeZone: selectedCourse.timeZone });
   const totalPrice = selectedCourse ? selectedCourse.price * data.quantity : 0;
   const currency = isUk ? "£" : "$";
   return (

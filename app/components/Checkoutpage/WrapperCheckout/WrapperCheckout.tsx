@@ -158,7 +158,7 @@ function WrapperCheckout({ course, classSysId }: any) {
       price: subtotal,
       acronym: acronym,
     };
-
+    
     const doc = (
       <InvoiceDocument
         data={data}
