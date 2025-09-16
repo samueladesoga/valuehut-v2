@@ -28,14 +28,14 @@ export function getDay(dateInput: string): string {
   return date.getUTCDate().toString().padStart(2, "0");
 }
 
-export function getMonthAndDay(dateInput: string): string {
+export function getMonthAndDay(dateInput: string, timeZone: string): string {
   const date = new Date(dateInput);
 
   if (isNaN(date.getTime())) {
     throw new Error("Invalid date input");
   }
 
-  const month = date.toLocaleString("en-US", { month: "short" });
+  const month = date.toLocaleString("en-GB", { month: "short", timeZone: timeZone, });
   const day = date.getDate().toString().padStart(2, "0");
   return `${month} ${day}`;
 }

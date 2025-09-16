@@ -144,13 +144,14 @@ function WrapperCheckout({ course, classSysId }: any) {
 
     const Course = {
       startDate:
-        getMonthAndDay(classDetail.startDate) +
+        getMonthAndDay(classDetail.startDate, classDetail.timeZone) +
         ", " +
         getYear(classDetail.startDate),
       endDate:
-        getMonthAndDay(classDetail.endDate) +
+        getMonthAndDay(classDetail.endDate, classDetail.timeZone) +
         ", " +
         getYear(classDetail.endDate),
+      timeZone: classDetail.timeZone,
       quantity: details.numberOfAttendees,
       price: subtotal,
       acronym: acronym,

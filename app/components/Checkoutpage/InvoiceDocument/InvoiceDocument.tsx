@@ -16,6 +16,7 @@ interface Idata {
 interface IselectedCourse {
   startDate: string;
   endDate: string;
+  timeZone: string;
   quantity: number;
   price: number;
   acronym: string;
@@ -146,13 +147,13 @@ const InvoiceDocument = ({
             </View>
             <View style={tableStyles.tableCol}>
               <Text style={tableStyles.tableCell}>
-                {getMonthAndDay(selectedCourse?.startDate)},{" "}
+                {getMonthAndDay(selectedCourse?.startDate, selectedCourse?.timeZone)},{" "}
                 {getYear(selectedCourse?.startDate)}
               </Text>
             </View>
             <View style={tableStyles.tableCol}>
               <Text style={tableStyles.tableCell}>
-                {getMonthAndDay(selectedCourse?.endDate)},{" "}
+                {getMonthAndDay(selectedCourse?.endDate, selectedCourse?.timeZone)},{" "}
                 {getYear(selectedCourse?.endDate)}
               </Text>
             </View>

@@ -25,6 +25,7 @@ interface details {
   numberOfAttendees: number;
   acronym?: string;
   startDate?: string;
+  timeZone? : string;
 }
 interface PaymentMethodSelectorProps {
   methods: PaymentMethod[];
@@ -160,6 +161,7 @@ const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
                         email={details.email}
                         acronym={details.acronym}
                         startDate={details.startDate}
+                        timeZone={details.timeZone}
                       />
                     </Elements>
                   </div>

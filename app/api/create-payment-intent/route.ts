@@ -5,7 +5,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 export async function POST(request: NextRequest) {
   try {
-    const { amount, currency, email, isUk, fullName, acronym, startDate } =
+    const { amount, currency, email, isUk, fullName, acronym, startDate, timeZone } =
       await request.json();
 
     // Validate input data
@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
       amount: Math.round(totalAmount * 100), // Amount in smallest currency unit (e.g., cents)
       currency: currency,
       statement_descriptor_suffix: acronym,
-      description: `Payment for ${acronym} - ${getMonthAndDay(startDate)}, ${getYear(startDate)}`,
+      description: `Payment for ${acronym} - ${getMonthAndDay(startDate, timeZone)}, ${getYear(startDate)}`,
       customer: customer.id,
       receipt_email: email,
       automatic_payment_methods: {

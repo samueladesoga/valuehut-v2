@@ -9,7 +9,7 @@ import MoreInformation from "@/components/DetailsPage/Moreinformation/Moreinform
 import { getCourse } from "@/lib/courseApi";
 import WhoShouldAttend from "@/components/AcademyPage/WhoShouldAttend/WhoShouldAttend";
 import Testimonials from "@/components/Homepage/Testimonials/Testimonials";
-import { getDay, getMonthAndDay } from "@/utils/ConvertDate";
+import { getDisplayDate } from "@/utils/ConvertDate";
 
 export interface PageProps {
   params: {
@@ -33,14 +33,7 @@ export default async function DetailsPage({
     (cls: { classSysId: string }) => cls.classSysId === classSysId
   );
 
-  const startDate = new Date(classDetail.startDate);
-  const endDate = new Date(classDetail.endDate);
-
-  const isSameDay = startDate.toDateString() === endDate.toDateString();
-
-  const combinedDate = isSameDay
-    ? `${getMonthAndDay(classDetail.startDate)}, ${classDetail.year}`
-    : `${getMonthAndDay(classDetail.startDate)} - ${getDay(classDetail.endDate)}, ${classDetail.year}`;
+  const combinedDate = getDisplayDate(classDetail.startDate, classDetail.endDate, classDetail.timeZone)
 
   const CourseDetails = course.courseDetails;
 
