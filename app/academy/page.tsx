@@ -46,7 +46,7 @@ export default async function Home() {
     return {
       ...course,
       firstUnfilledClassDate: firstUnfilledClass
-        ? `${getMonthAndDay(firstUnfilledClass.startDate)}, ${getYear(firstUnfilledClass.startDate)}`
+        ? `${getMonthAndDay(firstUnfilledClass.startDate, firstUnfilledClass.timeZone)}, ${getYear(firstUnfilledClass.startDate)}`
         : "No upcoming dates",
     };
   });
