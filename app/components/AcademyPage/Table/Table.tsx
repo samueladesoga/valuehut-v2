@@ -52,7 +52,7 @@ function Table({
         <td
           className={`w-[20%] xl:w-[25%] px-3 py-4 text-sm font-medium font-secondary ${filled ? "text-secondary" : "text-main"}`}
         >
-          {time}
+          {time} {timeZone}
         </td>
         <td
           className={`w-[20%] xl:w-[25%] px-3 py-4 text-sm font-medium font-secondary ${filled ? "text-secondary" : "text-main"}`}

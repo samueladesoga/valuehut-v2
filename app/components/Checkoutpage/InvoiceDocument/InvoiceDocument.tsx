@@ -118,76 +118,38 @@ const InvoiceDocument = ({
           </Text>
         </View>
         <View style={tableStyles.table}>
-          <View style={tableStyles.tableRow}>
-            <View style={tableStyles.tableColHeader}>
-              <Text style={tableStyles.tableCell}>Course Name</Text>
-            </View>
-            <View style={tableStyles.tableColHeader}>
-              <Text style={tableStyles.tableCell}>Course Date(s)</Text>
-            </View>
-            <View style={tableStyles.tableColHeader}>
-              <Text style={tableStyles.tableCell}>Quantity</Text>
-            </View>
-            <View style={tableStyles.tableColHeader}>
-              <Text style={tableStyles.tableCell}>Price</Text>
-            </View>
-            <View style={tableStyles.tableColHeader}>
-              <Text style={tableStyles.tableCell}>Total</Text>
-            </View>
+          <View style={[tableStyles.row, tableStyles.header]}>
+            <Text style={[tableStyles.cell, tableStyles.col]}>Course Name</Text>
+            <Text style={[tableStyles.cell, tableStyles.col]}>Course Date(s)</Text>
+            <Text style={[tableStyles.cell, tableStyles.col, tableStyles.right]}>Quantity</Text>
+            <Text style={[tableStyles.cell, tableStyles.col, tableStyles.right]}>Price</Text>
+            <Text style={[tableStyles.cell, tableStyles.col, tableStyles.right]}>Total</Text>
           </View>
 
-          <View style={tableStyles.tableRow}>
-            <View style={tableStyles.tableCol}>
-              <Text style={tableStyles.tableCell}>
-                {selectedCourse?.acronym}
-              </Text>
-            </View>
-            <View style={tableStyles.tableCol}>
-              <Text style={tableStyles.tableCell}>
-                {getDisplayDate(selectedCourse.startDate, selectedCourse.endDate, selectedCourse.timeZone)}
-              </Text>
-            </View>
-            <View style={tableStyles.tableCol}>
-              <Text style={tableStyles.tableCell}>{data.quantity}</Text>
-            </View>
-            <View style={tableStyles.tableCol}>
-              <Text style={tableStyles.tableCell}>
-                {selectedCourse?.price.toFixed(2)}
-              </Text>
-            </View>
-            <View style={tableStyles.tableCol}>
-              <Text style={tableStyles.tableCell}>
-                {currency} {totalPrice.toFixed(2)}
-              </Text>
-            </View>
-          </View>
-          <View style={{ ...tableStyles.totalsRow, marginTop: 11 }}>
-            <Text style={[tableStyles.totalsLabel, tableStyles.tableCell]}>
-              Sub-Total
+          <View style={tableStyles.row}>
+            <Text style={[tableStyles.cell, tableStyles.col]}>{selectedCourse?.acronym}</Text>
+            <Text style={[tableStyles.cell, tableStyles.col]}>
+              {getDisplayDate(selectedCourse.startDate, selectedCourse.endDate, selectedCourse.timeZone)}
             </Text>
-            <Text style={[tableStyles.totalsAmount, tableStyles.tableCell]}>
-              {currency} {totalPrice.toFixed(2)}
+            <Text style={[tableStyles.cell, tableStyles.col, tableStyles.right]}>{data.quantity}</Text>
+            <Text style={[tableStyles.cell, tableStyles.col, tableStyles.right]}>{selectedCourse?.price.toFixed(2)}</Text>
+            <Text style={[tableStyles.cell, tableStyles.col, tableStyles.right]}>{currency} {totalPrice.toFixed(2)}</Text>
+          </View>
+
+          <View style={[tableStyles.totalsRow, { marginTop: 11 }]}>
+            <Text style={[tableStyles.totalsLabel, tableStyles.cell]}>Sub-Total</Text>
+            <Text style={[tableStyles.totalsAmount, tableStyles.cell]}>{currency} {totalPrice.toFixed(2)}</Text>
+          </View>
+          <View style={tableStyles.totalsRow}>
+            <Text style={[tableStyles.totalsLabel, tableStyles.cell]}>Tax ({isUk ? '20%' : '0%'}):</Text>
+            <Text style={[tableStyles.totalsAmount, tableStyles.cell]}>
+              {isUk ? `${currency} ${(totalPrice * 0.2).toFixed(2)}` : '$0'}
             </Text>
           </View>
           <View style={tableStyles.totalsRow}>
-            <Text style={[tableStyles.totalsLabel, tableStyles.tableCell]}>
-              Tax ({isUk ? "20%" : "0%"}):
-            </Text>
-            <Text style={[tableStyles.totalsAmount, tableStyles.tableCell]}>
-              {isUk
-                ? `${currency} ${Number(totalPrice * 0.2).toFixed(2)}`
-                : "$0"}
-            </Text>
-          </View>
-          <View style={tableStyles.totalsRow}>
-            <Text style={[tableStyles.totalsLabel, tableStyles.tableCell]}>
-              TOTAL
-            </Text>
-            <Text style={[tableStyles.totalsAmount, tableStyles.tableCell]}>
-              {currency}{" "}
-              {Number(
-                isUk ? totalPrice + totalPrice * 0.2 : totalPrice
-              ).toFixed(2)}
+            <Text style={[tableStyles.totalsLabel, tableStyles.cell]}>TOTAL</Text>
+            <Text style={[tableStyles.totalsAmount, tableStyles.cell]}>
+              {currency} {(isUk ? totalPrice * 1.2 : totalPrice).toFixed(2)}
             </Text>
           </View>
         </View>
@@ -210,7 +172,7 @@ const InvoiceDocument = ({
               fontWeight: "light",
             }}
           >
-            Course Registration is guaranteed on successful payment confirmnation of the total course payment indicated in this invoice.
+            Course Registration is guaranteed on successful payment confirmation of the total course payment indicated in this invoice.
           </Text>
           <Text
             style={{

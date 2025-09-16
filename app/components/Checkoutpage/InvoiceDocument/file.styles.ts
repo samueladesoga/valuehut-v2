@@ -7,8 +7,8 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 40,
     },
     headerImage: {
-        width: 75,
-        height: 75,
+        width: 50,
+        height: 50,
     },
     rowFlex: {
         flexDirection: 'row',
@@ -45,54 +45,52 @@ export const styles = StyleSheet.create({
 })
 
 export const tableStyles = StyleSheet.create({
-    table: {
-        marginTop: 20,
-    },
-    tableRow: {
-        flexDirection: 'row',
-        borderBottomWidth: 1,
-        borderBottomColor: '#cccccc',
-        borderBottomStyle: 'solid',
-        alignItems: 'center',
-        height: 24,
-    },
-    tableColHeader: {
-        width: '25%',
-        fontWeight: 'bold',
-    },
-    tableCol: {
-        width: '25%',
-    },
-    tableCell: {
-        fontSize: 10,
-    },
-    tableColRateHours: {
-        width: '15%', // Adjust as necessary for your layout
-        fontSize: 12,
-    },
-    tableColAmount: {
-        width: '30%', // Adjust as necessary for your layout
-        fontSize: 12,
-        textAlign: 'right',
-    },
-    // Style for the rows containing the subtotal, discount, and total
-    totalsRow: {
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        height: 24,
-    },
-    // Style for the total label column
-    totalsLabel: {
-        width: '70%',
-        textAlign: 'right',
-        fontSize: 12,
-        paddingRight: 10, // Adjust padding as necessary
-    },
-    // Style for the total amount column
-    totalsAmount: {
-        width: '30%',
-        fontSize: 12,
-        textAlign: 'right',
-    },
+  table: { marginTop: 20, width: '100%' },
+
+  row: {
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderBottomColor: '#cccccc',
+    borderBottomStyle: 'solid',
+    alignItems: 'center',
+    minHeight: 24,                // allow wrap if text is long
+  },
+
+  header: {
+    fontWeight: 'bold',
+  },
+
+  // Equal-width columns: each takes 1 share (20% of row)
+  col: {
+    flexGrow: 1,
+    flexBasis: 0,
+  },
+
+  cell: {
+    fontSize: 10,
+    paddingVertical: 6,
+    paddingHorizontal: 6,
+  },
+
+  right: { textAlign: 'right' },
+
+  // Totals rows: first 4 cols act as the label, last 1 col as amount
+  totalsRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    minHeight: 24,
+  },
+  totalsLabel: {
+    flexGrow: 4,   // spans 4 of 5 equal columns (80%)
+    flexBasis: 0,
+    textAlign: 'right',
+    paddingRight: 10,
+    fontSize: 12,
+  },
+  totalsAmount: {
+    flexGrow: 1,   // spans the last column (20%)
+    flexBasis: 0,
+    textAlign: 'right',
+    fontSize: 12,
+  },
 })
