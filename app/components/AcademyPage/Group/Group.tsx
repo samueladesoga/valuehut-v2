@@ -56,13 +56,13 @@ function Group({
           Time
         </h4>
         <span className="text-xl font-semibold font-secondary text-main">
-          {time}
+          {time} {timeZone}
         </span>
       </div>
 
       <div>
         <h4 className="text-sm font-normal font-secondary text-secondary">
-          Type
+          Delivery Mode
         </h4>
         <span className="text-xl font-semibold font-secondary text-main">
           {type}

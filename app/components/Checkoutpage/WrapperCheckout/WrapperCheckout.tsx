@@ -158,7 +158,7 @@ function WrapperCheckout({ course, classSysId }: any) {
       price: subtotal,
       acronym: acronym,
     };
-    
+
     const doc = (
       <InvoiceDocument
         data={data}
@@ -212,6 +212,7 @@ function WrapperCheckout({ course, classSysId }: any) {
   };
 
   const combinedDate = getDisplayDate(classDetail.startDate, classDetail.endDate, classDetail.timeZone);
+  const classTimeWithTimeZone = `${classDetail.time} ${classDetail.timeZone}`;
 
   const handleModalToggle = () => {
     setIsModalOpen((prev) => !prev);
@@ -264,7 +265,7 @@ function WrapperCheckout({ course, classSysId }: any) {
               image={course.logo}
               title={course.title}
               date={combinedDate}
-              time={classDetail.time}
+              time={classTimeWithTimeZone}
               classType={classDetail.classType}
               country={country}
             />

@@ -86,11 +86,11 @@ export async function POST(req: NextRequest) {
                 <div class="content">
                     Dear ${customerName},<br><br>
 
-                    Please find attached an invoice for the ${courseName} class requested<br><br>
+                    Please find attached an invoice for the ${courseName} class requested.<br><br>
 
                     Should you have any questions or require further assistance including the Bank Details for your preferred currency, feel free to contact us.<br>
 
-                    Thank you for your business and we look forward to having you in class.
+                    Thank you for your business and we look forward to having you in class. <br><br>
 
                     Regards, <br>
                     Fisayo Ajayi <br>

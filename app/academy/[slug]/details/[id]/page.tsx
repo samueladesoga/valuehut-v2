@@ -58,7 +58,7 @@ export default async function DetailsPage({
         reviews={courseDetails.reviews}
         schedule={{
           date: combinedDate,
-          time: classDetail.time,
+          time: `${classDetail.time} ${classDetail.timeZone}`,
           classType: classDetail.classType,
         }}
         images={{ heroImage: course.image }}

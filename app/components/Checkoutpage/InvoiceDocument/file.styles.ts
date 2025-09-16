@@ -7,8 +7,8 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 40,
     },
     headerImage: {
-        width: 75,
-        height: 75,
+        width: 50,
+        height: 50,
     },
     rowFlex: {
         flexDirection: 'row',
@@ -57,11 +57,11 @@ export const tableStyles = StyleSheet.create({
         height: 24,
     },
     tableColHeader: {
-        width: '25%',
+        width: '30%',
         fontWeight: 'bold',
     },
     tableCol: {
-        width: '25%',
+        width: '30%',
     },
     tableCell: {
         fontSize: 10,

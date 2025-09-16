@@ -125,7 +125,7 @@ export default async function CourseDetailsPage({ params }: Props) {
                   <tr className="uppercase tracking-[8%]">
                     <td className="px-3 py-4">dates</td>
                     <td className="px-3 py-4">time</td>
-                    <td className="px-3 py-4">type</td>
+                    <td className="px-3 py-4">delivery mode</td>
                   </tr>
                 </thead>
                 {UpcomingClassesData.map((upcomingClass: IClasses, index: number) => (

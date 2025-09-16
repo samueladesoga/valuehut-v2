@@ -210,7 +210,7 @@ const InvoiceDocument = ({
               fontWeight: "light",
             }}
           >
-            Course Registration is guaranteed on successful payment confirmnation of the total course payment indicated in this invoice.
+            Course Registration is guaranteed on successful payment confirmation of the total course payment indicated in this invoice.
           </Text>
           <Text
             style={{

@@ -80,7 +80,7 @@ function DetailsHero({
             </div>
             <div className="flex flex-col gap-2 sm:col-span-3">
               <h4 className="text-sm font-normal font-secondary text-main">
-                Class type
+                Delivery Mode
               </h4>
               <span className=" text-sm font-semibold font-secondary text-main">
                 {schedule.classType}
