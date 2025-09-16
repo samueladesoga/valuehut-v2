@@ -105,6 +105,8 @@ export const getAllCourses = async () => {
     classes: course.classesCollection.items.map((item) => ({
       filled: item.filled,
       startDate: item.startDate,
+      endDate: item.endDate,
+      timeZone: item.timeZone,
       year: getYear(item.startDate),
     })),
   }));
