@@ -9,6 +9,7 @@ import {
   primaryMarket,
   tertiaryMarket,
 } from "@/data/Countries/countries";
+import Select from 'react-select';
 
 interface RegisterModalProps {
   title: string;
@@ -71,35 +72,47 @@ const RegisterModal = ({
             <div className="flex flex-col gap-5">
               <div>
                 <p className="text-sm font-medium font-secondary text-main">
-                  Select your country of residence
+                  Country of residence:
                 </p>
-                <select
+                <span className="block text-xs text-gray-500 mt-1">You can start typing to search or pick from the list.</span>
+                <Select
+                  styles={{
+                    control: (base) => ({
+                      ...base,
+                      border: "none",       // remove React-Select border
+                      boxShadow: "none",    // remove focus ring shadow
+                    }),
+                  }}
                   className="appearance-none mt-2 w-full px-4 py-5 border text-sm border-neutral-300 font-normal font-secondary rounded-lg text-secondary"
-                  defaultValue={selectedCountry}
-                  onChange={(e) => setSelectedCountry(e.target.value)}
-                >
-                  <optgroup label="Primary Market">
-                    {primaryMarket.map((country, index) => (
-                      <option key={index} value={country}>
-                        {country}
-                      </option>
-                    ))}
-                  </optgroup>
-                  <optgroup label="Secondary Market">
-                    {secondaryMarket.map((country, index) => (
-                      <option key={index} value={country}>
-                        {country}
-                      </option>
-                    ))}
-                  </optgroup>
-                  <optgroup label="Tertiary Market">
-                    {tertiaryMarket.map((country, index) => (
-                      <option key={index} value={country}>
-                        {country}
-                      </option>
-                    ))}
-                  </optgroup>
-                </select>
+                  options={[
+                    {
+                      label: "Primary Market",
+                      options: primaryMarket.map((country) => ({
+                        value: country,
+                        label: country,
+                      })),
+                    },
+                    {
+                      label: "Secondary Market",
+                      options: secondaryMarket.map((country) => ({
+                        value: country,
+                        label: country,
+                      })),
+                    },
+                    {
+                      label: "Tertiary Market",
+                      options: tertiaryMarket.map((country) => ({
+                        value: country,
+                        label: country,
+                      })),
+                    },
+                  ]}
+                  value={{ value: selectedCountry, label: selectedCountry }}
+                  onChange={(option) => {
+                    if (option) setSelectedCountry(option.value);
+                  }}
+                  isSearchable
+                />
               </div>
 
               <div className="flex gap-1  md:gap-[10px] text-[16px] leading-4 md:text-sm text-main font-secondary p-4 rounded-lg bg-[#E7EFFD]">
