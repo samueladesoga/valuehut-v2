@@ -1,6 +1,6 @@
 import { convertDate, getYear } from "@/utils/ConvertDate";
 
-interface ICourses {
+export interface ICourses {
   courseDetailsCollection: {
     items: {
       title: string;

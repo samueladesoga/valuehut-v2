@@ -7,6 +7,18 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import { motion } from "framer-motion";
 import Table from "@/components/AcademyPage/Table/Table";
 
+interface IClasses {
+  classSysId: string;
+  id: string;
+  time: string;
+  classType: string;
+  filled: boolean;
+  startDate: string;
+  endDate: string;
+  timeZone: string;
+  year: string;
+}
+
 function DetailsHero({
   title,
   description,
@@ -96,9 +108,8 @@ function DetailsHero({
               <div className="flex gap-3">
                 <Button
                   rounded="full"
-                  bgColor="gray-400"
+                  className="bg-[#dddddd]"
                   disabled={true}
-                  className="flex items-center gap-2"
                 >
                   Fully Booked
                 </Button>
@@ -115,8 +126,8 @@ function DetailsHero({
               </div>
             ) : (
               <Button
-            rounded="full"
-              bgColor="fill-brand-secondary"
+                rounded="full"
+                bgColor="fill-brand-secondary"
                 onClick={handleModalToggle}
               >
                 Register Now
@@ -153,7 +164,7 @@ function DetailsHero({
           <h2 className="text-3xl font-medium text-main font-primary mb-6">
             Available Classes
           </h2>
-          
+
           <table className="w-full bg-[#032432] mt-6 rounded-xl">
             <thead className="text-sm font-semibold font-secondary text-white">
               <tr className="uppercase tracking-[8%]">
@@ -162,7 +173,7 @@ function DetailsHero({
                 <td className="px-3 py-4">delivery mode</td>
               </tr>
             </thead>
-            {availableClasses.map((availableClass: any, index: number) => (
+            {availableClasses.map((availableClass: IClasses, index: number) => (
               <tbody className="bg-white" key={index}>
                 <Table
                   classSysId={availableClass.classSysId}
