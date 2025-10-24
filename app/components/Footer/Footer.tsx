@@ -2,12 +2,17 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@/components/Button/Button";
 import { useRouter } from "next/navigation";
 
 const Footer: React.FC = () => {
   const router = useRouter();
+  const [currentYear, setCurrentYear] = useState(2024); // Default fallback
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
 
   const navigateToContactUs = () => {
     router.push("/contact-us");
@@ -138,7 +143,7 @@ const Footer: React.FC = () => {
         <div className="mt-10 pt-8 sm:mt-20 lg:mt-24  w-full flex justify-center md:justify-between ">
           <div className="flex flex-col-reverse sm:flex-row w-full justify-between text-sm  font-secondary text-accentmain font-medium">
             <p className="text-sm font-secondary text-accentmain mt-4  sm:mt-0 w-full  text-center md:text-start justify-center  font-medium">
-              2014 - {new Date().getFullYear()} ValueHut Consulting Limited - All rights reserved.
+              2014 - {currentYear} ValueHut Consulting Limited - All rights reserved.
             </p>
             <nav className=" w-full flex  gap-10 justify-between md:justify-end">
               <Link href="#">Privacy Policy</Link>

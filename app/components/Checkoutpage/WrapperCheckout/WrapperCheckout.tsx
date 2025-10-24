@@ -172,7 +172,7 @@ function WrapperCheckout({ course, classSysId }: any) {
 
     const blob = await asPdf.toBlob();
 
-    const fileName = `Invoice_ValueHut_${data.fullname}_${new Date().getTime()}.pdf`;
+    const fileName = `Invoice_ValueHut_${data.fullname}_${Date.now()}.pdf`;
 
     const formData = new FormData();
 
