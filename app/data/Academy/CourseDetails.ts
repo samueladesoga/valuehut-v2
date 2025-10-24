@@ -20,6 +20,9 @@ export interface ICourseDetails {
   logo:string
   courseId:string
   classSysId:string
+  filled: boolean
+  course?: any
+  availableClasses?: any[]
 }
 
 export const courseDetails: ICourseDetails = {
@@ -44,5 +47,6 @@ export const courseDetails: ICourseDetails = {
   },
   logo: "",
   courseId: "",
-  classSysId: ""
+  classSysId: "",
+  filled: false
 };

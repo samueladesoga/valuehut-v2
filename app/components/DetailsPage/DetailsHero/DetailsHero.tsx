@@ -5,6 +5,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import { motion } from "framer-motion";
+import Table from "@/components/AcademyPage/Table/Table";
 
 function DetailsHero({
   title,
@@ -16,6 +17,9 @@ function DetailsHero({
   logo,
   courseId,
   classSysId,
+  filled,
+  course,
+  availableClasses,
 }: ICourseDetails) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
@@ -88,13 +92,36 @@ function DetailsHero({
             </div>
           </div>
           <div className="pt-4">
-            <Button
-              rounded="full"
+            {filled ? (
+              <div className="flex gap-3">
+                <Button
+                  rounded="full"
+                  bgColor="gray-400"
+                  disabled={true}
+                  className="flex items-center gap-2"
+                >
+                  Fully Booked
+                </Button>
+                <Button
+                  rounded="full"
+                  bgColor="fill-brand-secondary"
+                  onClick={() => {
+                    // Navigate to academy page or scroll to other classes
+                    window.location.href = '/academy';
+                  }}
+                >
+                  See other classes
+                </Button>
+              </div>
+            ) : (
+              <Button
+            rounded="full"
               bgColor="fill-brand-secondary"
-              onClick={handleModalToggle}
-            >
-              Register Now
-            </Button>
+                onClick={handleModalToggle}
+              >
+                Register Now
+              </Button>
+            )}
           </div>
         </div>
 
@@ -118,6 +145,41 @@ function DetailsHero({
           courseId={courseId}
           classSysId={classSysId}
         />
+      )}
+
+      {/* Available Classes Table - Only show when filled=true */}
+      {filled && availableClasses && availableClasses.length > 0 && (
+        <div className="mt-8">
+          <h2 className="text-3xl font-medium text-main font-primary mb-6">
+            Available Classes
+          </h2>
+          
+          <table className="w-full bg-[#032432] mt-6 rounded-xl">
+            <thead className="text-sm font-semibold font-secondary text-white">
+              <tr className="uppercase tracking-[8%]">
+                <td className="px-3 py-4">dates</td>
+                <td className="px-3 py-4">time</td>
+                <td className="px-3 py-4">delivery mode</td>
+              </tr>
+            </thead>
+            {availableClasses.map((availableClass: any, index: number) => (
+              <tbody className="bg-white" key={index}>
+                <Table
+                  classSysId={availableClass.classSysId}
+                  startDate={availableClass.startDate}
+                  endDate={availableClass.endDate}
+                  year={availableClass.year}
+                  time={availableClass.time}
+                  type={availableClass.classType}
+                  filled={availableClass.filled}
+                  courseId={courseId}
+                  course={course}
+                  timeZone={availableClass.timeZone}
+                />
+              </tbody>
+            ))}
+          </table>
+        </div>
       )}
     </div>
   );
