@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Page, Text, View, Document, Image } from "@react-pdf/renderer";
 import { styles, tableStyles } from "./file.styles";
 import LogoVH from "@/logo192.png";
@@ -31,7 +31,16 @@ const InvoiceDocument = ({
   selectedCourse: IselectedCourse;
   isUk: boolean;
 }) => {
-  const today = new Date().toLocaleDateString("en-GB", { timeZone: selectedCourse.timeZone });
+  const [today, setToday] = useState("");
+  const [invoiceNumber, setInvoiceNumber] = useState("");
+
+  useEffect(() => {
+    const currentDate = new Date().toLocaleDateString("en-GB", { timeZone: selectedCourse.timeZone });
+    const timestamp = Date.now();
+    setToday(currentDate);
+    setInvoiceNumber(timestamp.toString());
+  }, [selectedCourse.timeZone]);
+
   const totalPrice = selectedCourse ? selectedCourse.price * data.quantity : 0;
   const currency = isUk ? "£" : "$";
   return (
@@ -53,7 +62,7 @@ const InvoiceDocument = ({
                 fontWeight: "bold",
               }}
             >
-              Invoice No: {new Date().getTime()}
+              Invoice No: {invoiceNumber}
             </Text>
             <Text>Date: {today}</Text>
             <Text>Due Date: {today}</Text>

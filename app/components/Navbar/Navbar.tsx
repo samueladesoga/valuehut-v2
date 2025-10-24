@@ -28,10 +28,17 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
   );
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
+    
     const handleClickOutside = (event: MouseEvent) => {
       if (
         dropdownRef.current &&
@@ -46,9 +53,11 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [isClient]);
 
   useEffect(() => {
+    if (!isClient) return;
+    
     const handleScroll = () => {
       if (window.scrollY > 600) {
         setScrolled(true);
@@ -62,7 +71,7 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isClient]);
 
   const toggleDropdown = (index: number) => {
     setOpenDropdownIndex(openDropdownIndex === index ? null : index);
@@ -85,7 +94,7 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
     isMobileMenuOpen ||
     isWhiteBackgroundRoutes.includes(pathname) ||
     isDynamicWhiteBackgroundRoute ||
-    scrolled ||
+    (isClient && scrolled) ||
     isWhiteHero;
 
   const logo = isNavbarWhite ? logoY : logoX;
