@@ -43,6 +43,9 @@ function DetailsHero({
   const handleShowAvailableClasses = () => {
     setShowAvailableClasses((prev) => !prev);
   };
+
+  // Filter out filled classes - only show available classes
+  const availableClassesFiltered = availableClasses?.filter((cls: IClasses) => !cls.filled) || [];
   return (
     <div className="container px-4 xl:px-0 pt-36">
       <div className="flex gap-5 justify-between">
@@ -118,13 +121,15 @@ function DetailsHero({
                 >
                   Fully Booked
                 </Button>
-                <Button
-                  rounded="full"
-                  bgColor="fill-brand-secondary"
-                  onClick={handleShowAvailableClasses}
-                >
-                  {showAvailableClasses ? "Hide other classes" : "See other classes"}
-                </Button>
+                {availableClassesFiltered.length > 0 && (
+                  <Button
+                    rounded="full"
+                    bgColor="fill-brand-secondary"
+                    onClick={handleShowAvailableClasses}
+                  >
+                    {showAvailableClasses ? "Hide other classes" : "See other classes"}
+                  </Button>
+                )}
               </div>
             ) : (
               <Button
@@ -160,8 +165,8 @@ function DetailsHero({
         />
       )}
 
-      {/* Available Classes Table - Only show when filled=true and user clicks "See other classes" */}
-      {filled && availableClasses && availableClasses.length > 0 && (
+      {/* Available Classes Table - Only show when filled=true, user clicks "See other classes", and there are available classes */}
+      {filled && availableClassesFiltered.length > 0 && (
         <motion.div
           initial={{ opacity: 0, height: 0 }}
           animate={{ 
@@ -201,7 +206,7 @@ function DetailsHero({
                     <td className="px-3 py-4">delivery mode</td>
                   </tr>
                 </thead>
-                {availableClasses.map((availableClass: IClasses, index: number) => (
+                {availableClassesFiltered.map((availableClass: IClasses, index: number) => (
                   <tbody className="bg-white" key={index}>
                     <Table
                       classSysId={availableClass.classSysId}

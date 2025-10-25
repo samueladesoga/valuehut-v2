@@ -2,8 +2,6 @@ import { JSX } from "react";
 import { ICourses } from "@/lib/courseApi";
 
 interface IClasses {
-  length: number;
-  map(arg0: (availableClass: IClasses, index: number) => JSX.Element): import("react").ReactNode;
   classSysId: string;
   id: string;
   time: string;
@@ -38,7 +36,7 @@ export interface ICourseDetails {
   classSysId:string
   filled: boolean
   course?: ICourses
-  availableClasses?: IClasses;
+  availableClasses?: IClasses[];
 }
 
 export const courseDetails: ICourseDetails = {
