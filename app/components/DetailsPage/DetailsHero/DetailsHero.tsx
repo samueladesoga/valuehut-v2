@@ -45,7 +45,9 @@ function DetailsHero({
   };
 
   // Filter out filled classes - only show available classes
-  const availableClassesFiltered = availableClasses?.filter((cls: IClasses) => !cls.filled) || [];
+  const availableClassesFiltered = Array.isArray(availableClasses)
+    ? availableClasses.filter((cls: IClasses) => !cls.filled)
+    : [];
   return (
     <div className="container px-4 xl:px-0 pt-36">
       <div className="flex gap-5 justify-between">
