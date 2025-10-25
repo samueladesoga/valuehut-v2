@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import { motion } from "framer-motion";
 import Table from "@/components/AcademyPage/Table/Table";
+import Group from "@/components/AcademyPage/Group/Group";
 
 interface IClasses {
   classSysId: string;
@@ -171,12 +172,12 @@ function DetailsHero({
       {filled && availableClassesFiltered.length > 0 && (
         <motion.div
           initial={{ opacity: 0, height: 0 }}
-          animate={{ 
-            opacity: showAvailableClasses ? 1 : 0, 
-            height: showAvailableClasses ? "auto" : 0 
+          animate={{
+            opacity: showAvailableClasses ? 1 : 0,
+            height: showAvailableClasses ? "auto" : 0
           }}
-          transition={{ 
-            duration: 0.5, 
+          transition={{
+            duration: 0.5,
             ease: "easeInOut",
             opacity: { duration: 0.3 },
             height: { duration: 0.4 }
@@ -187,44 +188,78 @@ function DetailsHero({
             <h2 className="text-3xl font-medium text-main font-primary mb-6">
               Available Classes
             </h2>
-   
+            
+            {/* Desktop Table */}
+            <div className="hidden md:block">
+              <motion.div
+                initial={{ y: -20, opacity: 0 }}
+                animate={{
+                  y: showAvailableClasses ? 0 : -20,
+                  opacity: showAvailableClasses ? 1 : 0
+                }}
+                transition={{
+                  duration: 0.4,
+                  delay: showAvailableClasses ? 0.2 : 0,
+                  ease: "easeOut"
+                }}
+              >
+                <table className="w-full bg-[#032432] mt-6 rounded-xl">
+                  <thead className="text-sm font-semibold font-secondary text-white">
+                    <tr className="uppercase tracking-[8%]">
+                      <td className="px-3 py-4">dates</td>
+                      <td className="px-3 py-4">time</td>
+                      <td className="px-3 py-4">delivery mode</td>
+                    </tr>
+                  </thead>
+                  {availableClassesFiltered.map((availableClass: IClasses, index: number) => (
+                    <tbody className="bg-white" key={index}>
+                      <Table
+                        classSysId={availableClass.classSysId}
+                        startDate={availableClass.startDate}
+                        endDate={availableClass.endDate}
+                        year={availableClass.year}
+                        time={availableClass.time}
+                        type={availableClass.classType}
+                        filled={availableClass.filled}
+                        courseId={courseId}
+                        course={course}
+                        timeZone={availableClass.timeZone}
+                      />
+                    </tbody>
+                  ))}
+                </table>
+              </motion.div>
+            </div>
+
+            {/* Mobile Cards */}
             <motion.div
               initial={{ y: -20, opacity: 0 }}
-              animate={{ 
-                y: showAvailableClasses ? 0 : -20, 
-                opacity: showAvailableClasses ? 1 : 0 
+              animate={{
+                y: showAvailableClasses ? 0 : -20,
+                opacity: showAvailableClasses ? 1 : 0
               }}
-              transition={{ 
-                duration: 0.4, 
+              transition={{
+                duration: 0.4,
                 delay: showAvailableClasses ? 0.2 : 0,
                 ease: "easeOut"
               }}
+              className="flex flex-col gap-3 items-start md:hidden px-4"
             >
-              <table className="w-full bg-[#032432] mt-6 rounded-xl">
-                <thead className="text-sm font-semibold font-secondary text-white">
-                  <tr className="uppercase tracking-[8%]">
-                    <td className="px-3 py-4">dates</td>
-                    <td className="px-3 py-4">time</td>
-                    <td className="px-3 py-4">delivery mode</td>
-                  </tr>
-                </thead>
-                {availableClassesFiltered.map((availableClass: IClasses, index: number) => (
-                  <tbody className="bg-white" key={index}>
-                    <Table
-                      classSysId={availableClass.classSysId}
-                      startDate={availableClass.startDate}
-                      endDate={availableClass.endDate}
-                      year={availableClass.year}
-                      time={availableClass.time}
-                      type={availableClass.classType}
-                      filled={availableClass.filled}
-                      courseId={courseId}
-                      course={course}
-                      timeZone={availableClass.timeZone}
-                    />
-                  </tbody>
-                ))}
-              </table>
+              {availableClassesFiltered.map((availableClass: IClasses, index: number) => (
+                <Group
+                  key={index}
+                  classSysId={availableClass.classSysId}
+                  startDate={availableClass.startDate}
+                  endDate={availableClass.endDate}
+                  year={availableClass.year}
+                  time={availableClass.time}
+                  type={availableClass.classType}
+                  filled={availableClass.filled}
+                  courseId={courseId}
+                  course={course}
+                  timeZone={availableClass.timeZone}
+                />
+              ))}
             </motion.div>
           </div>
         </motion.div>

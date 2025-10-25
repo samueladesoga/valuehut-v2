@@ -28,7 +28,15 @@ function Group({
   };
 
   const handleClassesDetails = () => {
-    router.push(`${pathname}/details/${classSysId}`);
+    // Check if we're already on a details page
+    if (pathname.includes('/details/')) {
+      // If on details page, replace the current classSysId with the new one
+      const basePath = pathname.split('/details/')[0];
+      router.push(`${basePath}/details/${classSysId}`);
+    } else {
+      // If on academy page, add details path
+      router.push(`${pathname}/details/${classSysId}`);
+    }
 
     const classDetail = course.classes.find(
       (cls: { classSysId: string }) => cls.classSysId === classSysId
