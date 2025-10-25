@@ -5,6 +5,19 @@ import Image from "next/image";
 import React, { useState } from "react";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import { motion } from "framer-motion";
+import Table from "@/components/AcademyPage/Table/Table";
+
+interface IClasses {
+  classSysId: string;
+  id: string;
+  time: string;
+  classType: string;
+  filled: boolean;
+  startDate: string;
+  endDate: string;
+  timeZone: string;
+  year: string;
+}
 
 function DetailsHero({
   title,
@@ -16,12 +29,25 @@ function DetailsHero({
   logo,
   courseId,
   classSysId,
+  filled,
+  course,
+  availableClasses,
 }: ICourseDetails) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [showAvailableClasses, setShowAvailableClasses] = useState<boolean>(false);
 
   const handleModalToggle = () => {
     setIsModalOpen((prev) => !prev);
   };
+
+  const handleShowAvailableClasses = () => {
+    setShowAvailableClasses((prev) => !prev);
+  };
+
+  // Filter out filled classes - only show available classes
+  const availableClassesFiltered = Array.isArray(availableClasses)
+    ? availableClasses.filter((cls: IClasses) => !cls.filled)
+    : [];
   return (
     <div className="container px-4 xl:px-0 pt-36">
       <div className="flex gap-5 justify-between">
@@ -88,13 +114,34 @@ function DetailsHero({
             </div>
           </div>
           <div className="pt-4">
-            <Button
-              rounded="full"
-              bgColor="fill-brand-secondary"
-              onClick={handleModalToggle}
-            >
-              Register Now
-            </Button>
+            {filled ? (
+              <div className="flex gap-3">
+                <Button
+                  rounded="full"
+                  className="bg-[#dddddd]"
+                  disabled={true}
+                >
+                  Fully Booked
+                </Button>
+                {availableClassesFiltered.length > 0 && (
+                  <Button
+                    rounded="full"
+                    bgColor="fill-brand-secondary"
+                    onClick={handleShowAvailableClasses}
+                  >
+                    {showAvailableClasses ? "Hide other classes" : "See other classes"}
+                  </Button>
+                )}
+              </div>
+            ) : (
+              <Button
+                rounded="full"
+                bgColor="fill-brand-secondary"
+                onClick={handleModalToggle}
+              >
+                Register Now
+              </Button>
+            )}
           </div>
         </div>
 
@@ -118,6 +165,69 @@ function DetailsHero({
           courseId={courseId}
           classSysId={classSysId}
         />
+      )}
+
+      {/* Available Classes Table - Only show when filled=true, user clicks "See other classes", and there are available classes */}
+      {filled && availableClassesFiltered.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ 
+            opacity: showAvailableClasses ? 1 : 0, 
+            height: showAvailableClasses ? "auto" : 0 
+          }}
+          transition={{ 
+            duration: 0.5, 
+            ease: "easeInOut",
+            opacity: { duration: 0.3 },
+            height: { duration: 0.4 }
+          }}
+          className="overflow-hidden"
+        >
+          <div className="mt-8">
+            <h2 className="text-3xl font-medium text-main font-primary mb-6">
+              Available Classes
+            </h2>
+   
+            <motion.div
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ 
+                y: showAvailableClasses ? 0 : -20, 
+                opacity: showAvailableClasses ? 1 : 0 
+              }}
+              transition={{ 
+                duration: 0.4, 
+                delay: showAvailableClasses ? 0.2 : 0,
+                ease: "easeOut"
+              }}
+            >
+              <table className="w-full bg-[#032432] mt-6 rounded-xl">
+                <thead className="text-sm font-semibold font-secondary text-white">
+                  <tr className="uppercase tracking-[8%]">
+                    <td className="px-3 py-4">dates</td>
+                    <td className="px-3 py-4">time</td>
+                    <td className="px-3 py-4">delivery mode</td>
+                  </tr>
+                </thead>
+                {availableClassesFiltered.map((availableClass: IClasses, index: number) => (
+                  <tbody className="bg-white" key={index}>
+                    <Table
+                      classSysId={availableClass.classSysId}
+                      startDate={availableClass.startDate}
+                      endDate={availableClass.endDate}
+                      year={availableClass.year}
+                      time={availableClass.time}
+                      type={availableClass.classType}
+                      filled={availableClass.filled}
+                      courseId={courseId}
+                      course={course}
+                      timeZone={availableClass.timeZone}
+                    />
+                  </tbody>
+                ))}
+              </table>
+            </motion.div>
+          </div>
+        </motion.div>
       )}
     </div>
   );

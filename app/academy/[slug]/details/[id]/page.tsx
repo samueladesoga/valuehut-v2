@@ -65,9 +65,12 @@ export default async function DetailsPage({
         logo={course.logo}
         courseId={courseId}
         classSysId={classSysId}
+        filled={classDetail.filled}
+        course={course}
+        availableClasses={course.classes}
       />
-      <div className="bg-white xl:px-12 py-8 mt-12 ">
-        <div className="container px-4 xl:px-0 flex flex-col gap-14">
+      <div className="container rounded-xl bg-white xl:px-12 py-8 mt-12 ">
+        <div className=" px-4 xl:px-0 flex flex-col gap-14">
           <Aboutcourse description={course.description} logo={course.logo} />
           {CourseObjectivesData && (
             <div className="flex flex-col gap-5">

@@ -1,3 +1,19 @@
+import { JSX } from "react";
+import { ICourses } from "@/lib/courseApi";
+
+interface IClasses {
+  length: number;
+  map(arg0: (availableClass: IClasses, index: number) => JSX.Element): import("react").ReactNode;
+  classSysId: string;
+  id: string;
+  time: string;
+  classType: string;
+  filled: boolean;
+  startDate: string;
+  endDate: string;
+  timeZone: string;
+  year: string;
+}
 export interface ICourseDetails {
   title: string;
   description: string;
@@ -20,6 +36,9 @@ export interface ICourseDetails {
   logo:string
   courseId:string
   classSysId:string
+  filled: boolean
+  course?: ICourses
+  availableClasses?: IClasses;
 }
 
 export const courseDetails: ICourseDetails = {
@@ -44,5 +63,6 @@ export const courseDetails: ICourseDetails = {
   },
   logo: "",
   courseId: "",
-  classSysId: ""
+  classSysId: "",
+  filled: false
 };
