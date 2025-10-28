@@ -61,9 +61,7 @@ const ContactForm: React.FC = () => {
       )
       .then(      
         function () {
-        if (typeof window !== "undefined") {
             toast.success("Email has been sent successfully!");
-        }
         setFormData({
           fullName: "",
           email: "",
@@ -74,9 +72,7 @@ const ContactForm: React.FC = () => {
       },
         (err: any) => {
           console.error("FAILED...", err);
-          if (typeof window !== "undefined") {
               toast.error("Failed to send email. Please try again.");
-          }
         }
       )
       .finally(() => {

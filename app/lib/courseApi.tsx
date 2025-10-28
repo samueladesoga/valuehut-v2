@@ -1,6 +1,6 @@
 import { convertDate, getYear } from "@/utils/ConvertDate";
 
-interface ICourses {
+export interface ICourses {
   courseDetailsCollection: {
     items: {
       title: string;
@@ -17,6 +17,7 @@ interface ICourses {
       filled: boolean;
       startDate: string;
       endDate: string;
+      timeZone: string;
       classType: string;
       time: string;
       ukPrice: number;
@@ -64,6 +65,7 @@ export const getAllCourses = async () => {
           filled
           startDate
           endDate
+          timeZone
           classType
           time
           ukPrice
@@ -103,6 +105,8 @@ export const getAllCourses = async () => {
     classes: course.classesCollection.items.map((item) => ({
       filled: item.filled,
       startDate: item.startDate,
+      endDate: item.endDate,
+      timeZone: item.timeZone,
       year: getYear(item.startDate),
     })),
   }));
@@ -145,6 +149,7 @@ export const getCourse = async (slug: string) => {
               filled
               startDate
               endDate
+              timeZone
               classType
               time
               ukPrice
@@ -193,6 +198,7 @@ export const getCourse = async (slug: string) => {
       filled: item.filled,
       startDate: item.startDate,
       endDate: item.endDate,
+      timeZone: item.timeZone,
       year: getYear(item.startDate),
       classType: item.classType,
       time: item.time,

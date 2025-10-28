@@ -5,12 +5,12 @@ import { usePathname, useRouter } from "next/navigation";
 import Button from "@/components/Button/Button";
 import { IUpcomingClassesData } from "@/data/Academy/UpcomingClasses";
 import RegisterModal from "@/components/DetailsPage/RegisterModal/RegisterModal";
-import { getDay, getDisplayDate, getMonthAndDay } from "@/utils/ConvertDate";
+import { getDisplayDate } from "@/utils/ConvertDate";
 
 function Group({
   startDate,
   endDate,
-  year,
+  timeZone,
   time,
   type,
   filled,
@@ -28,21 +28,23 @@ function Group({
   };
 
   const handleClassesDetails = () => {
-    router.push(`${pathname}/details/${classSysId}`);
+    // Check if we're already on a details page
+    if (pathname.includes('/details/')) {
+      // If on details page, replace the current classSysId with the new one
+      const basePath = pathname.split('/details/')[0];
+      router.push(`${basePath}/details/${classSysId}`);
+    } else {
+      // If on academy page, add details path
+      router.push(`${pathname}/details/${classSysId}`);
+    }
 
     const classDetail = course.classes.find(
       (cls: { classSysId: string }) => cls.classSysId === classSysId
     );
 
     if (classDetail) {
-      const startDateDay = classDetail.startDate.split(" ")[1];
-      const endDateDay = classDetail.endDate.split(" ")[0];
-
-      const date =
-        startDateDay === endDateDay
-          ? `${getMonthAndDay(classDetail.startDate)}, ${classDetail.year}`
-          : `${getMonthAndDay(classDetail.startDate)} - ${getDay(classDetail.endDate)}, ${classDetail.year}`;
-      setCombinedDate(date);
+      const combinedDate = getDisplayDate(startDate, endDate, timeZone);
+      setCombinedDate(combinedDate);
     }
   };
 
@@ -53,7 +55,7 @@ function Group({
           Date
         </h4>
         <span className="text-xl font-semibold font-secondary text-main">
-          {`${getDisplayDate(startDate, endDate)}, ${year}`}
+          {`${getDisplayDate(startDate, endDate, timeZone)}`}
         </span>
       </div>
 
@@ -62,13 +64,13 @@ function Group({
           Time
         </h4>
         <span className="text-xl font-semibold font-secondary text-main">
-          {time}
+          {time} {timeZone}
         </span>
       </div>
 
       <div>
         <h4 className="text-sm font-normal font-secondary text-secondary">
-          Type
+          Delivery Mode
         </h4>
         <span className="text-xl font-semibold font-secondary text-main">
           {type}

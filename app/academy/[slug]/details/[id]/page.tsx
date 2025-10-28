@@ -9,7 +9,7 @@ import MoreInformation from "@/components/DetailsPage/Moreinformation/Moreinform
 import { getCourse } from "@/lib/courseApi";
 import WhoShouldAttend from "@/components/AcademyPage/WhoShouldAttend/WhoShouldAttend";
 import Testimonials from "@/components/Homepage/Testimonials/Testimonials";
-import { getDay, getMonthAndDay } from "@/utils/ConvertDate";
+import { getDisplayDate } from "@/utils/ConvertDate";
 
 export interface PageProps {
   params: {
@@ -33,14 +33,7 @@ export default async function DetailsPage({
     (cls: { classSysId: string }) => cls.classSysId === classSysId
   );
 
-  const startDate = new Date(classDetail.startDate);
-  const endDate = new Date(classDetail.endDate);
-
-  const isSameDay = startDate.toDateString() === endDate.toDateString();
-
-  const combinedDate = isSameDay
-    ? `${getMonthAndDay(classDetail.startDate)}, ${classDetail.year}`
-    : `${getMonthAndDay(classDetail.startDate)} - ${getDay(classDetail.endDate)}, ${classDetail.year}`;
+  const combinedDate = getDisplayDate(classDetail.startDate, classDetail.endDate, classDetail.timeZone)
 
   const CourseDetails = course.courseDetails;
 
@@ -65,16 +58,19 @@ export default async function DetailsPage({
         reviews={courseDetails.reviews}
         schedule={{
           date: combinedDate,
-          time: classDetail.time,
+          time: `${classDetail.time} ${classDetail.timeZone}`,
           classType: classDetail.classType,
         }}
         images={{ heroImage: course.image }}
         logo={course.logo}
         courseId={courseId}
         classSysId={classSysId}
+        filled={classDetail.filled}
+        course={course}
+        availableClasses={course.classes}
       />
-      <div className="bg-white xl:px-12 py-8 mt-12 ">
-        <div className="container px-4 xl:px-0 flex flex-col gap-14">
+      <div className="container rounded-xl bg-white xl:px-12 py-8 mt-12 ">
+        <div className=" px-4 xl:px-0 flex flex-col gap-14">
           <Aboutcourse description={course.description} logo={course.logo} />
           {CourseObjectivesData && (
             <div className="flex flex-col gap-5">

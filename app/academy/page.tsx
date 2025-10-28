@@ -31,7 +31,6 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const courses = await getAllCourses();
-
   const processedCourses = courses.map((course: any) => {
     const unfilledClasses = course.classes
       .filter((cls: any) => !cls.filled)
@@ -46,7 +45,7 @@ export default async function Home() {
     return {
       ...course,
       firstUnfilledClassDate: firstUnfilledClass
-        ? `${getMonthAndDay(firstUnfilledClass.startDate)}, ${getYear(firstUnfilledClass.startDate)}`
+        ? `${getMonthAndDay(firstUnfilledClass.startDate, firstUnfilledClass.timeZone)}, ${getYear(firstUnfilledClass.startDate)}`
         : "No upcoming dates",
     };
   });

@@ -6,12 +6,11 @@ import { usePathname, useRouter } from "next/navigation";
 import Button from "@/components/Button/Button";
 import { IUpcomingClassesData } from "@/data/Academy/UpcomingClasses";
 import RegisterModal from "@/components/DetailsPage/RegisterModal/RegisterModal";
-import { getDay, getDisplayDate, getMonthAndDay } from "@/utils/ConvertDate";
+import { getDisplayDate } from "@/utils/ConvertDate";
 
 function Table({
   startDate,
   endDate,
-  year,
   time,
   type,
   filled,
@@ -29,39 +28,46 @@ function Table({
   const pathname = usePathname();
 
   const handleClassesDetails = () => {
-    router.push(`${pathname}/details/${classSysId}`);
+    // Check if we're already on a details page
+    if (pathname.includes('/details/')) {
+      // If on details page, replace the current classSysId with the new one
+      const basePath = pathname.split('/details/')[0];
+      router.push(`${basePath}/details/${classSysId}`);
+    } else {
+      // If on academy page, add details path
+      router.push(`${pathname}/details/${classSysId}`);
+    }
   };
 
   const classDetail = course.classes.find(
     (cls: { classSysId : string}) => cls.classSysId === classSysId
   );
 
-  const startDateDay = classDetail.startDate.split(" ")[1];
-  const endDateDay = classDetail.endDate.split(" ")[0];
+  //startDate = classDetail.startDate;
+  //endDate = classDetail.endDate;
+  const timeZone = classDetail.timeZone;
 
-  const combinedDate =
-    startDateDay === endDateDay
-      ? `${getMonthAndDay(classDetail.startDate)}, ${classDetail.year}`
-      : `${getMonthAndDay(classDetail.startDate)} - ${getDay(classDetail.endDate)}, ${classDetail.year}`;
+  const combinedDate = getDisplayDate(startDate, endDate, timeZone);
+
   return (
     <>
       <tr>
         <td
           className={`w-[25%] xl:w-[25%] px-3 py-4 text-sm font-medium font-secondary ${filled ? "text-secondary" : "text-main"}`}
         >
-          {`${getDisplayDate(startDate, endDate)}, ${year}`}
+          {`${getDisplayDate(startDate, endDate, timeZone)}`}
         </td>
         <td
           className={`w-[20%] xl:w-[25%] px-3 py-4 text-sm font-medium font-secondary ${filled ? "text-secondary" : "text-main"}`}
         >
-          {time}
+          {time} {timeZone}
         </td>
         <td
           className={`w-[20%] xl:w-[25%] px-3 py-4 text-sm font-medium font-secondary ${filled ? "text-secondary" : "text-main"}`}
         >
           {type}
         </td>
-        <td className="w-[35%] xl:w-[25%]">
+        <td className="w-[35%] xl:w-[25%] px-3">
           <div className="w-full flex xl:gap-4 justify-end">
             {!filled ? (
               <>

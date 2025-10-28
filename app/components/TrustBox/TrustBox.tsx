@@ -1,6 +1,6 @@
 "use client";
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 declare global {
   interface Window {
@@ -10,14 +10,22 @@ declare global {
 
 const TrustBox = () => {
   const ref = React.useRef(null);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   React.useEffect(() => {
+    if (!isClient) return;
+    
     // If window.Trustpilot is available it means that we need to load the TrustBox from our ref.
     // If it's not, it means the script you pasted into <head /> isn't loaded  just yet.
     // When it is, it will automatically load the TrustBox.
     if ((window as any).Trustpilot) {
       window.Trustpilot.loadFromElement(ref.current, true);
     }
-  }, []);
+  }, [isClient]);
   return (
     <div
       ref={ref}

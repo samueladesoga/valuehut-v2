@@ -44,7 +44,7 @@ const CheckoutCourseDetails: React.FC<CheckoutCourseDetailsProps> = ({
 
         <div className="flex justify-between">
           <h3 className="text-sm font-medium text-main opacity-[70%] font-secondary">
-            Class type:
+            Delivery Mode:
           </h3>
           <p className="text-sm font-medium text-main font-secondary">
             {classType}

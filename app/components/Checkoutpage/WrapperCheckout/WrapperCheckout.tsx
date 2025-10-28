@@ -28,6 +28,7 @@ interface Details {
   numberOfAttendees: number;
   acronym?: string;
   startDate?: string;
+  timeZone? : string;
 }
 
 const paymentMethods: PaymentMethod[] = [
@@ -66,6 +67,7 @@ function WrapperCheckout({ course, classSysId }: any) {
     numberOfAttendees: 1,
     acronym: course.acronym ?? "",
     startDate: classDetail.startDate ?? "",
+    timeZone: classDetail.timeZone ?? "",
   });
 
   const acronym = course.acronym;
@@ -144,13 +146,14 @@ function WrapperCheckout({ course, classSysId }: any) {
 
     const Course = {
       startDate:
-        getMonthAndDay(classDetail.startDate) +
+        getMonthAndDay(classDetail.startDate, classDetail.timeZone) +
         ", " +
         getYear(classDetail.startDate),
       endDate:
-        getMonthAndDay(classDetail.endDate) +
+        getMonthAndDay(classDetail.endDate, classDetail.timeZone) +
         ", " +
         getYear(classDetail.endDate),
+      timeZone: classDetail.timeZone,
       quantity: details.numberOfAttendees,
       price: subtotal,
       acronym: acronym,
@@ -169,7 +172,7 @@ function WrapperCheckout({ course, classSysId }: any) {
 
     const blob = await asPdf.toBlob();
 
-    const fileName = `Invoice_ValueHut_${data.fullname}_${new Date().getTime()}.pdf`;
+    const fileName = `Invoice_ValueHut_${data.fullname}_${Date.now()}.pdf`;
 
     const formData = new FormData();
 
@@ -208,7 +211,8 @@ function WrapperCheckout({ course, classSysId }: any) {
       });
   };
 
-  const combinedDate = `${getDisplayDate(classDetail.startDate, classDetail.endDate)}, ${classDetail.year}`;
+  const combinedDate = getDisplayDate(classDetail.startDate, classDetail.endDate, classDetail.timeZone);
+  const classTimeWithTimeZone = `${classDetail.time} ${classDetail.timeZone}`;
 
   const handleModalToggle = () => {
     setIsModalOpen((prev) => !prev);
@@ -261,7 +265,7 @@ function WrapperCheckout({ course, classSysId }: any) {
               image={course.logo}
               title={course.title}
               date={combinedDate}
-              time={classDetail.time}
+              time={classTimeWithTimeZone}
               classType={classDetail.classType}
               country={country}
             />
