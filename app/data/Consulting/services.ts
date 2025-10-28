@@ -5,6 +5,24 @@ export interface ServiceItem {
 }
 
 export const services: ServiceItem[] = [
+    {
+    title: "Team Bootstrap",
+    description:
+      `Team Bootstrap is designed for new teams or existing teams seeking a refresh. This comprehensive service blends coaching, 
+      consulting, and hands-on training to rapidly build high-performing, collaborative teams in just three months.
+      Engagement begins with a deep-dive assessment of your team's current ways of working —observing day-to-day practices and interviewing 
+      key team members. Based on these insights, we co-create a tailored improvement roadmap, focused on both quick wins and sustainable transformation. 
+      You’ll agree on clear, evidence-based metrics with your consultant at the start, ensuring every improvement is measurable and aligned with your business goals. 
+      The program delivers an immersive period of both unlearning old habits and adopting optimal new approaches. Our focus is to instil practical 
+      skills, foster a culture of learning, and deliver lasting impact.`,
+    points: [
+      "Collaboration mastery, including mobbing, pair programming, Three Amigos, and team huddles",
+      "Enhancing agile practices such as Scrum, Kanban, and eXtreme Programming (XP)",
+      "Transitioning from static requirement documents to an adaptive, emergent product backlog",
+      "Moving from big bang releases to incremental, iterative product delivery for faster value realization",
+      "Holistic test strategies that improves collaboration between developers and testers, strengthening product quality"
+    ],
+  },
   {
     title: "Delivery Management",
     description:
@@ -60,12 +78,11 @@ export const services: ServiceItem[] = [
   {
     title: "Test Strategy & Automation",
     description:
-      `Organisation that care about faster delivery, lowering time-to-market and improving the overall 
-      quality of their product have to invest into automated testing capabilities. Our consultants and 
-      coaches have helped many organisation eliminate extended manual tests as part of their product 
-      delivery cycles. Every form of testing can be automated from Functional Tests, Unit Tests, Performance 
-      Tests and additional Non-Functional Tests using matured tools and integrating these tests into the 
-      continuous delivery pipelines.`,
+      `Organisations that desire to reduce time-to-market and improve the overall 
+      quality of their product must invest into automated testing capabilities. Our consultants and 
+      coaches have helped many organisations eliminate extended manual tests as part of their product 
+      delivery cycles. We deploy automated tests at multiple layers of the application - Unit Tests, Integration Tests, E2E Tests, Acceptance Tests, 
+      and Performance Tests using industry leading tools and practices.`,
     points: [
       "Training your product teams on approaches to Software Testing",
       "Improving the quality of the product, working alongside your teams",
