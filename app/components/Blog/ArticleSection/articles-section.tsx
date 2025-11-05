@@ -127,7 +127,7 @@ const ArticlesSection: React.FC<ArticlesSectionProps> = ({
 
           <div className="rounded-lg flex items-center justify-center">
             {AdsImage ? (
-              <Link href={"https://scrumdaynigeria.org/"} target="_blank">
+              <Link href={"https://scrumday.ng/"} target="_blank">
                 <Image
                   src={AdsImage}
                   alt="Ad"
