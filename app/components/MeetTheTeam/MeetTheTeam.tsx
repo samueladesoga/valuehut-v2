@@ -49,20 +49,6 @@ function MeetTheTeam() {
         { icon: "/icons/share.svg", alt: "share", url: "https://www.agilematrix.org/" },
       ],
     },
-    {
-      bgColor: "bg-[#A5c6d0]",
-      imageSrc: "/images/fisayo-ajayi.jpg",
-      name: "Fisayo Ajayi",
-      role: "Executive Assistant",
-      description: `Fisayo is an Executive Assistant at ValueHut Consulting Limited with over eight years 
-      of experience managing the full spectrum of executive office administration. She specializes in coordinating complex 
-      calendars, scheduling classes and managing participant enrollment, streamlining high-volume email workflows, and 
-      preparing high-impact reports and presentations. She plays a key role in ensuring professionalism and supporting the delivery of customized training programs 
-      and development workshops at ValueHut Consulting, enabling senior executives to focus on strategic priorities.`,
-      socialLinks: [
-        { icon: "/icons/likdin.svg", alt: "linkedin", url: "#" },
-      ],
-    },
   ];
 
   return (
