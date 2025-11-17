@@ -174,7 +174,7 @@ function Consulting() {
           </h2>
 
           <p className="text-lg md:text-xl text-[#161A1D] font-secondary mb-10 max-w-2xl">
-            Enabling Organisations to transform into a network of self-managing and interdependent teams.
+            Creating better ways of working and leading.
           </p>
 
           <Button
@@ -185,7 +185,7 @@ function Consulting() {
             className="mt-5 text-start "
             onClick={navigateToContactUs}
           >
-            Let&apos;s get in touch
+            Get in touch
           </Button>
         </div>
       </div>

@@ -48,12 +48,11 @@ export default function MeetExperts() {
           </h2>
 
           <p className="text-lg md:text-xl text-[#161A1D] font-secondary mb-10 max-w-2xl">
-            Enabling Organisations to transformation into a network of self-managing and interdependent
-            teams.
+            Creating better ways of working and leading.
           </p>
 
           <button className="bg-[#FF9F5A] text-white font-secondary px-6 py-3 rounded-full inline-flex items-center gap-2 hover:bg-[#FF9F5A]/90 transition-colors">
-            Let&apos;s get in touch
+            Get in touch
             <ArrowRight className="w-5 h-5" />
           </button>
         </div>
@@ -66,11 +65,11 @@ export default function MeetExperts() {
           </h2>
 
           <p className="text-base text-[#161A1D] font-secondary mb-6">
-            Enabling organisations to transform into a network of self-managing and interdependent teams.
+            Creating better ways of working and leading.
           </p>
 
           <button className="bg-[#FF9F5A] text-white font-secondary px-6 py-3 rounded-full inline-flex items-center gap-2 hover:bg-[#FF9F5A]/90 transition-colors mb-8">
-            Let&apos;s get in touch
+            Get in touch
             <ArrowRight className="w-5 h-5" />
           </button>
 
