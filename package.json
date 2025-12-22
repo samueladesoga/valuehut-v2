@@ -23,7 +23,7 @@
     "intl": "^1.2.5",
     "lucide-react": "^0.456.0",
     "multiparty": "^4.2.3",
-    "next": "15.0.3",
+    "next": "15.0.5",
     "nodemailer": "^6.9.16",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
