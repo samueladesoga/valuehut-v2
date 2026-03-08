@@ -12,31 +12,31 @@ import { getMonthAndDay, getYear } from "@/utils/ConvertDate";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Academy | Agile Leadership and Scrum Courses",
+  title: "Academy | Agile Leadership, Product Management and Scrum related Courses",
   description:
-    "Join ValueHut Consulting Academy to master Agile Leadership and Scrum courses. Empower individuals, teams, and organisations with interactive training, in partnership with scrum.org",
+    "Join an upcoming Agile Leadership, Product Management or Scrum Mastery course guaranteed to get your organisation working faster, better and safer.",
   alternates: {
     canonical: "https://www.valuehut.co/academy",
   },
   openGraph: {
-    title: "Academy | Agile Leadership and Scrum Courses - ValueHut Consulting",
+    title: "Academy | Agile Leadership, Product Management and Scrum related Courses - ValueHut Consulting",
     description:
-      "Join ValueHut Consulting Academy to master Agile Leadership and Scrum courses. Empower individuals, teams, and organisations with interactive training, in partnership with scrum.org",
+      "Join an upcoming Agile Leadership, Product Management or Scrum Mastery course guaranteed to get your organisation working faster, better and safer.",
     url: "https://www.valuehut.co/academy",
     images: [
       {
         url: "/images/courses.png",
         width: 1200,
         height: 630,
-        alt: "ValueHut Consulting Academy - Agile and Scrum Courses",
+        alt: "ValueHut Consulting Academy - Agile Leadership, Product Management and Scrum related Courses",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Academy | Agile Leadership and Scrum Courses - ValueHut Consulting",
+    title: "Academy | Agile Leadership, Product Management and Scrum related Courses - ValueHut Consulting",
     description:
-      "Join ValueHut Consulting Academy to master Agile Leadership and Scrum courses. Empower individuals, teams, and organisations with interactive training, in partnership with scrum.org",
+      "Join an upcoming Agile Leadership, Product Management or Scrum Mastery course guaranteed to get your organisation working faster, better and safer.",
     images: ["/images/courses.png"],
   },
 };
