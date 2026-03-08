@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import HeroSection from "@/components/Homepage/HeroSection/HeroSection";
 import ServicesSection from "@/components/Homepage/ServicesSection/ServicesSection";
 import OurMission from "@/components/Homepage/OurMission/OurMission";
@@ -11,12 +12,66 @@ import { heroData } from "./data/Home/HeroSection";
 import ClientLogosSectionWrapper from "@/components/Homepage/ClientLogosSectionWrapper/ClientLogosSectionWrapper";
 import { getAllArticles } from "./lib/api";
 
+export const metadata: Metadata = {
+  title: "ValueHut Consulting | Agile Management Consultancy",
+  description:
+    "ValueHut Consulting is an Agile Management Consultancy helping organisations discover better ways of working to deliver exceptional products and services.",
+  alternates: {
+    canonical: "https://www.valuehut.co",
+  },
+  openGraph: {
+    title: "ValueHut Consulting | Agile Management Consultancy",
+    description:
+      "ValueHut Consulting is an Agile Management Consultancy helping organisations discover better ways of working to deliver exceptional products and services.",
+    url: "https://www.valuehut.co",
+    type: "website",
+    images: [
+      {
+        url: "/images/hero.png",
+        width: 1200,
+        height: 630,
+        alt: "ValueHut Consulting - Agile Management Consultancy",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ValueHut Consulting | Agile Management Consultancy",
+    description:
+      "ValueHut Consulting is an Agile Management Consultancy helping organisations discover better ways of working to deliver exceptional products and services.",
+    images: ["/images/hero.png"],
+  },
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "ValueHut Consulting",
+  url: "https://www.valuehut.co",
+  logo: "https://www.valuehut.co/logos/v2-dark.png",
+  description:
+    "ValueHut Consulting is an Agile Management Consultancy helping organisations discover better ways of working to deliver exceptional products and services.",
+  sameAs: [
+    "https://www.linkedin.com/company/valuehut",
+    "https://twitter.com/valuehut",
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer support",
+    url: "https://www.valuehut.co/contact-us",
+  },
+};
+
 export default async function Home() {
   const Article = await getAllArticles();
   const articlesToShow = Article.filter((article) => article.showInHomePage);
   const topThreeArticles = articlesToShow.slice(0, 3);
   return (
     <div className="flex flex-col gap-8 bg-[#f5f5f5]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
       <HeroSection
         title={heroData.title}
         subtitle={heroData.subtitle}

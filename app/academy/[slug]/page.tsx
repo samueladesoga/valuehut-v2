@@ -46,6 +46,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: course.title,
     description: course.description,
+    alternates: {
+      canonical: `https://www.valuehut.co/academy/${slug}`,
+    },
     openGraph: {
       title: course.title,
       description: course.description,
@@ -96,8 +99,26 @@ export default async function CourseDetailsPage({ params }: Props) {
     (item: { title: string }) => item.title === "Additional Benefits"
   );
 
+  const courseSchema = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: course.title,
+    description: course.description,
+    image: course.image,
+    url: `https://www.valuehut.co/academy/${slug}`,
+    provider: {
+      "@type": "Organization",
+      name: "ValueHut Consulting",
+      url: "https://www.valuehut.co",
+    },
+  };
+
   return (
     <div className="bg-[#f5f5f5]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
+      />
       <div className="relative">
         <HeroComponent backgroundImage={course.image} />
         <div className="absolute inset-0 bg-gradient-custom  z-0"></div>

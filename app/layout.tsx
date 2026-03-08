@@ -9,12 +9,29 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { GoogleTagManager } from '@next/third-parties/google'
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.valuehut.co"),
   title: {
     template: "%s | ValueHut Consulting",
-    default: "ValueHut Consulting", // a default is required when creating a template
+    default: "ValueHut Consulting",
   },
   description:
     "ValueHut Consulting is an Agile Management Consultancy helping organisations discover better ways of working to deliver exceptional products and services.",
+  openGraph: {
+    siteName: "ValueHut Consulting",
+    type: "website",
+    images: [
+      {
+        url: "/logos/v2-dark.png",
+        width: 512,
+        height: 512,
+        alt: "ValueHut Consulting",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@valuehut",
+  },
 };
 
 export default function RootLayout({

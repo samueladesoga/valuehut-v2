@@ -25,17 +25,29 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: post.title,
-    description: post.title,
+    description: post.description,
+    alternates: {
+      canonical: `https://www.valuehut.co/blog/${slug}`,
+    },
     openGraph: {
       title: post.title,
-      description: post.title,
-      type: "website",
-      siteName: "ValueHut Consulting Blogs",
+      description: post.description,
+      type: "article",
+      siteName: "ValueHut Consulting Blog",
+      images: [
+        {
+          url: post.cover.url,
+          width: 800,
+          height: 450,
+          alt: post.title,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
-      description: post.title,
+      description: post.description,
+      images: [post.cover.url],
     },
   };
 }
@@ -130,8 +142,31 @@ export default async function BlogPost({
   const domain = "https://www.valuehut.co";
   const fullUrl = `${domain}/blog/${slug}`;
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.description,
+    image: post.cover.url,
+    url: fullUrl,
+    datePublished: post.date,
+    dateModified: post.updatedDate,
+    publisher: {
+      "@type": "Organization",
+      name: "ValueHut Consulting",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://www.valuehut.co/logos/v2-dark.png",
+      },
+    },
+  };
+
   return (
     <article className="bg-[#f5f5f5]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <div className="max-w-[800px] mx-auto px-4 xl:px-0 py-28 flex flex-col gap-10">
         <h1 className="max-w-[770px] mx-auto text-[37px] leading-[44px] sm:text-[41px] sm:leading-[49px] text-center text-main font-primary font-medium">
           {post.title}
@@ -141,7 +176,7 @@ export default async function BlogPost({
             src={post.cover.url}
             width={800}
             height={450}
-            alt="logo"
+            alt={post.title}
             className="object-cover rounded-xl"
           />
           <div className="flex justify-between items-center text-secondary text-xs font-normal font-secondary">
