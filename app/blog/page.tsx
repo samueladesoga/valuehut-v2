@@ -6,9 +6,34 @@ import { getAllArticles } from "@/lib/api";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blogs",
+  title: "Blog | Agile, Scrum & Product Management Insights",
   description:
-    "ValueHut Consulting Blogs is a collection of articles, insights and news on Agile, Scrum, Leadership, Product Management and more.",
+    "ValueHut Consulting Blog is a collection of articles, insights and news on Agile, Scrum, Leadership, Product Management and more.",
+  alternates: {
+    canonical: "https://www.valuehut.co/blog",
+  },
+  openGraph: {
+    title: "Blog | Agile, Scrum & Product Management Insights - ValueHut Consulting",
+    description:
+      "Read articles, insights and news on Agile, Scrum, Leadership and Product Management from the ValueHut Consulting team.",
+    url: "https://www.valuehut.co/blog",
+    type: "website",
+    images: [
+      {
+        url: "/logos/v2-dark.png",
+        width: 512,
+        height: 512,
+        alt: "ValueHut Consulting Blog",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog | Agile, Scrum & Product Management Insights - ValueHut Consulting",
+    description:
+      "Read articles, insights and news on Agile, Scrum, Leadership and Product Management from the ValueHut Consulting team.",
+    images: ["/logos/v2-dark.png"],
+  },
 };
 
 export default async function Blogs() {

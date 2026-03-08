@@ -12,9 +12,33 @@ import { faqs } from "@/data/Faqs/faqpage";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "ValueHut Consulting- Talent Matching",
+  title: "Talent Matching | Agile & Transformation Professionals",
   description:
     "ValueHut Consulting talent matching service helps you find the right agile and transformation professionals for your business.",
+  alternates: {
+    canonical: "https://www.valuehut.co/talent-matching",
+  },
+  openGraph: {
+    title: "Talent Matching | Agile & Transformation Professionals - ValueHut Consulting",
+    description:
+      "Find the right agile and transformation professionals for your business with ValueHut Consulting's talent matching service.",
+    url: "https://www.valuehut.co/talent-matching",
+    images: [
+      {
+        url: "/images/TalentSection.png",
+        width: 1200,
+        height: 630,
+        alt: "ValueHut Consulting Talent Matching",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Talent Matching | Agile & Transformation Professionals - ValueHut Consulting",
+    description:
+      "Find the right agile and transformation professionals for your business with ValueHut Consulting's talent matching service.",
+    images: ["/images/TalentSection.png"],
+  },
 };
 
 function page() {
