@@ -53,10 +53,12 @@ const HeroComponent: React.FC<HeroSectionProps> = ({
               </p>
             )}
             {buttonText && (
-              <Link href={buttonLink || ""} target="_blank">
-                <button className="bg-[#FF9F5A] font-secondary px-6 py-3 rounded-full text-main text-sm font-medium hover:bg-[#FF9F5A]/90">
-                  {buttonText}
-                </button>
+              <Link
+                href={buttonLink || ""}
+                target="_blank"
+                className="bg-[#FF9F5A] font-secondary px-6 py-3 rounded-full text-main text-sm font-medium hover:bg-[#FF9F5A]/90"
+              >
+                {buttonText}
               </Link>
             )}
           </div>

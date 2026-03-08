@@ -151,11 +151,10 @@ function Consulting() {
           </motion.div>
 
           <motion.div
-            className="hidden md:block"
+            className="hidden md:block rounded-lg"
             initial={{ rotate: 10, x: -65 }}
             whileInView={{ rotate: 0, x: 0 }}
             transition={{ duration: 0.5 }}
-            rounded-lg
             viewport={{ once: false, amount: 0.2 }}
           >
             <Image

@@ -12,7 +12,7 @@
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^16.0.0",
     "@emailjs/browser": "^4.4.1",
-    "@next/third-parties": "^15.1.4",
+    "@next/third-parties": "^15.5.9",
     "@react-pdf/renderer": "^4.1.6",
     "@shadcn/ui": "^0.0.4",
     "@stripe/react-stripe-js": "^3.1.1",
@@ -23,13 +23,13 @@
     "intl": "^1.2.5",
     "lucide-react": "^0.456.0",
     "multiparty": "^4.2.3",
-    "next": "15.0.5",
+    "next": "^15.5.9",
     "nodemailer": "^6.9.16",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-hot-toast": "^2.5.2",
     "react-select": "^5.10.2",
-    "sharp": "^0.33.5",
-    "react-hot-toast": "^2.5.2"
+    "sharp": "^0.33.5"
   },
   "devDependencies": {
     "@types/intl": "^1.2.2",
@@ -39,7 +39,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
-    "eslint-config-next": "15.0.3",
+    "eslint-config-next": "^15.5.9",
     "postcss": "^8",
     "prettier": "^3.1.0",
     "sharp": "^0.33.5",

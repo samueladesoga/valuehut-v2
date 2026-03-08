@@ -11,10 +11,9 @@ function WhoAreWe() {
         <Link
           href="https://calendly.com/samueladesoga/valuehut-consulting"
           target="_blank"
+          className="hidden md:flex rounded-full bg-[#FF9F5A] px-6 py-3 text-main text-sm font-medium hover:bg-[#FF9F5A]/90"
         >
-          <button className="hidden md:flex rounded-full bg-[#FF9F5A] px-6 py-3 text-main text-sm font-medium hover:bg-[#FF9F5A]/90">
-            Get to know us better
-          </button>
+          Get to know us better
         </Link>
       </div>
       <div className="w-full md:w-1/2 flex flex-col justify-between items-center md:items-start gap-10 md:gap-14  pt-8 md:pt-0">
@@ -44,10 +43,9 @@ function WhoAreWe() {
         <Link
           href="https://calendly.com/samueladesoga/valuehut-consulting"
           target="_blank"
+          className="flex md:hidden items-center justify-center rounded-full bg-[#FF9F5A] px-6 py-3 text-main text-sm font-medium hover:bg-[#FF9F5A]/90"
         >
-          <button className="flex md:hidden items-center justify-center rounded-full bg-[#FF9F5A] px-6 py-3 text-main text-sm font-medium hover:bg-[#FF9F5A]/90">
-            Get to know us better
-          </button>
+          Get to know us better
         </Link>
       </div>
     </section>

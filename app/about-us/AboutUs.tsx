@@ -29,13 +29,9 @@ function AboutUs() {
           transition={{ duration: 0.5, delay: 0.1 }}
           viewport={{ once: false, amount: 0.2 }}
         >
-          <SectionPara
-            className="font-normal px-4 xl:px-0"
-            para="An agile Management consultancy that believes teamwork as the ultimate competitive advantage for organisations
-            building better products and services with happier teams"
-          />
-
-          <div className="font-normal opacity-70 text-main text-base sm:text-sm text-center">
+          <div className="font-secondary font-normal text-main text-base sm:text-xl text-left px-4 xl:px-0">
+            An agile Management consultancy that believes teamwork as the ultimate competitive advantage for organisations
+            building better products and services with happier teams.
             Also, we are the organiser of the{" "}
             <Link
               href="https://scrumdaynigeria.org"

@@ -2,17 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Button from "@/components/Button/Button";
 import { useRouter } from "next/navigation";
 
 const Footer: React.FC = () => {
   const router = useRouter();
-  const [currentYear, setCurrentYear] = useState(2024); // Default fallback
-
-  useEffect(() => {
-    setCurrentYear(new Date().getFullYear());
-  }, []);
+  const currentYear = new Date().getFullYear();
 
   const navigateToContactUs = () => {
     router.push("/contact-us");
