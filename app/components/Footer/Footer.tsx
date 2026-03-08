@@ -131,7 +131,7 @@ const Footer: React.FC = () => {
               <Button
                 rounded="full"
                 size="small"
-                bgColor="fill-brand-secondary"
+                bgColor="bg-fill-brand-secondary"
                 className=" text-main px-6 py-3"
                 onClick={navigateToContactUs}
               >

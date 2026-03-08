@@ -147,7 +147,7 @@ const ArticlesSection: React.FC<ArticlesSectionProps> = ({
 
         <div>
           <Button
-            bgColor="fill-brand-secondary"
+            bgColor="bg-fill-brand-secondary"
             size="medium"
             rounded="full"
             className="mt-9"

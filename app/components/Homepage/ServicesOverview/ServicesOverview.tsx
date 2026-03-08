@@ -22,7 +22,7 @@ const ServicesOverview = () => {
         <SectionTitle title="Consulting Service" />
         <SectionPara para="Our consultants advise and drive meaningful change across your organisation; enabling the delivery of strategic initiatives while upskilling people in the process." />
         <Button
-          bgColor="fill-brand-secondary"
+          bgColor="bg-fill-brand-secondary"
           rounded="full"
           size="medium"
           onClick={navigateToConsulting}

@@ -40,8 +40,8 @@ const BookACallCTA: React.FC<BookACallCTAProps> = ({
           <Link target="_blank" href={url || ""}>
             <Button
               onClick={() => sendGTMEvent({ event: 'buttonClicked', value: 'calendly' })}
-              bgColor="[#032432]"
-              textColor="white"
+              bgColor="bg-[#032432]"
+              textColor="text-white"
               rounded="full"
               className="font-secondary h-auto px-6 py-3 text-main text-sm font-medium "
             >

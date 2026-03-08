@@ -15,7 +15,7 @@ export default function HiringProcess() {
           </h2>
           <Link href={"https://calendly.com/samueladesoga/valuehut-consulting"} target="_blank">
             <Button
-              bgColor="fill-brand-secondary"
+              bgColor="bg-fill-brand-secondary"
               size="medium"
               rounded="full"
               className="mt-8 "

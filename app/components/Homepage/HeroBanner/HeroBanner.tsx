@@ -65,7 +65,7 @@ export default function HeroBanner({
             >
               <Link href={btnLink || ""} target="_blank">
                 <Button
-                  bgColor="fill-brand-secondary"
+                  bgColor="bg-fill-brand-secondary"
                   size="medium"
                   icon={<ChevronRight />}
                   rounded="full"

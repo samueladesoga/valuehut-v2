@@ -87,7 +87,7 @@ export const getAllArticles = async () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${process.env.BLOG_ACCESS_TOKEN}`,
       },
-
+      next: { revalidate: 86400 },
       body: JSON.stringify({ query }),
     }
   ).then((res) => res.json());
@@ -110,12 +110,7 @@ export const getAllArticles = async () => {
     },
   }));
 
-  return {
-    props: {
-      posts: articles,
-    },
-    revalidate: 10,
-  };
+  return articles;
 };
 
 export const getSlugArticle = async (
@@ -174,6 +169,7 @@ export const getSlugArticle = async (
         "Content-Type": "application/json",
         Authorization: `Bearer ${process.env.BLOG_ACCESS_TOKEN}`,
       },
+      next: { revalidate: 86400 },
       body: JSON.stringify({ query, variables }),
     }
   ).then((res) => res.json());
@@ -232,7 +228,7 @@ export const getClientLogos = async () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${process.env.BLOG_ACCESS_TOKEN}`,
       },
-
+      next: { revalidate: 86400 },
       body: JSON.stringify({ query }),
     }
   ).then((res) => res.json());

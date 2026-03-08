@@ -13,15 +13,15 @@ export const metadata: Metadata = {
 
 export default async function Blogs() {
   const sortingOptions = ["Latest", "Oldest"];
-  const NewArticles = await getAllArticles();
-  const articlesToShow = NewArticles.props.posts.filter(
+  const allArticles = await getAllArticles();
+  const articlesToShow = allArticles.filter(
     (article) => article.isFeatured
   );
   const mainArticle = articlesToShow[0];
 
   const sideArticles = articlesToShow.slice(1, 6);
 
-  const otherArticles = NewArticles.props.posts
+  const otherArticles = allArticles
     .filter((article) => article.isFeatured === false || !article.isFeatured)
     .map((article) => ({
       ...article,

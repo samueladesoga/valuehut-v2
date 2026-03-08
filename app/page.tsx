@@ -12,8 +12,7 @@ import ClientLogosSectionWrapper from "@/components/Homepage/ClientLogosSectionW
 import { getAllArticles } from "./lib/api";
 
 export default async function Home() {
-  const AllArticles = await getAllArticles();
-  const Article = AllArticles.props.posts;
+  const Article = await getAllArticles();
   const articlesToShow = Article.filter((article) => article.showInHomePage);
   const topThreeArticles = articlesToShow.slice(0, 3);
   return (

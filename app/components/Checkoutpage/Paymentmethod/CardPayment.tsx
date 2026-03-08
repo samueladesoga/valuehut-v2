@@ -183,7 +183,7 @@ const PaymentWithCredit: React.FC<Props> = ({
         {clientSecret && (
           <Button
             size="large"
-            bgColor="fill-brand-secondary"
+            bgColor="bg-fill-brand-secondary"
             className="rounded-xl text-main w-full mt-4"
             disabled={loading}
           >
@@ -204,7 +204,7 @@ const PaymentWithCredit: React.FC<Props> = ({
             </p>
             <Button
               size="large"
-              bgColor="fill-brand-secondary"
+              bgColor="bg-fill-brand-secondary"
               className="rounded-xl text-main w-full"
               onClick={handleRedirect}
             >

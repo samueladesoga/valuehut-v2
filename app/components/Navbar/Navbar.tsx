@@ -37,8 +37,6 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
   }, []);
 
   useEffect(() => {
-    if (!isClient) return;
-    
     const handleClickOutside = (event: MouseEvent) => {
       if (
         dropdownRef.current &&
@@ -53,17 +51,11 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isClient]);
+  }, []);
 
   useEffect(() => {
-    if (!isClient) return;
-    
     const handleScroll = () => {
-      if (window.scrollY > 600) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 600);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -71,7 +63,7 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [isClient]);
+  }, []);
 
   const toggleDropdown = (index: number) => {
     setOpenDropdownIndex(openDropdownIndex === index ? null : index);
@@ -123,6 +115,8 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
                 >
                   <button
                     onClick={() => toggleDropdown(index)}
+                    aria-expanded={openDropdownIndex === index}
+                    aria-haspopup="true"
                     className="flex items-center hover:text-gray-300 focus:outline-none"
                   >
                     {link.label}
@@ -172,7 +166,7 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
             href="https://calendly.com/samueladesoga/valuehut-consulting"
           >
             <Button
-              bgColor="fill-brand-secondary"
+              bgColor="bg-fill-brand-secondary"
               className="py-2 px-5 text-xs font-medium text-main hidden lg:flex"
             >
               Book a free call
@@ -184,6 +178,9 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
               isNavbarWhite ? "text-main" : "text-accentMain"
             }`}
             onClick={toggleMobileMenu}
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             {isMobileMenuOpen ? (
               <div className="flex justify-center gap-[6px] items-center">
@@ -226,6 +223,10 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
+              id="mobile-menu"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Navigation menu"
               className="fixed inset-0 bg-white z-50 flex flex-col px-6 py-8"
               initial={{ opacity: 0, x: "100%" }}
               animate={{ opacity: 1, x: 0 }}
@@ -236,6 +237,7 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
                 <Image src={logo} alt="Logo" width={118} height={31} />
                 <button
                   onClick={toggleMobileMenu}
+                  aria-label="Close menu"
                   className="text-black focus:outline-none"
                 >
                   <X className="h-6 w-6" />
@@ -248,6 +250,8 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
                     <li key={index}>
                       <button
                         onClick={() => toggleDropdown(index)}
+                        aria-expanded={openDropdownIndex === index}
+                        aria-haspopup="true"
                         className="flex items-center justify-between w-full text-black"
                       >
                         {link.label}
@@ -300,7 +304,7 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
           >
                     <Button
                       rounded="md"
-                      bgColor="fill-brand-secondary"
+                      bgColor="bg-fill-brand-secondary"
                       className="w-full rounded-lg py-2 text-xs font-medium text-main"
                     >
                       Book a free call

@@ -4,7 +4,7 @@ import HeroComponent from "@/components/HeroComponent/HeroComponent";
 import { faqs } from "@/data/Faqs/faqpage";
 import CourseObjectives from "@/components/AcademyPage/CourseObjectives/CourseObjectives";
 import AssessmentCertification from "@/components/AcademyPage/AssessmentCertification/AssessmentCertification";
-import Aboutcourse from "@/components/AcademyPage/ Aboutcourse/ Aboutcourse";
+import Aboutcourse from "@/components/AcademyPage/Aboutcourse/Aboutcourse";
 import Table from "@/components/AcademyPage/Table/Table";
 import Group from "@/components/AcademyPage/Group/Group";
 import { notFound } from "next/navigation";

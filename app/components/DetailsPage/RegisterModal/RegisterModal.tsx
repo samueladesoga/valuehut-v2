@@ -135,7 +135,7 @@ const RegisterModal = ({
             <Button
               className="w-full text-sm font-medium font-secondary text-accentmain"
               onClick={handleRouting}
-              bgColor="fill-neutral-strong"
+              bgColor="bg-fill-neutral-strong"
               rounded="lg"
             >
               Continue to Checkout

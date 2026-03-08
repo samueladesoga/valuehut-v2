@@ -33,7 +33,7 @@ export default function ConsultancyServices() {
           </p>
           <Link href="https://calendly.com/samueladesoga/valuehut-consulting">
             <Button
-              bgColor="fill-brand-secondary"
+              bgColor="bg-fill-brand-secondary"
               size="medium"
               rounded="full"
               className=" !text-sm"
