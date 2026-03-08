@@ -53,7 +53,7 @@ const CriteriaSection: React.FC<CriteriaSectionProps> = ({
           </ul>
           <Link href={buttonLink || ""} target="_blank">
             <Button
-              bgColor="fill-brand-secondary"
+              bgColor="bg-fill-brand-secondary"
               size="medium"
               rounded="full"
               className="mt-8 "

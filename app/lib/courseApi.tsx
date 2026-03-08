@@ -87,7 +87,7 @@ export const getAllCourses = async () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${process.env.BLOG_ACCESS_TOKEN}`,
       },
-
+      next: { revalidate: 86400 },
       body: JSON.stringify({ query }),
     }
   ).then((res) => res.json());
@@ -171,6 +171,7 @@ export const getCourse = async (slug: string) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${process.env.BLOG_ACCESS_TOKEN}`,
       },
+      next: { revalidate: 86400 },
       body: JSON.stringify({
         query,
         variables: { slug },

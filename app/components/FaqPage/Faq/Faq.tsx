@@ -69,7 +69,7 @@ const FAQ: React.FC<FAQProps> = ({ faqs }) => {
             <Button
               rounded="full"
               size="small"
-              bgColor="fill-brand-secondary"
+              bgColor="bg-fill-brand-secondary"
               className=" text-main px-6 py-3 hidden sm:block"
               onClick={navigateToContactUs}
             >

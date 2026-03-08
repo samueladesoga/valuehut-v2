@@ -51,7 +51,7 @@ function WrapperCheckout({ course, classSysId }: any) {
   const [classPrice, setClassPrice] = useState(0);
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<string | null>(null);
-  const [_errors, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [subtotal, setSubtotal] = useState(0);
 
@@ -279,18 +279,18 @@ function WrapperCheckout({ course, classSysId }: any) {
               {selectedMethod === "invoice" && (
                 <Button
                   size="large"
-                  bgColor="fill-brand-secondary"
+                  bgColor="bg-fill-brand-secondary"
                   className="rounded-xl text-main"
                   onClick={handlePayment}
                 >
                   <span>{loading ? "Loading..." : "Send Invoice"}</span>
                 </Button>
               )}
-              {_errors || success ? (
+              {error || success ? (
                 <p
-                  className={`text-sm mt-6 text-center ${success ? "text-green-600" : ""} ${_errors ? "text-red-600" : ""}`}
+                  className={`text-sm mt-6 text-center ${success ? "text-green-600" : ""} ${error ? "text-red-600" : ""}`}
                 >
-                  {_errors ?? success}
+                  {error ?? success}
                 </p>
               ) : null}
             </div>
@@ -309,7 +309,7 @@ function WrapperCheckout({ course, classSysId }: any) {
               </p>
               <Button
                 className="w-full text-sm font-medium font-secondary text-accentmain"
-                bgColor="fill-neutral-strong"
+                bgColor="bg-fill-neutral-strong"
                 rounded="lg"
                 onClick={handleModalToggle}
               >

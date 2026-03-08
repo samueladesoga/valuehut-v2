@@ -13,6 +13,8 @@ interface FormData {
   message: string;
 }
 
+emailjs.init({ publicKey: process.env.NEXT_PUBLIC_EMAIL_USER_ID });
+
 const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
@@ -41,7 +43,13 @@ const ContactForm: React.FC = () => {
     const { fullName, email, interest, message } = formData;
 
     if (!fullName || !email || !interest || !message) {
-        toast.error("All fields are required!");
+      toast.error("All fields are required!");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast.error("Please enter a valid email address.");
       return;
     }
 
@@ -56,8 +64,7 @@ const ContactForm: React.FC = () => {
       .sendForm(
         process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID as string,
         process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID as string,
-        formRef.current as HTMLFormElement,
-        process.env.NEXT_PUBLIC_EMAIL_USER_ID as string
+        formRef.current as HTMLFormElement
       )
       .then(      
         function () {
@@ -164,7 +171,7 @@ const ContactForm: React.FC = () => {
             ></textarea>
           </div>
           <Button
-            bgColor="fill-brand-secondary"
+            bgColor="bg-fill-brand-secondary"
             size="medium"
             rounded="lg"
             className="w-full !text-sm"

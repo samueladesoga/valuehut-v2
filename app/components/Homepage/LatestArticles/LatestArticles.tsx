@@ -75,7 +75,7 @@ export default function ArticlesSection({
       <div className="flex flex-col-reverse md:flex-col">
         <div className="flex justify-end w-full mt-[10px] md:mt-[-85px] ">
           <Button
-            bgColor="fill-brand-secondary"
+            bgColor="bg-fill-brand-secondary"
             rounded="full"
             size="medium"
             onClick={() => router.push("/blog")}

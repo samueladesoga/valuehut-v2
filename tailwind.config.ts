@@ -78,5 +78,11 @@ export default {
       },
     },
   },
+  safelist: [
+    "bg-fill-brand-primary",
+    "bg-fill-brand-secondary",
+    "bg-fill-neutral-strong",
+    "bg-fill-Brand-quaternary",
+  ],
   plugins: [],
 } satisfies Config;

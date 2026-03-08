@@ -127,7 +127,7 @@ function DetailsHero({
                 {availableClassesFiltered.length > 0 && (
                   <Button
                     rounded="full"
-                    bgColor="fill-brand-secondary"
+                    bgColor="bg-fill-brand-secondary"
                     onClick={handleShowAvailableClasses}
                   >
                     {showAvailableClasses ? "Hide other classes" : "See other classes"}
@@ -137,7 +137,7 @@ function DetailsHero({
             ) : (
               <Button
                 rounded="full"
-                bgColor="fill-brand-secondary"
+                bgColor="bg-fill-brand-secondary"
                 onClick={handleModalToggle}
               >
                 Register Now

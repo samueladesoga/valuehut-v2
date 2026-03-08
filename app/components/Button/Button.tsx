@@ -20,7 +20,7 @@ const Button: React.FC<ButtonProps> = ({
   buttonRef,
   className = "",
   bgColor = "",
-  textColor = "Primary",
+  textColor = "",
   border = false,
   size = "medium",
   icon,
@@ -49,7 +49,7 @@ const Button: React.FC<ButtonProps> = ({
     <button
       ref={buttonRef}
       onClick={disabled ? undefined : onClick}
-      className={`flex items-center gap-2 justify-center bg-${bgColor} text-${textColor} ${borderClass} ${sizeClasses[size]} ${roundedClasses[rounded]} ${className} font-medium hover:opacity-80 focus:outline-none ${disabledClasses}`}
+      className={`flex items-center gap-2 justify-center ${bgColor} ${textColor} ${borderClass} ${sizeClasses[size]} ${roundedClasses[rounded]} ${className} font-medium hover:opacity-80 focus:outline-none ${disabledClasses}`}
       disabled={disabled}
     >
       {children}

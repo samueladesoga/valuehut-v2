@@ -83,7 +83,7 @@ function Group({
             <Button
               size="small"
               rounded="full"
-              bgColor="fill-brand-secondary"
+              bgColor="bg-fill-brand-secondary"
               onClick={handleClassesDetails}
             >
               View Details

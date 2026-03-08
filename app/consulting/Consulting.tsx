@@ -178,7 +178,7 @@ function Consulting() {
           </p>
 
           <Button
-            bgColor="fill-brand-secondary"
+            bgColor="bg-fill-brand-secondary"
             size="medium"
             icon={<ChevronRight />}
             rounded="full"

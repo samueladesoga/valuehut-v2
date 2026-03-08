@@ -43,7 +43,7 @@ const CourseCard = ({
             </p>
             <div className="flex gap-4 pt-6">
               <Button
-                bgColor="fill-brand-secondary"
+                bgColor="bg-fill-brand-secondary"
                 size="medium"
                 rounded="full"
                 className="mt-5 text-start"

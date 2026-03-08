@@ -3,7 +3,7 @@ import DetailsHero from "@/components/DetailsPage/DetailsHero/DetailsHero";
 import { courseDetails } from "@/data/Academy/CourseDetails";
 import OurPartners from "@/components/FaqPage/OurPartners/OurPartners";
 import AssessmentCertification from "@/components/AcademyPage/AssessmentCertification/AssessmentCertification";
-import Aboutcourse from "@/components/AcademyPage/ Aboutcourse/ Aboutcourse";
+import Aboutcourse from "@/components/AcademyPage/Aboutcourse/Aboutcourse";
 import CourseObjectives from "@/components/AcademyPage/CourseObjectives/CourseObjectives";
 import MoreInformation from "@/components/DetailsPage/Moreinformation/Moreinformation";
 import { getCourse } from "@/lib/courseApi";

@@ -52,7 +52,7 @@ const TalentMatchingCTA: React.FC = () => {
           viewport={{ once: false, amount: 0.2 }}
         >
           <Button
-            bgColor="fill-brand-secondary"
+            bgColor="bg-fill-brand-secondary"
             size="medium"
             icon={<ChevronRight />}
             rounded="full"

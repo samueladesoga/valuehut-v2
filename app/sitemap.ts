@@ -12,11 +12,9 @@ const generateSitemap = async () => {
     lastModified: new Date().toISOString(),
   }));
 
-  const {
-    props: { posts },
-  } = await getAllArticles();
+  const articles = await getAllArticles();
 
-  const articleUrls = posts.map((article: any) => ({
+  const articleUrls = articles.map((article: any) => ({
     url: `${baseUrl}/blog/${article.slug}`,
     lastModified: new Date().toISOString(),
   }));
