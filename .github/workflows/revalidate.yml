@@ -1,0 +1,24 @@
+name: Revalidate Contentful Cache
+
+on:
+  workflow_dispatch:
+    inputs:
+      content_type:
+        description: 'Content type to revalidate'
+        required: true
+        default: 'blog'
+        type: choice
+        options:
+          - blog
+          - course
+
+jobs:
+  revalidate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger revalidation
+        run: |
+          curl -X POST https://www.valuehut.co/api/revalidate \
+            -H "Content-Type: application/json" \
+            -H "x-contentful-webhook-secret: ${{ secrets.REVALIDATION_SECRET }}" \
+            -d "{\"sys\":{\"contentType\":{\"sys\":{\"id\":\"${{ github.event.inputs.content_type }}\"}}}}"
