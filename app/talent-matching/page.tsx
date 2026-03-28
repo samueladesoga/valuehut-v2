@@ -75,11 +75,11 @@ function page() {
       <div className="px-6 py-6 sm:py-16 xl:px-0">
         <CriteriaSection
           title="A refined approach to finding great talent"
-          description="Having reviewed hundreds of Job Adverts for IT, Transformation & Product Professionals, we observed that the majority of adverts are not written in a manner that reflects the realities of the job being recruited for. This is why we support you to job description that will attract great talent."
+          description="Having reviewed hundreds of Job Adverts for IT, Transformation & Product Professionals, we observed that the majority of adverts are not written in a manner that reflects the realities of the job being recruited for. This is why we support you to create job descriptions that will attract great talent."
           highlights={[
             "Certifications do not guarantee competence",
-            "Candidates experiences are validated by our teams of consultants",
-            "Candidates must understand practices and prrinciples over tools",
+            "Candidates' experiences are validated by our teams of consultants",
+            "Candidates must understand practices and principles over tools",
           ]}
           buttonLabel="Learn more"
           buttonLink="/contact-us"
@@ -90,7 +90,7 @@ function page() {
         <WhyChooseUs
           title={"Why choose us?"}
           subtitle={
-            "Our talent network includes experienced Professionals and Consultant that have passed through our Academy and Consulting service pillars."
+            "Our talent network includes experienced Professionals and Consultants who have gone through our Academy and Consulting service pillars."
           }
           stats={[
             {

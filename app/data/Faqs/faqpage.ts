@@ -21,7 +21,7 @@ export const faqs: FAQItem[] = [
     category: "ValueHut",
     question: "Which Agile Framework and Methodologies do you recommend?",
     answer:
-      "What challenges do you want to solve; we would advise you based on our combined experience and inspired some of the most popular Agile and Lean approaches.",
+      "What challenges do you want to solve? We would advise you based on our combined experience, inspired by some of the most popular Agile and Lean approaches.",
   },
   {
     category: "ValueHut",
@@ -33,13 +33,13 @@ export const faqs: FAQItem[] = [
     category: "ValueHut",
     question: "Academy or Consulting?",
     answer:
-      "It depends on your goals and the level of support that you require. Our classes are intense for 1-3 days, while Consulting Services provides an ongoing support for the organisation.",
+      "It depends on your goals and the level of support that you require. Our classes are intense for 1-3 days, while Consulting Services provides ongoing support for the organisation.",
   },
   {
     category: "Academy",
     question: "What courses does the Academy offer?",
     answer:
-      "Our courses include scrum.org Agile Leadership, Product Management and Scrum Mastery Courses. We also design and deliver bespoke courses depending on your organisation needs.",
+      "Our courses include scrum.org Agile Leadership, Product Management and Scrum Mastery Courses. We also design and deliver bespoke courses depending on your organisation's needs.",
   },
   {
     category: "Academy",
@@ -58,7 +58,7 @@ export const faqs: FAQItem[] = [
     question:
       "Can I claim PDU credits from the Project Management Institute (PMI) after taking this course?",
     answer:
-      "Attendees are able to claim 7 PDU credits from the Project Management Institute (PMI) for each day spent in a class. This means you get 14 PDU credit for a 2 days class",
+      "Attendees are able to claim 7 PDU credits from the Project Management Institute (PMI) for each day spent in a class. This means you get 14 PDU credits for a 2-day class.",
   },
   {
     category: "Consulting",
@@ -100,12 +100,12 @@ export const faqs: FAQItem[] = [
     category: "Talent Matching",
     question: "Do you only match Agile Professionals?",
     answer:
-      "We have primarily work with digital teams where Professionals with Agile experience are beneficial.",
+      "We have primarily worked with digital teams where Professionals with Agile experience are beneficial.",
   },
   {
     category: "Talent Matching",
     question: "Why ValueHut Consulting and not Traditional Recruiters?",
     answer:
-      "We have consulted with 100s of teams and we are able to spot true agilist in our first conversation; we will reduce the lead recruitment time to days instead of weeks.",
+      "We have consulted with 100s of teams and we are able to spot true agilists in our first conversation; we will reduce the lead recruitment time to days instead of weeks.",
   },
 ];

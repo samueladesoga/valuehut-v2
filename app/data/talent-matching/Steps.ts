@@ -18,7 +18,7 @@ export const Steps: ISteps[] = [
   },
   {
     number: "03",
-    description: "Present relevant profiles with 7 working days.",
+    description: "Present relevant profiles within 7 working days.",
     bgColor: "bg-[#F5E5D7]",
   },
 ];
