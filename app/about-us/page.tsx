@@ -3,16 +3,16 @@ import AboutUs from "./AboutUs";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Us | Agile Management Consultancy",
+  title: "About Us | ValueHut Consulting | London & Lagos",
   description:
-    "Learn about ValueHut Consulting, an Agile Management Consultancy helping organisations deliver exceptional products and services. We are also the organisers of Scrum Day Nigeria",
+    "Learn about ValueHut Consulting, an Agile Management Consultancy serving organisations in London and Lagos. We also organise Scrum Day Nigeria.",
   alternates: {
     canonical: "https://www.valuehut.co/about-us",
   },
   openGraph: {
-    title: "About Us | ValueHut Consulting - Agile Management Consultancy",
+    title: "About Us | ValueHut Consulting | London & Lagos",
     description:
-      "Discover ValueHut Consulting, an Agile Management Consultancy empowering organisations to work better and deliver great results.",
+      "Discover ValueHut Consulting, an Agile Management Consultancy serving organisations in London and Lagos. Organiser of Scrum Day Nigeria.",
     url: "https://www.valuehut.co/about-us",
     images: [
       {
@@ -25,9 +25,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Us | ValueHut Consulting - Agile Management Consultancy",
+    title: "About Us | ValueHut Consulting | London & Lagos",
     description:
-      "Discover ValueHut Consulting, an Agile Management Consultancy empowering organisations to work better and deliver great results.",
+      "Discover ValueHut Consulting, an Agile Management Consultancy serving organisations in London and Lagos. Organiser of Scrum Day Nigeria.",
     images: ["/images/about-us.png"],
   },
 };

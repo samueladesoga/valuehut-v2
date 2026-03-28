@@ -31,8 +31,8 @@ export default {
         },
       },
       fontFamily: {
-        primary: ["Bricolage Grotesque", "sans-serif"],
-        secondary: ["Inter", "sans-serif"],
+        primary: ["var(--font-primary)", "sans-serif"],
+        secondary: ["var(--font-secondary)", "sans-serif"],
       },
       fontSize: {
         "2xs": ["12px", { lineHeight: "18px" }],

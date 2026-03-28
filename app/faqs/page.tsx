@@ -18,14 +18,14 @@ const faqSchema = {
 };
 
 export const metadata: Metadata = {
-  title: "Frequently Asked Questions",
+  title: "FAQs | ValueHut Consulting",
   description:
-    "Our FAQs page provide an overview of the agile management consultancy services that we provide, Academy for Agile Leadership and Scrum courses, Consulting for Product and Delivery Management Services and Talent Matching for our Recruitment services.",
+    "Find answers to common questions about ValueHut Consulting's Agile training, consulting, and talent matching services in London and Lagos.",
   alternates: {
     canonical: "https://www.valuehut.co/faqs",
   },
   openGraph: {
-    title: "Frequently Asked Questions | ValueHut Consulting",
+    title: "FAQs | ValueHut Consulting",
     description:
       "Find answers to common questions about ValueHut Consulting's Agile training, consulting, and talent matching services.",
     url: "https://www.valuehut.co/faqs",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Frequently Asked Questions | ValueHut Consulting",
+    title: "FAQs | ValueHut Consulting",
     description:
       "Find answers to common questions about ValueHut Consulting's Agile training, consulting, and talent matching services.",
     images: ["/logos/v2-dark.png"],

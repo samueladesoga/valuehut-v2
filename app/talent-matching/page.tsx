@@ -12,16 +12,16 @@ import { faqs } from "@/data/Faqs/faqpage";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Talent Matching | Agile & Transformation Professionals",
+  title: "Agile Talent Matching | London & Lagos | ValueHut Consulting",
   description:
-    "ValueHut Consulting talent matching service helps you find the right agile and transformation professionals for your business.",
+    "ValueHut Consulting matches organisations in London and Lagos with pre-qualified Agile and transformation professionals. Reduce your hiring lead time by 50%.",
   alternates: {
     canonical: "https://www.valuehut.co/talent-matching",
   },
   openGraph: {
-    title: "Talent Matching | Agile & Transformation Professionals - ValueHut Consulting",
+    title: "Agile Talent Matching | London & Lagos | ValueHut Consulting",
     description:
-      "Find the right agile and transformation professionals for your business with ValueHut Consulting's talent matching service.",
+      "ValueHut Consulting matches organisations in London and Lagos with pre-qualified Agile and transformation professionals. Reduce your hiring lead time by 50%.",
     url: "https://www.valuehut.co/talent-matching",
     images: [
       {
@@ -34,9 +34,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Talent Matching | Agile & Transformation Professionals - ValueHut Consulting",
+    title: "Agile Talent Matching | London & Lagos | ValueHut Consulting",
     description:
-      "Find the right agile and transformation professionals for your business with ValueHut Consulting's talent matching service.",
+      "ValueHut Consulting matches organisations in London and Lagos with pre-qualified Agile and transformation professionals. Reduce your hiring lead time by 50%.",
     images: ["/images/TalentSection.png"],
   },
 };
