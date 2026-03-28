@@ -3,16 +3,16 @@ import ContactUs from "./contact-us";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Us",
+  title: "Contact ValueHut Consulting | London & Lagos",
   description:
-    "Contact ValueHut Consulting for your agile and product management consulting and training needs.",
+    "Get in touch with ValueHut Consulting. We have offices serving London and Lagos. Contact us for Agile consulting, Scrum training, and talent matching.",
   alternates: {
     canonical: "https://www.valuehut.co/contact-us",
   },
   openGraph: {
-    title: "Contact Us | ValueHut Consulting",
+    title: "Contact ValueHut Consulting | London & Lagos",
     description:
-      "Get in touch with ValueHut Consulting for agile management consulting, training and talent matching services.",
+      "Get in touch with ValueHut Consulting. We have offices serving London and Lagos. Contact us for Agile consulting, Scrum training, and talent matching.",
     url: "https://www.valuehut.co/contact-us",
     images: [
       {
@@ -25,9 +25,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact Us | ValueHut Consulting",
+    title: "Contact ValueHut Consulting | London & Lagos",
     description:
-      "Get in touch with ValueHut Consulting for agile management consulting, training and talent matching services.",
+      "Get in touch with ValueHut Consulting. We have offices serving London and Lagos. Contact us for Agile consulting, Scrum training, and talent matching.",
     images: ["/images/contact-us.jpeg"],
   },
 };

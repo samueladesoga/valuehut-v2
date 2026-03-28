@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="w-full bg-fill-neutral-strong">
       <div className="container pb-8 pt-16 px-4 xl:px-0 sm:pt-24 lg:pt-32">
-        <div className="xl:grid xl:grid-cols-2 xl:gap-8">
+        <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8">
             <Image
               src="/images/footerImg.png"
@@ -25,12 +25,12 @@ const Footer: React.FC = () => {
               width={70}
               height={70}
             />
-            <p className="text-balance text-accentmain text-lg font-normal font-secondary">
+            <p className="text-balance text-accentmain text-sm font-normal font-secondary">
               ValueHut Consulting is an Agile Management Consultancy helping organisations discover better ways of working to deliver exceptional products and services.
             </p>
           </div>
-          <div className="mt-16 gap-8 xl:mt-0">
-            <div className="md:grid md:grid-cols-3 md:gap-8">
+          <div className="mt-16 gap-8 xl:mt-0 xl:col-span-2">
+            <div className="md:grid md:grid-cols-4 md:gap-8">
               <div>
                 <h3 className="font-primary text-accentmain font-medium text-2xl">
                   Services
@@ -58,6 +58,33 @@ const Footer: React.FC = () => {
                       className="text-accentsecondary text-sm font-normal font-secondary"
                     >
                       Talent matching
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <div className="mt-10 md:mt-0">
+                <h3 className="font-primary text-accentmain font-medium text-2xl">
+                  Company
+                </h3>
+                <ul role="list" className="mt-6 space-y-4">
+                  <li>
+                    <Link href="/about-us" className="text-accentsecondary text-sm font-normal font-secondary">
+                      About Us
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/blog" className="text-accentsecondary text-sm font-normal font-secondary">
+                      Blog
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/faqs" className="text-accentsecondary text-sm font-normal font-secondary">
+                      FAQs
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/contact-us" className="text-accentsecondary text-sm font-normal font-secondary">
+                      Contact Us
                     </Link>
                   </li>
                 </ul>

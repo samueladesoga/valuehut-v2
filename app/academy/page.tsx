@@ -12,16 +12,16 @@ import { getMonthAndDay, getYear } from "@/utils/ConvertDate";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Academy | Agile Leadership, Product Management and Scrum related Courses",
+  title: "Agile & Scrum Courses | London & Lagos | ValueHut Academy",
   description:
-    "Join an upcoming Agile Leadership, Product Management or Scrum Mastery course guaranteed to get your organisation working faster, better and safer.",
+    "Join an upcoming Agile or Scrum Mastery course in London or Lagos. Guaranteed to get your organisation working faster, better and safer.",
   alternates: {
     canonical: "https://www.valuehut.co/academy",
   },
   openGraph: {
-    title: "Academy | Agile Leadership, Product Management and Scrum related Courses - ValueHut Consulting",
+    title: "Agile & Scrum Courses | London & Lagos | ValueHut Academy",
     description:
-      "Join an upcoming Agile Leadership, Product Management or Scrum Mastery course guaranteed to get your organisation working faster, better and safer.",
+      "Join an upcoming Agile or Scrum Mastery course in London or Lagos. Guaranteed to get your organisation working faster, better and safer.",
     url: "https://www.valuehut.co/academy",
     images: [
       {
@@ -34,9 +34,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Academy | Agile Leadership, Product Management and Scrum related Courses - ValueHut Consulting",
+    title: "Agile & Scrum Courses | London & Lagos | ValueHut Academy",
     description:
-      "Join an upcoming Agile Leadership, Product Management or Scrum Mastery course guaranteed to get your organisation working faster, better and safer.",
+      "Join an upcoming Agile or Scrum Mastery course in London or Lagos. Guaranteed to get your organisation working faster, better and safer.",
     images: ["/images/courses.png"],
   },
 };

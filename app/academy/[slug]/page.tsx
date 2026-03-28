@@ -52,6 +52,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: course.title,
       description: course.description,
+      url: `https://www.valuehut.co/academy/${slug}`,
       images: [
         {
           url: course.image,

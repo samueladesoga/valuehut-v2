@@ -75,7 +75,7 @@ function Consulting() {
         <WhyChooseUs
           title={"Why Choose Us?"}
           subtitle={
-            "Our consultants have successfully helped organisation delivered products while upskilling teams in these organisations."
+            "Our consultants have successfully helped organisations deliver products while upskilling teams in these organisations."
           }
           stats={[
             {

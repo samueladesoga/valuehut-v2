@@ -11,7 +11,7 @@ export default function HiringProcess() {
       <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-12">
         <div className="lg:w-1/2">
           <h2 className=" leading-[61px] text-[47px] lg:text-5xl xl:text-9xl font-primary font-medium text-main mb-6">
-            How does our hiring process work?
+            How our hiring process work?
           </h2>
           <Link href={"https://calendly.com/samueladesoga/valuehut-consulting"} target="_blank">
             <Button
@@ -71,7 +71,7 @@ export default function HiringProcess() {
             <HiringCard
               bgColor="bg-[#F5E5D7]"
               text="03"
-              description="Present relevant profiles with 7-10 working days."
+              description="Present relevant profiles within 7-10 working days."
             />
           </motion.div>
           {/* {Steps.map((step: ISteps, index: number) => (

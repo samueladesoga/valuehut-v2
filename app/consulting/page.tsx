@@ -4,16 +4,16 @@ import Consulting from "./Consulting";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Agile & Product Management Consulting",
+  title: "Agile Consulting London & Lagos | ValueHut Consulting",
   description:
-    "ValueHut Consulting provides Agile and Product Management consulting services to help you achieve your business goals to our global clients - London, Lagos, Accra and other parts of the world.",
+    "ValueHut Consulting provides Agile and Product Management consulting for organisations in London, Lagos, Accra and beyond. Book a free call today.",
   alternates: {
     canonical: "https://www.valuehut.co/consulting",
   },
   openGraph: {
-    title: "Agile & Product Management Consulting | ValueHut Consulting",
+    title: "Agile Consulting London & Lagos | ValueHut Consulting",
     description:
-      "ValueHut Consulting provides Agile and Product Management consulting services to global clients in London, Lagos, Accra and beyond.",
+      "ValueHut Consulting provides Agile and Product Management consulting for organisations in London, Lagos, Accra and beyond. Book a free call today.",
     url: "https://www.valuehut.co/consulting",
     images: [
       {
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Agile & Product Management Consulting | ValueHut Consulting",
+    title: "Agile Consulting London & Lagos | ValueHut Consulting",
     description:
-      "ValueHut Consulting provides Agile and Product Management consulting services to global clients in London, Lagos, Accra and beyond.",
+      "ValueHut Consulting provides Agile and Product Management consulting for organisations in London, Lagos, Accra and beyond. Book a free call today.",
     images: ["/images/consultinghero.png"],
   },
 };

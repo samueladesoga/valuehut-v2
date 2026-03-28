@@ -19,8 +19,8 @@ export const services: ServiceItem[] = [
       "Collaboration mastery, including mobbing, pair programming, Three Amigos, and team huddles",
       "Enhancing agile practices such as Scrum, Kanban, and eXtreme Programming (XP)",
       "Transitioning from static requirement documents to an adaptive, emergent product backlog",
-      "Moving from big bang releases to incremental, iterative product delivery for faster value realization",
-      "Holistic test strategies that improves collaboration between developers and testers, strengthening product quality"
+      "Moving from big bang releases to incremental, iterative product delivery for faster value realisation",
+      "Holistic test strategies that improve collaboration between developers and testers, strengthening product quality"
     ],
   },
   {
@@ -28,7 +28,7 @@ export const services: ServiceItem[] = [
     description:
       `We offer specialized Delivery Management services designed to help organizations successfully 
       navigate the complexities of modern product development. Regardless of the size of your organisation, 
-      from scale ups to multinationals our delivery consultants bring the expertise needed to ensure alignment, 
+      from scale-ups to multinationals, our delivery consultants bring the expertise needed to ensure alignment,
       effectiveness, and consistent delivery of value to your customers. We focus on enabling teams and 
       leadership to work together effectively, creating an environment where innovation thrives, and outcomes 
       are predictable.`,
@@ -42,10 +42,10 @@ export const services: ServiceItem[] = [
   {
     title: "Product Delivery",
     description:
-      `Our Product Delivery service helps your organisation's turn ideas into great products, we use sound product 
+      `Our Product Delivery service helps your organisations turn ideas into great products, we use sound product
       management practices to help you extract revenue from these products and eventually retire these products.
-      As part our services, we help identify products that do not scale, support your organisation to pivot these 
-      product or sunset them. We have observed that there is inherently a lot of waste in organisations by continually 
+      As part of our services, we help identify products that do not scale, support your organisation to pivot these
+      products or sunset them. We have observed that there is inherently a lot of waste in organisations by continually 
       investing in products that do not contribute towards the organisation strategy and adopting 
       some of our product management practices help create a connection between the organisational 
       strategy and execution within product teams.`,
@@ -61,11 +61,11 @@ export const services: ServiceItem[] = [
     title: "Continuous Delivery",
     description:
       `A central theme to application delivery is enabling teams to build better products faster. 
-      Continuous Integration and Continuous Delivery are practices that enables the product teams 
+      Continuous Integration and Continuous Delivery are practices that enable the product teams
       gather feedback in real time as the product is being built. Continuous Delivery is a set 
       of practices that provide the capabilities required to build, test, package and deploy 
       the product continuously. Metrics that represent the quality of the product collected automatically so that 
-      teams can fix as soon as possible. Our consultants have implemented and supported many organisations with their 
+      teams can fix them as soon as possible. Our consultants have implemented and supported many organisations with their 
       Continuous Delivery Implementation.`,
     points: [
       "An evaluation of the current state including tools / technology being used",
@@ -96,7 +96,7 @@ export const services: ServiceItem[] = [
       `Efforts to embark on Agility at the team level especially when it doesn’t involve the whole 
       organisation could be an uphill battle; to deliver sustainable and long-lasting change, 
       business agility should be introduced using a “whole organisation” approach. The practices 
-      and methods that we introduce are inspire by the Scrum Framework, Kanban Method and other 
+      and methods that we introduce are inspired by the Scrum Framework, Kanban Method and other 
       Lean practices. Our coaches have helped many organisations with their Agile Transformation.`,
     points: [
       "Articulating the outcomes desired from the team's and organisation’s intention to adopt agile ways of working",

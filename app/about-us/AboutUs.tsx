@@ -30,7 +30,7 @@ function AboutUs() {
           viewport={{ once: false, amount: 0.2 }}
         >
           <div className="font-secondary font-normal text-main text-base sm:text-xl text-left px-4 xl:px-0">
-            An agile Management consultancy that believes teamwork as the ultimate competitive advantage for organisations
+            An Agile Management Consultancy that believes teamwork is the ultimate competitive advantage for organisations
             building better products and services with happier teams.
             Also, we are the organiser of the{" "}
             <Link

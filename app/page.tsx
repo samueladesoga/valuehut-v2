@@ -51,6 +51,24 @@ const organizationSchema = {
   logo: "https://www.valuehut.co/logos/v2-dark.png",
   description:
     "ValueHut Consulting is an Agile Management Consultancy helping organisations discover better ways of working to deliver exceptional products and services.",
+  areaServed: ["London", "United Kingdom", "Lagos", "Nigeria"],
+  telephone: ["+44(0)7946713054", "+234(0)8143021499"],
+  address: [
+    {
+      "@type": "PostalAddress",
+      streetAddress: "North Westgate House",
+      addressLocality: "Harlow",
+      addressRegion: "Essex",
+      postalCode: "CM20 1YS",
+      addressCountry: "GB",
+    },
+    {
+      "@type": "PostalAddress",
+      streetAddress: "22 Glover Rd, Ikoyi",
+      addressLocality: "Lagos",
+      addressCountry: "NG",
+    },
+  ],
   sameAs: [
     "https://www.linkedin.com/company/valuehut",
     "https://twitter.com/valuehut",
@@ -62,6 +80,57 @@ const organizationSchema = {
   },
 };
 
+const localBusinessSchemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "ValueHut Consulting — UK",
+    url: "https://www.valuehut.co",
+    telephone: "+44(0)7946713054",
+    email: "info@valuehut.co",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "North Westgate House",
+      addressLocality: "Harlow",
+      addressRegion: "Essex",
+      postalCode: "CM20 1YS",
+      addressCountry: "GB",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 51.77085589811162,
+      longitude: 0.08191492476874897,
+    },
+    areaServed: ["London", "Harlow", "Essex", "United Kingdom"],
+    description:
+      "ValueHut Consulting is an Agile Management Consultancy serving clients across London and the United Kingdom.",
+    priceRange: "££",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "ValueHut Consulting — Nigeria",
+    url: "https://www.valuehut.co",
+    telephone: "+234(0)8143021499",
+    email: "info@valuehut.co",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "22 Glover Rd, Ikoyi",
+      addressLocality: "Lagos",
+      addressCountry: "NG",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 6.455306393509238,
+      longitude: 3.4277628114152754,
+    },
+    areaServed: ["Lagos", "Nigeria"],
+    description:
+      "ValueHut Consulting is an Agile Management Consultancy serving clients in Lagos, Nigeria.",
+    priceRange: "₦₦",
+  },
+];
+
 export default async function Home() {
   const Article = await getAllArticles();
   const articlesToShow = Article.filter((article) => article.showInHomePage);
@@ -72,6 +141,13 @@ export default async function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
+      {localBusinessSchemas.map((schema, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
       <HeroSection
         title={heroData.title}
         subtitle={heroData.subtitle}
