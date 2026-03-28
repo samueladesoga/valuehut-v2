@@ -10,9 +10,9 @@ export interface HeroSectionProps {
 }
 
 export const heroData: HeroSectionProps = {
-  title: "Transforming Teams and Organisations.",
+  title: "High-Performing Teams Delivering Exceptional Outcomes.",
   subtitle:
-    "People are the heart of your organisation and we want to help improve how people work, lead, and are led.",
+    "We partner with organisations to embed Agile and modern ways of working that help teams deliver faster, lead with confidence, and build products people actually want.",
   showRating: false,
   ratingText: "Excellent",
   ratingDetails: "4.9 out of 5 based on 26,000+ reviews",
