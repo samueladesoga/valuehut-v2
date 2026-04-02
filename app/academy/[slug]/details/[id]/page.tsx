@@ -2,12 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import DetailsHero from "@/components/DetailsPage/DetailsHero/DetailsHero";
 
-export const metadata: Metadata = {
-  robots: {
-    index: false,
-    follow: true,
-  },
-};
+export const metadata: Metadata = {};
 import { courseDetails } from "@/data/Academy/CourseDetails";
 import OurPartners from "@/components/FaqPage/OurPartners/OurPartners";
 import AssessmentCertification from "@/components/AcademyPage/AssessmentCertification/AssessmentCertification";
