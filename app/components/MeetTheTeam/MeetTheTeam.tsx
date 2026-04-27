@@ -44,9 +44,39 @@ function MeetTheTeam() {
         and organizations in the adoption agile principles and improving the flow of customer value through 
         scalable, maintainable software solutions.`,
       socialLinks: [
-        { icon: "/icons/twitter.svg", alt: "twitter", url: "https://twitter.com" },
+        { icon: "/icons/twitter.svg", alt: "twitter", url: "#" },
         { icon: "/icons/likdin.svg", alt: "linkedin", url: "https://www.linkedin.com/in/temitope-awere-554194118/" },
         { icon: "/icons/share.svg", alt: "share", url: "https://www.agilematrix.org/" },
+      ],
+    },
+    {
+      bgColor: "bg-[#A5E0E7]",
+      imageSrc: "/images/deb.jpg",
+      name: "Deborah Adesomoju",
+      role: "Fractional Legal Counsel",
+      description: `Deborah is a licensed lawyer with a strong background in transactional law and legal consulting, 
+      bringing a rare cross-disciplinary perspective to organisational consulting. With experience spanning multiple 
+      jurisdictions, including North America, the United Kingdom, and Africa, she combines deep expertise in contract 
+      negotiation, due diligence, and regulatory compliance with a sharp focus on delivering value in complex, 
+      multi-stakeholder environments.`,
+      socialLinks: [
+        { icon: "/icons/twitter.svg", alt: "twitter", url: "" },
+        { icon: "/icons/likdin.svg", alt: "linkedin", url: "https://www.linkedin.com/in/deborahadesoga/" },
+        { icon: "/icons/share.svg", alt: "share", url: "#" },
+      ],
+    },
+    {
+      bgColor: "bg-[#E5DFD9]",
+      imageSrc: "/images/funke.jpg",
+      name: "Funke Jolayemi",
+      role: "Operations Coordinator",
+      description: `Oluwafunke is ValueHut Consulting's Operations Coordinator with a Bachelor’s and Master’s degree in English 
+      Language. She supports executives and teams by ensuring smooth day-to-day operations through effective 
+      coordination of schedules, communication, and administrative processes.`,
+      socialLinks: [
+        { icon: "/icons/twitter.svg", alt: "twitter", url: "#" },
+        { icon: "/icons/likdin.svg", alt: "linkedin", url: "https://www.linkedin.com/in/funke-jolayemi-61583a205/" },
+        { icon: "/icons/share.svg", alt: "share", url: "#" },
       ],
     },
   ];
