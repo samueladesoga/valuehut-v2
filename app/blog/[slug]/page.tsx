@@ -12,6 +12,19 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
+function getBlogPostUrl(slug: string) {
+  return `https://www.valuehut.co/blog/${slug}`;
+}
+
+function isValidUrl(url: string): boolean {
+  try {
+    new URL(url);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = (await params).slug;
   const post = await getSlugArticle(slug);
@@ -23,17 +36,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
+  const pageUrl = getBlogPostUrl(slug);
+  const canonical =
+    post.canonicalUrl && isValidUrl(post.canonicalUrl)
+      ? post.canonicalUrl
+      : pageUrl;
+
   return {
     title: post.title,
     description: post.description,
     alternates: {
-      canonical: `https://www.valuehut.co/blog/${slug}`,
+      canonical,
     },
     openGraph: {
       title: post.title,
       description: post.description,
       type: "article",
-      url: `https://www.valuehut.co/blog/${slug}`,
+      url: pageUrl,
       siteName: "ValueHut Consulting Blog",
       images: [
         {
@@ -140,8 +159,7 @@ export default async function BlogPost({
     },
   });
 
-  const domain = "https://www.valuehut.co";
-  const fullUrl = `${domain}/blog/${slug}`;
+  const fullUrl = getBlogPostUrl(slug);
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -180,6 +198,19 @@ export default async function BlogPost({
             alt={post.title}
             className="object-cover rounded-xl"
           />
+          {post.canonicalUrl && isValidUrl(post.canonicalUrl) && (
+            <p className="text-xs font-normal font-secondary text-secondary">
+              Originally published at{" "}
+              <a
+                href={post.canonicalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#07658C] hover:underline"
+              >
+                {new URL(post.canonicalUrl).hostname}
+              </a>
+            </p>
+          )}
           <div className="flex justify-between items-center text-secondary text-xs font-normal font-secondary">
             <time>Originally posted on {post.date}</time>
             <div className="flex gap-3">

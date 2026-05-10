@@ -24,6 +24,7 @@ export interface IPostType {
   };
   showInHomePage?: boolean;
   isFeatured?: boolean;
+  canonicalUrl?: string;
 }
 export interface IArticle {
   title: string;
@@ -45,6 +46,7 @@ export interface IArticle {
       id: string;
     };
   };
+  canonicalUrl?: string;
 }
 
 export interface IAuthor {
@@ -154,6 +156,7 @@ export const getSlugArticle = async (
               id
             }
           }
+          canonicalUrl
         }
       }
     }
@@ -200,6 +203,7 @@ export const getSlugArticle = async (
       title: post.cover.title,
     },
     author: post.author,
+    canonicalUrl: post.canonicalUrl ?? undefined,
   };
 };
 
