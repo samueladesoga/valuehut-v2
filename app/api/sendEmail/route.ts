@@ -93,7 +93,8 @@ export async function POST(req: NextRequest) {
                     Thank you for your business and we look forward to having you in class. <br><br>
 
                     Regards, <br>
-                    Fisayo Ajayi <br>
+                    Funke Jolayemi, <br>
+                    Operations Coordinator <br>
                     info@valuehut.co
                 </div>
                 <div class="footer">
