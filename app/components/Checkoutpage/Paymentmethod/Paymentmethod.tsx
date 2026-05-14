@@ -37,13 +37,9 @@ interface PaymentMethodSelectorProps {
   country: string;
 }
 
-if (!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY) {
-  throw new Error("NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY is not defined");
-}
-
-const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-);
+const stripePromise = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+  ? loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
+  : null;
 
 const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
   methods,
@@ -92,7 +88,7 @@ const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
 
   const elementsOptions: StripeElementsOptions = {
     mode: "payment",
-    amount: amount * 100,
+    amount: Math.round(amount * (country === "united kingdom" ? 1.2 : 1) * 100),
     currency: country === "united kingdom" ? "gbp" : "usd",
     appearance,
   };

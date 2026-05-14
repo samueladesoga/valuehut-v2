@@ -6,6 +6,7 @@ import ContactInformation from "../ContactInformation/ContactInformation";
 import Paymentmethod from "../Paymentmethod/Paymentmethod";
 import CheckoutCourseDetails from "../CheckoutCourseDetails/CheckoutCourseDetails";
 import OrderSummary from "../Ordersummary/Ordersummary";
+import DiscountCode from "../DiscountCode/DiscountCode";
 import Button from "@/components/Button/Button";
 import { primaryMarket, tertiaryMarket } from "@/data/Countries/countries";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -54,6 +55,8 @@ function WrapperCheckout({ course, classSysId }: any) {
   const [error, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [subtotal, setSubtotal] = useState(0);
+  const [discountPercent, setDiscountPercent] = useState(0);
+  const [appliedCode, setAppliedCode] = useState<string | null>(null);
 
   const classDetail = course.classes.find(
     (cls: { classSysId: string }) => cls.classSysId === classSysId
@@ -72,11 +75,13 @@ function WrapperCheckout({ course, classSysId }: any) {
 
   const acronym = course.acronym;
   const country = searchParams[1];
+  const isUk = country === "united kingdom";
+  const { numberOfAttendees } = details;
 
   useEffect(() => {
     if (classDetail) {
       let price;
-      if (country === "united kingdom") {
+      if (isUk) {
         price = classDetail.ukPrice;
         setSubtotal(price);
       } else if (primaryMarket.map(market => market.toLowerCase()).includes(country.toLowerCase())) {
@@ -89,9 +94,9 @@ function WrapperCheckout({ course, classSysId }: any) {
         price = classDetail.secondary;
         setSubtotal(price);
       }
-      setClassPrice(price * details.numberOfAttendees);
+      setClassPrice(price * numberOfAttendees);
     }
-  }, [classDetail, country, details]);
+  }, [classDetail, country, isUk, numberOfAttendees]);
 
   const handlePayment = async () => {
     if (!details.fullName.trim()) {
@@ -156,6 +161,7 @@ function WrapperCheckout({ course, classSysId }: any) {
       timeZone: classDetail.timeZone,
       quantity: details.numberOfAttendees,
       price: subtotal,
+      discountPercent: discountPercent,
       acronym: acronym,
     };
 
@@ -206,7 +212,7 @@ function WrapperCheckout({ course, classSysId }: any) {
         setSuccess(null);
       })
       .finally(() => {
-        sendGTMEvent({ event: 'purchase', value: subtotal, category: 'checkout', label: 'invoice' });
+        sendGTMEvent({ event: 'purchase', value: classPrice * (1 - discountPercent / 100), category: 'checkout', label: 'invoice' });
         setLoading(false);
       });
   };
@@ -255,7 +261,7 @@ function WrapperCheckout({ course, classSysId }: any) {
               setdetails={setDetails}
               selectedMethod={selectedMethod}
               setSelectedMethod={setSelectedMethod}
-              amount={classPrice}
+              amount={classPrice * (1 - discountPercent / 100)}
               country={country}
             />
           </div>
@@ -270,11 +276,18 @@ function WrapperCheckout({ course, classSysId }: any) {
               country={country}
             />
             <div className="flex flex-col gap-3">
+              <DiscountCode
+                onApply={(percent, code) => { setDiscountPercent(percent); setAppliedCode(code); }}
+                onRemove={() => { setDiscountPercent(0); setAppliedCode(null); }}
+                appliedCode={appliedCode}
+              />
               <OrderSummary
                 subtotal={subtotal}
                 total={classPrice}
                 quantity={details.numberOfAttendees}
                 isUk={country === "united kingdom"}
+                discountPercent={discountPercent}
+                appliedCode={appliedCode}
               />
               {selectedMethod === "invoice" && (
                 <Button
