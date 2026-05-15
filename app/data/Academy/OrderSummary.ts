@@ -3,4 +3,6 @@ export interface OrderSummaryProps {
   total: number;
   quantity: number;
   isUk: boolean;
+  discountPercent?: number;
+  appliedCode?: string | null;
 }

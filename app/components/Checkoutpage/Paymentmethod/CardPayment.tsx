@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   PaymentElement,
   useElements,
@@ -28,7 +28,7 @@ const PaymentWithCredit: React.FC<Props> = ({
   email,
   acronym,
   startDate,
-  timeZone
+  timeZone,
 }) => {
   const router = useRouter();
   const stripe = useStripe();
@@ -37,106 +37,95 @@ const PaymentWithCredit: React.FC<Props> = ({
   const [clientSecret, setClientSecret] = useState("");
   const [loading, setLoading] = useState(false);
   const [paymentSuccess, setPaymentSuccess] = useState(false);
+  const abortRef = useRef<AbortController | null>(null);
+
+  const validateEmail = (value: string) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
   useEffect(() => {
-    if (email && fullName && validateEmail(email)) {
-      setLoading(true);
-      setErrorMessage("");
-      fetch("/api/create-payment-intent", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          amount,
-          currency: country === "united kingdom" ? "gbp" : "usd",
-          email,
-          fullName,
-          isUk: country === "united kingdom",
-          acronym,
-          startDate,
-          timeZone,
-        }),
+    if (!amount || !email || !fullName || !validateEmail(email)) return;
+
+    abortRef.current?.abort();
+    abortRef.current = new AbortController();
+
+    setLoading(true);
+    setErrorMessage("");
+
+    fetch("/api/create-payment-intent", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        amount,
+        currency: country === "united kingdom" ? "gbp" : "usd",
+        email,
+        fullName,
+        isUk: country === "united kingdom",
+        acronym,
+        startDate,
+        timeZone,
+      }),
+      signal: abortRef.current.signal,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setLoading(false);
+        if (data.clientSecret) {
+          setClientSecret(data.clientSecret);
+        } else {
+          setErrorMessage(data.error || "Failed to initialize payment");
+        }
       })
-        .then((res) => res.json())
-        .then((data) => {
-          setLoading(false);
-          if (data.clientSecret) {
-            setClientSecret(data.clientSecret);
-          } else {
-            setErrorMessage(data.error || "Failed to initialize payment");
-          }
-        })
-        .catch(() => {
+      .catch((err) => {
+        if (err.name !== "AbortError") {
           setLoading(false);
           setErrorMessage("Error connecting to the server");
-        });
-    } else {
-      setLoading(false);
-      setErrorMessage("Full Name and valid Email are required.");
-    }
+        }
+      });
+
+    return () => abortRef.current?.abort();
   }, [amount, country, email, fullName, acronym, startDate, timeZone]);
+
+  const displayAmount = country === "united kingdom"
+    ? `£${(amount * 1.2).toFixed(2)}`
+    : `$${amount}`;
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!email || !fullName || !validateEmail(email)) {
-      setErrorMessage(
-        "Please ensure all fields are correctly filled and the email is valid."
-      );
-      return;
-    }
+    if (!stripe || !elements) return;
+
     setLoading(true);
     setErrorMessage("");
-    if (!stripe || !elements) {
-      setLoading(false);
-      return;
-    }
-    const { error: submitError }: any = await elements.submit();
 
+    const { error: submitError }: any = await elements.submit();
     if (submitError) {
       setErrorMessage(submitError.message);
       setLoading(false);
       return;
     }
+
     const { error, paymentIntent }: any = await stripe.confirmPayment({
       elements,
       clientSecret,
-      confirmParams: {
-        return_url: `${window.location.origin}/payment-success`,
-      },
+      confirmParams: { return_url: `${window.location.origin}/payment-success` },
       redirect: "if_required",
     });
 
     if (error) {
       setErrorMessage(error.message);
       setLoading(false);
-    } else if (paymentIntent && paymentIntent.status === "succeeded") {
+    } else if (paymentIntent?.status === "succeeded") {
       setPaymentSuccess(true);
       setLoading(false);
-    }
-
-    if (submitError) {
-      setErrorMessage(submitError.message);
-    } else if (paymentIntent && paymentIntent.status === "succeeded") {
-      setPaymentSuccess(true);
     } else {
-      setErrorMessage("Payment failed to process. Please try again.");
+      setErrorMessage("Payment could not be completed. Please try again.");
+      setLoading(false);
     }
   };
-
-  const validateEmail = (email: string) =>
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const handleRedirect = () => {
     sendGTMEvent({ event: 'purchase', value: amount, category: 'checkout', label: 'Credit Card' });
     setPaymentSuccess(false);
     router.push("/academy");
-  };
-
-  const handleCardDetailsChange = (event: any) => {
-    if (event.error) {
-      setErrorMessage(event.error.message);
-    } else {
-      setErrorMessage("");
-    }
   };
   if (!clientSecret || !stripe || !elements) {
     if (loading) {
@@ -154,8 +143,8 @@ const PaymentWithCredit: React.FC<Props> = ({
       );
     }
     return (
-      <div className="text-red-500 text-center">
-        {errorMessage || "Please fill in all required fields to proceed."}
+      <div className={`text-center text-sm ${errorMessage ? "text-red-500" : "text-gray-400"}`}>
+        {errorMessage || "Fill in your name and email above to load the payment form."}
       </div>
     );
   }
@@ -172,7 +161,6 @@ const PaymentWithCredit: React.FC<Props> = ({
                 spacedAccordionItems: false,
               },
             }}
-            onChange={handleCardDetailsChange}
           />
         )}
         {errorMessage && (
@@ -188,7 +176,7 @@ const PaymentWithCredit: React.FC<Props> = ({
             disabled={loading}
           >
             {!loading
-              ? `Pay ${country === "united kingdom" ? `£${amount + amount * 0.2}` : `$${amount}`}`
+              ? `Pay ${displayAmount}`
               : "Processing..."}
           </Button>
         )}

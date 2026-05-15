@@ -26,6 +26,8 @@ const TrustBox = () => {
       window.Trustpilot.loadFromElement(ref.current, true);
     }
   }, [isClient]);
+  if (!isClient) return <div className="w-full" style={{ height: "240px" }} />;
+
   return (
     <div
       ref={ref}
@@ -39,17 +41,7 @@ const TrustBox = () => {
       data-tags="trainer:Nml4dDMzbkNoYXJhY3Ryekj+B9CXUA=="
       data-stars="1,2,3,4,5"
       data-review-languages="en"
-    >
-      <a
-        href="https://www.trustpilot.com/review/scrum.org"
-        target="_blank"
-        rel="noreferrer"
-        className="mx-auto"
-      >
-        {" "}
-        Trustpilot
-      </a>
-    </div>
+    />
   );
 };
 

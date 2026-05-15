@@ -20,6 +20,7 @@ interface IselectedCourse {
   quantity: number;
   price: number;
   acronym: string;
+  discountPercent?: number;
 }
 
 const InvoiceDocument = ({
@@ -41,7 +42,10 @@ const InvoiceDocument = ({
     setInvoiceNumber(timestamp.toString());
   }, [selectedCourse.timeZone]);
 
-  const totalPrice = selectedCourse ? selectedCourse.price * data.quantity : 0;
+  const originalPrice = selectedCourse ? selectedCourse.price * data.quantity : 0;
+  const discountPercent = selectedCourse?.discountPercent ?? 0;
+  const discountAmount = originalPrice * (discountPercent / 100);
+  const totalPrice = originalPrice - discountAmount;
   const currency = isUk ? "£" : "$";
   return (
     <Document>
@@ -142,15 +146,21 @@ const InvoiceDocument = ({
             </Text>
             <Text style={[tableStyles.cell, tableStyles.col, tableStyles.right]}>{data.quantity}</Text>
             <Text style={[tableStyles.cell, tableStyles.col, tableStyles.right]}>{selectedCourse?.price.toFixed(2)}</Text>
-            <Text style={[tableStyles.cell, tableStyles.col, tableStyles.right]}>{currency} {totalPrice.toFixed(2)}</Text>
+            <Text style={[tableStyles.cell, tableStyles.col, tableStyles.right]}>{currency} {originalPrice.toFixed(2)}</Text>
           </View>
 
           <View style={[tableStyles.totalsRow, { marginTop: 11 }]}>
             <Text style={[tableStyles.totalsLabel, tableStyles.cell]}>Sub-Total</Text>
-            <Text style={[tableStyles.totalsAmount, tableStyles.cell]}>{currency} {totalPrice.toFixed(2)}</Text>
+            <Text style={[tableStyles.totalsAmount, tableStyles.cell]}>{currency} {originalPrice.toFixed(2)}</Text>
           </View>
+          {discountPercent > 0 && (
+            <View style={tableStyles.totalsRow}>
+              <Text style={[tableStyles.totalsLabel, tableStyles.cell]}>Discount ({discountPercent}% off):</Text>
+              <Text style={[tableStyles.totalsAmount, tableStyles.cell]}>-{currency} {discountAmount.toFixed(2)}</Text>
+            </View>
+          )}
           <View style={tableStyles.totalsRow}>
-            <Text style={[tableStyles.totalsLabel, tableStyles.cell]}>Tax ({isUk ? '20%' : '0%'}):</Text>
+            <Text style={[tableStyles.totalsLabel, tableStyles.cell]}>VAT ({isUk ? '20%' : '0%'}):</Text>
             <Text style={[tableStyles.totalsAmount, tableStyles.cell]}>
               {isUk ? `${currency} ${(totalPrice * 0.2).toFixed(2)}` : '$0'}
             </Text>
