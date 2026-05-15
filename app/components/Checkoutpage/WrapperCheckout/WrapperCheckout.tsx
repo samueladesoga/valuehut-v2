@@ -184,7 +184,7 @@ function WrapperCheckout({ course, classSysId }: any) {
 
     formData.append("file", blob, fileName);
     formData.append("toEmail", data.email);
-    formData.append("subject", "ValueHut Consulting: Your Invoice");
+    formData.append("subject", `Invoice for ${course.title} (${acronym})`);
     formData.append("text", "Please find attached your invoice.");
     formData.append("customerName", data.fullname);
     formData.append("courseName", course?.title ?? "");

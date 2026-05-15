@@ -37,15 +37,6 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
           </div>
         </div>
 
-        <div className="flex justify-between">
-          <h4 className="text-sm font-medium text-main opacity-[70%] font-secondary">
-            VAT
-          </h4>
-          <span className="text-sm font-medium text-[#05668D] font-secondary">
-            {isUk ? `${currency}${vatAmount.toFixed(2)}` : "Not applicable"}
-          </span>
-        </div>
-
         {discountPercent > 0 && (
           <div className="flex justify-between">
             <h4 className="text-sm font-medium text-green-700 font-secondary">
@@ -56,6 +47,15 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
             </p>
           </div>
         )}
+
+        <div className="flex justify-between">
+          <h4 className="text-sm font-medium text-main opacity-[70%] font-secondary">
+            VAT
+          </h4>
+          <span className="text-sm font-medium text-[#05668D] font-secondary">
+            {isUk ? `${currency}${vatAmount.toFixed(2)}` : "Not applicable"}
+          </span>
+        </div>
 
         <div className="flex justify-between">
           <h1 className="text-[26px] leading-[39px] font-semibold text-main opacity-[70%] font-secondary">

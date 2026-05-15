@@ -146,18 +146,12 @@ const InvoiceDocument = ({
             </Text>
             <Text style={[tableStyles.cell, tableStyles.col, tableStyles.right]}>{data.quantity}</Text>
             <Text style={[tableStyles.cell, tableStyles.col, tableStyles.right]}>{selectedCourse?.price.toFixed(2)}</Text>
-            <Text style={[tableStyles.cell, tableStyles.col, tableStyles.right]}>{currency} {totalPrice.toFixed(2)}</Text>
+            <Text style={[tableStyles.cell, tableStyles.col, tableStyles.right]}>{currency} {originalPrice.toFixed(2)}</Text>
           </View>
 
           <View style={[tableStyles.totalsRow, { marginTop: 11 }]}>
             <Text style={[tableStyles.totalsLabel, tableStyles.cell]}>Sub-Total</Text>
             <Text style={[tableStyles.totalsAmount, tableStyles.cell]}>{currency} {originalPrice.toFixed(2)}</Text>
-          </View>
-          <View style={tableStyles.totalsRow}>
-            <Text style={[tableStyles.totalsLabel, tableStyles.cell]}>Tax ({isUk ? '20%' : '0%'}):</Text>
-            <Text style={[tableStyles.totalsAmount, tableStyles.cell]}>
-              {isUk ? `${currency} ${(totalPrice * 0.2).toFixed(2)}` : '$0'}
-            </Text>
           </View>
           {discountPercent > 0 && (
             <View style={tableStyles.totalsRow}>
@@ -165,6 +159,12 @@ const InvoiceDocument = ({
               <Text style={[tableStyles.totalsAmount, tableStyles.cell]}>-{currency} {discountAmount.toFixed(2)}</Text>
             </View>
           )}
+          <View style={tableStyles.totalsRow}>
+            <Text style={[tableStyles.totalsLabel, tableStyles.cell]}>VAT ({isUk ? '20%' : '0%'}):</Text>
+            <Text style={[tableStyles.totalsAmount, tableStyles.cell]}>
+              {isUk ? `${currency} ${(totalPrice * 0.2).toFixed(2)}` : '$0'}
+            </Text>
+          </View>
           <View style={tableStyles.totalsRow}>
             <Text style={[tableStyles.totalsLabel, tableStyles.cell]}>TOTAL</Text>
             <Text style={[tableStyles.totalsAmount, tableStyles.cell]}>
