@@ -1,12 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getSlugArticle } from "@/lib/api";
-import React from "react";
 import { notFound } from "next/navigation";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { BLOCKS, Document, INLINES } from "@contentful/rich-text-types";
+import { Document } from "@contentful/rich-text-types";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { buildRenderOptions } from "@/components/Blog/RichTextRenderer/rich-text-renderer";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -85,79 +84,6 @@ export default async function BlogPost({
   }
 
   const content = post.content as unknown as Document;
-  let paragraphCounter = 0;
-
-  const renderOptions = (
-    embeddedAssets: { id: string; url: string; title: string }[]
-  ) => ({
-    renderNode: {
-      [BLOCKS.PARAGRAPH]: (node: any, children: React.ReactNode) => {
-        paragraphCounter++;
-        const isFirstParagraph = paragraphCounter === 1;
-
-        const paragraphClass = isFirstParagraph
-          ? "text-[23px] leading-[34.5px] text-main font-primary font-normal border-b border-[#555555] border-opacity-[30%] pb-6 mb-6"
-          : "text-base font-normal  font-secondary text-main mb-10";
-
-        return <p className={paragraphClass}>{children}</p>;
-      },
-
-      [BLOCKS.HEADING_3]: (node: any, children: React.ReactNode) => (
-        <h3 className="text-[26px] leading-[39px] font-medium font-secondary text-main mb-3">
-          {children}
-        </h3>
-      ),
-
-      [BLOCKS.OL_LIST]: (node: any, children: React.ReactNode) => (
-        <ol className="list-decimal pl-6 mb-4">{children}</ol>
-      ),
-
-      [BLOCKS.UL_LIST]: (node: any, children: React.ReactNode) => (
-        <ul className="list-disc text-base font-normal font-secondary text-main pl-6 mb-4">
-          {children}
-        </ul>
-      ),
-
-      [BLOCKS.LIST_ITEM]: (node: any, children: React.ReactNode) => (
-        <li className="text-base font-normal font-secondary text-main">
-          {children}
-        </li>
-      ),
-
-      [INLINES.HYPERLINK]: (node: any, children: React.ReactNode) => (
-        <a
-          href={node.data.uri}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-base font-normal font-secondary text-main text-[#07658C] dark:text-[#07658C] hover:underline"
-        >
-          {children}
-        </a>
-      ),
-
-      [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
-        const asset = embeddedAssets.find(
-          (item) => item.id === node.data.target.sys.id
-        );
-
-        if (asset) {
-          return (
-            <div className="my-8">
-              <Image
-                src={`${asset.url}`}
-                width={800} // Default or dynamic width
-                height={450} // Default or dynamic height
-                alt={asset.title || "Embedded asset"}
-                className="rounded-lg"
-              />
-            </div>
-          );
-        }
-
-        return <p>Embedded asset could not be loaded.</p>;
-      },
-    },
-  });
 
   const fullUrl = getBlogPostUrl(slug);
 
@@ -254,7 +180,7 @@ export default async function BlogPost({
           {content &&
             documentToReactComponents(
               content,
-              renderOptions(post.embeddedAssets)
+              buildRenderOptions(post.embeddedAssets)
             )}
         </div>
         <div className="flex justify-between items-center text-secondary text-xs font-normal font-secondary border-t py-4 border-[#555555] border-opacity-[30%]">
