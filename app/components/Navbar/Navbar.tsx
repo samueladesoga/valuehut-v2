@@ -102,7 +102,7 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
       >
         <div className="relative z-10 flex items-center justify-between w-full px-6 mx-auto">
           <Link href="/" className="flex items-center space-x-2">
-            <Image src={logo} alt="Logo" width={118} height={31} className="" />
+            <Image src={logo} alt="Logo" width={118} height={31} style={{ height: "auto" }} />
           </Link>
 
           <div className="hidden lg:flex items-center space-x-8 text-xs">

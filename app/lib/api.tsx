@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { convertDate } from "@/utils/ConvertDate";
+import { convertDate, convertDateLong } from "@/utils/ConvertDate";
 
 export interface IPostType {
   title: string;
@@ -51,7 +51,7 @@ export interface IArticle {
 
 export interface IAuthor {
   fullName: string;
-  profilePicture: {
+  profilePicture?: {
     url: string;
     title: string;
   };
@@ -191,8 +191,8 @@ export const getSlugArticle = async (
 
   return {
     title: post.title,
-    date: convertDate(post.sys.firstPublishedAt.toString()),
-    updatedDate: convertDate(post.sys.publishedAt.toString()),
+    date: convertDateLong(post.sys.firstPublishedAt.toString()),
+    updatedDate: convertDateLong(post.sys.publishedAt.toString()),
     description: post.description,
     content: post.content.json,
     embeddedAssets,
@@ -243,4 +243,46 @@ export const getClientLogos = async () => {
     title: logos[0].title,
     logos: logos[0].logosCollection.items,
   };
+};
+
+export const getAuthor = async (id: string): Promise<IAuthor | null> => {
+  const query = `
+    query GetAuthor($id: String!) {
+      author(id: $id) {
+        fullName
+        profilePicture {
+          url
+          title
+        }
+      }
+    }
+  `;
+
+  try {
+    const response = await fetch(
+      `https://graphql.contentful.com/content/v1/spaces/${process.env.BLOG_SPACE_ID}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.BLOG_ACCESS_TOKEN}`,
+        },
+        next: { tags: ["blog"] },
+        body: JSON.stringify({ query, variables: { id } }),
+      }
+    ).then((res) => res.json());
+
+    const author = response.data?.author;
+    if (!author) return null;
+
+    return {
+      fullName: author.fullName,
+      profilePicture: author.profilePicture ?? undefined,
+    };
+  } catch (err) {
+    if (process.env.NODE_ENV === "development") {
+      console.error("[getAuthor] failed — check Contentful content type name:", err);
+    }
+    return null;
+  }
 };
