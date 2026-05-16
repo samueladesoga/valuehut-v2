@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { buildRenderOptions } from "@/components/Blog/RichTextRenderer/rich-text-renderer";
+import { getAuthor } from "@/lib/api";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -84,6 +85,7 @@ export default async function BlogPost({
   }
 
   const content = post.content as unknown as Document;
+  const author = post.author?.sys?.id ? await getAuthor(post.author.sys.id) : null;
 
   const fullUrl = getBlogPostUrl(slug);
 
@@ -137,9 +139,36 @@ export default async function BlogPost({
               </a>
             </p>
           )}
-          <div className="flex justify-between items-center text-secondary text-xs font-normal font-secondary">
-            <time>Originally posted on {post.date}</time>
-            <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 text-secondary text-xs font-normal font-secondary">
+            <div className="flex items-center gap-2">
+              {author?.profilePicture && (
+                <Image
+                  src={author.profilePicture.url}
+                  width={36}
+                  height={36}
+                  alt={author.fullName}
+                  className="rounded-full object-cover shrink-0"
+                  style={{ width: 36, height: 36 }}
+                />
+              )}
+              <p className="leading-relaxed">
+                {author && (
+                  <>
+                    <span>by </span>
+                    <span className="font-semibold text-main">{author.fullName}</span>
+                    <span className="mx-2">·</span>
+                  </>
+                )}
+                <span>On {post.date}</span>
+                {post.updatedDate !== post.date && (
+                  <>
+                    <span className="mx-2">•</span>
+                    <span>Updated on {post.updatedDate}</span>
+                  </>
+                )}
+              </p>
+            </div>
+            <div className="flex gap-3 items-center">
               <p>Share to</p>
               <Link
                 href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
@@ -155,6 +184,8 @@ export default async function BlogPost({
                   width={16}
                   height={16}
                   alt="linkedin"
+                  className="shrink-0"
+                  style={{ width: 16, height: 16 }}
                 />
               </Link>
               <Link
@@ -171,6 +202,8 @@ export default async function BlogPost({
                   width={16}
                   height={16}
                   alt="twitter"
+                  className="shrink-0"
+                  style={{ width: 16, height: 16 }}
                 />
               </Link>
             </div>
@@ -180,11 +213,10 @@ export default async function BlogPost({
           {content &&
             documentToReactComponents(
               content,
-              buildRenderOptions(post.embeddedAssets)
+              buildRenderOptions(post.embeddedAssets, content)
             )}
         </div>
-        <div className="flex justify-between items-center text-secondary text-xs font-normal font-secondary border-t py-4 border-[#555555] border-opacity-[30%]">
-          <time>Post updated on {post.updatedDate}</time>
+        <div className="flex justify-end items-center text-secondary text-xs font-normal font-secondary border-t py-4 border-[#555555]/30">
           <div className="flex gap-3">
             <p>Share to</p>
             <Link

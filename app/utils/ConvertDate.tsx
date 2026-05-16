@@ -1,3 +1,22 @@
+export function convertDateLong(dateString: string | number | Date): string {
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) return "Date unavailable";
+
+  const day = date.getUTCDate();
+  const year = date.getUTCFullYear();
+  const monthNames = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December",
+  ];
+  const month = monthNames[date.getUTCMonth()];
+  const suffix =
+    day === 1 || day === 21 || day === 31 ? "st"
+    : day === 2 || day === 22 ? "nd"
+    : day === 3 || day === 23 ? "rd"
+    : "th";
+  return `${month} ${day}${suffix}, ${year}`;
+}
+
 export function convertDate(dateString: string | number | Date) {
   const date = new Date(dateString);
 
