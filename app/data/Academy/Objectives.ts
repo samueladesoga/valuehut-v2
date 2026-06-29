@@ -6,7 +6,7 @@ export interface IObjectives {
 export const Objectives: IObjectives[] = [
   {
     id: 1,
-    text: "Help Scrum Teams deliver value to their organization",
+    text: "Help Scrum Teams deliver value to their organisation",
   },
   {
     id: 2,

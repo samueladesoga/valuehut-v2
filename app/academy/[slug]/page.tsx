@@ -108,7 +108,7 @@ export default async function CourseDetailsPage({ params }: Props) {
     image: course.image,
     url: `https://www.valuehut.co/academy/${slug}`,
     provider: {
-      "@type": "Organization",
+      "@type": "Organisation",
       name: "ValueHut Consulting",
       url: "https://www.valuehut.co",
     },

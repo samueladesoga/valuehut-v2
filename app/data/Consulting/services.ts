@@ -26,7 +26,7 @@ export const services: ServiceItem[] = [
   {
     title: "Delivery Management",
     description:
-      `We offer specialized Delivery Management services designed to help organizations successfully 
+      `We offer specialized Delivery Management services designed to help organisations successfully 
       navigate the complexities of modern product development. Regardless of the size of your organisation, 
       from scale-ups to multinationals, our delivery consultants bring the expertise needed to ensure alignment,
       effectiveness, and consistent delivery of value to your customers. We focus on enabling teams and 
@@ -34,7 +34,7 @@ export const services: ServiceItem[] = [
       are predictable.`,
     points: [
       "Establishing delivery frameworks that support end-to-end accountability",
-      "Maintaining a clear roadmap that aligns with your organization’s strategic objectives",
+      "Maintaining a clear roadmap that aligns with your organisation’s strategic objectives",
       "Embedding themselves within your teams to  identify bottlenecks, reduce cycle time, and enable consistent delivery of high-quality products and services. ",
       "Providing coaching and mentoring to leaders and teams alike.",
     ],

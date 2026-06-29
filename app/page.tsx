@@ -43,9 +43,9 @@ export const metadata: Metadata = {
   },
 };
 
-const organizationSchema = {
+const organisationSchema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "Organisation",
   name: "ValueHut Consulting",
   url: "https://www.valuehut.co",
   logo: "https://www.valuehut.co/logos/v2-dark.png",
@@ -139,7 +139,7 @@ export default async function Home() {
     <div className="flex flex-col gap-8 bg-[#f5f5f5]">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organisationSchema) }}
       />
       {localBusinessSchemas.map((schema, i) => (
         <script

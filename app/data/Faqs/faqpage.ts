@@ -15,7 +15,7 @@ export const faqs: FAQItem[] = [
     category: "ValueHut",
     question: "What industries do you work with?",
     answer:
-      "Our methodologies are adaptable to any organization seeking to enhance their ways of working, from technology companies to traditional enterprises undergoing digital transformation.",
+      "Our methodologies are adaptable to any organisation seeking to enhance their ways of working, from technology companies to traditional enterprises undergoing digital transformation.",
   },
   {
     category: "ValueHut",
@@ -27,7 +27,7 @@ export const faqs: FAQItem[] = [
     category: "ValueHut",
     question: "How long does a typical engagement last?",
     answer:
-      "Each engagement is unique and depends on your organization's goals and current maturity level. Typical transformations range from 3-12 months, with ongoing support available to ensure sustainable change.",
+      "Each engagement is unique and depends on your organisation's goals and current maturity level. Typical transformations range from 3-12 months, with ongoing support available to ensure sustainable change.",
   },
   {
     category: "ValueHut",
