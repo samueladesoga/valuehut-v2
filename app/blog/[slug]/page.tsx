@@ -99,7 +99,7 @@ export default async function BlogPost({
     datePublished: post.date,
     dateModified: post.updatedDate,
     publisher: {
-      "@type": "Organization",
+      "@type": "Organisation",
       name: "ValueHut Consulting",
       logo: {
         "@type": "ImageObject",

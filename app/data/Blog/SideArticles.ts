@@ -23,10 +23,10 @@ export const SideArticles: ISideArticles[] = [
   },
   {
     image: "/images/blog/blog-v2-3.png",
-    title: "How Scrum Framework Helps Scale Agile in Large Organizations",
+    title: "How Scrum Framework Helps Scale Agile in Large Organisations",
     date: "18th May 2021",
     tag: "Scaling Agile",
-    slug: "how-scrum-framework-helps-scale-agile-in-large-organizations",
+    slug: "how-scrum-framework-helps-scale-agile-in-large-organisations",
   },
   {
     image: "/images/blog/blog-v2-4.png",

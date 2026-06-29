@@ -8,7 +8,7 @@ function MeetTheTeam() {
       imageSrc: "/images/nigel-thurlow.jpg",
       name: "Nigel Thurlow",
       role: "Advisor",
-      description: `Nigel Thurlow is an expert in organizational design, author, and renowned speaker who serves 
+      description: `Nigel Thurlow is an expert in organisational design, author, and renowned speaker who serves 
       as a consultant to industry in business agility — and as an expert in the application of cross-disciplinary 
       methods and approaches to accelerate business change.`,
       socialLinks: [
@@ -41,7 +41,7 @@ function MeetTheTeam() {
         Temi is an experienced Lean-Agile Practitioner, Accredited Kanban Trainer, ICAgile Instructor 
         Agile Coach, Professional Scrum Master, Agile Project Manager, SAFe Program consultant and Kanban 
         Management Professional with over 10 years’ experience empowering and coaching development teams 
-        and organizations in the adoption agile principles and improving the flow of customer value through 
+        and organisations in the adoption agile principles and improving the flow of customer value through 
         scalable, maintainable software solutions.`,
       socialLinks: [
         { icon: "/icons/twitter.svg", alt: "twitter", url: "#" },

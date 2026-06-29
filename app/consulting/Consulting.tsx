@@ -196,7 +196,7 @@ function Consulting() {
       <div className="pb-0 md:pb-20 mt-10 md:mt-0 ">
         <BookACallCTA
           title="Ready to book a free call?"
-          description="ValueHut Consulting is an Agile Management Consultancy, enabling organizations to explore better ways of working and leading."
+          description="ValueHut Consulting is an Agile Management Consultancy, enabling organisations to explore better ways of working and leading."
           buttonText="Book a free call"
           imageUrl="/images/BookACallCTA-image.png"
           url="https://calendly.com/samueladesoga/valuehut-consulting"

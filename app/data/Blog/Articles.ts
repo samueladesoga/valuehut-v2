@@ -15,7 +15,7 @@ export const Articles: IArticles[] = [
     date: "22 Sept 2024",
     category: "Sports",
     image: "/images/blog/blog-v2-1.png",
-    slug: "impact-of-uat-on-organizational-agility",
+    slug: "impact-of-uat-on-organisational-agility",
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ export const Articles: IArticles[] = [
     date: "22 Sept 2024",
     category: "AI news",
     image: "/images/blog/blog-v2-2.png",
-    slug: "unlocking-organizational-agility-key-product-metrics-every-business-leader-should-measure",
+    slug: "unlocking-organisational-agility-key-product-metrics-every-business-leader-should-measure",
   },
   {
     id: 3,
