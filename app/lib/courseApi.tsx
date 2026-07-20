@@ -94,22 +94,28 @@ export const getAllCourses = async () => {
 
   const posts = data.data?.courseCollection.items;
 
-  const courses = posts.map((course: ICourses) => ({
-    title: course.title,
-    description: course.description,
-    level: course.level,
-    logo: course.logo.url,
-    slug: course.slug,
-    duration: course.duration,
-    dates: convertDate(course.classesCollection.items[0]?.startDate),
-    classes: course.classesCollection.items.map((item) => ({
-      filled: item.filled,
-      startDate: item.startDate,
-      endDate: item.endDate,
-      timeZone: item.timeZone,
-      year: getYear(item.startDate),
-    })),
-  }));
+  const courses = posts.map((course: ICourses) => {
+    const sortedClasses = [...course.classesCollection.items].sort(
+      (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+    );
+
+    return {
+      title: course.title,
+      description: course.description,
+      level: course.level,
+      logo: course.logo.url,
+      slug: course.slug,
+      duration: course.duration,
+      dates: convertDate(sortedClasses[0]?.startDate),
+      classes: sortedClasses.map((item) => ({
+        filled: item.filled,
+        startDate: item.startDate,
+        endDate: item.endDate,
+        timeZone: item.timeZone,
+        year: getYear(item.startDate),
+      })),
+    };
+  });
   return courses;
 };
 
@@ -183,36 +189,42 @@ export const getCourse = async (slug: string) => {
 
   const posts = data.data?.courseCollection?.items;
 
-  const course = posts.map((course: ICourses) => ({
-    title: course.title,
-    description: course.description,
-    level: course.level,
-    logo: course.logo.url,
-    slug: course.slug,
-    acronym: course.acronym,
-    duration: course.duration,
-    dates: convertDate(course.classesCollection.items[0]?.startDate),
-    image: course.imageUrl.url,
-    classes: course.classesCollection.items.map((item) => ({
-      classSysId: item.sys.id,
-      identifier: item.identifier,
-      filled: item.filled,
-      startDate: item.startDate,
-      endDate: item.endDate,
-      timeZone: item.timeZone,
-      year: getYear(item.startDate),
-      classType: item.classType,
-      time: item.time,
-      ukPrice: item.ukPrice,
-      primary: item.primary,
-      secondary: item.secondary,
-      tertiary: item.tertiary,
-    })),
-    courseDetails: course.courseDetailsCollection.items.map((item) => ({
-      title: item.title,
-      content: item.content,
-      contentList: item.contentList,
-    })),
-  }));
+  const course = posts.map((course: ICourses) => {
+    const sortedClasses = [...course.classesCollection.items].sort(
+      (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+    );
+
+    return {
+      title: course.title,
+      description: course.description,
+      level: course.level,
+      logo: course.logo.url,
+      slug: course.slug,
+      acronym: course.acronym,
+      duration: course.duration,
+      dates: convertDate(sortedClasses[0]?.startDate),
+      image: course.imageUrl.url,
+      classes: sortedClasses.map((item) => ({
+        classSysId: item.sys.id,
+        identifier: item.identifier,
+        filled: item.filled,
+        startDate: item.startDate,
+        endDate: item.endDate,
+        timeZone: item.timeZone,
+        year: getYear(item.startDate),
+        classType: item.classType,
+        time: item.time,
+        ukPrice: item.ukPrice,
+        primary: item.primary,
+        secondary: item.secondary,
+        tertiary: item.tertiary,
+      })),
+      courseDetails: course.courseDetailsCollection.items.map((item) => ({
+        title: item.title,
+        content: item.content,
+        contentList: item.contentList,
+      })),
+    };
+  });
   return course;
 };
