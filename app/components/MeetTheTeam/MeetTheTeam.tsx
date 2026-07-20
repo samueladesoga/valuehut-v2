@@ -51,6 +51,20 @@ function MeetTheTeam() {
     },
     {
       bgColor: "bg-[#A5E0E7]",
+      imageSrc: "/images/anita.png",
+      name: "Anita Amafili",
+      role: "Product Lead",
+      description: `Anita Amafili is ValueHut Consulting's Product Lead with experience in product management using agile delivery approaches, 
+      and digital transformation. She partners with stakeholders and multidisciplinary teams to deliver innovative digital products, 
+      improve user experiences, and ensure product strategies align with business goals.`,
+      socialLinks: [
+        { icon: "/icons/twitter.svg", alt: "twitter", url: "#" },
+        { icon: "/icons/likdin.svg", alt: "linkedin", url: "https://www.linkedin.com/in/anita-amafili-b63b92144/" },
+        { icon: "/icons/share.svg", alt: "share", url: "#" },
+      ],
+    },
+    {
+      bgColor: "bg-[#E5DFD9]",
       imageSrc: "/images/deb.jpg",
       name: "Deborah Adesomoju",
       role: "Fractional Legal Counsel",
@@ -66,7 +80,7 @@ function MeetTheTeam() {
       ],
     },
     {
-      bgColor: "bg-[#E5DFD9]",
+      bgColor: "bg-[#A5E0C6]",
       imageSrc: "/images/funke.jpg",
       name: "Funke Jolayemi",
       role: "Operations Coordinator",
