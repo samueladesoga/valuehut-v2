@@ -95,10 +95,13 @@ export function getDisplayDate(startDate: string, endDate: string, timeZone: str
 
   if (!start) return "Date Unavailable";
 
-  const startDay = start.getDate();
-  const endDay = end?.getDate();
+  const sameDay =
+    end &&
+    start.getFullYear() === end.getFullYear() &&
+    start.getMonth() === end.getMonth() &&
+    start.getDate() === end.getDate();
 
-  if (startDay === endDay || !end) {
+  if (sameDay || !end) {
     return start.toLocaleDateString("en-GB", {
       month: "short",
       day: "numeric",
@@ -107,8 +110,13 @@ export function getDisplayDate(startDate: string, endDate: string, timeZone: str
     });
   }
 
+  const sameMonth = start.getFullYear() === end.getFullYear() && start.getMonth() === end.getMonth();
+  const sameYear = start.getFullYear() === end.getFullYear();
+
   const formattedStart = start.toLocaleDateString("en-GB", {
     day: "numeric",
+    month: sameMonth ? undefined : "short",
+    year: sameYear ? undefined : "numeric",
     timeZone: timeZone,
   });
   const formattedEnd = end.toLocaleDateString("en-GB", { day: "numeric",  month: "short", year: "numeric", timeZone: timeZone });
