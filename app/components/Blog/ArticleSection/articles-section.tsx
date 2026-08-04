@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import Button from "@/components/Button/Button";
 import { convertDate } from "@/utils/ConvertDate";
-import AdsImage from "@/data/AdsImage/AdsImage.jpg";
+import AdsImage from "@/data/AdsImage/AdsImage.png";
 
 interface IArticle {
   id?: number;
@@ -127,7 +127,7 @@ const ArticlesSection: React.FC<ArticlesSectionProps> = ({
 
           <div className="rounded-lg flex items-center justify-center">
             {AdsImage ? (
-              <Link href={"https://scrumday.ng/"} target="_blank">
+              <Link href={"https://www.youtube.com/playlist?list=PLs9gs6GduVHVVMITXpiA0lKBVK7H8bbb4"} target="_blank">
                 <Image
                   src={AdsImage}
                   alt="Ad"
