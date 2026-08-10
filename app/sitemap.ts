@@ -2,6 +2,15 @@
 import { getAllCourses } from "@/lib/courseApi";
 import { getAllArticles } from "./lib/api";
 
+function isValidUrl(url: string): boolean {
+  try {
+    new URL(url);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 const generateSitemap = async () => {
   const baseUrl = "https://www.valuehut.co";
 
@@ -17,7 +26,10 @@ const generateSitemap = async () => {
   const articles = await getAllArticles();
 
   const articleUrls = articles.map((article: any) => ({
-    url: `${baseUrl}/blog/${article.slug}`,
+    url:
+      article.canonicalUrl && isValidUrl(article.canonicalUrl)
+        ? article.canonicalUrl
+        : `${baseUrl}/blog/${article.slug}`,
     lastModified: article.updatedAt ?? article.date ?? "2025-01-01",
     changeFrequency: "monthly" as const,
     priority: 0.6,
