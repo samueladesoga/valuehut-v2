@@ -76,6 +76,7 @@ export const getAllArticles = async () => {
                 showInHomePage
                 isFeatured
                 description
+                canonicalUrl
             }
         } 
     }
@@ -110,6 +111,7 @@ export const getAllArticles = async () => {
     cover: {
       url: post.cover.url,
     },
+    canonicalUrl: post.canonicalUrl ?? undefined,
   }));
 
   return articles;
