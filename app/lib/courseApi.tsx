@@ -95,9 +95,11 @@ export const getAllCourses = async () => {
   const posts = data.data?.courseCollection.items;
 
   const courses = posts.map((course: ICourses) => {
-    const sortedClasses = [...course.classesCollection.items].sort(
-      (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
-    );
+    const sortedClasses = course.classesCollection.items
+      .filter((item) => item !== null)
+      .sort(
+        (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+      );
 
     return {
       title: course.title,
@@ -190,9 +192,11 @@ export const getCourse = async (slug: string) => {
   const posts = data.data?.courseCollection?.items;
 
   const course = posts.map((course: ICourses) => {
-    const sortedClasses = [...course.classesCollection.items].sort(
-      (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
-    );
+    const sortedClasses = course.classesCollection.items
+      .filter((item) => item !== null)
+      .sort(
+        (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+      );
 
     return {
       title: course.title,
