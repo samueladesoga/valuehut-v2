@@ -64,22 +64,6 @@ function MeetTheTeam() {
       ],
     },
     {
-      bgColor: "bg-[#E5DFD9]",
-      imageSrc: "/images/deb.jpg",
-      name: "Deborah Adesomoju",
-      role: "Fractional Legal Counsel",
-      description: `Deborah is a licensed lawyer with a strong background in transactional law and legal consulting, 
-      bringing a rare cross-disciplinary perspective to organisational consulting. With experience spanning multiple 
-      jurisdictions, including North America, the United Kingdom, and Africa, she combines deep expertise in contract 
-      negotiation, due diligence, and regulatory compliance with a sharp focus on delivering value in complex, 
-      multi-stakeholder environments.`,
-      socialLinks: [
-        { icon: "/icons/twitter.svg", alt: "twitter", url: "" },
-        { icon: "/icons/likdin.svg", alt: "linkedin", url: "https://www.linkedin.com/in/deborahadesoga/" },
-        { icon: "/icons/share.svg", alt: "share", url: "#" },
-      ],
-    },
-    {
       bgColor: "bg-[#A5E0C6]",
       imageSrc: "/images/funke.jpg",
       name: "Funke Jolayemi",
