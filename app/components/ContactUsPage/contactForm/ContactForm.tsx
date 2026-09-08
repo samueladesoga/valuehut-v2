@@ -260,9 +260,9 @@ const ContactForm: React.FC = () => {
             >
               <option value="">Select an option</option>
               <option value="consulting">Consulting</option>
-              <option value="academy">Academy training</option>
+              <option value="academy">Academy (Training)</option>
               <option value="talent-matching">Talent Matching</option>
-              <option value="not-sure">Not sure yet</option>
+              <option value="not-sure">Not sure</option>
             </select>
           </div>
 
