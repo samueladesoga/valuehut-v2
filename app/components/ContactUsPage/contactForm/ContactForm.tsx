@@ -58,7 +58,9 @@ const inputClasses =
 const labelClasses =
   "block font-primary font-medium text-lg !leading-[22.8px] mb-1";
 
-emailjs.init({ publicKey: process.env.NEXT_PUBLIC_EMAIL_USER_ID });
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAIL_USER_ID;
 
 const initialFormData: FormData = {
   fullName: "",
@@ -141,13 +143,22 @@ const ContactForm: React.FC = () => {
       return;
     }
 
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      console.error(
+        "EmailJS is not configured: set NEXT_PUBLIC_EMAIL_SERVICE_ID, NEXT_PUBLIC_EMAIL_TEMPLATE_ID and NEXT_PUBLIC_EMAIL_USER_ID at build time."
+      );
+      toast.error("Failed to send email. Please try again.");
+      return;
+    }
+
     setIsLoading(true);
 
     emailjs
       .sendForm(
-        process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID as string,
-        process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID as string,
-        formRef.current as HTMLFormElement
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        formRef.current as HTMLFormElement,
+        { publicKey: EMAILJS_PUBLIC_KEY }
       )
       .then(
         function () {
