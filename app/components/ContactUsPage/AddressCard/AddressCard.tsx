@@ -18,7 +18,9 @@ const AddressCard: React.FC<AddressCardProps> = ({
       <div className="bg-[#D5E4EC] p-4 rounded-md">
         <h3 className="text-xl font-secondary font-semibold mb-2">{state}</h3>
         <p className="text-sm font-secondary text-main mb-1">{address}</p>
-        <p className="text-sm font-secondary text-main mb-1">{phone}</p>
+        {phone && (
+          <p className="text-sm font-secondary text-main mb-1">{phone}</p>
+        )}
         <p className="text-sm font-secondary text-main mb-1">{email}</p>
       </div>
     </>
