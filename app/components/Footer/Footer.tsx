@@ -126,14 +126,12 @@ const Footer: React.FC = () => {
                       UK office:
                     </p>
                     <p>Email: info@valuehut.co</p>
-                    <p>Tel: +44(0)7946713054</p>
                   </li>
                   <li>
                     <p className="text-accentsecondary text-sm font-normal font-secondary">
                       Nigeria office:
                     </p>
                     <p>Email: info@valuehut.co</p>
-                    <p>Tel: +234(0)8143021499</p>
                   </li>
                 </ul>
               </div>

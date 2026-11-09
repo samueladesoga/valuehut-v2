@@ -34,7 +34,7 @@ const ContactUs: React.FC = () => {
             <div className="space-y-4 w-full">
               {addressData.map((address) => (
                 <AddressCard
-                  key={address.phone}
+                  key={address.state}
                   address={address.address}
                   phone={address.phone}
                   state={address.state}

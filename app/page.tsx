@@ -52,7 +52,6 @@ const organisationSchema = {
   description:
     "ValueHut Consulting is an Agile Management Consultancy helping organisations discover better ways of working to deliver exceptional products and services.",
   areaServed: ["London", "United Kingdom", "Lagos", "Nigeria"],
-  telephone: ["+44(0)7946713054", "+234(0)8143021499"],
   address: [
     {
       "@type": "PostalAddress",
@@ -86,7 +85,7 @@ const localBusinessSchemas = [
     "@type": "LocalBusiness",
     name: "ValueHut Consulting — UK",
     url: "https://www.valuehut.co",
-    telephone: "+44(0)7946713054",
+    telephone: "",
     email: "info@valuehut.co",
     address: {
       "@type": "PostalAddress",
@@ -111,7 +110,6 @@ const localBusinessSchemas = [
     "@type": "LocalBusiness",
     name: "ValueHut Consulting — Nigeria",
     url: "https://www.valuehut.co",
-    telephone: "+234(0)8143021499",
     email: "info@valuehut.co",
     address: {
       "@type": "PostalAddress",
