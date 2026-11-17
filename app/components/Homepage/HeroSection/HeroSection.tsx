@@ -13,6 +13,7 @@ const HeroSection = ({
   showRating,
   ratingText,
   ratingDetails,
+  ratingLink,
   backgroundImage,
 }: HeroSectionProps) => {
   return (
@@ -46,12 +47,12 @@ const HeroSection = ({
             <div className="hidden md:block">
               <p className="text-accentmain text-base font-medium gap-3 inline-flex">
                 {ratingText}
-                <span className="flex flex-row gap-1">
-                  {[1, 2, 3, 4].map((i) => (
+                <span className="flex flex-row gap-1" aria-hidden="true">
+                  {[1, 2, 3, 4, 5].map((i) => (
                     <Image
                       key={i}
                       src={"/Assets/rating.svg"}
-                      alt="rating"
+                      alt=""
                       width={20}
                       height={19}
                     />
@@ -59,7 +60,18 @@ const HeroSection = ({
                 </span>
               </p>
               <p className="text-accentmain font-normal text-sm">
-                {ratingDetails}
+                {ratingLink ? (
+                  <a
+                    href={ratingLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-2 hover:opacity-80"
+                  >
+                    {ratingDetails}
+                  </a>
+                ) : (
+                  ratingDetails
+                )}
               </p>
             </div>
           )}

@@ -45,7 +45,7 @@ export default function HireProfessionals() {
             <HireCard
               title={"Top candidates"}
               description={
-                "Our candidates are top 1% in their chosen field of work"
+                "Every candidate is vetted by practising consultants who know the role"
               }
               imageSrc={"/icons/talent-star.svg"}
               bgColor={"bg-[#C4EBE3]"}

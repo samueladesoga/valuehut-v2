@@ -153,7 +153,8 @@ export default async function Home() {
         buttonLink={heroData.buttonLink}
         ratingText={heroData.ratingText}
         ratingDetails={heroData.ratingDetails}
-        showRating={true}
+        ratingLink={heroData.ratingLink}
+        showRating={heroData.showRating}
         backgroundImage={heroData.backgroundImage}
       />
       <ClientLogosSectionWrapper />

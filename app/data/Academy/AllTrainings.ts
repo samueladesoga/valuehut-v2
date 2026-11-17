@@ -1,3 +1,5 @@
+import { scrumOrgRating } from "@/data/shared/scrumOrgRating";
+
 export interface IAllTrainings {
   id: number;
   title: string;
@@ -33,6 +35,7 @@ export interface IAcadmeyHero {
   showRating?: boolean;
   ratingText?: string;
   ratingDetails?: string;
+  ratingLink?: string;
   ratingImage?: string;
 }
 
@@ -43,7 +46,6 @@ export const AcademyHero: IAcadmeyHero = {
   backgroundImage: "/images/trainings.png",
   pill: "ACADEMY",
   showRating: true,
-  ratingText: "Excellent",
-  ratingDetails: "4.9 out of 5 based on 26,000+ reviews",
+  ...scrumOrgRating,
   ratingImage: "/images/logo-01.svg",
 };
