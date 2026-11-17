@@ -13,6 +13,7 @@ import Image from "next/image";
 import Button from "@/components/Button/Button";
 import { ChevronRight } from "lucide-react";
 import WhyChooseUs from "@/components/WhyChooseUs/WhyChooseUs";
+import { proofStats } from "@/data/shared/proofStats";
 import ClientReviews from "@/components/ClientReviews/ClientReviews";
 import { useRouter } from "next/navigation";
 
@@ -78,18 +79,9 @@ function Consulting() {
             "Our consultants have successfully helped organisations deliver products while upskilling teams in these organisations."
           }
           stats={[
-            {
-              title: "Years of Experience",
-              number: "10+",
-            },
-            {
-              title: "Projects Completed",
-              number: "10+",
-            },
-            {
-              title: "Happy Clients",
-              number: "100+",
-            },
+            proofStats.yearsInBusiness,
+            proofStats.consultingProjects,
+            proofStats.organisationsTransformed,
           ]}
         />
       </div>

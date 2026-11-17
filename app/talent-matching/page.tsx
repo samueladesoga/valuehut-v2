@@ -6,6 +6,7 @@ import HireProfessionals from "@/components/talent-section/hire-professionals";
 import HiringProcess from "@/components/talent-section/hiring-process";
 import TalentSection from "@/components/talent-section/talent-section";
 import WhyChooseUs from "@/components/WhyChooseUs/WhyChooseUs";
+import { proofStats } from "@/data/shared/proofStats";
 import { heroData } from "@/data/talent-matching/talent-matching";
 import React from "react";
 import { faqs } from "@/data/Faqs/faqpage";
@@ -14,14 +15,14 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Agile Talent Matching | London & Lagos | ValueHut Consulting",
   description:
-    "ValueHut Consulting matches organisations in London and Lagos with pre-qualified Agile and transformation professionals. Reduce your hiring lead time by 50%.",
+    "ValueHut Consulting matches organisations in London and Lagos with pre-qualified Agile and transformation professionals, each vetted by practising consultants.",
   alternates: {
     canonical: "https://www.valuehut.co/talent-matching",
   },
   openGraph: {
     title: "Agile Talent Matching | London & Lagos | ValueHut Consulting",
     description:
-      "ValueHut Consulting matches organisations in London and Lagos with pre-qualified Agile and transformation professionals. Reduce your hiring lead time by 50%.",
+      "ValueHut Consulting matches organisations in London and Lagos with pre-qualified Agile and transformation professionals, each vetted by practising consultants.",
     url: "https://www.valuehut.co/talent-matching",
     images: [
       {
@@ -36,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Agile Talent Matching | London & Lagos | ValueHut Consulting",
     description:
-      "ValueHut Consulting matches organisations in London and Lagos with pre-qualified Agile and transformation professionals. Reduce your hiring lead time by 50%.",
+      "ValueHut Consulting matches organisations in London and Lagos with pre-qualified Agile and transformation professionals, each vetted by practising consultants.",
     images: ["/images/TalentSection.png"],
   },
 };
@@ -58,7 +59,7 @@ function page() {
 
       <HeroBanner
         title="Let's get started"
-        subtitle="We will reduce your lead time by at least 50% and increase your chances of hiring the right talent by 3x."
+        subtitle="We shortlist candidates vetted by consultants who have worked in similar roles, so you spend less time screening and more time choosing."
         image={"/images/TalentSection.png"}
         btnText="Contact us"
         btnLink="/contact-us"
@@ -93,18 +94,9 @@ function page() {
             "Our talent network includes experienced Professionals and Consultants who have gone through our Academy and Consulting service pillars."
           }
           stats={[
-            {
-              number: "50+",
-              title: "Successful Matches",
-            },
-            {
-              number: "3x",
-              title: "Increased chance to hire the right talent",
-            },
-            {
-              number: "100+",
-              title: "Years of collective experience",
-            },
+            proofStats.successfulMatches,
+            proofStats.organisationsTransformed,
+            proofStats.collectiveExperience,
           ]}
         />
       </div>

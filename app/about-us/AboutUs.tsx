@@ -9,6 +9,7 @@ import SectionTitle from "@/components/SectionTitle/SectionTitle";
 import WhoAreWe from "@/components/WhoAreWe/WhoAreWe";
 import ClientReviews from "@/components/ClientReviews/ClientReviews";
 import WhyChooseUs from "@/components/WhyChooseUs/WhyChooseUs";
+import { proofStats } from "@/data/shared/proofStats";
 import Link from "next/link";
 
 function AboutUs() {
@@ -78,18 +79,9 @@ function AboutUs() {
             "Experienced consultants and practitioners with a track record of transforming organisations and teams."
           }
           stats={[
-            {
-              number: "100+",
-              title: "Transformed Organisations",
-            },
-            {
-              number: "3x",
-              title: "Increase in Organisation Effectiveness",
-            },
-            {
-              number: "100+",
-              title: "Years of collective experience",
-            },
+            proofStats.organisationsTransformed,
+            proofStats.consultingProjects,
+            proofStats.collectiveExperience,
           ]}
         />
       </div>

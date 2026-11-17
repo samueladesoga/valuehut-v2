@@ -1,3 +1,5 @@
+import { proofStats } from "@/data/shared/proofStats";
+
 export interface Statistic {
   value: string;
   label: string;
@@ -24,8 +26,14 @@ export const coCreatingData: IServicesSection = {
   subtitle:
     "We help organisations navigate through the complexities of modern product development.",
   statistics: [
-    { value: "100+", label: "Years of collective experience" },
-    { value: "3x", label: "More Effective Teams" },
+    {
+      value: proofStats.collectiveExperience.number,
+      label: proofStats.collectiveExperience.title,
+    },
+    {
+      value: proofStats.organisationsTransformed.number,
+      label: proofStats.organisationsTransformed.title,
+    },
   ],
   cards: [
     {
