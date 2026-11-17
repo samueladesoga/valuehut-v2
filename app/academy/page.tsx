@@ -72,6 +72,7 @@ export default async function Home() {
         showRating={true}
         ratingText={AcademyHero.ratingText}
         ratingDetails={AcademyHero.ratingDetails}
+        ratingLink={AcademyHero.ratingLink}
         ratingImage={AcademyHero.ratingImage}
       />
       <div className="container flex pt-14 pb-1 sm:pb-8 justify-between flex-col-reverse lg:flex-row gap-20 lg:gap-2">
