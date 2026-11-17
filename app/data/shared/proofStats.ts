@@ -10,14 +10,14 @@ export interface ProofStat {
 
 export const proofStats = {
   // Confirmed Nov 2026.
-  consultingProjects: { number: "40+", title: "Consulting Projects Completed" },
+  consultingProjects: { number: "40+", title: "Consulting Engagements Completed" },
   // Clients and transformed organisations are the same group, counted across
   // all partners. Confirmed Nov 2026.
   organisationsTransformed: { number: "50+", title: "Organisations Transformed" },
 
   // Years ValueHut has operated vs the team's combined experience — both
   // confirmed Nov 2026; labels kept distinct so they don't read as conflicting.
-  yearsInBusiness: { number: "10+", title: "Years in Business" },
+  yearsInBusiness: { number: "15+", title: "Years in Business" },
   collectiveExperience: { number: "100+", title: "Years of collective experience" },
   // Talent Matching placements. Confirmed Nov 2026.
   successfulMatches: { number: "50+", title: "Successful Matches" },
