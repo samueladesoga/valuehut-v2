@@ -219,7 +219,15 @@ function WrapperCheckout({ course, classSysId }: any) {
     formData.append("toEmail", data.email);
     formData.append("subject", `Invoice for ${course.title} (${acronym})`);
     formData.append("text", "Please find attached your invoice.");
-    formData.append("customerName", data.fullname);
+    // Greet whoever receives the invoice: the billing contact if given;
+    // a neutral greeting if it goes to a different address with no contact;
+    // otherwise the student, who is the recipient.
+    const sentToSomeoneElse =
+      data.email.toLowerCase() !== details.email.trim().toLowerCase();
+    const greetingName =
+      data.billingContact ||
+      (sentToSomeoneElse ? "Sir/Madam" : data.fullname);
+    formData.append("customerName", greetingName);
     formData.append("courseName", course?.title ?? "");
 
     fetch("/api/sendEmail", {
