@@ -21,7 +21,13 @@ interface details {
   fullName: string;
   email: string;
   phone: string;
-  address: string;
+  company: string;
+  addressLine1: string;
+  addressLine2: string;
+  city: string;
+  postcode: string;
+  billingCountry: string;
+  invoiceEmail: string;
   numberOfAttendees: number;
   acronym?: string;
   startDate?: string;
@@ -41,6 +47,15 @@ const stripePromise = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
   ? loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
   : null;
 
+const labelClass =
+  "block text-sm !leading-[19px] font-medium font-secondary text-main";
+const optionalClass = "text-secondary font-normal";
+const helpClass = "text-sm !leading-[19px] font-secondary text-secondary";
+const sectionHeadingClass =
+  "mb-1 text-base !leading-[22px] font-semibold font-secondary text-main";
+const inputClass =
+  "w-full py-5 px-4 border-none rounded-lg font-normal font-secondary text-xl !leading-[25px] text-secondary focus:outline-none focus:ring-2 focus:ring-[#05668D]";
+
 const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
   methods,
   details,
@@ -57,6 +72,9 @@ const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
       [name]: name === "numberOfAttendees" ? parseInt(value) || 1 : value,
     }));
   };
+
+  const invoiceRecipient =
+    details.invoiceEmail.trim() || details.email.trim();
 
   const handleSelect = (methodId: string) => {
     setSelectedMethod(methodId);
@@ -165,40 +183,170 @@ const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
 
               {method.name === "Pay with Invoice" &&
                 selectedMethod === method.id && (
-                  <div className="flex flex-col gap-8 mt-8">
-                    <div className="flex flex-col gap-2">
-                      <label
-                        htmlFor="address"
-                        className="block text-sm !leading-[19px] font-medium font-secondary text-main"
-                      >
-                        Address
-                      </label>
-                      <input
-                        type="text"
-                        id="address"
-                        name="address"
-                        value={details.address}
-                        onChange={handleInput}
-                        placeholder="Enter your address"
-                        className="w-full py-5 px-4 border-none rounded-lg font-normal font-secondary text-xl !leading-[25px] text-secondary focus:outline-none focus:ring-0"
-                      />
-                    </div>
+                  <div
+                    className="flex flex-col gap-8 mt-8"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <p className="text-base !leading-[22px] font-secondary text-secondary">
+                      We&apos;ll email you a PDF invoice for this booking. Please
+                      enter the billing details exactly as they should appear on
+                      the invoice.
+                    </p>
+
+                    <fieldset className="flex flex-col gap-4">
+                      <legend className={sectionHeadingClass}>
+                        Send invoice to
+                      </legend>
+                      <div className="flex flex-col gap-2">
+                        <label htmlFor="invoiceEmail" className={labelClass}>
+                          Invoice email{" "}
+                          <span className={optionalClass}>(optional)</span>
+                        </label>
+                        <input
+                          type="email"
+                          id="invoiceEmail"
+                          name="invoiceEmail"
+                          autoComplete="email"
+                          value={details.invoiceEmail}
+                          onChange={handleInput}
+                          placeholder={
+                            details.email || "e.g. accounts@yourcompany.com"
+                          }
+                          className={inputClass}
+                        />
+                        <p className={helpClass}>
+                          Use this if your finance or accounts team should
+                          receive the invoice. Leave blank to use your contact
+                          email.
+                        </p>
+                      </div>
+                      <div className="rounded-lg bg-white px-4 py-3 text-sm !leading-[20px] font-secondary text-main">
+                        The invoice will be sent to:{" "}
+                        <strong className="break-all">
+                          {invoiceRecipient || "your contact email (enter it above)"}
+                        </strong>
+                      </div>
+                    </fieldset>
+
+                    <fieldset className="flex flex-col gap-4">
+                      <legend className={sectionHeadingClass}>
+                        Billing address
+                      </legend>
+                      <div className="flex flex-col gap-2">
+                        <label htmlFor="company" className={labelClass}>
+                          Company / organisation{" "}
+                          <span className={optionalClass}>(optional)</span>
+                        </label>
+                        <input
+                          type="text"
+                          id="company"
+                          name="company"
+                          autoComplete="organization"
+                          value={details.company}
+                          onChange={handleInput}
+                          placeholder="Company name"
+                          className={inputClass}
+                        />
+                      </div>
+                      <div className="flex flex-col gap-2">
+                        <label htmlFor="addressLine1" className={labelClass}>
+                          Address line 1
+                        </label>
+                        <input
+                          type="text"
+                          id="addressLine1"
+                          name="addressLine1"
+                          autoComplete="address-line1"
+                          required
+                          value={details.addressLine1}
+                          onChange={handleInput}
+                          placeholder="Building number and street"
+                          className={inputClass}
+                        />
+                      </div>
+                      <div className="flex flex-col gap-2">
+                        <label htmlFor="addressLine2" className={labelClass}>
+                          Address line 2{" "}
+                          <span className={optionalClass}>(optional)</span>
+                        </label>
+                        <input
+                          type="text"
+                          id="addressLine2"
+                          name="addressLine2"
+                          autoComplete="address-line2"
+                          value={details.addressLine2}
+                          onChange={handleInput}
+                          placeholder="Flat, suite, unit, floor"
+                          className={inputClass}
+                        />
+                      </div>
+                      <div className="flex flex-col sm:flex-row gap-4">
+                        <div className="w-full flex flex-col gap-2">
+                          <label htmlFor="city" className={labelClass}>
+                            Town / city
+                          </label>
+                          <input
+                            type="text"
+                            id="city"
+                            name="city"
+                            autoComplete="address-level2"
+                            required
+                            value={details.city}
+                            onChange={handleInput}
+                            placeholder="Town or city"
+                            className={inputClass}
+                          />
+                        </div>
+                        <div className="w-full flex flex-col gap-2">
+                          <label htmlFor="postcode" className={labelClass}>
+                            Postcode / ZIP
+                          </label>
+                          <input
+                            type="text"
+                            id="postcode"
+                            name="postcode"
+                            autoComplete="postal-code"
+                            required
+                            value={details.postcode}
+                            onChange={handleInput}
+                            placeholder="Postcode"
+                            className={inputClass}
+                          />
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-2">
+                        <label htmlFor="billingCountry" className={labelClass}>
+                          Country
+                        </label>
+                        <input
+                          type="text"
+                          id="billingCountry"
+                          name="billingCountry"
+                          autoComplete="country-name"
+                          required
+                          value={details.billingCountry}
+                          onChange={handleInput}
+                          placeholder="Country"
+                          className={inputClass}
+                        />
+                      </div>
+                    </fieldset>
 
                     <div className="w-full flex flex-col gap-2">
-                      <label
-                        htmlFor="phone"
-                        className="block text-sm !leading-[19px] font-medium font-secondary text-main"
-                      >
-                        Phone Number
+                      <label htmlFor="phone" className={labelClass}>
+                        Phone number{" "}
+                        <span className={optionalClass}>(optional)</span>
                       </label>
                       <input
-                        type="number"
+                        type="tel"
+                        inputMode="tel"
                         id="phone"
                         name="phone"
+                        autoComplete="tel"
                         value={details.phone}
                         onChange={handleInput}
                         placeholder="Enter your phone number"
-                        className="w-full py-5 px-4 border-none rounded-lg font-normal font-secondary text-xl !leading-[25px] text-secondary focus:outline-none focus:ring-0"
+                        className={inputClass}
                       />
                     </div>
                   </div>
