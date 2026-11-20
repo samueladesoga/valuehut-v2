@@ -53,7 +53,7 @@ const InvoiceDocument = ({
   const currency = isUk ? "£" : "$";
   return (
     <Document>
-      <Page size="A4" style={styles.page}>
+      <Page size="A4" style={styles.page} wrap={false}>
         <View style={styles.rowFlex}>
           <Image style={styles.headerImage} src={LogoVH.src} />
           <View
@@ -219,7 +219,7 @@ const InvoiceDocument = ({
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
-            marginTop: 50,
+            marginTop: 24,
           }}
         >
           <View style={{ fontSize: "8px" }}>
@@ -254,7 +254,7 @@ const InvoiceDocument = ({
             <Text>{"\n"}</Text>
           </View>
         </View>
-        <View style={styles.pageFooter}>
+        <View style={styles.pageFooter} fixed>
           <Text>UK: North Westgate House, Harlow. CM20 1YS.</Text>
         </View>
       </Page>
