@@ -9,6 +9,7 @@ interface Idata {
   quantity: number;
   fullname: string;
   company?: string;
+  billingContact?: string;
   phoneNumber: string;
   addressLines: string[];
   email: string;
@@ -52,7 +53,7 @@ const InvoiceDocument = ({
   const currency = isUk ? "£" : "$";
   return (
     <Document>
-      <Page size="A4" style={styles.page}>
+      <Page size="A4" style={styles.page} wrap={false}>
         <View style={styles.rowFlex}>
           <Image style={styles.headerImage} src={LogoVH.src} />
           <View
@@ -103,56 +104,26 @@ const InvoiceDocument = ({
           >
             Bill to:
           </Text>
-          <Text
-            style={{
-              fontWeight: "light",
-              marginTop: 8,
-            }}
-          >
-            Full name: {data.fullname}
-          </Text>
-          {data.company ? (
-            <Text
-              style={{
-                fontWeight: "light",
-              }}
-            >
-              Company: {data.company}
-            </Text>
-          ) : null}
-          {data.phoneNumber ? (
-            <Text
-              style={{
-                fontWeight: "light",
-              }}
-            >
-              Phone: {data.phoneNumber}
-            </Text>
-          ) : null}
-          <Text
-            style={{
-              fontWeight: "light",
-            }}
-          >
-            Email: {data.email}
-          </Text>
-          <Text
-            style={{
-              fontWeight: "light",
-            }}
-          >
-            Address:
-          </Text>
-          {data.addressLines.map((line, i) => (
-            <Text
-              key={i}
-              style={{
-                fontWeight: "light",
-              }}
-            >
-              {line}
-            </Text>
-          ))}
+          <View style={{ marginTop: 8 }}>
+            {[
+              data.billingContact,
+              data.company,
+              ...data.addressLines,
+              data.phoneNumber,
+              data.email,
+            ]
+              .filter((line): line is string => Boolean(line))
+              .map((line, i) => (
+                <Text
+                  key={i}
+                  style={{
+                    fontWeight: "light",
+                  }}
+                >
+                  {line}
+                </Text>
+              ))}
+          </View>
         </View>
         <View style={tableStyles.table}>
           <View style={[tableStyles.row, tableStyles.header]}>
@@ -248,7 +219,7 @@ const InvoiceDocument = ({
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
-            marginTop: 50,
+            marginTop: 24,
           }}
         >
           <View style={{ fontSize: "8px" }}>
@@ -283,7 +254,7 @@ const InvoiceDocument = ({
             <Text>{"\n"}</Text>
           </View>
         </View>
-        <View style={styles.pageFooter}>
+        <View style={styles.pageFooter} fixed>
           <Text>UK: North Westgate House, Harlow. CM20 1YS.</Text>
         </View>
       </Page>
