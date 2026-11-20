@@ -6,17 +6,16 @@ interface details {
   fullName: string;
   email: string;
   phone: string;
-  address: string;
   numberOfAttendees: number;
 }
-interface PaymentMethodSelectorProps {
-  setDetails: (updateFn: (prevState: details) => details) => void;
-  details: details;
+interface PaymentMethodSelectorProps<T extends details> {
+  setDetails: (updateFn: (prevState: T) => T) => void;
+  details: T;
 }
-function ContactInformation({
+function ContactInformation<T extends details>({
   setDetails,
   details,
-}: PaymentMethodSelectorProps) {
+}: PaymentMethodSelectorProps<T>) {
   const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 

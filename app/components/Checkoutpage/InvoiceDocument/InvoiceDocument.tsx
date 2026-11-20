@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Page, Text, View, Document, Image } from "@react-pdf/renderer";
 import { styles, tableStyles } from "./file.styles";
 import LogoVH from "@/logo192.png";
@@ -8,8 +8,9 @@ import { getDisplayDate } from "@/utils/ConvertDate";
 interface Idata {
   quantity: number;
   fullname: string;
+  company?: string;
   phoneNumber: string;
-  address: string;
+  addressLines: string[];
   email: string;
 }
 
@@ -32,15 +33,17 @@ const InvoiceDocument = ({
   selectedCourse: IselectedCourse;
   isUk: boolean;
 }) => {
-  const [today, setToday] = useState("");
-  const [invoiceNumber, setInvoiceNumber] = useState("");
-
-  useEffect(() => {
-    const currentDate = new Date().toLocaleDateString("en-GB", { timeZone: selectedCourse.timeZone });
-    const timestamp = Date.now();
-    setToday(currentDate);
-    setInvoiceNumber(timestamp.toString());
-  }, [selectedCourse.timeZone]);
+  // Computed during render (not in an effect) so the values are present when
+  // react-pdf renders the document once to a blob.
+  const [{ today, invoiceNumber }] = useState(() => {
+    let currentDate: string;
+    try {
+      currentDate = new Date().toLocaleDateString("en-GB", { timeZone: selectedCourse.timeZone });
+    } catch {
+      currentDate = new Date().toLocaleDateString("en-GB");
+    }
+    return { today: currentDate, invoiceNumber: Date.now().toString() };
+  });
 
   const originalPrice = selectedCourse ? selectedCourse.price * data.quantity : 0;
   const discountPercent = selectedCourse?.discountPercent ?? 0;
@@ -108,13 +111,24 @@ const InvoiceDocument = ({
           >
             Full name: {data.fullname}
           </Text>
-          <Text
-            style={{
-              fontWeight: "light",
-            }}
-          >
-            Phone: {data.phoneNumber}
-          </Text>
+          {data.company ? (
+            <Text
+              style={{
+                fontWeight: "light",
+              }}
+            >
+              Company: {data.company}
+            </Text>
+          ) : null}
+          {data.phoneNumber ? (
+            <Text
+              style={{
+                fontWeight: "light",
+              }}
+            >
+              Phone: {data.phoneNumber}
+            </Text>
+          ) : null}
           <Text
             style={{
               fontWeight: "light",
@@ -127,8 +141,18 @@ const InvoiceDocument = ({
               fontWeight: "light",
             }}
           >
-            Address: {data.address}
+            Address:
           </Text>
+          {data.addressLines.map((line, i) => (
+            <Text
+              key={i}
+              style={{
+                fontWeight: "light",
+              }}
+            >
+              {line}
+            </Text>
+          ))}
         </View>
         <View style={tableStyles.table}>
           <View style={[tableStyles.row, tableStyles.header]}>

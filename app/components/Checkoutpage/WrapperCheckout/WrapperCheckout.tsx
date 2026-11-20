@@ -25,7 +25,13 @@ interface Details {
   fullName: string;
   email: string;
   phone: string;
-  address: string;
+  company: string;
+  addressLine1: string;
+  addressLine2: string;
+  city: string;
+  postcode: string;
+  billingCountry: string;
+  invoiceEmail: string;
   numberOfAttendees: number;
   acronym?: string;
   startDate?: string;
@@ -44,6 +50,9 @@ const paymentMethods: PaymentMethod[] = [
     customIcon: "/icons/receipt.svg",
   },
 ];
+
+const toTitleCase = (value: string) =>
+  value.replace(/\b\w/g, (char) => char.toUpperCase());
 
 function WrapperCheckout({ course, classSysId }: any) {
   const router = useRouter();
@@ -66,7 +75,13 @@ function WrapperCheckout({ course, classSysId }: any) {
     fullName: "",
     email: "",
     phone: "",
-    address: "",
+    company: "",
+    addressLine1: "",
+    addressLine2: "",
+    city: "",
+    postcode: "",
+    billingCountry: toTitleCase(searchParams[1] ?? ""),
+    invoiceEmail: "",
     numberOfAttendees: 1,
     acronym: course.acronym ?? "",
     startDate: classDetail.startDate ?? "",
@@ -119,19 +134,27 @@ function WrapperCheckout({ course, classSysId }: any) {
     }
 
     if (selectedMethod === "invoice") {
-      if (!details.address.trim()) {
-        setError("Address is required for 'Pay with Invoice' method.");
+      const missing = [
+        [details.addressLine1, "address line 1"],
+        [details.city, "town / city"],
+        [details.postcode, "postcode / ZIP"],
+        [details.billingCountry, "country"],
+      ]
+        .filter(([value]) => !value.trim())
+        .map(([, label]) => label);
+      if (missing.length) {
+        setError(`Please enter your billing ${missing.join(", ")}.`);
         setSuccess(null);
         return;
       }
 
-      if (!details.phone.trim()) {
-        setError("Phone Number is required for 'Pay with Invoice' method.");
+      if (details.invoiceEmail.trim() && !emailRegex.test(details.invoiceEmail.trim())) {
+        setError("Please enter a valid invoice email address.");
         setSuccess(null);
         return;
       }
 
-      if (!/^\d{10,15}$/.test(details.phone)) {
+      if (details.phone.trim() && !/^\d{10,15}$/.test(details.phone.trim())) {
         setError("Please enter a valid phone number (10-15 digits).");
         setSuccess(null);
         return;
@@ -141,11 +164,22 @@ function WrapperCheckout({ course, classSysId }: any) {
     setLoading(true);
     setError(null);
 
+    const invoiceEmail = details.invoiceEmail.trim() || details.email.trim();
+    const addressLines = [
+      details.addressLine1,
+      details.addressLine2,
+      [details.city, details.postcode].map((v) => v.trim()).filter(Boolean).join(" "),
+      details.billingCountry,
+    ]
+      .map((line) => line.trim())
+      .filter(Boolean);
+
     const data = {
       fullname: details.fullName,
-      phoneNumber: details.phone,
-      email: details.email,
-      address: details.address,
+      company: details.company.trim(),
+      phoneNumber: details.phone.trim(),
+      email: invoiceEmail,
+      addressLines,
       quantity: details.numberOfAttendees,
     };
 
@@ -318,7 +352,7 @@ function WrapperCheckout({ course, classSysId }: any) {
               <p>An email containing your invoice has been successfuly sent.</p>
               <p>
                 To download your invoice, please check your email (
-                {details.email})
+                {details.invoiceEmail.trim() || details.email})
               </p>
               <Button
                 className="w-full text-sm font-medium font-secondary text-accentmain"
