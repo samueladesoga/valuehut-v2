@@ -22,6 +22,7 @@ interface details {
   email: string;
   phone: string;
   company: string;
+  billingContact: string;
   addressLine1: string;
   addressLine2: string;
   city: string;
@@ -232,6 +233,22 @@ const Paymentmethod: React.FC<PaymentMethodSelectorProps> = ({
                       <legend className={sectionHeadingClass}>
                         Billing address
                       </legend>
+                      <div className="flex flex-col gap-2">
+                        <label htmlFor="billingContact" className={labelClass}>
+                          Contact person{" "}
+                          <span className={optionalClass}>(optional)</span>
+                        </label>
+                        <input
+                          type="text"
+                          id="billingContact"
+                          name="billingContact"
+                          autoComplete="name"
+                          value={details.billingContact}
+                          onChange={handleInput}
+                          placeholder="e.g. Accounts payable contact"
+                          className={inputClass}
+                        />
+                      </div>
                       <div className="flex flex-col gap-2">
                         <label htmlFor="company" className={labelClass}>
                           Company / organisation{" "}

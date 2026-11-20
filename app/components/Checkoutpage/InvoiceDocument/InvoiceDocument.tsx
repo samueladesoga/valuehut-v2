@@ -9,6 +9,7 @@ interface Idata {
   quantity: number;
   fullname: string;
   company?: string;
+  billingContact?: string;
   phoneNumber: string;
   addressLines: string[];
   email: string;
@@ -103,56 +104,26 @@ const InvoiceDocument = ({
           >
             Bill to:
           </Text>
-          <Text
-            style={{
-              fontWeight: "light",
-              marginTop: 8,
-            }}
-          >
-            Full name: {data.fullname}
-          </Text>
-          {data.company ? (
-            <Text
-              style={{
-                fontWeight: "light",
-              }}
-            >
-              Company: {data.company}
-            </Text>
-          ) : null}
-          {data.phoneNumber ? (
-            <Text
-              style={{
-                fontWeight: "light",
-              }}
-            >
-              Phone: {data.phoneNumber}
-            </Text>
-          ) : null}
-          <Text
-            style={{
-              fontWeight: "light",
-            }}
-          >
-            Email: {data.email}
-          </Text>
-          <Text
-            style={{
-              fontWeight: "light",
-            }}
-          >
-            Address:
-          </Text>
-          {data.addressLines.map((line, i) => (
-            <Text
-              key={i}
-              style={{
-                fontWeight: "light",
-              }}
-            >
-              {line}
-            </Text>
-          ))}
+          <View style={{ marginTop: 8 }}>
+            {[
+              data.billingContact,
+              data.company,
+              ...data.addressLines,
+              data.phoneNumber,
+              data.email,
+            ]
+              .filter((line): line is string => Boolean(line))
+              .map((line, i) => (
+                <Text
+                  key={i}
+                  style={{
+                    fontWeight: "light",
+                  }}
+                >
+                  {line}
+                </Text>
+              ))}
+          </View>
         </View>
         <View style={tableStyles.table}>
           <View style={[tableStyles.row, tableStyles.header]}>

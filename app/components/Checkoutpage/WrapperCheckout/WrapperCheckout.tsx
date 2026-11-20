@@ -26,6 +26,7 @@ interface Details {
   email: string;
   phone: string;
   company: string;
+  billingContact: string;
   addressLine1: string;
   addressLine2: string;
   city: string;
@@ -76,6 +77,7 @@ function WrapperCheckout({ course, classSysId }: any) {
     email: "",
     phone: "",
     company: "",
+    billingContact: "",
     addressLine1: "",
     addressLine2: "",
     city: "",
@@ -177,6 +179,7 @@ function WrapperCheckout({ course, classSysId }: any) {
     const data = {
       fullname: details.fullName,
       company: details.company.trim(),
+      billingContact: details.billingContact.trim(),
       phoneNumber: details.phone.trim(),
       email: invoiceEmail,
       addressLines,
