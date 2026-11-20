@@ -12,7 +12,7 @@ import { primaryMarket, tertiaryMarket } from "@/data/Countries/countries";
 import { useRouter, useSearchParams } from "next/navigation";
 import InvoiceDocument from "../InvoiceDocument/InvoiceDocument";
 import { pdf } from "@react-pdf/renderer";
-import { getDisplayDate, getMonthAndDay, getYear } from "@/utils/ConvertDate";
+import { getDisplayDate } from "@/utils/ConvertDate";
 import { sendGTMEvent } from '@next/third-parties/google'
 
 interface PaymentMethod {
@@ -187,14 +187,10 @@ function WrapperCheckout({ course, classSysId }: any) {
     };
 
     const Course = {
-      startDate:
-        getMonthAndDay(classDetail.startDate, classDetail.timeZone) +
-        ", " +
-        getYear(classDetail.startDate),
-      endDate:
-        getMonthAndDay(classDetail.endDate, classDetail.timeZone) +
-        ", " +
-        getYear(classDetail.endDate),
+      // Pass the raw dates: the invoice formats them in the class timezone,
+      // exactly like the checkout page does (converting twice shifted the day).
+      startDate: classDetail.startDate,
+      endDate: classDetail.endDate,
       timeZone: classDetail.timeZone,
       quantity: details.numberOfAttendees,
       price: subtotal,
