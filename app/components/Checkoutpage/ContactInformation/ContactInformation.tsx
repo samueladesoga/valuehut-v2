@@ -1,103 +1,54 @@
 "use client";
 
 import React from "react";
+import FormField from "../FormField/FormField";
+import { CheckoutDetails, FieldErrors, UpdateDetail } from "../types";
 
-interface details {
-  fullName: string;
-  email: string;
-  phone: string;
-  numberOfAttendees: number;
+interface ContactInformationProps {
+  details: CheckoutDetails;
+  errors: FieldErrors;
+  updateDetail: UpdateDetail;
 }
-interface PaymentMethodSelectorProps<T extends details> {
-  setDetails: (updateFn: (prevState: T) => T) => void;
-  details: T;
-}
-function ContactInformation<T extends details>({
-  setDetails,
+
+const ContactInformation: React.FC<ContactInformationProps> = ({
   details,
-}: PaymentMethodSelectorProps<T>) {
-  const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-
-    setDetails((prevState) => {
-      if (name === "numberOfAttendees") {
-        const newValue = Math.max(1, parseInt(value, 10) || 0);
-        return {
-          ...prevState,
-          [name]: newValue,
-        };
-      }
-      return {
-        ...prevState,
-        [name]: value,
-      };
-    });
-  };
-
-  return (
-    <>
-      <div className="flex flex-col gap-3 md:gap-5">
-        <h1 className="text-xl !leading-[27px] text-[#141834] font-secondary font-semibold">
-          Contact Information
-        </h1>
-        <div className="flex flex-col gap-3 md:gap-4">
-          <div className="flex flex-col gap-2">
-            <label
-              htmlFor="full-name"
-              className="block text-sm !leading-[19px] font-medium font-secondary text-main"
-            >
-              Full Name
-            </label>
-            <input
-              type="text"
-              id="full-name"
-              name="fullName"
-              value={details.fullName}
-              onChange={handleInput}
-              placeholder="Enter your full name"
-              className="w-full py-5 px-4 border border-[#BFBFBF] rounded-lg font-normal font-secondary text-xl !leading-[25px] text-secondary focus:outline-none focus:ring-0"
-            />
-          </div>
-          <div className="flex justify-between gap-3">
-            <div className="w-full flex flex-col gap-2">
-              <label
-                htmlFor="email"
-                className="block text-sm !leading-[19px] font-medium font-secondary text-main"
-              >
-                Email Address
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={details.email}
-                onChange={handleInput}
-                placeholder="Enter your email"
-                className="w-full py-5 px-4 border border-[#BFBFBF] rounded-lg font-normal font-secondary text-xl !leading-[25px] text-secondary focus:outline-none focus:ring-0"
-              />
-            </div>
-            <div className="w-full flex flex-col gap-2">
-              <label
-                htmlFor="attendees"
-                className="block text-sm !leading-[19px] font-medium font-secondary text-main"
-              >
-                Number of Attendees
-              </label>
-              <input
-                type="number"
-                id="attendees"
-                value={details.numberOfAttendees}
-                name="numberOfAttendees"
-                placeholder="Enter the number of attendees"
-                className="w-full py-5 px-4 border border-[#BFBFBF] rounded-lg font-normal font-secondary text-xl !leading-[25px] text-secondary focus:outline-none focus:ring-0"
-                onChange={handleInput}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-}
+  errors,
+  updateDetail,
+}) => (
+  <div className="flex flex-col sm:flex-row gap-4">
+    <FormField id="fullName" label="Full name" error={errors.fullName} className="w-full">
+      {(props) => (
+        <input
+          {...props}
+          type="text"
+          name="fullName"
+          autoComplete="name"
+          value={details.fullName}
+          onChange={(e) => updateDetail("fullName", e.target.value)}
+          placeholder="e.g. Alex Morgan"
+        />
+      )}
+    </FormField>
+    <FormField
+      id="email"
+      label="Email address"
+      error={errors.email}
+      className="w-full"
+      hint="Your booking confirmation and joining details go here."
+    >
+      {(props) => (
+        <input
+          {...props}
+          type="email"
+          name="email"
+          autoComplete="email"
+          value={details.email}
+          onChange={(e) => updateDetail("email", e.target.value)}
+          placeholder="you@example.com"
+        />
+      )}
+    </FormField>
+  </div>
+);
 
 export default ContactInformation;

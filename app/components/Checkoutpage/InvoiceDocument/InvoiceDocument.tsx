@@ -4,12 +4,14 @@ import { Page, Text, View, Document, Image } from "@react-pdf/renderer";
 import { styles, tableStyles } from "./file.styles";
 import LogoVH from "@/logo192.png";
 import { getDisplayDate } from "@/utils/ConvertDate";
+import { InvoiceDeadline } from "@/utils/checkout";
 
 interface Idata {
   quantity: number;
   fullname: string;
   company?: string;
   billingContact?: string;
+  poNumber?: string;
   phoneNumber: string;
   addressLines: string[];
   email: string;
@@ -29,10 +31,12 @@ const InvoiceDocument = ({
   data,
   selectedCourse,
   isUk,
+  deadline,
 }: {
   data: Idata;
   selectedCourse: IselectedCourse;
   isUk: boolean;
+  deadline: InvoiceDeadline;
 }) => {
   // Computed during render (not in an effect) so the values are present when
   // react-pdf renders the document once to a blob.
@@ -73,7 +77,8 @@ const InvoiceDocument = ({
               Invoice No: {invoiceNumber}
             </Text>
             <Text>Date: {today}</Text>
-            <Text>Due Date: {today}</Text>
+            <Text>Due Date: {deadline.dueDateShort}</Text>
+            {data.poNumber ? <Text>PO / Ref: {data.poNumber}</Text> : null}
           </View>
         </View>
 
@@ -186,7 +191,7 @@ const InvoiceDocument = ({
               fontWeight: "light",
             }}
           >
-            Course Registration is guaranteed on successful payment confirmation of the total course payment indicated in this invoice.
+            Your place on the course is confirmed once full payment of this invoice is received.
           </Text>
           <Text
             style={{
@@ -210,8 +215,10 @@ const InvoiceDocument = ({
               fontWeight: "light",
             }}
           >
-            Attendance to the class will be confirmed on receipt of full payment.
-            Please proceed to make payment into the specified Bank accounts within 7days from the invoice date. Our bank accounts are below:
+            {deadline.isPastDeadline
+              ? "This class starts in less than 14 days, so payment is due immediately. Your place is confirmed once payment is received."
+              : `Payment is due at least 14 days before the class starts${deadline.label ? ` (by ${deadline.label})` : ""}. We will hold your place until then; it is confirmed once payment is received.`}{" "}
+            Please pay into one of our bank accounts below:
           </Text>
         </View>
         <View
