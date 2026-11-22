@@ -2,6 +2,14 @@ import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import { parseMultipartFormData } from './multipartParser';
 
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+
 export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
@@ -12,6 +20,8 @@ export async function POST(req: NextRequest) {
     const subject = fields.subject?.[0];
     const customerName = fields.customerName?.[0];
     const courseName = fields.courseName?.[0];
+    const paymentDue = fields.paymentDue?.[0];
+    const paymentDueImmediately = fields.paymentDueImmediately?.[0] === 'true';
 
     if (
       !uploadedFile ||
@@ -32,6 +42,14 @@ export async function POST(req: NextRequest) {
         pass: process.env.SMTP_PASSWORD,
       },
     });
+
+    const safeCourseName = escapeHtml(courseName);
+    const safeCustomerName = escapeHtml(customerName);
+    const paymentTerms = paymentDueImmediately
+      ? 'Payment is due immediately, as the class starts in less than 14 days. Your place is confirmed once payment is received.'
+      : typeof paymentDue === 'string' && paymentDue.trim()
+        ? `Payment is due by <b>${escapeHtml(paymentDue.trim())}</b> (14 days before the class starts). We will hold your place until then, and it is confirmed once payment is received.`
+        : 'Payment is due at least 14 days before the class starts. We will hold your place until then, and it is confirmed once payment is received.';
 
     const fileArrayBuffer = await uploadedFile.arrayBuffer();
     const fileBuffer = Buffer.from(fileArrayBuffer);
@@ -81,12 +99,14 @@ export async function POST(req: NextRequest) {
         <body>
             <div class="container">
                 <div class="header">
-                    ValueHut Consulting Invoice for <b>${courseName}</b>
+                    ValueHut Consulting Invoice for <b>${safeCourseName}</b>
                 </div>
                 <div class="content">
-                    Dear ${customerName},<br><br>
+                    Dear ${safeCustomerName},<br><br>
 
-                    Please find attached an invoice for the ${courseName} class requested.<br><br>
+                    Please find attached an invoice for the ${safeCourseName} class requested.<br><br>
+
+                    ${paymentTerms}<br><br>
 
                     Should you have any questions or require further assistance including the Bank Details for your preferred currency, feel free to contact us.<br>
 

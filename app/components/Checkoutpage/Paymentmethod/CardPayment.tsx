@@ -1,208 +1,54 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import {
-  PaymentElement,
-  useElements,
-  useStripe,
-} from "@stripe/react-stripe-js";
-import Button from "@/components/Button/Button";
-import { sendGTMEvent } from '@next/third-parties/google'
-import { useRouter } from "next/navigation";
+import React from "react";
+import { PaymentElement } from "@stripe/react-stripe-js";
 
-interface Props {
-  amount: number;
-  country: string;
-  fullName: string;
-  email: string;
-  acronym?: string;
-  startDate?: string;
-  timeZone?: string;
+interface CardPaymentProps {
+  available: boolean;
 }
 
-const PaymentWithCredit: React.FC<Props> = ({
-  amount,
-  country,
-  fullName,
-  email,
-  acronym,
-  startDate,
-  timeZone,
-}) => {
-  const router = useRouter();
-  const stripe = useStripe();
-  const elements = useElements();
-  const [errorMessage, setErrorMessage] = useState("");
-  const [clientSecret, setClientSecret] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [paymentSuccess, setPaymentSuccess] = useState(false);
-  const abortRef = useRef<AbortController | null>(null);
-
-  const validateEmail = (value: string) =>
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-
-  useEffect(() => {
-    if (!amount || !email || !fullName || !validateEmail(email)) return;
-
-    abortRef.current?.abort();
-    abortRef.current = new AbortController();
-
-    setLoading(true);
-    setErrorMessage("");
-
-    fetch("/api/create-payment-intent", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        amount,
-        currency: country === "united kingdom" ? "gbp" : "usd",
-        email,
-        fullName,
-        isUk: country === "united kingdom",
-        acronym,
-        startDate,
-        timeZone,
-      }),
-      signal: abortRef.current.signal,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setLoading(false);
-        if (data.clientSecret) {
-          setClientSecret(data.clientSecret);
-        } else {
-          setErrorMessage(data.error || "Failed to initialize payment");
-        }
-      })
-      .catch((err) => {
-        if (err.name !== "AbortError") {
-          setLoading(false);
-          setErrorMessage("Error connecting to the server");
-        }
-      });
-
-    return () => abortRef.current?.abort();
-  }, [amount, country, email, fullName, acronym, startDate, timeZone]);
-
-  const displayAmount = country === "united kingdom"
-    ? `£${(amount * 1.2).toFixed(2)}`
-    : `$${amount}`;
-
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (!stripe || !elements) return;
-
-    setLoading(true);
-    setErrorMessage("");
-
-    const { error: submitError }: any = await elements.submit();
-    if (submitError) {
-      setErrorMessage(submitError.message);
-      setLoading(false);
-      return;
-    }
-
-    const { error, paymentIntent }: any = await stripe.confirmPayment({
-      elements,
-      clientSecret,
-      confirmParams: { return_url: `${window.location.origin}/payment-success` },
-      redirect: "if_required",
-    });
-
-    if (error) {
-      setErrorMessage(error.message);
-      setLoading(false);
-    } else if (paymentIntent?.status === "succeeded") {
-      setPaymentSuccess(true);
-      setLoading(false);
-    } else {
-      setErrorMessage("Payment could not be completed. Please try again.");
-      setLoading(false);
-    }
-  };
-
-  const handleRedirect = () => {
-    sendGTMEvent({ event: 'purchase', value: amount, category: 'checkout', label: 'Credit Card' });
-    setPaymentSuccess(false);
-    router.push("/academy");
-  };
-  if (!clientSecret || !stripe || !elements) {
-    if (loading) {
-      return (
-        <div className="flex items-center justify-center">
-          <div
-            className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"
-            role="status"
-          >
-            <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
-              Loading...
-            </span>
-          </div>
-        </div>
-      );
-    }
+/**
+ * Card fields only. The payment itself is created and confirmed when the
+ * customer presses the Pay button (see WrapperCheckout), so the form shows
+ * straight away and never reloads while they type.
+ */
+const CardPayment: React.FC<CardPaymentProps> = ({ available }) => {
+  if (!available) {
     return (
-      <div className={`text-center text-sm ${errorMessage ? "text-red-500" : "text-gray-400"}`}>
-        {errorMessage || "Fill in your name and email above to load the payment form."}
-      </div>
+      <p className="text-sm font-secondary text-red-600">
+        Card payments are unavailable right now. Please request an invoice or
+        contact info@valuehut.co.
+      </p>
     );
   }
 
   return (
-    <>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {clientSecret && (
-          <PaymentElement
-            options={{
-              layout: {
-                type: "tabs",
-                defaultCollapsed: false,
-                spacedAccordionItems: false,
-              },
-            }}
-          />
-        )}
-        {errorMessage && (
-          <div className="text-red-500 text-center text-sm mt-2">
-            {errorMessage}
-          </div>
-        )}
-        {clientSecret && (
-          <Button
-            size="large"
-            bgColor="bg-fill-brand-secondary"
-            className="rounded-xl text-main w-full mt-4"
-            disabled={loading}
-          >
-            {!loading
-              ? `Pay ${displayAmount}`
-              : "Processing..."}
-          </Button>
-        )}
-      </form>
-
-      {paymentSuccess && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-8 rounded-lg shadow-xl max-w-md w-full">
-            <h2 className="text-2xl font-bold mb-4 text-center">Thank you!</h2>
-            <p className="text-center mb-6">
-              Your payment was successful. We will send you an email with more
-              information within 24 hours.
-            </p>
-            <Button
-              size="large"
-              bgColor="bg-fill-brand-secondary"
-              className="rounded-xl text-main w-full"
-              onClick={handleRedirect}
-            >
-              Back to Academy Homepage
-            </Button>
-          </div>
-        </div>
-      )}
-    </>
+    <div className="flex flex-col gap-4">
+      <PaymentElement
+        options={{
+          layout: { type: "tabs", defaultCollapsed: false },
+        }}
+      />
+      <p className="flex items-center gap-2 text-sm font-secondary text-secondary">
+        <svg
+          aria-hidden="true"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <rect x="3" y="11" width="18" height="11" rx="2" />
+          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+        </svg>
+        Payments are processed securely by Stripe. We never see or store your
+        card details.
+      </p>
+    </div>
   );
 };
 
-export default PaymentWithCredit;
+export default CardPayment;

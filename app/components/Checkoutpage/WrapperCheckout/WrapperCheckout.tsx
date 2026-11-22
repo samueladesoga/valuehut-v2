@@ -1,172 +1,327 @@
 "use client";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { loadStripe, Appearance, StripeElementsOptions } from "@stripe/stripe-js";
+import { Elements, useElements, useStripe } from "@stripe/react-stripe-js";
+import { pdf } from "@react-pdf/renderer";
+import { sendGTMEvent } from "@next/third-parties/google";
+
 import ContactInformation from "../ContactInformation/ContactInformation";
 import Paymentmethod from "../Paymentmethod/Paymentmethod";
 import CheckoutCourseDetails from "../CheckoutCourseDetails/CheckoutCourseDetails";
 import OrderSummary from "../Ordersummary/Ordersummary";
 import DiscountCode from "../DiscountCode/DiscountCode";
-import Button from "@/components/Button/Button";
-import { primaryMarket, tertiaryMarket } from "@/data/Countries/countries";
-import { useRouter, useSearchParams } from "next/navigation";
 import InvoiceDocument from "../InvoiceDocument/InvoiceDocument";
-import { pdf } from "@react-pdf/renderer";
+import CheckoutStep from "../CheckoutStep/CheckoutStep";
+import AttendeesStepper from "../AttendeesStepper/AttendeesStepper";
+import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
+import { CheckoutDetails, CheckoutField, FieldErrors, PaymentMethodId } from "../types";
+import { countries, primaryMarket, tertiaryMarket } from "@/data/Countries/countries";
 import { getDisplayDate } from "@/utils/ConvertDate";
-import { sendGTMEvent } from '@next/third-parties/google'
+import {
+  CheckoutTotals,
+  EMAIL_REGEX,
+  InvoiceDeadline,
+  computeTotals,
+  formatMoney,
+  getInvoiceDeadline,
+  isValidPhone,
+} from "@/utils/checkout";
 
-interface PaymentMethod {
-  id: string;
-  name: string;
-  creditCards?: string;
-  customIcon?: string;
-}
-interface Details {
-  fullName: string;
-  email: string;
-  phone: string;
-  company: string;
-  billingContact: string;
-  addressLine1: string;
-  addressLine2: string;
-  city: string;
-  postcode: string;
-  billingCountry: string;
-  invoiceEmail: string;
-  numberOfAttendees: number;
-  acronym?: string;
-  startDate?: string;
-  timeZone? : string;
-}
+const stripePromise = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+  ? loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
+  : null;
 
-const paymentMethods: PaymentMethod[] = [
-  {
-    id: "credit-card",
-    name: "Credit Card",
-    creditCards: "/images/creditcards.png",
+const appearance: Appearance = {
+  theme: "stripe",
+  variables: {
+    colorPrimary: "#05668D",
+    colorBackground: "#FFFFFF",
+    colorText: "#141834",
+    colorDanger: "#DC2626",
+    fontFamily: "Inter, system-ui, sans-serif",
+    spacingUnit: "5px",
+    borderRadius: "8px",
   },
-  {
-    id: "invoice",
-    name: "Pay with Invoice",
-    customIcon: "/icons/receipt.svg",
+  rules: {
+    ".Tab": { display: "none" },
+    ".Input": { border: "1px solid #BFBFBF", boxShadow: "none" },
+    ".Input:focus": { border: "1px solid #05668D", boxShadow: "0 0 0 2px #05668D" },
+    ".Label": { color: "#141834", fontWeight: "500" },
   },
-];
+};
 
-const toTitleCase = (value: string) =>
-  value.replace(/\b\w/g, (char) => char.toUpperCase());
+const toTitleCase = (value: string) => value.replace(/\b\w/g, (c) => c.toUpperCase());
+
+const lower = (list: string[]) => list.map((c) => c.toLowerCase());
+
+function getUnitPrice(classDetail: any, country: string): number {
+  if (!classDetail) return 0;
+  if (country === "united kingdom") return Number(classDetail.ukPrice) || 0;
+  if (lower(primaryMarket).includes(country)) return Number(classDetail.primary) || 0;
+  if (lower(tertiaryMarket).includes(country)) return Number(classDetail.tertiary) || 0;
+  return Number(classDetail.secondary) || 0;
+}
 
 function WrapperCheckout({ course, classSysId }: any) {
-  const router = useRouter();
-  const [selectedMethod, setSelectedMethod] = useState<string>("");
-  const [searchParams] = useSearchParams();
-  const [classPrice, setClassPrice] = useState(0);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [success, setSuccess] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [subtotal, setSubtotal] = useState(0);
-  const [discountPercent, setDiscountPercent] = useState(0);
-  const [appliedCode, setAppliedCode] = useState<string | null>(null);
-
-  const classDetail = course.classes.find(
+  const searchParams = useSearchParams();
+  const country = (searchParams.get("country") ?? "").toLowerCase();
+  const isUk = country === "united kingdom";
+  const classDetail = course?.classes?.find(
     (cls: { classSysId: string }) => cls.classSysId === classSysId
   );
+  const unitPrice = getUnitPrice(classDetail, country);
 
-  const [details, setDetails] = useState<Details>({
+  // Deferred-intent mode: the card form renders immediately and the payment
+  // is only created when the customer presses Pay. The amount is kept in sync
+  // inside CheckoutForm via elements.update().
+  const [elementsOptions] = useState<StripeElementsOptions>(() => ({
+    mode: "payment",
+    amount: computeTotals({ unitPrice, quantity: 1, isUk }).totalMinor || 100,
+    currency: isUk ? "gbp" : "usd",
+    appearance,
+  }));
+
+  if (!classDetail) {
+    return (
+      <div className="bg-[#f5f5f5]">
+        <div className="container pt-36 pb-24 flex flex-col gap-4">
+          <h1 className="text-[32px] leading-[40px] font-medium text-[#141834]">
+            This class is no longer available
+          </h1>
+          <p className="font-secondary text-main">
+            It may be fully booked or the date may have changed.{" "}
+            <Link href="/academy" className="text-[#05668D] underline">
+              See upcoming classes
+            </Link>
+            .
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <Elements stripe={stripePromise} options={elementsOptions}>
+      <CheckoutForm
+        course={course}
+        classDetail={classDetail}
+        country={country}
+        isUk={isUk}
+        unitPrice={unitPrice}
+      />
+    </Elements>
+  );
+}
+
+interface CheckoutFormProps {
+  course: any;
+  classDetail: any;
+  country: string;
+  isUk: boolean;
+  unitPrice: number;
+}
+
+type Confirmation =
+  | { kind: "card"; email: string; total: string; quantity: number }
+  | { kind: "invoice"; recipient: string };
+
+// Order matters: the first invalid field in this list gets focus.
+const FIELD_ORDER: CheckoutField[] = [
+  "fullName",
+  "email",
+  "paymentMethod",
+  "addressLine1",
+  "city",
+  "postcode",
+  "billingCountry",
+  "phone",
+  "invoiceEmail",
+];
+
+function CheckoutForm({ course, classDetail, country, isUk, unitPrice }: CheckoutFormProps) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const stripe = useStripe();
+  const elements = useElements();
+
+  const [details, setDetails] = useState<CheckoutDetails>(() => ({
     fullName: "",
     email: "",
-    phone: "",
+    numberOfAttendees: 1,
     company: "",
     billingContact: "",
+    poNumber: "",
     addressLine1: "",
     addressLine2: "",
     city: "",
     postcode: "",
-    billingCountry: toTitleCase(searchParams[1] ?? ""),
+    billingCountry: countries.find((c) => c.toLowerCase() === country) ?? "",
+    phone: "",
+    sendToSomeoneElse: false,
     invoiceEmail: "",
-    numberOfAttendees: 1,
-    acronym: course.acronym ?? "",
-    startDate: classDetail.startDate ?? "",
-    timeZone: classDetail.timeZone ?? "",
-  });
+  }));
+  const [errors, setErrors] = useState<FieldErrors>({});
+  const [selectedMethod, setSelectedMethod] = useState<PaymentMethodId | "">("");
+  const [discountPercent, setDiscountPercent] = useState(0);
+  const [appliedCode, setAppliedCode] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
+  const [confirmation, setConfirmation] = useState<Confirmation | null>(null);
 
-  const acronym = course.acronym;
-  const country = searchParams[1];
-  const isUk = country === "united kingdom";
-  const { numberOfAttendees } = details;
+  const totals: CheckoutTotals = useMemo(
+    () =>
+      computeTotals({
+        unitPrice,
+        quantity: details.numberOfAttendees,
+        discountPercent,
+        isUk,
+      }),
+    [unitPrice, details.numberOfAttendees, discountPercent, isUk]
+  );
+  const money = (n: number) => formatMoney(n, isUk);
 
+  const deadline: InvoiceDeadline = useMemo(
+    () => getInvoiceDeadline(classDetail.startDate, classDetail.timeZone),
+    [classDetail.startDate, classDetail.timeZone]
+  );
+
+  const pricingRegion = toTitleCase(country) || "Not set";
+  const displayDate = getDisplayDate(classDetail.startDate, classDetail.endDate, classDetail.timeZone);
+
+  // Keep the card form's amount (used by wallets like Apple Pay) in step with the order.
   useEffect(() => {
-    if (classDetail) {
-      let price;
-      if (isUk) {
-        price = classDetail.ukPrice;
-        setSubtotal(price);
-      } else if (primaryMarket.map(market => market.toLowerCase()).includes(country.toLowerCase())) {
-        price = classDetail.primary;
-        setSubtotal(price);
-      } else if (tertiaryMarket.map(market => market.toLowerCase()).includes(country.toLowerCase())) {
-        price = classDetail.tertiary;
-        setSubtotal(price);
-      } else {
-        price = classDetail.secondary;
-        setSubtotal(price);
-      }
-      setClassPrice(price * numberOfAttendees);
+    if (elements && totals.totalMinor > 0) {
+      elements.update({ amount: totals.totalMinor });
     }
-  }, [classDetail, country, isUk, numberOfAttendees]);
+  }, [elements, totals.totalMinor]);
 
-  const handlePayment = async () => {
-    if (!details.fullName.trim()) {
-      setError("Full Name is required to proceed.");
-      setSuccess(null);
-      return;
+  // Returning from a payment method that redirected away (rare for cards).
+  useEffect(() => {
+    if (searchParams.get("redirect_status") === "succeeded") {
+      setConfirmation({ kind: "card", email: "", total: "", quantity: 0 });
     }
+  }, [searchParams]);
 
-    if (!details.email.trim()) {
-      setError("Email is required to proceed.");
-      setSuccess(null);
-      return;
-    }
+  const updateDetail = useCallback(
+    <K extends keyof CheckoutDetails>(name: K, value: CheckoutDetails[K]) => {
+      setDetails((prev) => ({ ...prev, [name]: value }));
+      setErrors((prev) => {
+        if (!prev[name] && !(name === "sendToSomeoneElse" && prev.invoiceEmail)) return prev;
+        const next = { ...prev };
+        delete next[name];
+        if (name === "sendToSomeoneElse") delete next.invoiceEmail;
+        return next;
+      });
+    },
+    []
+  );
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(details.email)) {
-      setError("Please enter a valid email address.");
-      setSuccess(null);
-      return;
-    }
+  const selectMethod = (method: PaymentMethodId) => {
+    setSelectedMethod(method);
+    setFormError(null);
+    setErrors((prev) => {
+      // Errors from the other method's fields no longer apply.
+      const next: FieldErrors = {};
+      if (prev.fullName) next.fullName = prev.fullName;
+      if (prev.email) next.email = prev.email;
+      return next;
+    });
+  };
+
+  const validate = (): FieldErrors => {
+    const e: FieldErrors = {};
+    if (!details.fullName.trim()) e.fullName = "Enter your full name.";
+    if (!details.email.trim()) e.email = "Enter your email address.";
+    else if (!EMAIL_REGEX.test(details.email.trim()))
+      e.email = "Enter an email address like name@example.com.";
+    if (!selectedMethod) e.paymentMethod = "Choose how you'd like to pay.";
 
     if (selectedMethod === "invoice") {
-      const missing = [
-        [details.addressLine1, "address line 1"],
-        [details.city, "town / city"],
-        [details.postcode, "postcode / ZIP"],
-        [details.billingCountry, "country"],
-      ]
-        .filter(([value]) => !value.trim())
-        .map(([, label]) => label);
-      if (missing.length) {
-        setError(`Please enter your billing ${missing.join(", ")}.`);
-        setSuccess(null);
-        return;
-      }
-
-      if (details.invoiceEmail.trim() && !emailRegex.test(details.invoiceEmail.trim())) {
-        setError("Please enter a valid invoice email address.");
-        setSuccess(null);
-        return;
-      }
-
-      if (details.phone.trim() && !/^\d{10,15}$/.test(details.phone.trim())) {
-        setError("Please enter a valid phone number (10-15 digits).");
-        setSuccess(null);
-        return;
+      if (!details.addressLine1.trim()) e.addressLine1 = "Enter the first line of the billing address.";
+      if (!details.city.trim()) e.city = "Enter the town or city.";
+      if (!details.postcode.trim()) e.postcode = "Enter the postcode or ZIP.";
+      if (!details.billingCountry.trim()) e.billingCountry = "Select the billing country.";
+      if (details.phone.trim() && !isValidPhone(details.phone.trim()))
+        e.phone = "Enter a phone number with 7–15 digits, e.g. +44 7700 900123.";
+      if (details.sendToSomeoneElse) {
+        if (!details.invoiceEmail.trim()) e.invoiceEmail = "Enter the email address to send the invoice to.";
+        else if (!EMAIL_REGEX.test(details.invoiceEmail.trim()))
+          e.invoiceEmail = "Enter an email address like accounts@example.com.";
       }
     }
+    return e;
+  };
 
-    setLoading(true);
-    setError(null);
+  const focusFirstError = (e: FieldErrors) => {
+    const first = FIELD_ORDER.find((f) => e[f]);
+    if (!first) return;
+    const el = document.getElementById(first);
+    el?.scrollIntoView({ behavior: "smooth", block: "center" });
+    el?.focus({ preventScroll: true });
+  };
 
-    const invoiceEmail = details.invoiceEmail.trim() || details.email.trim();
+  const payByCard = async () => {
+    if (!stripe || !elements) {
+      setFormError("The card form is still loading. Please try again in a moment.");
+      return;
+    }
+    const { error: submitError } = await elements.submit();
+    if (submitError) {
+      setFormError(submitError.message ?? "Please check your card details.");
+      return;
+    }
+
+    const res = await fetch("/api/create-payment-intent", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        amount: totals.net,
+        currency: totals.currency,
+        email: details.email.trim(),
+        fullName: details.fullName.trim(),
+        isUk,
+        acronym: course.acronym,
+        startDate: classDetail.startDate,
+        timeZone: classDetail.timeZone,
+      }),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!data.clientSecret) {
+      setFormError(data.error || "We couldn't start your payment. You have not been charged. Please try again.");
+      return;
+    }
+
+    const { error, paymentIntent } = await stripe.confirmPayment({
+      elements,
+      clientSecret: data.clientSecret,
+      confirmParams: { return_url: window.location.href },
+      redirect: "if_required",
+    });
+
+    if (error) {
+      setFormError(error.message ?? "Your payment didn't go through. Please try again.");
+      return;
+    }
+    if (paymentIntent?.status === "succeeded" || paymentIntent?.status === "processing") {
+      sendGTMEvent({ event: "purchase", value: totals.net, category: "checkout", label: "Credit Card" });
+      setConfirmation({
+        kind: "card",
+        email: details.email.trim(),
+        total: money(totals.total),
+        quantity: details.numberOfAttendees,
+      });
+    } else {
+      setFormError("Your payment couldn't be completed. Please try again.");
+    }
+  };
+
+  const sendInvoice = async () => {
+    const contactEmail = details.email.trim();
+    const recipient = details.sendToSomeoneElse ? details.invoiceEmail.trim() : contactEmail;
     const addressLines = [
       details.addressLine1,
       details.addressLine2,
@@ -177,201 +332,289 @@ function WrapperCheckout({ course, classSysId }: any) {
       .filter(Boolean);
 
     const data = {
-      fullname: details.fullName,
+      fullname: details.fullName.trim(),
       company: details.company.trim(),
       billingContact: details.billingContact.trim(),
+      poNumber: details.poNumber.trim(),
       phoneNumber: details.phone.trim(),
-      email: invoiceEmail,
+      email: recipient,
       addressLines,
       quantity: details.numberOfAttendees,
     };
 
-    const Course = {
-      // Pass the raw dates: the invoice formats them in the class timezone,
-      // exactly like the checkout page does (converting twice shifted the day).
+    const selectedCourse = {
+      // Raw dates: the invoice formats them in the class timezone.
       startDate: classDetail.startDate,
       endDate: classDetail.endDate,
       timeZone: classDetail.timeZone,
       quantity: details.numberOfAttendees,
-      price: subtotal,
-      discountPercent: discountPercent,
-      acronym: acronym,
+      price: unitPrice,
+      discountPercent,
+      acronym: course.acronym,
     };
 
-    const doc = (
-      <InvoiceDocument
-        data={data}
-        selectedCourse={Course}
-        isUk={country === "united kingdom"}
-      />
-    );
     const asPdf = pdf();
-
-    asPdf.updateContainer(doc);
-
+    asPdf.updateContainer(
+      <InvoiceDocument data={data} selectedCourse={selectedCourse} isUk={isUk} deadline={deadline} />
+    );
     const blob = await asPdf.toBlob();
 
-    const fileName = `Invoice_ValueHut_${data.fullname}_${Date.now()}.pdf`;
+    // Greet whoever receives the invoice: the billing contact if given,
+    // a neutral greeting if it goes to someone else, otherwise the student.
+    const sentToSomeoneElse = recipient.toLowerCase() !== contactEmail.toLowerCase();
+    const greetingName = data.billingContact || (sentToSomeoneElse ? "Sir/Madam" : data.fullname);
 
     const formData = new FormData();
-
-    formData.append("file", blob, fileName);
-    formData.append("toEmail", data.email);
-    formData.append("subject", `Invoice for ${course.title} (${acronym})`);
-    formData.append("text", "Please find attached your invoice.");
-    // Greet whoever receives the invoice: the billing contact if given;
-    // a neutral greeting if it goes to a different address with no contact;
-    // otherwise the student, who is the recipient.
-    const sentToSomeoneElse =
-      data.email.toLowerCase() !== details.email.trim().toLowerCase();
-    const greetingName =
-      data.billingContact ||
-      (sentToSomeoneElse ? "Sir/Madam" : data.fullname);
+    formData.append("file", blob, `Invoice_ValueHut_${data.fullname}_${Date.now()}.pdf`);
+    formData.append("toEmail", recipient);
+    formData.append("subject", `Invoice for ${course.title} (${course.acronym})`);
     formData.append("customerName", greetingName);
     formData.append("courseName", course?.title ?? "");
+    formData.append("paymentDue", deadline.label ?? "");
+    formData.append("paymentDueImmediately", String(deadline.isPastDeadline));
 
-    fetch("/api/sendEmail", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.error) {
-          setError(
-            "An error occurred while sending you an invoice. Please try again later!"
-          );
-          setSuccess(null);
-        } else {
-          setIsModalOpen(true);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        setError(
-          "An error occurred while sending you an email. Please try again later!"
-        );
-        setSuccess(null);
-      })
-      .finally(() => {
-        sendGTMEvent({ event: 'purchase', value: classPrice * (1 - discountPercent / 100), category: 'checkout', label: 'invoice' });
-        setLoading(false);
-      });
+    const res = await fetch("/api/sendEmail", { method: "POST", body: formData });
+    const result = await res.json().catch(() => ({ error: true }));
+    if (!res.ok || result.error) {
+      setFormError(
+        "We couldn't send your invoice. Please try again, or email info@valuehut.co and we'll send it manually."
+      );
+      return;
+    }
+    sendGTMEvent({ event: "purchase", value: totals.net, category: "checkout", label: "invoice" });
+    setConfirmation({ kind: "invoice", recipient });
   };
 
-  const combinedDate = getDisplayDate(classDetail.startDate, classDetail.endDate, classDetail.timeZone);
-  const classTimeWithTimeZone = `${classDetail.time} ${classDetail.timeZone}`;
+  const handleSubmit = async () => {
+    if (submitting) return;
+    setFormError(null);
+    const e = validate();
+    setErrors(e);
+    const count = Object.keys(e).length;
+    if (count) {
+      setFormError(
+        e.paymentMethod && count === 1
+          ? "Choose how you'd like to pay to continue."
+          : `Please fix the ${count === 1 ? "highlighted field" : `${count} highlighted fields`} to continue.`
+      );
+      focusFirstError(e);
+      return;
+    }
 
-  const handleModalToggle = () => {
-    setIsModalOpen((prev) => !prev);
-    router.push("/academy");
+    setSubmitting(true);
+    try {
+      if (selectedMethod === "card") await payByCard();
+      else await sendInvoice();
+    } catch (err) {
+      console.error(err);
+      setFormError("Something went wrong. Please try again, or contact info@valuehut.co.");
+    } finally {
+      setSubmitting(false);
+    }
   };
+
+  const ctaLabel = (() => {
+    if (selectedMethod === "card") return submitting ? "Processing payment…" : `Pay ${money(totals.total)}`;
+    if (selectedMethod === "invoice") {
+      if (submitting) return "Sending invoice…";
+      return details.sendToSomeoneElse ? "Send the invoice" : "Email me the invoice";
+    }
+    return "Choose a payment method";
+  })();
+
+  const ctaNote =
+    selectedMethod === "card"
+      ? "Secure payment by Stripe. Your place is confirmed instantly."
+      : selectedMethod === "invoice"
+        ? deadline.isPastDeadline
+          ? "Payment is due immediately. Your place is confirmed once it's received."
+          : `Payment due by ${deadline.label ?? "14 days before the class"}. We hold your place until then.`
+        : null;
+
+  const ctaButton = (extraClass = "") => (
+    <button
+      type="button"
+      onClick={handleSubmit}
+      disabled={submitting}
+      aria-busy={submitting}
+      className={`w-full rounded-xl bg-fill-brand-secondary text-main py-4 px-6 text-lg font-medium font-secondary hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-[#05668D] focus:ring-offset-2 disabled:opacity-60 disabled:cursor-wait ${extraClass}`}
+    >
+      {ctaLabel}
+    </button>
+  );
+
+  const formErrorBox = formError && (
+    <p role="alert" className="text-sm font-secondary text-red-600">
+      {formError}
+    </p>
+  );
+
+  const backToAcademy = () => router.push("/academy");
 
   return (
     <div className="bg-[#f5f5f5]">
-      <div className="container pb-24 sm:pb-36">
-        <div className="flex flex-col gap-6 pt-36 bg-white sm:bg-[#f5f5f5] p-4">
-          <div className="flex justify-start items-start">
+      <div className="container pb-36 lg:pb-36">
+        <div className="flex flex-col gap-4 pt-36 pb-6 px-4 sm:px-0">
+          <div>
             <button
-              className="py-1 px-[10px] bg-[#E4EEF3] rounded-full  flex gap-2 items-center"
+              type="button"
+              className="py-1 px-[10px] bg-[#E4EEF3] rounded-full flex gap-2 items-center focus:outline-none focus:ring-2 focus:ring-[#05668D]"
               onClick={() => router.back()}
             >
-              <Image
-                src={"/less.svg"}
-                width={20}
-                height={20}
-                alt="image"
-                className="object-contain w-4 h-4"
-              />
+              <Image src="/less.svg" width={20} height={20} alt="" className="object-contain w-4 h-4" />
               <span className="text-main text-[15px] leading-[22px] font-secondary font-medium">
-                Go back
+                Back to class details
               </span>
             </button>
           </div>
-
-          <h1 className="text-[40px] leading-[52px] font-medium text-[#141834]">
-            Checkout
-          </h1>
+          <h1 className="text-[40px] leading-[52px] font-medium text-[#141834]">Checkout</h1>
+          <p className="font-secondary text-sm text-secondary">
+            All fields are required unless marked optional.
+          </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row  justify-between gap-3 ">
-          <div className="w-full lg:w-[742px] flex flex-col gap-16 bg-white p-4 md:p-8 lg:rounded-3xl">
-            <ContactInformation setDetails={setDetails} details={details} />
-            <Paymentmethod
-              methods={paymentMethods}
-              details={details}
-              setdetails={setDetails}
-              selectedMethod={selectedMethod}
-              setSelectedMethod={setSelectedMethod}
-              amount={classPrice * (1 - discountPercent / 100)}
-              country={country}
-            />
-          </div>
-
-          <div className="flex flex-col sm:flex-row lg:flex-col gap-3">
+        <div className="flex flex-col lg:flex-row items-start gap-4">
+          {/* Summary: first on mobile so people see what they're buying; right column on desktop */}
+          <aside
+            aria-label="Your order"
+            className="order-1 lg:order-2 w-full lg:w-[420px] lg:flex-none lg:sticky lg:top-28 flex flex-col gap-6 bg-white p-4 md:p-8 rounded-2xl"
+          >
             <CheckoutCourseDetails
               image={course.logo}
               title={course.title}
-              date={combinedDate}
-              time={classTimeWithTimeZone}
+              date={displayDate}
+              time={`${classDetail.time} ${classDetail.timeZone}`}
               classType={classDetail.classType}
-              country={country}
+              pricingRegion={pricingRegion}
+              isUk={isUk}
             />
-            <div className="flex flex-col gap-3">
-              <DiscountCode
-                onApply={(percent, code) => { setDiscountPercent(percent); setAppliedCode(code); }}
-                onRemove={() => { setDiscountPercent(0); setAppliedCode(null); }}
-                appliedCode={appliedCode}
-              />
-              <OrderSummary
-                subtotal={subtotal}
-                total={classPrice}
-                quantity={details.numberOfAttendees}
-                isUk={country === "united kingdom"}
-                discountPercent={discountPercent}
-                appliedCode={appliedCode}
-              />
-              {selectedMethod === "invoice" && (
-                <Button
-                  size="large"
-                  bgColor="bg-fill-brand-secondary"
-                  className="rounded-xl text-main"
-                  onClick={handlePayment}
-                >
-                  <span>{loading ? "Loading..." : "Send Invoice"}</span>
-                </Button>
+            <hr className="border-[#E5E5E5]" />
+            <OrderSummary
+              totals={totals}
+              isUk={isUk}
+              appliedCode={appliedCode}
+              discountSlot={
+                <DiscountCode
+                  appliedCode={appliedCode}
+                  discountPercent={discountPercent}
+                  onApply={(percent, code) => {
+                    setDiscountPercent(percent);
+                    setAppliedCode(code);
+                  }}
+                  onRemove={() => {
+                    setDiscountPercent(0);
+                    setAppliedCode(null);
+                  }}
+                />
+              }
+            />
+            <div className="hidden lg:flex flex-col gap-3">
+              {formErrorBox}
+              {ctaButton()}
+              {ctaNote && (
+                <p className="text-sm font-secondary text-secondary text-center">{ctaNote}</p>
               )}
-              {error || success ? (
-                <p
-                  className={`text-sm mt-6 text-center ${success ? "text-green-600" : ""} ${error ? "text-red-600" : ""}`}
-                >
-                  {error ?? success}
-                </p>
-              ) : null}
             </div>
+          </aside>
+
+          <div className="order-2 lg:order-1 w-full flex-1 min-w-0 flex flex-col gap-12 bg-white p-4 md:p-8 rounded-2xl">
+            <CheckoutStep id="step-booking" step={1} title="Your booking">
+              <AttendeesStepper
+                value={details.numberOfAttendees}
+                onChange={(n) => updateDetail("numberOfAttendees", n)}
+                unitPriceLabel={money(unitPrice)}
+              />
+            </CheckoutStep>
+
+            <CheckoutStep id="step-details" step={2} title="Your details">
+              <ContactInformation details={details} errors={errors} updateDetail={updateDetail} />
+            </CheckoutStep>
+
+            <CheckoutStep
+              id="step-payment"
+              step={3}
+              title="How would you like to pay?"
+              description="Pay by card to confirm your place now, or request an invoice for your company to pay by bank transfer."
+            >
+              <Paymentmethod
+                selectedMethod={selectedMethod}
+                onSelect={selectMethod}
+                details={details}
+                errors={errors}
+                updateDetail={updateDetail}
+                deadline={deadline}
+                pricingRegion={pricingRegion}
+                cardAvailable={Boolean(stripePromise)}
+              />
+            </CheckoutStep>
           </div>
         </div>
       </div>
 
-      {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-[#03243266] bg-opacity-[40%] z-50">
-          <div className="px-4 sm:px-0" onClick={(e) => e.stopPropagation()}>
-            <div className="flex flex-col gap-10 bg-white rounded-[20px] px-4 py-8 md:p-8 w-full max-w-[645px]">
-              <p>An email containing your invoice has been successfuly sent.</p>
-              <p>
-                To download your invoice, please check your email (
-                {details.invoiceEmail.trim() || details.email})
-              </p>
-              <Button
-                className="w-full text-sm font-medium font-secondary text-accentmain"
-                bgColor="bg-fill-neutral-strong"
-                rounded="lg"
-                onClick={handleModalToggle}
-              >
-                Ok
-              </Button>
-            </div>
+      {/* Mobile: the action is always within reach */}
+      <div className="lg:hidden fixed inset-x-0 bottom-0 z-40 bg-white border-t border-[#E5E5E5] shadow-[0_-4px_16px_rgba(0,0,0,0.08)] px-4 pt-3 pb-[calc(12px+env(safe-area-inset-bottom))] flex flex-col gap-2">
+        {formErrorBox}
+        <div className="flex items-center gap-4">
+          <div className="flex flex-col">
+            <span className="text-xs font-secondary text-secondary">Total</span>
+            <span className="text-lg font-semibold font-secondary text-main whitespace-nowrap">
+              {money(totals.total)}
+            </span>
           </div>
+          {ctaButton("flex-1 !py-3 !text-base")}
         </div>
+      </div>
+
+      {confirmation?.kind === "card" && (
+        <ConfirmationModal title="You're booked!" actionLabel="Back to Academy" onAction={backToAcademy}>
+          <p>
+            {confirmation.total ? (
+              <>
+                Your payment of <strong>{confirmation.total}</strong> was successful and{" "}
+                {confirmation.quantity > 1 ? `${confirmation.quantity} places are` : "your place is"}{" "}
+                confirmed on <strong>{course.title}</strong> ({displayDate}).
+              </>
+            ) : (
+              <>
+                Your payment was successful and your booking on <strong>{course.title}</strong> (
+                {displayDate}) is confirmed.
+              </>
+            )}
+          </p>
+          {confirmation.email && (
+            <p>
+              A receipt is on its way to <strong className="break-all">{confirmation.email}</strong>.
+            </p>
+          )}
+          <p>We&apos;ll email you more information about the class within 24 hours.</p>
+        </ConfirmationModal>
+      )}
+
+      {confirmation?.kind === "invoice" && (
+        <ConfirmationModal title="Invoice sent" actionLabel="Back to Academy" onAction={backToAcademy}>
+          <p>
+            We&apos;ve emailed the invoice for <strong>{course.title}</strong> ({displayDate}) to{" "}
+            <strong className="break-all">{confirmation.recipient}</strong>.
+          </p>
+          {deadline.isPastDeadline || !deadline.label ? (
+            <p>
+              Payment is due {deadline.isPastDeadline ? "immediately" : "at least 14 days before the class starts"}.
+              Your place is confirmed once we receive it.
+            </p>
+          ) : (
+            <p>
+              Please pay by <strong>{deadline.label}</strong>. We&apos;re holding your place until
+              then, and it&apos;s confirmed once payment is received.
+            </p>
+          )}
+          <p className="text-sm text-secondary">
+            Can&apos;t see the email? Check your spam folder or contact{" "}
+            <a href="mailto:info@valuehut.co" className="underline">
+              info@valuehut.co
+            </a>
+            .
+          </p>
+        </ConfirmationModal>
       )}
     </div>
   );
