@@ -154,13 +154,8 @@ const RegisterModal = ({
           >
             Which country do you live in?
           </label>
-          <p id="register-country-hint" className="text-sm font-secondary text-secondary">
-            Course prices are set by region, so we use this to show the right price
-            and currency.
-          </p>
           <Select
             inputId="register-country"
-            aria-describedby="register-country-hint"
             autoFocus
             isSearchable
             placeholder="Start typing your country…"

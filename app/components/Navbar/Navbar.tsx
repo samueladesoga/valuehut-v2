@@ -54,11 +54,15 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
   }, []);
 
   useEffect(() => {
+    // Switch to the solid navbar as soon as the page scrolls. Heroes vary in
+    // height, so waiting for a fixed distance left white text over white
+    // content on pages with a short hero.
     const handleScroll = () => {
-      setScrolled(window.scrollY > 600);
+      setScrolled(window.scrollY > 40);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
