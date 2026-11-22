@@ -136,7 +136,7 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
                     onClick={() => toggleDropdown(index)}
                     aria-expanded={openDropdownIndex === index}
                     aria-haspopup="true"
-                    className="flex items-center hover:text-gray-300 focus:outline-none"
+                    className="flex items-center underline-offset-8 decoration-2 hover:underline focus:outline-none"
                   >
                     {link.label}
                     <ChevronDown className="h-4 w-4 ml-1" />
@@ -161,8 +161,8 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
                   key={index}
                   href={link.href}
                   aria-current={isActive(link.href) ? "page" : undefined}
-                  className={`relative flex items-center hover:text-gray-300 ${
-                    isActive(link.href) ? "font-semibold underline underline-offset-8 decoration-2" : ""
+                  className={`relative flex items-center underline-offset-8 decoration-2 hover:underline ${
+                    isActive(link.href) ? "font-semibold underline" : ""
                   }`}
                 >
                   {link.label}
@@ -312,7 +312,7 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
                       <Link
                         href={link.href}
                         aria-current={isActive(link.href) ? "page" : undefined}
-                        className={`block hover:text-gray-300 ${isActive(link.href) ? "font-semibold" : ""}`}
+                        className={`block underline-offset-4 decoration-2 hover:underline ${isActive(link.href) ? "font-semibold" : ""}`}
                         onClick={toggleMobileMenu}
                       >
                         {link.label}
