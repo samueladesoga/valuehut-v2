@@ -19,9 +19,12 @@ interface FAQItem {
 
 interface FAQProps {
   faqs: FAQItem[];
+  /** Use "h1" only when the FAQ is the page's main content (the /faqs page). */
+  headingLevel?: "h1" | "h2";
 }
 
-const FAQ: React.FC<FAQProps> = ({ faqs }) => {
+const FAQ: React.FC<FAQProps> = ({ faqs, headingLevel = "h2" }) => {
+  const Heading = headingLevel;
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>("");
 
@@ -29,15 +32,13 @@ const FAQ: React.FC<FAQProps> = ({ faqs }) => {
 
   const pathname = usePathname();
   useEffect(() => {
-    const currentPath = pathname;
-    const pathToCategoryMap: Record<string, string> = {
-      "/value-hut": "ValueHut",
-      "/talent-matching": "Talent Matching",
-      "/academy": "Academy",
-      "/faq": "ValueHut",
-    };
-
-    setActiveCategory(pathToCategoryMap[currentPath] || "ValueHut");
+    // Match nested routes too, so course pages (/academy/...) open on the Academy questions.
+    const category = pathname.startsWith("/academy")
+      ? "Academy"
+      : pathname.startsWith("/talent-matching")
+        ? "Talent Matching"
+        : "ValueHut";
+    setActiveCategory(category);
   }, [pathname]);
 
   const toggleFAQ = (index: number): void => {
@@ -59,9 +60,9 @@ const FAQ: React.FC<FAQProps> = ({ faqs }) => {
       <div className="flex justify-evenly flex-col lg:flex-row gap-8 lg:gap-24 items-center lg:items-start">
         <div className="lg:w-1/2 flex flex-col justify-between h-auto lg:h-[689px] ">
           <div className="flex flex-col items-center lg:items-start justify-start gap-6">
-            <h1 className="text-7xl sm:text-9xl font-normal tracking-tight text-center lg:text-left text-[#141834] font-primary">
+            <Heading className="text-7xl sm:text-9xl font-normal tracking-tight text-center lg:text-left text-[#141834] font-primary">
               Frequently asked questions
-            </h1>
+            </Heading>
             <p className="hidden md:flex text-xl font-medium font-secondary">
               You got more to ask?
             </p>

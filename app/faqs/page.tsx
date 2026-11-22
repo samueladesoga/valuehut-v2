@@ -3,22 +3,11 @@ import FAQ from "@/components/FaqPage/Faq/Faq";
 import { faqs } from "@/data/Faqs/faqpage";
 import OurPartners from "@/components/FaqPage/OurPartners/OurPartners";
 import type { Metadata } from "next";
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: faq.answer,
-    },
-  })),
-};
+import JsonLd from "@/components/JsonLd/JsonLd";
+import { faqSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "FAQs | ValueHut Consulting",
+  title: "FAQs",
   description:
     "Find answers to common questions about ValueHut Consulting's Agile training, consulting, and talent matching services in London and Lagos.",
   alternates: {
@@ -49,12 +38,9 @@ export const metadata: Metadata = {
 const FaqPage: React.FC = () => {
   return (
     <div className="bg-[#f5f5f5] h-auto">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      <JsonLd data={faqSchema(faqs)} />
       <div className="py-32">
-        <FAQ faqs={faqs} />
+        <FAQ faqs={faqs} headingLevel="h1" />
         <OurPartners />
       </div>
     </div>

@@ -4,7 +4,7 @@ import Consulting from "./Consulting";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Agile Consulting London & Lagos | ValueHut Consulting",
+  title: "Agile Consulting in London & Lagos",
   description:
     "ValueHut Consulting provides Agile and Product Management consulting for organisations in London, Lagos, Accra and beyond. Book a free call today.",
   alternates: {

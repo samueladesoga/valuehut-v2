@@ -3,7 +3,6 @@
 import React, { useState, ChangeEvent, useRef, FormEvent } from "react";
 import Button from "@/components/Button/Button";
 import emailjs from "@emailjs/browser";
-import { Toaster, toast } from "react-hot-toast";
 
 interface FormData {
   fullName: string;
@@ -54,7 +53,23 @@ const ENGAGEMENT_TYPES = ["Permanent", "Contract", "Interim"];
 const TIMELINE_OPTIONS = ["ASAP", "1–3 months", "3–6 months", "Just researching"];
 
 const inputClasses =
-  "w-full p-4 border text-sm border-[#bfbfbf] font-normal rounded-md text-secondary";
+  "w-full p-4 border text-sm border-[#bfbfbf] font-normal rounded-md text-main bg-white focus:outline-none focus:ring-2 focus:ring-[#05668D] focus:border-[#05668D] aria-[invalid=true]:border-red-600";
+
+const MIN_MESSAGE_LENGTH = 20;
+
+type FieldName = keyof FormData;
+type Errors = Partial<Record<FieldName, string>>;
+
+// Order of fields on the page, so focus goes to the first problem.
+const FIELD_ORDER: FieldName[] = [
+  "fullName",
+  "email",
+  "companyName",
+  "interest",
+  "focusArea",
+  "engagementType",
+  "message",
+];
 const labelClasses =
   "block font-primary font-medium text-lg !leading-[22.8px] mb-1";
 
@@ -79,6 +94,8 @@ const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>(initialFormData);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [errors, setErrors] = useState<Errors>({});
+  const [status, setStatus] = useState<"idle" | "sent" | "failed">("idle");
 
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -86,6 +103,17 @@ const ContactForm: React.FC = () => {
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
+    setStatus("idle");
+    setErrors((prev) => {
+      if (!prev[name as FieldName] && name !== "interest") return prev;
+      const next = { ...prev };
+      delete next[name as FieldName];
+      if (name === "interest") {
+        delete next.focusArea;
+        delete next.engagementType;
+      }
+      return next;
+    });
 
     if (name === "interest") {
       setFormData((prevState) => ({
@@ -117,29 +145,29 @@ const ContactForm: React.FC = () => {
       message,
     } = formData;
 
-    if (!fullName || !email || !companyName || !interest || !message) {
-      toast.error("Please fill in all required fields.");
-      return;
-    }
+    const next: Errors = {};
+    if (!fullName.trim()) next.fullName = "Enter your full name.";
+    if (!email.trim()) next.email = "Enter your work email.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()))
+      next.email = "Enter an email address like name@company.com.";
+    if (!companyName.trim()) next.companyName = "Enter your company name.";
+    if (!interest) next.interest = "Choose what you're looking for.";
+    else if (interest !== "not-sure" && !focusArea)
+      next.focusArea =
+        interest === "talent-matching"
+          ? "Choose the role you're hiring for."
+          : interest === "academy"
+            ? "Choose a training area."
+            : "Choose a service.";
+    if (interest === "talent-matching" && !engagementType)
+      next.engagementType = "Choose an engagement type.";
+    if (message.trim().length < MIN_MESSAGE_LENGTH)
+      next.message = `Tell us a little more — at least ${MIN_MESSAGE_LENGTH} characters.`;
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      toast.error("Please enter a valid email address.");
-      return;
-    }
-
-    if (interest !== "not-sure" && !focusArea) {
-      toast.error("Please let us know which service you're interested in.");
-      return;
-    }
-
-    if (interest === "talent-matching" && !engagementType) {
-      toast.error("Please select an engagement type.");
-      return;
-    }
-
-    if (message.length < 20) {
-      toast.error("Message must be at least 20 characters long.");
+    setErrors(next);
+    const first = FIELD_ORDER.find((f) => next[f]);
+    if (first) {
+      document.getElementById(first)?.focus();
       return;
     }
 
@@ -147,7 +175,7 @@ const ContactForm: React.FC = () => {
       console.error(
         "EmailJS is not configured: set NEXT_PUBLIC_EMAIL_SERVICE_ID, NEXT_PUBLIC_EMAIL_TEMPLATE_ID and NEXT_PUBLIC_EMAIL_USER_ID at build time."
       );
-      toast.error("Failed to send email. Please try again.");
+      setStatus("failed");
       return;
     }
 
@@ -162,13 +190,13 @@ const ContactForm: React.FC = () => {
       )
       .then(
         function () {
-          toast.success("Email has been sent successfully!");
+          setStatus("sent");
           setFormData(initialFormData);
           formRef.current?.reset();
         },
         (err: any) => {
           console.error("FAILED...", err);
-          toast.error("Failed to send email. Please try again.");
+          setStatus("failed");
         }
       )
       .finally(() => {
@@ -176,19 +204,27 @@ const ContactForm: React.FC = () => {
       });
   };
 
+  const fieldError = (name: FieldName) =>
+    errors[name] ? (
+      <p id={`${name}-error`} className="mt-1 font-secondary text-sm text-red-600">
+        {errors[name]}
+      </p>
+    ) : null;
+
   return (
     <form
       ref={formRef}
       onSubmit={handleSendEmail}
+      noValidate
       className="bg-[#ffffff] rounded-xl"
     >
-      <div>
-        <Toaster position="top-center" reverseOrder={false} />
-      </div>
       <div className="p-4 sm:p-6 rounded-lg shadow-md">
         <h2 className="text-5xl font-primary font-medium mb-6">
           Send a message
         </h2>
+        <p className="font-secondary text-sm text-secondary -mt-3 mb-6">
+          All fields are required unless marked optional.
+        </p>
         <div className="space-y-4">
           <div>
             <label htmlFor="fullName" className={labelClasses}>
@@ -197,13 +233,16 @@ const ContactForm: React.FC = () => {
             <input
               type="text"
               id="fullName"
+              aria-invalid={Boolean(errors.fullName)}
+              aria-describedby={errors.fullName ? "fullName-error" : undefined}
               name="fullName"
               value={formData.fullName}
               onChange={handleChange}
               className={inputClasses}
               placeholder="Full name"
-              required
+              autoComplete="name"
             />
+            {fieldError("fullName")}
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4">
@@ -214,13 +253,16 @@ const ContactForm: React.FC = () => {
               <input
                 type="email"
                 id="email"
+              aria-invalid={Boolean(errors.email)}
+              aria-describedby={errors.email ? "email-error" : undefined}
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
                 className={inputClasses}
                 placeholder="Enter your email"
-                required
+                autoComplete="email"
               />
+              {fieldError("email")}
             </div>
             <div className="w-full">
               <label htmlFor="companyName" className={labelClasses}>
@@ -229,13 +271,16 @@ const ContactForm: React.FC = () => {
               <input
                 type="text"
                 id="companyName"
+              aria-invalid={Boolean(errors.companyName)}
+              aria-describedby={errors.companyName ? "companyName-error" : undefined}
                 name="companyName"
                 value={formData.companyName}
                 onChange={handleChange}
                 className={inputClasses}
                 placeholder="Your company"
-                required
+                autoComplete="organization"
               />
+              {fieldError("companyName")}
             </div>
           </div>
 
@@ -263,6 +308,8 @@ const ContactForm: React.FC = () => {
             </label>
             <select
               id="interest"
+              aria-invalid={Boolean(errors.interest)}
+              aria-describedby={errors.interest ? "interest-error" : undefined}
               name="interest"
               value={formData.interest}
               onChange={handleChange}
@@ -275,6 +322,7 @@ const ContactForm: React.FC = () => {
               <option value="talent-matching">Talent Matching</option>
               <option value="not-sure">Not sure</option>
             </select>
+            {fieldError("interest")}
           </div>
 
           {formData.interest === "consulting" && (
@@ -284,6 +332,8 @@ const ContactForm: React.FC = () => {
               </label>
               <select
                 id="focusArea"
+              aria-invalid={Boolean(errors.focusArea)}
+              aria-describedby={errors.focusArea ? "focusArea-error" : undefined}
                 name="focusArea"
                 value={formData.focusArea}
                 onChange={handleChange}
@@ -297,6 +347,7 @@ const ContactForm: React.FC = () => {
                   </option>
                 ))}
               </select>
+              {fieldError("focusArea")}
             </div>
           )}
 
@@ -308,6 +359,8 @@ const ContactForm: React.FC = () => {
                 </label>
                 <select
                   id="focusArea"
+              aria-invalid={Boolean(errors.focusArea)}
+              aria-describedby={errors.focusArea ? "focusArea-error" : undefined}
                   name="focusArea"
                   value={formData.focusArea}
                   onChange={handleChange}
@@ -321,6 +374,7 @@ const ContactForm: React.FC = () => {
                     </option>
                   ))}
                 </select>
+              {fieldError("focusArea")}
               </div>
               <div>
                 <label htmlFor="groupSize" className={labelClasses}>
@@ -351,6 +405,8 @@ const ContactForm: React.FC = () => {
                 </label>
                 <select
                   id="focusArea"
+              aria-invalid={Boolean(errors.focusArea)}
+              aria-describedby={errors.focusArea ? "focusArea-error" : undefined}
                   name="focusArea"
                   value={formData.focusArea}
                   onChange={handleChange}
@@ -364,6 +420,7 @@ const ContactForm: React.FC = () => {
                     </option>
                   ))}
                 </select>
+              {fieldError("focusArea")}
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <div className="w-full">
@@ -375,6 +432,8 @@ const ContactForm: React.FC = () => {
                   </label>
                   <select
                     id="engagementType"
+              aria-invalid={Boolean(errors.engagementType)}
+              aria-describedby={errors.engagementType ? "engagementType-error" : undefined}
                     name="engagementType"
                     value={formData.engagementType}
                     onChange={handleChange}
@@ -388,6 +447,7 @@ const ContactForm: React.FC = () => {
                       </option>
                     ))}
                   </select>
+                  {fieldError("engagementType")}
                 </div>
                 <div className="w-full">
                   <label
@@ -443,14 +503,27 @@ const ContactForm: React.FC = () => {
             </label>
             <textarea
               id="message"
+              aria-invalid={Boolean(errors.message)}
+              aria-describedby={errors.message ? "message-error" : undefined}
               name="message"
               value={formData.message}
               onChange={handleChange}
               className={inputClasses}
               placeholder="Tell us more about what you need"
               rows={4}
-              required
             ></textarea>
+            <div className="flex justify-between gap-4 mt-1">
+              <div className="flex-1">{fieldError("message")}</div>
+              <p
+                className={`font-secondary text-xs whitespace-nowrap ${
+                  formData.message.trim().length >= MIN_MESSAGE_LENGTH ? "text-green-700" : "text-secondary"
+                }`}
+              >
+                {formData.message.trim().length < MIN_MESSAGE_LENGTH
+                  ? `${MIN_MESSAGE_LENGTH - formData.message.trim().length} more characters needed`
+                  : "✓ Looks good"}
+              </p>
+            </div>
           </div>
           <Button
             bgColor="bg-fill-brand-secondary"
@@ -461,6 +534,19 @@ const ContactForm: React.FC = () => {
           >
             {isLoading ? "Sending..." : "Send Message"}
           </Button>
+          <div aria-live="polite">
+            {status === "sent" && (
+              <p className="rounded-lg bg-green-50 border border-green-200 p-4 font-secondary text-sm text-green-800">
+                Thanks — your message has been sent. We&apos;ll be in touch soon.
+              </p>
+            )}
+            {status === "failed" && (
+              <p role="alert" className="rounded-lg bg-red-50 border border-red-200 p-4 font-secondary text-sm text-red-700">
+                Sorry, your message didn&apos;t send. Please try again, or email us directly at{" "}
+                <a href="mailto:info@valuehut.co" className="underline">info@valuehut.co</a>.
+              </p>
+            )}
+          </div>
         </div>
       </div>
     </form>

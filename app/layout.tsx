@@ -30,24 +30,11 @@ export const metadata: Metadata = {
   },
   description:
     "ValueHut Consulting is an Agile Management Consultancy helping organisations discover better ways of working to deliver exceptional products and services.",
-  alternates: {
-    languages: {
-      "en-GB": "https://www.valuehut.co",
-      "en-NG": "https://www.valuehut.co",
-      "x-default": "https://www.valuehut.co",
-    },
-  },
+  // Default share image comes from app/opengraph-image.tsx (1200×630).
   openGraph: {
     siteName: "ValueHut Consulting",
     type: "website",
-    images: [
-      {
-        url: "/logos/v2-dark.png",
-        width: 512,
-        height: 512,
-        alt: "ValueHut Consulting",
-      },
-    ],
+    locale: "en_GB",
   },
   twitter: {
     card: "summary_large_image",
@@ -63,20 +50,10 @@ export default function RootLayout({
   const navLinks = [
     { label: "Academy", href: "/academy" },
     { label: "Consulting", href: "/consulting" },
-    {
-      label: "Talent Matching",
-      href: "/talent-matching",
-      badge: "NEW",
-    },
-    {
-      label: "Resources",
-      href: "/resources",
-      subLinks: [
-        { label: "About Us", href: "/about-us" },
-        { label: "FAQs", href: "/faqs" },
-        { label: "Blog", href: "/blog" },
-      ],
-    },
+    { label: "Talent Matching", href: "/talent-matching" },
+    { label: "About", href: "/about-us" },
+    { label: "Blog", href: "/blog" },
+    { label: "FAQs", href: "/faqs" },
     { label: "Contact", href: "/contact-us" },
   ];
 

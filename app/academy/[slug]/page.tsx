@@ -13,6 +13,9 @@ import { AdditionalBenefitCard } from "@/components/AcademyPage/AdditionalBenefi
 import WhoShouldAttend from "@/components/AcademyPage/WhoShouldAttend/WhoShouldAttend";
 import Testimonials from "@/components/Homepage/Testimonials/Testimonials";
 import type { Metadata } from "next";
+import JsonLd from "@/components/JsonLd/JsonLd";
+import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
+import { breadcrumbSchema, courseSchema, faqSchema } from "@/lib/seo";
 
 interface IClasses {
   classSysId: string;
@@ -100,26 +103,20 @@ export default async function CourseDetailsPage({ params }: Props) {
     (item: { title: string }) => item.title === "Additional Benefits"
   );
 
-  const courseSchema = {
-    "@context": "https://schema.org",
-    "@type": "Course",
-    name: course.title,
-    description: course.description,
-    image: course.image,
-    url: `https://www.valuehut.co/academy/${slug}`,
-    provider: {
-      "@type": "Organisation",
-      name: "ValueHut Consulting",
-      url: "https://www.valuehut.co",
-    },
-  };
+  const crumbs = [
+    { name: "Home", path: "/" },
+    { name: "Academy", path: "/academy" },
+    { name: course.title, path: `/academy/${slug}` },
+  ];
+  const structuredData = [
+    courseSchema(course, slug),
+    breadcrumbSchema(crumbs),
+    faqSchema(faqs.filter((faq) => faq.category === "Academy")),
+  ];
 
   return (
     <div className="bg-[#f5f5f5]">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
-      />
+      <JsonLd data={structuredData} />
       <div className="relative">
         <HeroComponent backgroundImage={course.image} />
         <div className="absolute inset-0 bg-gradient-custom  z-0"></div>
@@ -130,7 +127,8 @@ export default async function CourseDetailsPage({ params }: Props) {
         </div>
       </div>
       <div className="md:bg-white">
-        <div className="container px-4 xl:px-0 pt-16 md:pt-36">
+        <div className="container px-4 xl:px-0 pt-8 md:pt-12">
+          <Breadcrumbs items={crumbs} className="mb-8 md:mb-24" />
           <Aboutcourse description={course.description} logo={course.logo} />
         </div>
       </div>
@@ -227,7 +225,7 @@ export default async function CourseDetailsPage({ params }: Props) {
       )}
 
       <div>
-        {AssessmentCertification && (
+        {AssessmentAndCertificationData && (
           <AssessmentCertification content={AssessmentAndCertificationData.content} />
         )}
       </div>

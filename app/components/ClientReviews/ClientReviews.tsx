@@ -51,7 +51,7 @@ const ClientReviews = ({
   return (
     <div className="w-full mx-auto py-10">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-9xl font-medium font-primary text-main">{title}</h1>
+        <h2 className="text-9xl font-medium font-primary text-main">{title}</h2>
         <div className="hidden md:flex gap-4">
           <button
             onClick={handlePrev}

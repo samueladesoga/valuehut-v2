@@ -56,10 +56,11 @@ export default async function Blogs() {
   return (
     <div className="bg-[#F5F5F5] py-7">
       <div className="bg-[#f5f5f5] px-4 md:px-4 lg:px-0 container mt-[100px]">
+        <h1 className="sr-only">ValueHut Blog: Agile, Scrum and Product Management insights</h1>
         <div>
-          <h1 className="text-[47px] sm:text-9xl leading-[61px] font-primary  mb-9 text-main sm:font-normal font-medium">
+          <h2 className="text-[47px] sm:text-9xl leading-[61px] font-primary  mb-9 text-main sm:font-normal font-medium">
             Featured Articles
-          </h1>
+          </h2>
         </div>
         <div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-28 ">
@@ -75,9 +76,9 @@ export default async function Blogs() {
               />
             </div>
             <div className="grid grid-cols-1 w-full content-start">
-              <h1 className="font-primary font-medium text-[26px] leading-[33px] sm:hidden mt-8 sm:mt-0">
+              <h2 className="font-primary font-medium text-[26px] leading-[33px] sm:hidden mt-8 sm:mt-0">
                 Latest Articles
-              </h1>
+              </h2>
               {sideArticles.map((sideArticle, index) => (
                 <div key={index} className="my-1">
                   <BlogItem

@@ -113,6 +113,7 @@ function Group({
           logo={course.logo}
           courseId={courseId}
           classSysId={classSysId as unknown as string}
+          course={course}
         />
       )}
     </div>

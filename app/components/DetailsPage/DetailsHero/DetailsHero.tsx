@@ -165,6 +165,7 @@ function DetailsHero({
           logo={logo}
           courseId={courseId}
           classSysId={classSysId}
+          course={course}
         />
       )}
 

@@ -19,7 +19,7 @@ import CheckoutStep from "../CheckoutStep/CheckoutStep";
 import AttendeesStepper from "../AttendeesStepper/AttendeesStepper";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import { CheckoutDetails, CheckoutField, FieldErrors, PaymentMethodId } from "../types";
-import { countries, primaryMarket, tertiaryMarket } from "@/data/Countries/countries";
+import { countries } from "@/data/Countries/countries";
 import { getDisplayDate } from "@/utils/ConvertDate";
 import {
   CheckoutTotals,
@@ -28,6 +28,7 @@ import {
   computeTotals,
   formatMoney,
   getInvoiceDeadline,
+  getUnitPriceForCountry,
   isValidPhone,
 } from "@/utils/checkout";
 
@@ -56,16 +57,6 @@ const appearance: Appearance = {
 
 const toTitleCase = (value: string) => value.replace(/\b\w/g, (c) => c.toUpperCase());
 
-const lower = (list: string[]) => list.map((c) => c.toLowerCase());
-
-function getUnitPrice(classDetail: any, country: string): number {
-  if (!classDetail) return 0;
-  if (country === "united kingdom") return Number(classDetail.ukPrice) || 0;
-  if (lower(primaryMarket).includes(country)) return Number(classDetail.primary) || 0;
-  if (lower(tertiaryMarket).includes(country)) return Number(classDetail.tertiary) || 0;
-  return Number(classDetail.secondary) || 0;
-}
-
 function WrapperCheckout({ course, classSysId }: any) {
   const searchParams = useSearchParams();
   const country = (searchParams.get("country") ?? "").toLowerCase();
@@ -73,7 +64,7 @@ function WrapperCheckout({ course, classSysId }: any) {
   const classDetail = course?.classes?.find(
     (cls: { classSysId: string }) => cls.classSysId === classSysId
   );
-  const unitPrice = getUnitPrice(classDetail, country);
+  const unitPrice = getUnitPriceForCountry(classDetail, country);
 
   // Deferred-intent mode: the card form renders immediately and the payment
   // is only created when the customer presses Pay. The amount is kept in sync

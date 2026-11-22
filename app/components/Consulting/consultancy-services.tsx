@@ -31,7 +31,11 @@ export default function ConsultancyServices() {
           <p className="text-xl mb-2 font-medium font-secondary">
             Want to know more?
           </p>
-          <Link href="https://calendly.com/samueladesoga/valuehut-consulting">
+          <Link
+            href="https://calendly.com/samueladesoga/valuehut-consulting"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Button
               bgColor="bg-fill-brand-secondary"
               size="medium"

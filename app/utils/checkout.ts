@@ -1,6 +1,29 @@
 // Shared checkout maths and wording so the order summary, pay button,
 // Stripe amount and invoice all agree on the same numbers.
 
+import { primaryMarket, tertiaryMarket } from "@/data/Countries/countries";
+
+export interface ClassPrices {
+  ukPrice?: number | string;
+  primary?: number | string;
+  secondary?: number | string;
+  tertiary?: number | string;
+}
+
+const lower = (list: string[]) => list.map((c) => c.toLowerCase());
+const PRIMARY = lower(primaryMarket);
+const TERTIARY = lower(tertiaryMarket);
+
+/** Per-person price (before VAT) for a class, given the attendee's country. */
+export function getUnitPriceForCountry(prices: ClassPrices | undefined, countryName: string): number {
+  if (!prices) return 0;
+  const country = countryName.toLowerCase();
+  if (country === "united kingdom") return Number(prices.ukPrice) || 0;
+  if (PRIMARY.includes(country)) return Number(prices.primary) || 0;
+  if (TERTIARY.includes(country)) return Number(prices.tertiary) || 0;
+  return Number(prices.secondary) || 0;
+}
+
 export const UK_VAT_RATE = 0.2;
 export const INVOICE_PAYMENT_DAYS_BEFORE_CLASS = 14;
 
