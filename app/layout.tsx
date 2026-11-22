@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "./components/Navbar/Navbar";
+import { SolidNavbarProvider } from "./components/Navbar/SolidNavbar";
 import logoY from "../public/logos/v2-dark.svg";
 import logoX from "../public/logos/v2-light.svg";
 import Footer from "./components/Footer/Footer";
@@ -68,9 +69,11 @@ export default function RootLayout({
         ></script>
       </head>
       <body>
-        <Navbar logoX={logoX} logoY={logoY} menu={Menu} navLinks={navLinks} />
-        {children}
-        <Footer />
+        <SolidNavbarProvider>
+          <Navbar logoX={logoX} logoY={logoY} menu={Menu} navLinks={navLinks} />
+          {children}
+          <Footer />
+        </SolidNavbarProvider>
       </body>
       <GoogleAnalytics gaId="G-MS8JT45FG9" />
     </html>
