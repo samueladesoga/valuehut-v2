@@ -8,6 +8,7 @@ import { ChevronDown, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { StaticImageData } from "next/image";
 import { usePathname } from "next/navigation";
+import { useSolidNavbar } from "./SolidNavbar";
 
 interface NavbarProps {
   logoX: StaticImageData;
@@ -88,6 +89,7 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
   }, []);
 
   const pathname = usePathname();
+  const forceSolid = useSolidNavbar();
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
   const isWhiteBackgroundRoutes = ["/about-us", "/faqs", "/blog", "/checkout/"];
@@ -100,6 +102,7 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
 
   const isNavbarWhite =
     isMobileMenuOpen ||
+    forceSolid ||
     isWhiteBackgroundRoutes.includes(pathname) ||
     isDynamicWhiteBackgroundRoute ||
     (isClient && scrolled) ||

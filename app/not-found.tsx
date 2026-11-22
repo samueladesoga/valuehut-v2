@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { SolidNavbar } from "./components/Navbar/SolidNavbar";
 
 export const metadata: Metadata = {
   title: "Page not found",
@@ -16,6 +17,7 @@ const links = [
 export default function NotFound() {
   return (
     <main className="bg-[#f5f5f5]">
+      <SolidNavbar />
       <div className="container px-4 xl:px-0 pt-40 pb-24 flex flex-col gap-10">
         <div className="flex flex-col gap-4 max-w-2xl">
           <p className="font-secondary text-sm font-semibold text-[#05668D]">404</p>
