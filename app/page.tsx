@@ -11,6 +11,8 @@ import BookACallCTA from "@/components/Homepage/BookACallCTA/BookACallCTA";
 import { heroData } from "./data/Home/HeroSection";
 import ClientLogosSectionWrapper from "@/components/Homepage/ClientLogosSectionWrapper/ClientLogosSectionWrapper";
 import { getAllArticles } from "./lib/api";
+import JsonLd from "@/components/JsonLd/JsonLd";
+import { localBusinessSchemas, organizationSchema, websiteSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "ValueHut Consulting | Agile Management Consultancy",
@@ -43,109 +45,13 @@ export const metadata: Metadata = {
   },
 };
 
-const organisationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organisation",
-  name: "ValueHut Consulting",
-  url: "https://www.valuehut.co",
-  logo: "https://www.valuehut.co/logos/v2-dark.png",
-  description:
-    "ValueHut Consulting is an Agile Management Consultancy helping organisations discover better ways of working to deliver exceptional products and services.",
-  areaServed: ["London", "United Kingdom", "Lagos", "Nigeria"],
-  address: [
-    {
-      "@type": "PostalAddress",
-      streetAddress: "North Westgate House",
-      addressLocality: "Harlow",
-      addressRegion: "Essex",
-      postalCode: "CM20 1YS",
-      addressCountry: "GB",
-    },
-    {
-      "@type": "PostalAddress",
-      streetAddress: "22 Glover Rd, Ikoyi",
-      addressLocality: "Lagos",
-      addressCountry: "NG",
-    },
-  ],
-  sameAs: [
-    "https://www.linkedin.com/company/valuehut",
-    "https://twitter.com/valuehut",
-  ],
-  contactPoint: {
-    "@type": "ContactPoint",
-    contactType: "customer support",
-    url: "https://www.valuehut.co/contact-us",
-  },
-};
-
-const localBusinessSchemas = [
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "ValueHut Consulting — UK",
-    url: "https://www.valuehut.co",
-    telephone: "",
-    email: "info@valuehut.co",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "North Westgate House",
-      addressLocality: "Harlow",
-      addressRegion: "Essex",
-      postalCode: "CM20 1YS",
-      addressCountry: "GB",
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: 51.77085589811162,
-      longitude: 0.08191492476874897,
-    },
-    areaServed: ["London", "Harlow", "Essex", "United Kingdom"],
-    description:
-      "ValueHut Consulting is an Agile Management Consultancy serving clients across London and the United Kingdom.",
-    priceRange: "££",
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "ValueHut Consulting — Nigeria",
-    url: "https://www.valuehut.co",
-    email: "info@valuehut.co",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "22 Glover Rd, Ikoyi",
-      addressLocality: "Lagos",
-      addressCountry: "NG",
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: 6.455306393509238,
-      longitude: 3.4277628114152754,
-    },
-    areaServed: ["Lagos", "Nigeria"],
-    description:
-      "ValueHut Consulting is an Agile Management Consultancy serving clients in Lagos, Nigeria.",
-    priceRange: "₦₦",
-  },
-];
-
 export default async function Home() {
   const Article = await getAllArticles();
   const articlesToShow = Article.filter((article) => article.showInHomePage);
   const topThreeArticles = articlesToShow.slice(0, 3);
   return (
     <div className="flex flex-col gap-8 bg-[#f5f5f5]">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organisationSchema) }}
-      />
-      {localBusinessSchemas.map((schema, i) => (
-        <script
-          key={i}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-        />
-      ))}
+      <JsonLd data={[organizationSchema, websiteSchema, ...localBusinessSchemas]} />
       <HeroSection
         title={heroData.title}
         subtitle={heroData.subtitle}

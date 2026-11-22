@@ -1,52 +1,60 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import type { MetadataRoute } from "next";
 import { getAllCourses } from "@/lib/courseApi";
 import { getAllArticles } from "./lib/api";
+import { SITE_URL, toIsoDate } from "@/lib/seo";
 
-function isValidUrl(url: string): boolean {
+// Posts republished from another site point their canonical there. A sitemap
+// may only list this site's own URLs, so those posts are left out.
+function isExternalCanonical(url?: string) {
+  if (!url) return false;
   try {
-    new URL(url);
-    return true;
+    return new URL(url).origin !== new URL(SITE_URL).origin;
   } catch {
     return false;
   }
 }
 
-const generateSitemap = async () => {
-  const baseUrl = "https://www.valuehut.co";
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const [courses, articles] = await Promise.all([getAllCourses(), getAllArticles()]);
+  const now = Date.now();
 
-  const courses = await getAllCourses();
-
-  const courseUrls = courses.map((course: any) => ({
-    url: `${baseUrl}/academy/${course.slug}`,
-    lastModified: course.updatedAt ?? course.createdAt ?? "2025-01-01",
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
-
-  const articles = await getAllArticles();
-
-  const articleUrls = articles.map((article: any) => ({
-    url:
-      article.canonicalUrl && isValidUrl(article.canonicalUrl)
-        ? article.canonicalUrl
-        : `${baseUrl}/blog/${article.slug}`,
-    lastModified: article.updatedAt ?? article.date ?? "2025-01-01",
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }));
-
-  const staticUrls = [
-    { url: `${baseUrl}/`, lastModified: "2026-03-01", changeFrequency: "weekly" as const, priority: 1.0 },
-    { url: `${baseUrl}/academy`, lastModified: "2026-03-01", changeFrequency: "weekly" as const, priority: 0.9 },
-    { url: `${baseUrl}/consulting`, lastModified: "2026-03-01", changeFrequency: "monthly" as const, priority: 0.9 },
-    { url: `${baseUrl}/talent-matching`, lastModified: "2026-03-01", changeFrequency: "monthly" as const, priority: 0.8 },
-    { url: `${baseUrl}/about-us`, lastModified: "2026-03-01", changeFrequency: "monthly" as const, priority: 0.7 },
-    { url: `${baseUrl}/blog`, lastModified: "2026-03-01", changeFrequency: "weekly" as const, priority: 0.8 },
-    { url: `${baseUrl}/faqs`, lastModified: "2026-03-01", changeFrequency: "monthly" as const, priority: 0.6 },
-    { url: `${baseUrl}/contact-us`, lastModified: "2026-03-01", changeFrequency: "yearly" as const, priority: 0.7 },
+  const staticUrls: MetadataRoute.Sitemap = [
+    { url: `${SITE_URL}/`, changeFrequency: "weekly", priority: 1.0 },
+    { url: `${SITE_URL}/academy`, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${SITE_URL}/consulting`, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${SITE_URL}/talent-matching`, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/about-us`, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${SITE_URL}/blog`, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${SITE_URL}/faqs`, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${SITE_URL}/contact-us`, changeFrequency: "yearly", priority: 0.7 },
   ];
 
-  return [...staticUrls, ...courseUrls, ...articleUrls];
-};
+  const courseUrls: MetadataRoute.Sitemap = courses.map((course: any) => ({
+    url: `${SITE_URL}/academy/${course.slug}`,
+    changeFrequency: "weekly",
+    priority: 0.8,
+  }));
 
-export default generateSitemap;
+  // Upcoming classes that still have places, so each date can be found directly.
+  const classUrls: MetadataRoute.Sitemap = courses.flatMap((course: any) =>
+    (course.classes ?? [])
+      .filter((cls: any) => !cls.filled && new Date(cls.startDate).getTime() > now)
+      .map((cls: any) => ({
+        url: `${SITE_URL}/academy/${course.slug}/details/${cls.classSysId}`,
+        changeFrequency: "weekly" as const,
+        priority: 0.6,
+      }))
+  );
+
+  const articleUrls: MetadataRoute.Sitemap = articles
+    .filter((article: any) => !isExternalCanonical(article.canonicalUrl))
+    .map((article: any) => ({
+      url: `${SITE_URL}/blog/${article.slug}`,
+      lastModified: toIsoDate(article.publishedAt) ?? toIsoDate(article.firstPublishedAt),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    }));
+
+  return [...staticUrls, ...courseUrls, ...classUrls, ...articleUrls];
+}

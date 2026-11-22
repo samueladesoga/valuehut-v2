@@ -26,9 +26,9 @@ const CriteriaSection: React.FC<CriteriaSectionProps> = ({
     <section className="container py-16">
       <div className="mx-auto flex flex-col lg:flex-row justify-between items-center gap-8 px-6 lg:px-0">
         <div className="lg:w-1/2">
-          <h1 className="text-[47px] leading-[61px] xl:text-9xl font-medium font-primary text-main mb-6">
+          <h2 className="text-[47px] leading-[61px] xl:text-9xl font-medium font-primary text-main mb-6">
             {title}
-          </h1>
+          </h2>
           <p className="text-sm text-main font-medium font-secondary mb-6">
             {description}
           </p>

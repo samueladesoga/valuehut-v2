@@ -7,6 +7,9 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { buildRenderOptions } from "@/components/Blog/RichTextRenderer/rich-text-renderer";
 import { getAuthor } from "@/lib/api";
+import JsonLd from "@/components/JsonLd/JsonLd";
+import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
+import { breadcrumbSchema, organizationRef, toIsoDate } from "@/lib/seo";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -91,30 +94,40 @@ export default async function BlogPost({
 
   const articleSchema = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     headline: post.title,
     description: post.description,
     image: post.cover.url,
     url: fullUrl,
-    datePublished: post.date,
-    dateModified: post.updatedDate,
-    publisher: {
-      "@type": "Organisation",
-      name: "ValueHut Consulting",
-      logo: {
-        "@type": "ImageObject",
-        url: "https://www.valuehut.co/logos/v2-dark.png",
-      },
-    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": fullUrl },
+    datePublished: toIsoDate(post.firstPublishedAt),
+    dateModified: toIsoDate(post.publishedAt) ?? toIsoDate(post.firstPublishedAt),
+    inLanguage: "en-GB",
+    author: author
+      ? {
+          "@type": "Person",
+          name: author.fullName,
+          ...(author.profilePicture?.url ? { image: author.profilePicture.url } : {}),
+        }
+      : organizationRef,
+    publisher: organizationRef,
+    ...(post.canonicalUrl && isValidUrl(post.canonicalUrl)
+      ? { isBasedOn: post.canonicalUrl }
+      : {}),
   };
+
+  const crumbs = [
+    { name: "Home", path: "/" },
+    { name: "Blog", path: "/blog" },
+    { name: post.title, path: `/blog/${slug}` },
+  ];
+  const structuredData = [articleSchema, breadcrumbSchema(crumbs)];
 
   return (
     <article className="bg-[#f5f5f5]">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-      />
+      <JsonLd data={structuredData} />
       <div className="max-w-[800px] mx-auto px-4 xl:px-0 py-28 flex flex-col gap-10">
+        <Breadcrumbs items={crumbs} />
         <h1 className="max-w-[770px] mx-auto text-[37px] leading-[44px] sm:text-[41px] sm:leading-[49px] text-center text-main font-primary font-medium">
           {post.title}
         </h1>

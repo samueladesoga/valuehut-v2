@@ -3,7 +3,7 @@ import AboutUs from "./AboutUs";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Us | ValueHut Consulting | London & Lagos",
+  title: "About Us | London & Lagos",
   description:
     "Learn about ValueHut Consulting, an Agile Management Consultancy serving organisations in London and Lagos. We also organise Scrum Day Nigeria.",
   alternates: {

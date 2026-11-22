@@ -11,9 +11,11 @@ import { heroData } from "@/data/talent-matching/talent-matching";
 import React from "react";
 import { faqs } from "@/data/Faqs/faqpage";
 import type { Metadata } from "next";
+import JsonLd from "@/components/JsonLd/JsonLd";
+import { faqSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Agile Talent Matching | London & Lagos | ValueHut Consulting",
+  title: "Agile Talent Matching | London & Lagos",
   description:
     "ValueHut Consulting matches organisations in London and Lagos with pre-qualified Agile and transformation professionals, each vetted by practising consultants.",
   alternates: {
@@ -45,6 +47,7 @@ export const metadata: Metadata = {
 function page() {
   return (
     <div className="bg-[#f5f5f5]">
+      <JsonLd data={faqSchema(faqs.filter((faq) => faq.category === "Talent Matching"))} />
       <HeroComponent
         title={heroData.title}
         subtitle={heroData.subtitle}

@@ -66,9 +66,9 @@ export function buildRenderOptions(
       },
 
       [BLOCKS.HEADING_1]: (_node, children: React.ReactNode) => (
-        <h1 className="text-[28px] leading-[36px] sm:text-[37px] sm:leading-[44px] font-medium font-primary text-main mt-10 mb-4">
+        <h2 className="text-[28px] leading-[36px] sm:text-[37px] sm:leading-[44px] font-medium font-primary text-main mt-10 mb-4">
           {children}
-        </h1>
+        </h2>
       ),
 
       [BLOCKS.HEADING_2]: (_node, children: React.ReactNode) => (

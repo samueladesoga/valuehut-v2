@@ -30,6 +30,9 @@ export interface IArticle {
   title: string;
   date: string;
   updatedDate: string;
+  /** Raw ISO timestamps from Contentful, for structured data. */
+  firstPublishedAt?: string;
+  publishedAt?: string;
   description: string;
   content?: {
     json: Document;
@@ -105,6 +108,7 @@ export const getAllArticles = async () => {
     isFeatured: post.isFeatured,
     category: "",
     firstPublishedAt: post.sys.firstPublishedAt,
+    publishedAt: post.sys.publishedAt,
     tag: post.tag,
     image: post.cover.url,
     slug: post.slug,
@@ -195,6 +199,9 @@ export const getSlugArticle = async (
     title: post.title,
     date: convertDateLong(post.sys.firstPublishedAt.toString()),
     updatedDate: convertDateLong(post.sys.publishedAt.toString()),
+    // Raw timestamps for structured data (schema.org needs ISO 8601).
+    firstPublishedAt: post.sys.firstPublishedAt,
+    publishedAt: post.sys.publishedAt,
     description: post.description,
     content: post.content.json,
     embeddedAssets,

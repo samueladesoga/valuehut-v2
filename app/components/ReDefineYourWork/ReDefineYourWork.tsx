@@ -18,7 +18,7 @@ export default function ReDefineYourWork({
         className="relative w-[1,440px] h-[700px] bg-cover bg-center rounded-[30px]"
       >
         <div className="flex flex-col absolute gap-3 sm:gap-6 bottom-10 left-10 sm:bottom-14 sm:left-14 w-80 text-white">
-          <h1 className="text-5xl font-normal">{title}</h1>
+          <h2 className="text-5xl font-normal">{title}</h2>
           <p className="font-medium text-xl">{description}</p>
           <div>{button}</div>
         </div>

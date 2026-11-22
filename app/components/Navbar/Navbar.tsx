@@ -72,7 +72,19 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
   const closeDropdown = () => setOpenDropdownIndex(null);
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
+  // Escape closes the mobile menu and any open dropdown.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setIsMobileMenuOpen(false);
+      setOpenDropdownIndex(null);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, []);
+
   const pathname = usePathname();
+  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
   const isWhiteBackgroundRoutes = ["/about-us", "/faqs", "/blog", "/checkout/"];
 
@@ -141,7 +153,10 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
                 <Link
                   key={index}
                   href={link.href}
-                  className="relative flex items-center hover:text-gray-300"
+                  aria-current={isActive(link.href) ? "page" : undefined}
+                  className={`relative flex items-center hover:text-gray-300 ${
+                    isActive(link.href) ? "font-semibold underline underline-offset-8 decoration-2" : ""
+                  }`}
                 >
                   {link.label}
 
@@ -289,7 +304,8 @@ const Navbar = ({ logoX, logoY, menu, navLinks = [] }: NavbarProps) => {
                     <li key={index}>
                       <Link
                         href={link.href}
-                        className="block hover:text-gray-300"
+                        aria-current={isActive(link.href) ? "page" : undefined}
+                        className={`block hover:text-gray-300 ${isActive(link.href) ? "font-semibold" : ""}`}
                         onClick={toggleMobileMenu}
                       >
                         {link.label}

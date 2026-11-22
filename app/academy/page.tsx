@@ -10,9 +10,11 @@ import TrainingPartners from "@/components/TrainingsPage/TrainingPartners";
 import { getAllCourses } from "@/lib/courseApi";
 import { getMonthAndDay, getYear } from "@/utils/ConvertDate";
 import type { Metadata } from "next";
+import JsonLd from "@/components/JsonLd/JsonLd";
+import { absoluteUrl, faqSchema, organizationRef } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Agile & Scrum Courses | London & Lagos | ValueHut Academy",
+  title: { absolute: "Agile & Scrum Courses in London & Lagos | ValueHut Academy" },
   description:
     "Join an upcoming Agile or Scrum Mastery course in London or Lagos. Guaranteed to get your organisation working faster, better and safer.",
   alternates: {
@@ -62,8 +64,30 @@ export default async function Home() {
     };
   });
 
+  // A list of every course helps search engines and AI assistants answer
+  // "which Agile courses does ValueHut run?" directly.
+  const courseListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "ValueHut Academy courses",
+    itemListElement: courses.map((course: any, i: number) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "Course",
+        name: course.title,
+        description: course.description,
+        url: absoluteUrl(`/academy/${course.slug}`),
+        provider: organizationRef,
+      },
+    })),
+  };
+
   return (
     <div className="bg-[#f5f5f5]">
+      <JsonLd
+        data={[courseListSchema, faqSchema(faqs.filter((faq) => faq.category === "Academy"))]}
+      />
       <HeroComponent
         title={AcademyHero.title}
         subtitle={AcademyHero.subtitle}

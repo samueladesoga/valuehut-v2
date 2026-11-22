@@ -90,12 +90,12 @@ function Consulting() {
           <div className="md:hidden rounded-[21.5px] relative">
             <div className=" absolute inset-0 rounded-[21px]  bg-gradient-to-t from-[#1A1B13] sm:hidden">
               <div className="absolute bottom-0  p-4 sm:hidden">
-                <h1 className=" font-secondary  font-semibold text-2xl text-[#FFFFFF]">
+                <h3 className=" font-secondary  font-semibold text-2xl text-[#FFFFFF]">
                   Samuel Adesoga
-                </h1>
-                <h3 className="font-secondary font-semibold text-sm text-[#FFFFFF]">
-                  Founder and Managing Consultant
                 </h3>
+                <p className="font-secondary font-semibold text-sm text-[#FFFFFF]">
+                  Founder and Managing Consultant
+                </p>
               </div>
             </div>
             <Image
@@ -110,12 +110,12 @@ function Consulting() {
           <div className="md:hidden rounded-[21px] relative ">
             <div className="absolute z-10  rounded-[21px]  inset-0 bg-gradient-to-t from-[#1A1B13] sm:hidden">
               <div className="absolute bottom-0  p-4 sm:hidden">
-                <h1 className=" font-secondary  font-semibold text-2xl text-[#FFFFFF]">
+                <h3 className=" font-secondary  font-semibold text-2xl text-[#FFFFFF]">
                   Temitope Awere
-                </h1>
-                <h3 className="font-secondary font-semibold text-sm text-[#FFFFFF]">
-                  Partner Consultant
                 </h3>
+                <p className="font-secondary font-semibold text-sm text-[#FFFFFF]">
+                  Partner Consultant
+                </p>
               </div>
             </div>
             <Image

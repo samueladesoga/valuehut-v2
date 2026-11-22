@@ -110,6 +110,7 @@ export const getAllCourses = async () => {
       duration: course.duration,
       dates: convertDate(sortedClasses[0]?.startDate),
       classes: sortedClasses.map((item) => ({
+        classSysId: item.sys.id,
         filled: item.filled,
         startDate: item.startDate,
         endDate: item.endDate,

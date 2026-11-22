@@ -35,7 +35,7 @@ const HeroComponent: React.FC<HeroSectionProps> = ({
         src={backgroundImage}
         layout="fill"
         className="object-center object-cover pointer-events-none"
-        alt="image"
+        alt=""
         priority
       />
       <div className="bg-gradient-custom relative z-1 h-[600px] flex flex-end">
@@ -46,9 +46,11 @@ const HeroComponent: React.FC<HeroSectionProps> = ({
                 {pill}
               </div>
             )}
-            <h1 className="text-7xl sm:text-[67px] md:max-w-2xl font-primary sm:leading-[80px] font-normal text-accentmain">
-              {title}
-            </h1>
+            {title && (
+              <h1 className="text-7xl sm:text-[67px] md:max-w-2xl font-primary sm:leading-[80px] font-normal text-accentmain">
+                {title}
+              </h1>
+            )}
             {subtitle && (
               <p className="text-base font-secondary sm:text-lg font-medium text-accentsecondary">
                 {subtitle}

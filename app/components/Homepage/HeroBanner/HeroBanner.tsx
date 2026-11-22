@@ -38,7 +38,7 @@ export default function HeroBanner({
         />
         <div className="bg-gradient-custom rounded-3xl container flex relative z-1 p-9 sm:p-20">
           <div className=" absolute flex flex-col gap-4 bottom-10 sm:w-1/2 text-accentmain">
-            <motion.h1
+            <motion.h2
               className="text-[41px] leading-[45.1px] sm:text-[54px] sm:leading-[59.4px] font-primary font-normal"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -46,7 +46,7 @@ export default function HeroBanner({
               viewport={{ once: false, amount: 0.2 }}
             >
               {title}
-            </motion.h1>
+            </motion.h2>
             <motion.p
               className="text-xl font-secondary text-accentmain font-medium"
               initial={{ opacity: 0, y: 20 }}

@@ -67,9 +67,9 @@ function MeetTheTeam() {
 
   return (
     <div>
-      <h1 className="flex justify-center items-center font-medium font-primary text-[47px] leading-[65px] sm:text-[60px] sm:leading-[84px] py-8">
+      <h2 className="flex justify-center items-center font-medium font-primary text-[47px] leading-[65px] sm:text-[60px] sm:leading-[84px] py-8">
         Meet the team
-      </h1>
+      </h2>
       <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {teamMembers.map((member, index) => (
           <TeamCard key={index} {...member} />
