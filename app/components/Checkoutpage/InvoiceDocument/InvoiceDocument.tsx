@@ -1,10 +1,11 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState } from "react";
+// Rendered on the server by /api/send-invoice. All amounts come from `totals`,
+// which the server works out from Contentful prices and DISCOUNT_CODES.
+import React from "react";
 import { Page, Text, View, Document, Image } from "@react-pdf/renderer";
 import { styles, tableStyles } from "./file.styles";
-import LogoVH from "@/logo192.png";
 import { getDisplayDate } from "@/utils/ConvertDate";
-import { InvoiceDeadline } from "@/utils/checkout";
+import { CheckoutTotals, InvoiceDeadline } from "@/utils/checkout";
 
 interface Idata {
   quantity: number;
@@ -21,45 +22,37 @@ interface IselectedCourse {
   startDate: string;
   endDate: string;
   timeZone: string;
-  quantity: number;
-  price: number;
   acronym: string;
-  discountPercent?: number;
 }
 
 const InvoiceDocument = ({
   data,
   selectedCourse,
+  totals,
   isUk,
   deadline,
+  invoiceNumber,
+  today,
+  logoSrc,
 }: {
   data: Idata;
   selectedCourse: IselectedCourse;
+  totals: CheckoutTotals;
   isUk: boolean;
   deadline: InvoiceDeadline;
+  invoiceNumber: string;
+  today: string;
+  logoSrc: Buffer | string;
 }) => {
-  // Computed during render (not in an effect) so the values are present when
-  // react-pdf renders the document once to a blob.
-  const [{ today, invoiceNumber }] = useState(() => {
-    let currentDate: string;
-    try {
-      currentDate = new Date().toLocaleDateString("en-GB", { timeZone: selectedCourse.timeZone });
-    } catch {
-      currentDate = new Date().toLocaleDateString("en-GB");
-    }
-    return { today: currentDate, invoiceNumber: Date.now().toString() };
-  });
-
-  const originalPrice = selectedCourse ? selectedCourse.price * data.quantity : 0;
-  const discountPercent = selectedCourse?.discountPercent ?? 0;
-  const discountAmount = originalPrice * (discountPercent / 100);
-  const totalPrice = originalPrice - discountAmount;
+  const originalPrice = totals.subtotal;
+  const discountPercent = totals.discountPercent;
+  const discountAmount = totals.discountAmount;
   const currency = isUk ? "£" : "$";
   return (
     <Document>
       <Page size="A4" style={styles.page} wrap={false}>
         <View style={styles.rowFlex}>
-          <Image style={styles.headerImage} src={LogoVH.src} />
+          <Image style={styles.headerImage} src={logoSrc} />
           <View
             style={{
               display: "flex",
@@ -144,8 +137,8 @@ const InvoiceDocument = ({
             <Text style={[tableStyles.cell, tableStyles.col]}>
               {getDisplayDate(selectedCourse.startDate, selectedCourse.endDate, selectedCourse.timeZone)}
             </Text>
-            <Text style={[tableStyles.cell, tableStyles.col, tableStyles.right]}>{data.quantity}</Text>
-            <Text style={[tableStyles.cell, tableStyles.col, tableStyles.right]}>{selectedCourse?.price.toFixed(2)}</Text>
+            <Text style={[tableStyles.cell, tableStyles.col, tableStyles.right]}>{totals.quantity}</Text>
+            <Text style={[tableStyles.cell, tableStyles.col, tableStyles.right]}>{totals.unitPrice.toFixed(2)}</Text>
             <Text style={[tableStyles.cell, tableStyles.col, tableStyles.right]}>{currency} {originalPrice.toFixed(2)}</Text>
           </View>
 
@@ -162,13 +155,13 @@ const InvoiceDocument = ({
           <View style={tableStyles.totalsRow}>
             <Text style={[tableStyles.totalsLabel, tableStyles.cell]}>VAT ({isUk ? '20%' : '0%'}):</Text>
             <Text style={[tableStyles.totalsAmount, tableStyles.cell]}>
-              {isUk ? `${currency} ${(totalPrice * 0.2).toFixed(2)}` : '$0'}
+              {isUk ? `${currency} ${totals.vat.toFixed(2)}` : '$0'}
             </Text>
           </View>
           <View style={tableStyles.totalsRow}>
             <Text style={[tableStyles.totalsLabel, tableStyles.cell]}>TOTAL</Text>
             <Text style={[tableStyles.totalsAmount, tableStyles.cell]}>
-              {currency} {(isUk ? totalPrice * 1.2 : totalPrice).toFixed(2)}
+              {currency} {totals.total.toFixed(2)}
             </Text>
           </View>
         </View>

@@ -123,3 +123,58 @@ export function isValidPhone(value: string): boolean {
   const digits = value.replace(/\D/g, "");
   return digits.length >= 7 && digits.length <= 15;
 }
+
+// Limits on what people can type into checkout fields. These values are
+// printed on invoices sent from info@valuehut.co, so they're kept short and
+// plain to stop the form being used to put messages or links on our invoices.
+// The form and /api/send-invoice both use these rules.
+export const FIELD_LIMITS = {
+  fullName: 80,
+  email: 254,
+  company: 100,
+  billingContact: 80,
+  poNumber: 40,
+  addressLine1: 100,
+  addressLine2: 100,
+  city: 60,
+  postcode: 12,
+  phone: 20,
+  invoiceEmail: 254,
+} as const;
+
+export type LimitedField = keyof typeof FIELD_LIMITS;
+
+// Letters (any language), numbers, spaces and the punctuation real names and
+// addresses use. No @, colons, slashes-after-colons or line breaks.
+const PLAIN_TEXT = /^[\p{L}\p{M}\p{N} .,'’&()/#-]*$/u;
+const PO_TEXT = /^[A-Za-z0-9 ._/#-]*$/;
+const POSTCODE_TEXT = /^[A-Za-z0-9 -]*$/;
+const WEB_ADDRESS = /www\.|\bhttps?\b/i;
+
+const PATTERNS: Partial<Record<LimitedField, RegExp>> = {
+  fullName: PLAIN_TEXT,
+  company: PLAIN_TEXT,
+  billingContact: PLAIN_TEXT,
+  addressLine1: PLAIN_TEXT,
+  addressLine2: PLAIN_TEXT,
+  city: PLAIN_TEXT,
+  poNumber: PO_TEXT,
+  postcode: POSTCODE_TEXT,
+};
+
+/** Error message for a free-text field, or null if it's fine. Expects a trimmed value. */
+export function checkTextField(name: LimitedField, value: string): string | null {
+  const max = FIELD_LIMITS[name];
+  if (value.length > max) return `Use ${max} characters or fewer.`;
+  const pattern = PATTERNS[name];
+  if (!pattern) return null;
+  if (!pattern.test(value)) {
+    return name === "poNumber"
+      ? "Use letters, numbers, spaces and - / . # _ only."
+      : name === "postcode"
+        ? "Use letters, numbers, spaces and hyphens only."
+        : "Use letters, numbers and simple punctuation only.";
+  }
+  if (WEB_ADDRESS.test(value)) return "Web addresses can't go in this field.";
+  return null;
+}

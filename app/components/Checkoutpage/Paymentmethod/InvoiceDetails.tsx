@@ -4,7 +4,7 @@ import React from "react";
 import FormField from "../FormField/FormField";
 import { countries } from "@/data/Countries/countries";
 import { CheckoutDetails, FieldErrors, UpdateDetail } from "../types";
-import { InvoiceDeadline } from "@/utils/checkout";
+import { FIELD_LIMITS, InvoiceDeadline } from "@/utils/checkout";
 
 interface InvoiceDetailsProps {
   details: CheckoutDetails;
@@ -27,6 +27,7 @@ const InvoiceDetails: React.FC<InvoiceDetailsProps> = ({
   const text = (name: keyof CheckoutDetails) => ({
     name,
     value: details[name] as string,
+    ...(name in FIELD_LIMITS ? { maxLength: FIELD_LIMITS[name as keyof typeof FIELD_LIMITS] } : {}),
     onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
       updateDetail(name, e.target.value),
   });
@@ -73,6 +74,7 @@ const InvoiceDetails: React.FC<InvoiceDetailsProps> = ({
             id="billingContact"
             label="Billing contact"
             optional
+            error={errors.billingContact}
             className="w-full"
             hint="The person in accounts who handles this invoice."
           >
@@ -90,6 +92,7 @@ const InvoiceDetails: React.FC<InvoiceDetailsProps> = ({
             id="poNumber"
             label="PO number / reference"
             optional
+            error={errors.poNumber}
             className="w-full"
             hint="Shown on the invoice if your company needs one."
           >
@@ -119,7 +122,7 @@ const InvoiceDetails: React.FC<InvoiceDetailsProps> = ({
             />
           )}
         </FormField>
-        <FormField id="addressLine2" label="Address line 2" optional>
+        <FormField id="addressLine2" label="Address line 2" optional error={errors.addressLine2}>
           {(props) => (
             <input
               {...props}

@@ -52,9 +52,11 @@ Course sections (objectives, who should attend, etc.) are stored as `courseDetai
 | Route | Purpose |
 |---|---|
 | `POST /api/revalidate` | Contentful webhook → revalidate `blog` or `courses` cache tag |
-| `POST /api/sendEmail` | Send invoice PDF via nodemailer (AWS SES) |
-| `POST /api/create-payment-intent` | Stripe payment intent |
+| `POST /api/send-invoice` | Price the order server-side, build the invoice PDF and email it via nodemailer (AWS SES) |
+| `POST /api/create-payment-intent` | Price the order server-side and create a Stripe payment intent |
 | `POST /api/validate-discount` | Discount code validation |
+
+Discount codes live in the `DISCOUNT_CODES` env var (`CODE:PERCENT,CODE:PERCENT`). Card and invoice prices are always worked out on the server by `app/lib/pricing.ts` from Contentful and `DISCOUNT_CODES`; the browser only sends the class, country, attendee count and code.
 
 ### Static data
 
