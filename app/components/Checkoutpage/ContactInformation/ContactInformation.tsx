@@ -3,6 +3,7 @@
 import React from "react";
 import FormField from "../FormField/FormField";
 import { CheckoutDetails, FieldErrors, UpdateDetail } from "../types";
+import { FIELD_LIMITS } from "@/utils/checkout";
 
 interface ContactInformationProps {
   details: CheckoutDetails;
@@ -23,6 +24,7 @@ const ContactInformation: React.FC<ContactInformationProps> = ({
           type="text"
           name="fullName"
           autoComplete="name"
+          maxLength={FIELD_LIMITS.fullName}
           value={details.fullName}
           onChange={(e) => updateDetail("fullName", e.target.value)}
           placeholder="e.g. Alex Morgan"
@@ -42,6 +44,7 @@ const ContactInformation: React.FC<ContactInformationProps> = ({
           type="email"
           name="email"
           autoComplete="email"
+          maxLength={FIELD_LIMITS.email}
           value={details.email}
           onChange={(e) => updateDetail("email", e.target.value)}
           placeholder="you@example.com"

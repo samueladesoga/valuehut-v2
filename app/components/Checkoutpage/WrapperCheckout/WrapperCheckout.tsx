@@ -6,7 +6,6 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { loadStripe, Appearance, StripeElementsOptions } from "@stripe/stripe-js";
 import { Elements, useElements, useStripe } from "@stripe/react-stripe-js";
-import { pdf } from "@react-pdf/renderer";
 import { sendGTMEvent } from "@next/third-parties/google";
 
 import ContactInformation from "../ContactInformation/ContactInformation";
@@ -14,7 +13,6 @@ import Paymentmethod from "../Paymentmethod/Paymentmethod";
 import CheckoutCourseDetails from "../CheckoutCourseDetails/CheckoutCourseDetails";
 import OrderSummary from "../Ordersummary/Ordersummary";
 import DiscountCode from "../DiscountCode/DiscountCode";
-import InvoiceDocument from "../InvoiceDocument/InvoiceDocument";
 import CheckoutStep from "../CheckoutStep/CheckoutStep";
 import AttendeesStepper from "../AttendeesStepper/AttendeesStepper";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
@@ -25,6 +23,7 @@ import {
   CheckoutTotals,
   EMAIL_REGEX,
   InvoiceDeadline,
+  checkTextField,
   computeTotals,
   formatMoney,
   getInvoiceDeadline,
@@ -125,7 +124,11 @@ const FIELD_ORDER: CheckoutField[] = [
   "fullName",
   "email",
   "paymentMethod",
+  "company",
+  "billingContact",
+  "poNumber",
   "addressLine1",
+  "addressLine2",
   "city",
   "postcode",
   "billingCountry",
@@ -226,6 +229,10 @@ function CheckoutForm({ course, classDetail, country, isUk, unitPrice }: Checkou
   const validate = (): FieldErrors => {
     const e: FieldErrors = {};
     if (!details.fullName.trim()) e.fullName = "Enter your full name.";
+    else {
+      const problem = checkTextField("fullName", details.fullName.trim());
+      if (problem) e.fullName = problem;
+    }
     if (!details.email.trim()) e.email = "Enter your email address.";
     else if (!EMAIL_REGEX.test(details.email.trim()))
       e.email = "Enter an email address like name@example.com.";
@@ -235,6 +242,12 @@ function CheckoutForm({ course, classDetail, country, isUk, unitPrice }: Checkou
       if (!details.addressLine1.trim()) e.addressLine1 = "Enter the first line of the billing address.";
       if (!details.city.trim()) e.city = "Enter the town or city.";
       if (!details.postcode.trim()) e.postcode = "Enter the postcode or ZIP.";
+      // Invoice text must be short and plain (the server enforces the same rules).
+      for (const name of ["company", "billingContact", "poNumber", "addressLine1", "addressLine2", "city", "postcode"] as const) {
+        if (e[name]) continue;
+        const problem = checkTextField(name, details[name].trim());
+        if (problem) e[name] = problem;
+      }
       if (!details.billingCountry.trim()) e.billingCountry = "Select the billing country.";
       if (details.phone.trim() && !isValidPhone(details.phone.trim()))
         e.phone = "Enter a phone number with 7–15 digits, e.g. +44 7700 900123.";
@@ -318,69 +331,42 @@ function CheckoutForm({ course, classDetail, country, isUk, unitPrice }: Checkou
   };
 
   const sendInvoice = async () => {
-    const contactEmail = details.email.trim();
-    const recipient = details.sendToSomeoneElse ? details.invoiceEmail.trim() : contactEmail;
-    const addressLines = [
-      details.addressLine1,
-      details.addressLine2,
-      [details.city, details.postcode].map((v) => v.trim()).filter(Boolean).join(" "),
-      details.billingCountry,
-    ]
-      .map((line) => line.trim())
-      .filter(Boolean);
-
-    const data = {
-      fullname: details.fullName.trim(),
-      company: details.company.trim(),
-      billingContact: details.billingContact.trim(),
-      poNumber: details.poNumber.trim(),
-      phoneNumber: details.phone.trim(),
-      email: recipient,
-      addressLines,
-      quantity: details.numberOfAttendees,
-    };
-
-    const selectedCourse = {
-      // Raw dates: the invoice formats them in the class timezone.
-      startDate: classDetail.startDate,
-      endDate: classDetail.endDate,
-      timeZone: classDetail.timeZone,
-      quantity: details.numberOfAttendees,
-      price: unitPrice,
-      discountPercent,
-      acronym: course.acronym,
-    };
-
-    const asPdf = pdf();
-    asPdf.updateContainer(
-      <InvoiceDocument data={data} selectedCourse={selectedCourse} isUk={isUk} deadline={deadline} />
-    );
-    const blob = await asPdf.toBlob();
-
-    // Greet whoever receives the invoice: the billing contact if given,
-    // a neutral greeting if it goes to someone else, otherwise the student.
-    const sentToSomeoneElse = recipient.toLowerCase() !== contactEmail.toLowerCase();
-    const greetingName = data.billingContact || (sentToSomeoneElse ? "Sir/Madam" : data.fullname);
-
-    const formData = new FormData();
-    formData.append("file", blob, `Invoice_ValueHut_${data.fullname}_${Date.now()}.pdf`);
-    formData.append("toEmail", recipient);
-    formData.append("subject", `Invoice for ${course.title} (${course.acronym})`);
-    formData.append("customerName", greetingName);
-    formData.append("courseName", course?.title ?? "");
-    formData.append("paymentDue", deadline.label ?? "");
-    formData.append("paymentDueImmediately", String(deadline.isPastDeadline));
-
-    const res = await fetch("/api/sendEmail", { method: "POST", body: formData });
-    const result = await res.json().catch(() => ({ error: true }));
-    if (!res.ok || result.error) {
+    // The server prices the order, builds the invoice PDF and emails it.
+    const res = await fetch("/api/send-invoice", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        slug: course.slug,
+        classSysId: classDetail.classSysId,
+        country,
+        quantity: details.numberOfAttendees,
+        discountCode: appliedCode,
+        fullName: details.fullName,
+        email: details.email,
+        company: details.company,
+        billingContact: details.billingContact,
+        poNumber: details.poNumber,
+        phone: details.phone,
+        addressLine1: details.addressLine1,
+        addressLine2: details.addressLine2,
+        city: details.city,
+        postcode: details.postcode,
+        billingCountry: details.billingCountry,
+        sendToSomeoneElse: details.sendToSomeoneElse,
+        invoiceEmail: details.invoiceEmail,
+      }),
+    });
+    const result = await res.json().catch(() => ({}));
+    if (!res.ok || !result.sent) {
       setFormError(
-        "We couldn't send your invoice. Please try again, or email info@valuehut.co and we'll send it manually."
+        res.status === 400 && result.error
+          ? result.error
+          : "We couldn't send your invoice. Please try again, or email info@valuehut.co and we'll send it manually."
       );
       return;
     }
     sendGTMEvent({ event: "purchase", value: totals.net, category: "checkout", label: "invoice" });
-    setConfirmation({ kind: "invoice", recipient });
+    setConfirmation({ kind: "invoice", recipient: result.recipient });
   };
 
   const handleSubmit = async () => {
