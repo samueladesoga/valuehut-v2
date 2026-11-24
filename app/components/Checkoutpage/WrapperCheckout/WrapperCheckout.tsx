@@ -269,20 +269,27 @@ function CheckoutForm({ course, classDetail, country, isUk, unitPrice }: Checkou
     const res = await fetch("/api/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      // The server works out the price itself from these.
       body: JSON.stringify({
-        amount: totals.net,
-        currency: totals.currency,
+        slug: course.slug,
+        classSysId: classDetail.classSysId,
+        country,
+        quantity: details.numberOfAttendees,
+        discountCode: appliedCode,
         email: details.email.trim(),
         fullName: details.fullName.trim(),
-        isUk,
-        acronym: course.acronym,
-        startDate: classDetail.startDate,
-        timeZone: classDetail.timeZone,
       }),
     });
     const data = await res.json().catch(() => ({}));
     if (!data.clientSecret) {
       setFormError(data.error || "We couldn't start your payment. You have not been charged. Please try again.");
+      return;
+    }
+    // Never charge a different amount from the one on the Pay button.
+    if (data.amount !== totals.totalMinor) {
+      setFormError(
+        "The price has changed since this page loaded. Please refresh and try again. You have not been charged."
+      );
       return;
     }
 
