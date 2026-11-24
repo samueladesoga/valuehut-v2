@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { findDiscount } from "@/lib/discounts";
 
 export async function POST(request: NextRequest) {
   try {
@@ -8,17 +9,9 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ valid: false, error: "Invalid code" }, { status: 400 });
     }
 
-    const raw = process.env.DISCOUNT_CODES ?? "";
-    const entries = raw.split(",").filter(Boolean);
-
-    for (const entry of entries) {
-      const [storedCode, percentStr] = entry.trim().split(":");
-      if (storedCode.toUpperCase() === code.trim().toUpperCase()) {
-        const percent = parseInt(percentStr, 10);
-        if (!isNaN(percent) && percent > 0 && percent <= 100) {
-          return NextResponse.json({ valid: true, percent, code: storedCode.toUpperCase() });
-        }
-      }
+    const discount = findDiscount(code);
+    if (discount) {
+      return NextResponse.json({ valid: true, percent: discount.percent, code: discount.code });
     }
 
     return NextResponse.json({ valid: false, error: "Invalid or expired discount code" });
